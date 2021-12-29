@@ -6,14 +6,18 @@
 //
 
 import UIKit
+import YammerSDK
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        YMLoginClient.sharedInstance().appClientID = "5KFoSJHaXkuOsDcrqQC1w"
+        YMLoginClient.sharedInstance().appClientSecret = "RWyuyOJAhPHSBAk66WzgQJPGwX8DtufREiIoHHV30g"
+        YMLoginClient.sharedInstance().authRedirectURI = "msauth.com.microsoft.identitysample.msalios://auth"
+        
         return true
     }
 
