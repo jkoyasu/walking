@@ -7,8 +7,10 @@
 
 import UIKit
 import YammerSDK
+import MSAL
 
 class TabBarController: UITabBarController, UITabBarControllerDelegate {
+    
     //msalToken
     
     //yammerToken
@@ -25,11 +27,19 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         // Do any additional setup after loading the view.
         //msalTokenが空ならログイン画面表示
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+         super.viewDidAppear(animated)
+        
+        if YMLoginClient.sharedInstance().storedAuthToken() == nil{
         //YammerTokenが空ならログイン画面表示
-        if YMLoginClient.sharedInstance().storedAuthToken() == nil {
             let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "Login")
             self.present(loginViewController!, animated: true, completion: nil)
+        }else{
+            print(YMLoginClient.sharedInstance().storedAuthToken())
         }
     }
+    
 }
 
