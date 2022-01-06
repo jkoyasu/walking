@@ -12,12 +12,14 @@ import YammerSDK
 class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
-        //super.viewDidLoad()
-        //YMLoginClient.sharedInstance().startLogin(withContextViewController: self)
-    }
-    override func viewDidAppear(_ animated: Bool) {
-        //super.viewDidLoad()
-        YMLoginClient.sharedInstance().startLogin(withContextViewController: self)
+        super.viewDidLoad()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+         super.viewDidAppear(animated)
+        YMLoginClient.sharedInstance().startLogin(withContextViewController: self)
+        if let account = YMLoginClient.sharedInstance().storedAuthToken(){
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
 }

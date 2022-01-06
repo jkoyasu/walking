@@ -9,8 +9,6 @@ import UIKit
 import YammerSDK
 import MSAL
 
-
-
 class TabBarController: UITabBarController, UITabBarControllerDelegate {
     
     let kClientID = "66855f8a-60cd-445e-a9bb-8cd8eadbd3fa"
@@ -27,14 +25,7 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
     var loggingText: String?
 
     var currentAccount: MSALAccount?
-    
-    
-    //msalToken
-    
-    //yammerToken
-    
-    //msalID
-    
+
     //CurrentTeam
     var CurrentTeams = 0
     //JoinedTeams
@@ -57,6 +48,12 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         // Do any additional setup after loading the view.
         //msalTokenが空ならログイン画面表示
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+         super.viewDidAppear(animated)
+        
+        if YMLoginClient.sharedInstance().storedAuthToken() == nil{
         //YammerTokenが空ならログイン画面表示
 //        if YMLoginClient.sharedInstance().storedAuthToken() == nil {
             //let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "Login")
@@ -243,8 +240,5 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
             self.updateLogging(text: "Refreshed Access token is \(self.accessToken)")
         }
     }
-    
-    
-    
 }
 
