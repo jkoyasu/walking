@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		65C497E98D1A0A9CF7E6116E /* Pods_walking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A1C6D6C083B9BA7A6ACEE9D /* Pods_walking.framework */; };
+		913E8EB02785766800A8853C /* CalorieStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913E8EAF2785766800A8853C /* CalorieStruct.swift */; };
+		9183475427841096005E8EC7 /* StepStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9183475327841096005E8EC7 /* StepStruct.swift */; };
+		918347572784225A005E8EC7 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 918347562784225A005E8EC7 /* HealthKit.framework */; };
+		91834759278443F5005E8EC7 /* HealthKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91834758278443F5005E8EC7 /* HealthKitUI.framework */; };
 		A22EA0FC277ACA9500D7DA92 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22EA0FB277ACA9400D7DA92 /* HomeView.swift */; };
 		A22EA0FE277ACAB900D7DA92 /* StepCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22EA0FD277ACAB900D7DA92 /* StepCountView.swift */; };
 		A22EA100277ACAD400D7DA92 /* CommunicationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22EA0FF277ACAD400D7DA92 /* CommunicationView.swift */; };
@@ -26,6 +30,11 @@
 /* Begin PBXFileReference section */
 		0A1C6D6C083B9BA7A6ACEE9D /* Pods_walking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_walking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		415DA5B3D9C96A2563F780D4 /* Pods-walking.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-walking.debug.xcconfig"; path = "Target Support Files/Pods-walking/Pods-walking.debug.xcconfig"; sourceTree = "<group>"; };
+		913E8EAF2785766800A8853C /* CalorieStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalorieStruct.swift; sourceTree = "<group>"; };
+		9183475327841096005E8EC7 /* StepStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepStruct.swift; sourceTree = "<group>"; };
+		9183475527842259005E8EC7 /* walking.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = walking.entitlements; sourceTree = "<group>"; };
+		918347562784225A005E8EC7 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		91834758278443F5005E8EC7 /* HealthKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKitUI.framework; path = System/Library/Frameworks/HealthKitUI.framework; sourceTree = SDKROOT; };
 		A22EA0FB277ACA9400D7DA92 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		A22EA0FD277ACAB900D7DA92 /* StepCountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepCountView.swift; sourceTree = "<group>"; };
 		A22EA0FF277ACAD400D7DA92 /* CommunicationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationView.swift; sourceTree = "<group>"; };
@@ -50,6 +59,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				65C497E98D1A0A9CF7E6116E /* Pods_walking.framework in Frameworks */,
+				918347572784225A005E8EC7 /* HealthKit.framework in Frameworks */,
+				91834759278443F5005E8EC7 /* HealthKitUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,6 +70,8 @@
 		115EE635B506DF1C9F54558A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				91834758278443F5005E8EC7 /* HealthKitUI.framework */,
+				918347562784225A005E8EC7 /* HealthKit.framework */,
 				0A1C6D6C083B9BA7A6ACEE9D /* Pods_walking.framework */,
 			);
 			name = Frameworks;
@@ -85,6 +98,7 @@
 		A2C1A36F2772FD4C009CAE84 /* walking */ = {
 			isa = PBXGroup;
 			children = (
+				9183475527842259005E8EC7 /* walking.entitlements */,
 				A2C1A3702772FD4C009CAE84 /* AppDelegate.swift */,
 				A2C1A3722772FD4C009CAE84 /* SceneDelegate.swift */,
 				A2C1A3742772FD4C009CAE84 /* TabBarController.swift */,
@@ -92,10 +106,12 @@
 				A22EA0FD277ACAB900D7DA92 /* StepCountView.swift */,
 				A22EA0FF277ACAD400D7DA92 /* CommunicationView.swift */,
 				A22EA101277ACAF100D7DA92 /* NotificationView.swift */,
-				A22EA109277AE81400D7DA92 /* LoginViewController.swift */,
 				A22EA103277AD0E200D7DA92 /* YammerAPI.swift */,
+				A22EA109277AE81400D7DA92 /* LoginViewController.swift */,
 				A22EA105277AD0FB00D7DA92 /* AWSAPI.swift */,
 				A2C1A3762772FD4C009CAE84 /* Main.storyboard */,
+				9183475327841096005E8EC7 /* StepStruct.swift */,
+				913E8EAF2785766800A8853C /* CalorieStruct.swift */,
 				A2C1A3792772FD52009CAE84 /* Assets.xcassets */,
 				A2C1A37B2772FD52009CAE84 /* LaunchScreen.storyboard */,
 				A2C1A37E2772FD52009CAE84 /* Info.plist */,
@@ -231,7 +247,9 @@
 				A2C1A3712772FD4C009CAE84 /* AppDelegate.swift in Sources */,
 				A22EA102277ACAF100D7DA92 /* NotificationView.swift in Sources */,
 				A22EA106277AD0FB00D7DA92 /* AWSAPI.swift in Sources */,
+				9183475427841096005E8EC7 /* StepStruct.swift in Sources */,
 				A22EA0FC277ACA9500D7DA92 /* HomeView.swift in Sources */,
+				913E8EB02785766800A8853C /* CalorieStruct.swift in Sources */,
 				A22EA100277ACAD400D7DA92 /* CommunicationView.swift in Sources */,
 				A22EA0FE277ACAB900D7DA92 /* StepCountView.swift in Sources */,
 				A2C1A3732772FD4C009CAE84 /* SceneDelegate.swift in Sources */,
@@ -384,6 +402,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = walking/walking.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = MHAGM665WL;
@@ -413,6 +432,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = walking/walking.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = MHAGM665WL;
