@@ -47,7 +47,7 @@ class HomeView: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        stepLabel.text = "\(stepStructs[stepStructs.count-1].steps)歩"
+//        stepLabel.text = "\(stepStructs[stepStructs.count-1].steps)歩"
     }
     
     private func getSteps() {

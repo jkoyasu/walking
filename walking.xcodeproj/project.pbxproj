@@ -12,6 +12,7 @@
 		9183475427841096005E8EC7 /* StepStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9183475327841096005E8EC7 /* StepStruct.swift */; };
 		918347572784225A005E8EC7 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 918347562784225A005E8EC7 /* HealthKit.framework */; };
 		91834759278443F5005E8EC7 /* HealthKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91834758278443F5005E8EC7 /* HealthKitUI.framework */; };
+		A21905EE2786ACD700288B76 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21905ED2786ACD700288B76 /* StartView.swift */; };
 		A22EA0FC277ACA9500D7DA92 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22EA0FB277ACA9400D7DA92 /* HomeView.swift */; };
 		A22EA0FE277ACAB900D7DA92 /* StepCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22EA0FD277ACAB900D7DA92 /* StepCountView.swift */; };
 		A22EA100277ACAD400D7DA92 /* CommunicationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22EA0FF277ACAD400D7DA92 /* CommunicationView.swift */; };
@@ -35,6 +36,7 @@
 		9183475527842259005E8EC7 /* walking.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = walking.entitlements; sourceTree = "<group>"; };
 		918347562784225A005E8EC7 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		91834758278443F5005E8EC7 /* HealthKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKitUI.framework; path = System/Library/Frameworks/HealthKitUI.framework; sourceTree = SDKROOT; };
+		A21905ED2786ACD700288B76 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 		A22EA0FB277ACA9400D7DA92 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		A22EA0FD277ACAB900D7DA92 /* StepCountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepCountView.swift; sourceTree = "<group>"; };
 		A22EA0FF277ACAD400D7DA92 /* CommunicationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationView.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 				A2C1A3702772FD4C009CAE84 /* AppDelegate.swift */,
 				A2C1A3722772FD4C009CAE84 /* SceneDelegate.swift */,
 				A2C1A3742772FD4C009CAE84 /* TabBarController.swift */,
+				A21905ED2786ACD700288B76 /* StartView.swift */,
 				A22EA0FB277ACA9400D7DA92 /* HomeView.swift */,
 				A22EA0FD277ACAB900D7DA92 /* StepCountView.swift */,
 				A22EA0FF277ACAD400D7DA92 /* CommunicationView.swift */,
@@ -248,6 +251,7 @@
 				A22EA102277ACAF100D7DA92 /* NotificationView.swift in Sources */,
 				A22EA106277AD0FB00D7DA92 /* AWSAPI.swift in Sources */,
 				9183475427841096005E8EC7 /* StepStruct.swift in Sources */,
+				A21905EE2786ACD700288B76 /* StartView.swift in Sources */,
 				A22EA0FC277ACA9500D7DA92 /* HomeView.swift in Sources */,
 				913E8EB02785766800A8853C /* CalorieStruct.swift in Sources */,
 				A22EA100277ACAD400D7DA92 /* CommunicationView.swift in Sources */,

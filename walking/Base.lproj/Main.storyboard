@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cCF-7K-urt">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cGs-XS-avr">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
@@ -90,10 +90,29 @@
             </objects>
             <point key="canvasLocation" x="-372.46376811594206" y="-486.16071428571428"/>
         </scene>
+        <!--Start View-->
+        <scene sceneID="S5m-Mn-ngl">
+            <objects>
+                <viewController id="cGs-XS-avr" customClass="StartView" customModule="walking" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="B1h-ak-Trq">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="GNK-Iq-6IW"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <connections>
+                        <segue destination="cCF-7K-urt" kind="presentation" identifier="toTab" modalPresentationStyle="fullScreen" id="LtM-VH-oFY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6gM-vZ-9AA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2051" y="-184"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="f7u-WL-JDA">
             <objects>
-                <tabBarController id="cCF-7K-urt" customClass="TabBarController" customModule="walking" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="Tab" id="cCF-7K-urt" customClass="TabBarController" customModule="walking" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="fjO-fX-w0d"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="VH2-hC-oyo">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
