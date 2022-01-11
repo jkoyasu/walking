@@ -10,7 +10,7 @@ import MSAL
 import YammerSDK
 
 class StartView: UIViewController {
-    
+    //全情報取得
     let kClientID = "66855f8a-60cd-445e-a9bb-8cd8eadbd3fa"
     let kGraphEndpoint = "https://graph.microsoft.com/"
     let kAuthority = "https://login.microsoftonline.com/common"
@@ -46,16 +46,18 @@ class StartView: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        defer{
+            let TabViewController = self.storyboard?.instantiateViewController(withIdentifier: "Tab")
+            performSegue(withIdentifier: "toTab", sender: nil)
+        }
+        
 //        YammerTokenが空ならログイン画面表示
         if YMLoginClient.sharedInstance().storedAuthToken() == nil {
             let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "Login")
             self.present(loginViewController!, animated: true, completion: nil)
         }
         callGraphAPI()
-        
-        let TabViewController = self.storyboard?.instantiateViewController(withIdentifier: "Tab")
-        performSegue(withIdentifier: "toTab", sender: nil)
-
+        sleep(10)
     }
     
     func initMSAL() throws {
