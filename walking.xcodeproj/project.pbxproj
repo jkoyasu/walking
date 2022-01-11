@@ -13,9 +13,11 @@
 		918347572784225A005E8EC7 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 918347562784225A005E8EC7 /* HealthKit.framework */; };
 		91834759278443F5005E8EC7 /* HealthKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91834758278443F5005E8EC7 /* HealthKitUI.framework */; };
 		A21905EE2786ACD700288B76 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21905ED2786ACD700288B76 /* StartView.swift */; };
+		A21905F92786D0CC00288B76 /* CommunicationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21905F82786D0CC00288B76 /* CommunicationView.swift */; };
+		A21905FC2786D15500288B76 /* CommunicationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21905FA2786D15500288B76 /* CommunicationCell.swift */; };
+		A21905FD2786D15500288B76 /* CommunicationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A21905FB2786D15500288B76 /* CommunicationCell.xib */; };
 		A22EA0FC277ACA9500D7DA92 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22EA0FB277ACA9400D7DA92 /* HomeView.swift */; };
-		A22EA0FE277ACAB900D7DA92 /* StepCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22EA0FD277ACAB900D7DA92 /* StepCountView.swift */; };
-		A22EA100277ACAD400D7DA92 /* CommunicationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22EA0FF277ACAD400D7DA92 /* CommunicationView.swift */; };
+		A22EA0FE277ACAB900D7DA92 /* RecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22EA0FD277ACAB900D7DA92 /* RecordView.swift */; };
 		A22EA102277ACAF100D7DA92 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22EA101277ACAF100D7DA92 /* NotificationView.swift */; };
 		A22EA104277AD0E200D7DA92 /* YammerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22EA103277AD0E200D7DA92 /* YammerAPI.swift */; };
 		A22EA106277AD0FB00D7DA92 /* AWSAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22EA105277AD0FB00D7DA92 /* AWSAPI.swift */; };
@@ -37,9 +39,11 @@
 		918347562784225A005E8EC7 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		91834758278443F5005E8EC7 /* HealthKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKitUI.framework; path = System/Library/Frameworks/HealthKitUI.framework; sourceTree = SDKROOT; };
 		A21905ED2786ACD700288B76 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
+		A21905F82786D0CC00288B76 /* CommunicationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationView.swift; sourceTree = "<group>"; };
+		A21905FA2786D15500288B76 /* CommunicationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationCell.swift; sourceTree = "<group>"; };
+		A21905FB2786D15500288B76 /* CommunicationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommunicationCell.xib; sourceTree = "<group>"; };
 		A22EA0FB277ACA9400D7DA92 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		A22EA0FD277ACAB900D7DA92 /* StepCountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepCountView.swift; sourceTree = "<group>"; };
-		A22EA0FF277ACAD400D7DA92 /* CommunicationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationView.swift; sourceTree = "<group>"; };
+		A22EA0FD277ACAB900D7DA92 /* RecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordView.swift; sourceTree = "<group>"; };
 		A22EA101277ACAF100D7DA92 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		A22EA103277AD0E200D7DA92 /* YammerAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YammerAPI.swift; sourceTree = "<group>"; };
 		A22EA105277AD0FB00D7DA92 /* AWSAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWSAPI.swift; sourceTree = "<group>"; };
@@ -79,6 +83,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		A21905F32786C4C700288B76 /* Communication */ = {
+			isa = PBXGroup;
+			children = (
+				A21905F82786D0CC00288B76 /* CommunicationView.swift */,
+				A21905FA2786D15500288B76 /* CommunicationCell.swift */,
+				A21905FB2786D15500288B76 /* CommunicationCell.xib */,
+				A22EA103277AD0E200D7DA92 /* YammerAPI.swift */,
+			);
+			path = Communication;
+			sourceTree = "<group>";
+		};
 		A2C1A3642772FD4C009CAE84 = {
 			isa = PBXGroup;
 			children = (
@@ -100,16 +115,15 @@
 		A2C1A36F2772FD4C009CAE84 /* walking */ = {
 			isa = PBXGroup;
 			children = (
+				A21905F32786C4C700288B76 /* Communication */,
 				9183475527842259005E8EC7 /* walking.entitlements */,
 				A2C1A3702772FD4C009CAE84 /* AppDelegate.swift */,
 				A2C1A3722772FD4C009CAE84 /* SceneDelegate.swift */,
 				A2C1A3742772FD4C009CAE84 /* TabBarController.swift */,
 				A21905ED2786ACD700288B76 /* StartView.swift */,
 				A22EA0FB277ACA9400D7DA92 /* HomeView.swift */,
-				A22EA0FD277ACAB900D7DA92 /* StepCountView.swift */,
-				A22EA0FF277ACAD400D7DA92 /* CommunicationView.swift */,
+				A22EA0FD277ACAB900D7DA92 /* RecordView.swift */,
 				A22EA101277ACAF100D7DA92 /* NotificationView.swift */,
-				A22EA103277AD0E200D7DA92 /* YammerAPI.swift */,
 				A22EA109277AE81400D7DA92 /* LoginViewController.swift */,
 				A22EA105277AD0FB00D7DA92 /* AWSAPI.swift */,
 				A2C1A3762772FD4C009CAE84 /* Main.storyboard */,
@@ -191,6 +205,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A21905FD2786D15500288B76 /* CommunicationCell.xib in Resources */,
 				A2C1A37D2772FD52009CAE84 /* LaunchScreen.storyboard in Resources */,
 				A2C1A37A2772FD52009CAE84 /* Assets.xcassets in Resources */,
 				A2C1A3782772FD4C009CAE84 /* Main.storyboard in Resources */,
@@ -252,12 +267,13 @@
 				A22EA106277AD0FB00D7DA92 /* AWSAPI.swift in Sources */,
 				9183475427841096005E8EC7 /* StepStruct.swift in Sources */,
 				A21905EE2786ACD700288B76 /* StartView.swift in Sources */,
+				A21905F92786D0CC00288B76 /* CommunicationView.swift in Sources */,
 				A22EA0FC277ACA9500D7DA92 /* HomeView.swift in Sources */,
 				913E8EB02785766800A8853C /* CalorieStruct.swift in Sources */,
-				A22EA100277ACAD400D7DA92 /* CommunicationView.swift in Sources */,
-				A22EA0FE277ACAB900D7DA92 /* StepCountView.swift in Sources */,
+				A22EA0FE277ACAB900D7DA92 /* RecordView.swift in Sources */,
 				A2C1A3732772FD4C009CAE84 /* SceneDelegate.swift in Sources */,
 				A22EA10A277AE81400D7DA92 /* LoginViewController.swift in Sources */,
+				A21905FC2786D15500288B76 /* CommunicationCell.swift in Sources */,
 				A22EA104277AD0E200D7DA92 /* YammerAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

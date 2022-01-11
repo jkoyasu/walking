@@ -1,5 +1,5 @@
 //
-//  CommunicationView.swift
+//  StapCountView.swift
 //  walking
 //
 //  Created by koyasu on 2021/12/28.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CommunicationView: UIViewController {
+class RecordView: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
