@@ -1,5 +1,5 @@
 //
-//  MemberViewController.swift
+//  NotificationView.swift
 //  walking
 //
 //  Created by koyasu on 2022/01/12.
@@ -7,15 +7,15 @@
 
 import UIKit
 
-class MemberView: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    
-    @IBOutlet weak var TableView: UITableView!
+class NotificationView: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
+    @IBOutlet weak var TableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         TableView.dataSource = self
         TableView.delegate = self
-        TableView.register(UINib(nibName: "MemberCell", bundle: nil), forCellReuseIdentifier: "MemberCell")
+        TableView.register(UINib(nibName: "NotificationCell", bundle: nil), forCellReuseIdentifier: "NotificationCell")
         // Do any additional setup after loading the view.
     }
     
@@ -24,8 +24,7 @@ class MemberView: UIViewController, UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MemberCell", for: indexPath ) as! MemberCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "NotificationCell", for: indexPath ) as! NotificationCell
         return cell
     }
-    
 }
