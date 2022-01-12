@@ -21,10 +21,12 @@
 		A21905FD2786D15500288B76 /* CommunicationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A21905FB2786D15500288B76 /* CommunicationCell.xib */; };
 		A22EA0FC277ACA9500D7DA92 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22EA0FB277ACA9400D7DA92 /* HomeView.swift */; };
 		A22EA0FE277ACAB900D7DA92 /* RecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22EA0FD277ACAB900D7DA92 /* RecordView.swift */; };
-		A22EA102277ACAF100D7DA92 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22EA101277ACAF100D7DA92 /* NotificationView.swift */; };
 		A22EA104277AD0E200D7DA92 /* YammerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22EA103277AD0E200D7DA92 /* YammerAPI.swift */; };
 		A22EA106277AD0FB00D7DA92 /* AWSAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22EA105277AD0FB00D7DA92 /* AWSAPI.swift */; };
 		A22EA10A277AE81400D7DA92 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22EA109277AE81400D7DA92 /* LoginViewController.swift */; };
+		A244D5F0278EAA5C008D30A2 /* MemberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A244D5EF278EAA5C008D30A2 /* MemberView.swift */; };
+		A244D5F3278EAA81008D30A2 /* MemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A244D5F1278EAA81008D30A2 /* MemberCell.swift */; };
+		A244D5F4278EAA81008D30A2 /* MemberCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A244D5F2278EAA81008D30A2 /* MemberCell.xib */; };
 		A2C1A3712772FD4C009CAE84 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C1A3702772FD4C009CAE84 /* AppDelegate.swift */; };
 		A2C1A3732772FD4C009CAE84 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C1A3722772FD4C009CAE84 /* SceneDelegate.swift */; };
 		A2C1A3752772FD4C009CAE84 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C1A3742772FD4C009CAE84 /* TabBarController.swift */; };
@@ -50,10 +52,12 @@
 		A21905FB2786D15500288B76 /* CommunicationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommunicationCell.xib; sourceTree = "<group>"; };
 		A22EA0FB277ACA9400D7DA92 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		A22EA0FD277ACAB900D7DA92 /* RecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordView.swift; sourceTree = "<group>"; };
-		A22EA101277ACAF100D7DA92 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		A22EA103277AD0E200D7DA92 /* YammerAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YammerAPI.swift; sourceTree = "<group>"; };
 		A22EA105277AD0FB00D7DA92 /* AWSAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWSAPI.swift; sourceTree = "<group>"; };
 		A22EA109277AE81400D7DA92 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		A244D5EF278EAA5C008D30A2 /* MemberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberView.swift; sourceTree = "<group>"; };
+		A244D5F1278EAA81008D30A2 /* MemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberCell.swift; sourceTree = "<group>"; };
+		A244D5F2278EAA81008D30A2 /* MemberCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MemberCell.xib; sourceTree = "<group>"; };
 		A2C1A36D2772FD4C009CAE84 /* walking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = walking.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2C1A3702772FD4C009CAE84 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A2C1A3722772FD4C009CAE84 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -100,6 +104,16 @@
 			path = Communication;
 			sourceTree = "<group>";
 		};
+		A244D5E8278EA0EA008D30A2 /* Member */ = {
+			isa = PBXGroup;
+			children = (
+				A244D5EF278EAA5C008D30A2 /* MemberView.swift */,
+				A244D5F1278EAA81008D30A2 /* MemberCell.swift */,
+				A244D5F2278EAA81008D30A2 /* MemberCell.xib */,
+			);
+			path = Member;
+			sourceTree = "<group>";
+		};
 		A2C1A3642772FD4C009CAE84 = {
 			isa = PBXGroup;
 			children = (
@@ -121,6 +135,7 @@
 		A2C1A36F2772FD4C009CAE84 /* walking */ = {
 			isa = PBXGroup;
 			children = (
+				A244D5E8278EA0EA008D30A2 /* Member */,
 				A21905F32786C4C700288B76 /* Communication */,
 				9183475527842259005E8EC7 /* walking.entitlements */,
 				A2C1A3702772FD4C009CAE84 /* AppDelegate.swift */,
@@ -129,7 +144,6 @@
 				A21905ED2786ACD700288B76 /* StartView.swift */,
 				A22EA0FB277ACA9400D7DA92 /* HomeView.swift */,
 				A22EA0FD277ACAB900D7DA92 /* RecordView.swift */,
-				A22EA101277ACAF100D7DA92 /* NotificationView.swift */,
 				A22EA109277AE81400D7DA92 /* LoginViewController.swift */,
 				A22EA105277AD0FB00D7DA92 /* AWSAPI.swift */,
 				A2C1A3762772FD4C009CAE84 /* Main.storyboard */,
@@ -221,6 +235,7 @@
 				A2C1A3782772FD4C009CAE84 /* Main.storyboard in Resources */,
 				913E8EB6278D55EE00A8853C /* EventRankViewCell.xib in Resources */,
 				913E8EB4278D55DB00A8853C /* TeamRankViewCell.xib in Resources */,
+				A244D5F4278EAA81008D30A2 /* MemberCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,13 +290,14 @@
 			files = (
 				A2C1A3752772FD4C009CAE84 /* TabBarController.swift in Sources */,
 				A2C1A3712772FD4C009CAE84 /* AppDelegate.swift in Sources */,
-				A22EA102277ACAF100D7DA92 /* NotificationView.swift in Sources */,
 				A22EA106277AD0FB00D7DA92 /* AWSAPI.swift in Sources */,
 				9183475427841096005E8EC7 /* StepStruct.swift in Sources */,
 				A21905EE2786ACD700288B76 /* StartView.swift in Sources */,
 				A21905F92786D0CC00288B76 /* CommunicationView.swift in Sources */,
 				A22EA0FC277ACA9500D7DA92 /* HomeView.swift in Sources */,
+				A244D5F3278EAA81008D30A2 /* MemberCell.swift in Sources */,
 				913E8EB02785766800A8853C /* CalorieStruct.swift in Sources */,
+				A244D5F0278EAA5C008D30A2 /* MemberView.swift in Sources */,
 				A22EA0FE277ACAB900D7DA92 /* RecordView.swift in Sources */,
 				A2C1A3732772FD4C009CAE84 /* SceneDelegate.swift in Sources */,
 				A22EA10A277AE81400D7DA92 /* LoginViewController.swift in Sources */,

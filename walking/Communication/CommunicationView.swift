@@ -28,7 +28,6 @@ class CommunicationView: UIViewController, UITableViewDataSource, UITableViewDel
         TableView.delegate = self
         TableView.register(UINib(nibName: "CommunicationCell", bundle: nil), forCellReuseIdentifier: "Cell")
         print(self.messages)
-        IconButton.layer.cornerRadius = 100 // 角丸のサイズ
 
         // Do any additional setup after loading the view.
     }
