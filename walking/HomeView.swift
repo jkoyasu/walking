@@ -14,6 +14,7 @@ class HomeView: UIViewController {
 
     @IBOutlet weak var stepLabel: UILabel!
     @IBOutlet weak var calorieLabel: UILabel!
+    @IBOutlet weak var infoButton: UIButton!
     
     var stepStructs: [StepStruct] = []
     var calorieStructs: [CalorieStruct] = []

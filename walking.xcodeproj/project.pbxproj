@@ -27,6 +27,9 @@
 		A244D5F0278EAA5C008D30A2 /* MemberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A244D5EF278EAA5C008D30A2 /* MemberView.swift */; };
 		A244D5F3278EAA81008D30A2 /* MemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A244D5F1278EAA81008D30A2 /* MemberCell.swift */; };
 		A244D5F4278EAA81008D30A2 /* MemberCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A244D5F2278EAA81008D30A2 /* MemberCell.xib */; };
+		A244D5FA278EB6D5008D30A2 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A244D5F8278EB6D5008D30A2 /* NotificationCell.swift */; };
+		A244D5FB278EB6D5008D30A2 /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A244D5F9278EB6D5008D30A2 /* NotificationCell.xib */; };
+		A244D5FD278EB75B008D30A2 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A244D5FC278EB75B008D30A2 /* NotificationView.swift */; };
 		A2C1A3712772FD4C009CAE84 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C1A3702772FD4C009CAE84 /* AppDelegate.swift */; };
 		A2C1A3732772FD4C009CAE84 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C1A3722772FD4C009CAE84 /* SceneDelegate.swift */; };
 		A2C1A3752772FD4C009CAE84 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C1A3742772FD4C009CAE84 /* TabBarController.swift */; };
@@ -58,6 +61,9 @@
 		A244D5EF278EAA5C008D30A2 /* MemberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberView.swift; sourceTree = "<group>"; };
 		A244D5F1278EAA81008D30A2 /* MemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberCell.swift; sourceTree = "<group>"; };
 		A244D5F2278EAA81008D30A2 /* MemberCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MemberCell.xib; sourceTree = "<group>"; };
+		A244D5F8278EB6D5008D30A2 /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
+		A244D5F9278EB6D5008D30A2 /* NotificationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationCell.xib; sourceTree = "<group>"; };
+		A244D5FC278EB75B008D30A2 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		A2C1A36D2772FD4C009CAE84 /* walking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = walking.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2C1A3702772FD4C009CAE84 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A2C1A3722772FD4C009CAE84 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -114,6 +120,16 @@
 			path = Member;
 			sourceTree = "<group>";
 		};
+		A244D5F7278EB6B5008D30A2 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				A244D5FC278EB75B008D30A2 /* NotificationView.swift */,
+				A244D5F8278EB6D5008D30A2 /* NotificationCell.swift */,
+				A244D5F9278EB6D5008D30A2 /* NotificationCell.xib */,
+			);
+			path = Notification;
+			sourceTree = "<group>";
+		};
 		A2C1A3642772FD4C009CAE84 = {
 			isa = PBXGroup;
 			children = (
@@ -135,6 +151,7 @@
 		A2C1A36F2772FD4C009CAE84 /* walking */ = {
 			isa = PBXGroup;
 			children = (
+				A244D5F7278EB6B5008D30A2 /* Notification */,
 				A244D5E8278EA0EA008D30A2 /* Member */,
 				A21905F32786C4C700288B76 /* Communication */,
 				9183475527842259005E8EC7 /* walking.entitlements */,
@@ -230,6 +247,7 @@
 			files = (
 				A21905FD2786D15500288B76 /* CommunicationCell.xib in Resources */,
 				913E8EB2278D55C100A8853C /* PersonRankViewCell.xib in Resources */,
+				A244D5FB278EB6D5008D30A2 /* NotificationCell.xib in Resources */,
 				A2C1A37D2772FD52009CAE84 /* LaunchScreen.storyboard in Resources */,
 				A2C1A37A2772FD52009CAE84 /* Assets.xcassets in Resources */,
 				A2C1A3782772FD4C009CAE84 /* Main.storyboard in Resources */,
@@ -294,6 +312,7 @@
 				9183475427841096005E8EC7 /* StepStruct.swift in Sources */,
 				A21905EE2786ACD700288B76 /* StartView.swift in Sources */,
 				A21905F92786D0CC00288B76 /* CommunicationView.swift in Sources */,
+				A244D5FD278EB75B008D30A2 /* NotificationView.swift in Sources */,
 				A22EA0FC277ACA9500D7DA92 /* HomeView.swift in Sources */,
 				A244D5F3278EAA81008D30A2 /* MemberCell.swift in Sources */,
 				913E8EB02785766800A8853C /* CalorieStruct.swift in Sources */,
@@ -303,6 +322,7 @@
 				A22EA10A277AE81400D7DA92 /* LoginViewController.swift in Sources */,
 				A21905FC2786D15500288B76 /* CommunicationCell.swift in Sources */,
 				A22EA104277AD0E200D7DA92 /* YammerAPI.swift in Sources */,
+				A244D5FA278EB6D5008D30A2 /* NotificationCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
