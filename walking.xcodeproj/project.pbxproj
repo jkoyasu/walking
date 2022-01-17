@@ -39,6 +39,7 @@
 		A2C1A3782772FD4C009CAE84 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2C1A3762772FD4C009CAE84 /* Main.storyboard */; };
 		A2C1A37A2772FD52009CAE84 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2C1A3792772FD52009CAE84 /* Assets.xcassets */; };
 		A2C1A37D2772FD52009CAE84 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2C1A37B2772FD52009CAE84 /* LaunchScreen.storyboard */; };
+		A2FEF752279006FF00D8D537 /* ThreadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2FEF751279006FF00D8D537 /* ThreadView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,6 +79,7 @@
 		A2C1A3792772FD52009CAE84 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A2C1A37C2772FD52009CAE84 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A2C1A37E2772FD52009CAE84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A2FEF751279006FF00D8D537 /* ThreadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadView.swift; sourceTree = "<group>"; };
 		AAF723D015DE791EF430EC91 /* Pods-walking.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-walking.release.xcconfig"; path = "Target Support Files/Pods-walking/Pods-walking.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -123,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				A21905F82786D0CC00288B76 /* CommunicationView.swift */,
+				A2FEF751279006FF00D8D537 /* ThreadView.swift */,
 				A21905FA2786D15500288B76 /* CommunicationCell.swift */,
 				A21905FB2786D15500288B76 /* CommunicationCell.xib */,
 				A22EA103277AD0E200D7DA92 /* YammerAPI.swift */,
@@ -331,6 +334,7 @@
 				913E8EBA278FECD500A8853C /* PersonRankCell.swift in Sources */,
 				A21905EE2786ACD700288B76 /* StartView.swift in Sources */,
 				A21905F92786D0CC00288B76 /* CommunicationView.swift in Sources */,
+				A2FEF752279006FF00D8D537 /* ThreadView.swift in Sources */,
 				A244D5FD278EB75B008D30A2 /* NotificationView.swift in Sources */,
 				A22EA0FC277ACA9500D7DA92 /* HomeView.swift in Sources */,
 				A244D5F3278EAA81008D30A2 /* MemberCell.swift in Sources */,

@@ -26,7 +26,6 @@ enum YammerAPI{
         let client:YMAPIClient = YMAPIClient.init(authToken: authToken)
         
         client.getPath("/api/v1/messages.json", parameters: params, success: { data in
-            
             var result: Result<Any, UserAPIError>
             result = .success(data)
             

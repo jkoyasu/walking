@@ -31,6 +31,15 @@ class StartView: UIViewController {
     //JoinedTeams
     var JoinedTeams = [["TeamName":"〇○チーム","Id":20000],["TeamName":"××チーム","Id":30000]]
     
+    var YM = YMLoginClient.sharedInstance().storedAuthToken(){
+        didSet{
+            let TabViewController = self.storyboard?.instantiateViewController(withIdentifier: "Tab")
+            performSegue(withIdentifier: "toTab", sender: nil)
+        }
+    }
+        
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -51,6 +60,7 @@ class StartView: UIViewController {
             performSegue(withIdentifier: "toTab", sender: nil)
         }
         
+        callGraphAPI()
 //        YammerTokenが空ならログイン画面表示
 //        if YMLoginClient.sharedInstance().storedAuthToken() == nil {
 //            let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "Login")
