@@ -9,8 +9,12 @@
 /* Begin PBXBuildFile section */
 		65C497E98D1A0A9CF7E6116E /* Pods_walking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A1C6D6C083B9BA7A6ACEE9D /* Pods_walking.framework */; };
 		913E8EB02785766800A8853C /* CalorieStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913E8EAF2785766800A8853C /* CalorieStruct.swift */; };
-		913E8EB4278D55DB00A8853C /* TeamRankViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 913E8EB3278D55DB00A8853C /* TeamRankViewCell.xib */; };
-		913E8EB6278D55EE00A8853C /* EventRankViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 913E8EB5278D55EE00A8853C /* EventRankViewCell.xib */; };
+		913E8EBA278FECD500A8853C /* PersonRankCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913E8EB8278FECD500A8853C /* PersonRankCell.swift */; };
+		913E8EBB278FECD500A8853C /* PersonRankCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 913E8EB9278FECD500A8853C /* PersonRankCell.xib */; };
+		915A8BB02791567500B1DECE /* TeamRankCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915A8BAE2791567500B1DECE /* TeamRankCell.swift */; };
+		915A8BB12791567500B1DECE /* TeamRankCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 915A8BAF2791567500B1DECE /* TeamRankCell.xib */; };
+		915A8BB42791770C00B1DECE /* EventRankCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915A8BB22791770C00B1DECE /* EventRankCell.swift */; };
+		915A8BB52791770C00B1DECE /* EventRankCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 915A8BB32791770C00B1DECE /* EventRankCell.xib */; };
 		9183475427841096005E8EC7 /* StepStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9183475327841096005E8EC7 /* StepStruct.swift */; };
 		918347572784225A005E8EC7 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 918347562784225A005E8EC7 /* HealthKit.framework */; };
 		91834759278443F5005E8EC7 /* HealthKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91834758278443F5005E8EC7 /* HealthKitUI.framework */; };
@@ -42,8 +46,12 @@
 		0A1C6D6C083B9BA7A6ACEE9D /* Pods_walking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_walking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		415DA5B3D9C96A2563F780D4 /* Pods-walking.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-walking.debug.xcconfig"; path = "Target Support Files/Pods-walking/Pods-walking.debug.xcconfig"; sourceTree = "<group>"; };
 		913E8EAF2785766800A8853C /* CalorieStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalorieStruct.swift; sourceTree = "<group>"; };
-		913E8EB3278D55DB00A8853C /* TeamRankViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamRankViewCell.xib; sourceTree = "<group>"; };
-		913E8EB5278D55EE00A8853C /* EventRankViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventRankViewCell.xib; sourceTree = "<group>"; };
+		913E8EB8278FECD500A8853C /* PersonRankCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonRankCell.swift; sourceTree = "<group>"; };
+		913E8EB9278FECD500A8853C /* PersonRankCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonRankCell.xib; sourceTree = "<group>"; };
+		915A8BAE2791567500B1DECE /* TeamRankCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamRankCell.swift; sourceTree = "<group>"; };
+		915A8BAF2791567500B1DECE /* TeamRankCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamRankCell.xib; sourceTree = "<group>"; };
+		915A8BB22791770C00B1DECE /* EventRankCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRankCell.swift; sourceTree = "<group>"; };
+		915A8BB32791770C00B1DECE /* EventRankCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventRankCell.xib; sourceTree = "<group>"; };
 		9183475327841096005E8EC7 /* StepStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepStruct.swift; sourceTree = "<group>"; };
 		9183475527842259005E8EC7 /* walking.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = walking.entitlements; sourceTree = "<group>"; };
 		918347562784225A005E8EC7 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
@@ -99,6 +107,20 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		913E8EB7278FE9E400A8853C /* Record */ = {
+			isa = PBXGroup;
+			children = (
+				A22EA0FD277ACAB900D7DA92 /* RecordView.swift */,
+				913E8EB8278FECD500A8853C /* PersonRankCell.swift */,
+				915A8BAE2791567500B1DECE /* TeamRankCell.swift */,
+				915A8BB22791770C00B1DECE /* EventRankCell.swift */,
+				915A8BB32791770C00B1DECE /* EventRankCell.xib */,
+				915A8BAF2791567500B1DECE /* TeamRankCell.xib */,
+				913E8EB9278FECD500A8853C /* PersonRankCell.xib */,
+			);
+			path = Record;
+			sourceTree = "<group>";
+		};
 		A21905F32786C4C700288B76 /* Communication */ = {
 			isa = PBXGroup;
 			children = (
@@ -152,6 +174,7 @@
 		A2C1A36F2772FD4C009CAE84 /* walking */ = {
 			isa = PBXGroup;
 			children = (
+				913E8EB7278FE9E400A8853C /* Record */,
 				A244D5F7278EB6B5008D30A2 /* Notification */,
 				A244D5E8278EA0EA008D30A2 /* Member */,
 				A21905F32786C4C700288B76 /* Communication */,
@@ -161,12 +184,9 @@
 				A2C1A3742772FD4C009CAE84 /* TabBarController.swift */,
 				A21905ED2786ACD700288B76 /* StartView.swift */,
 				A22EA0FB277ACA9400D7DA92 /* HomeView.swift */,
-				A22EA0FD277ACAB900D7DA92 /* RecordView.swift */,
 				A22EA109277AE81400D7DA92 /* LoginViewController.swift */,
 				A22EA105277AD0FB00D7DA92 /* AWSAPI.swift */,
 				A2C1A3762772FD4C009CAE84 /* Main.storyboard */,
-				913E8EB3278D55DB00A8853C /* TeamRankViewCell.xib */,
-				913E8EB5278D55EE00A8853C /* EventRankViewCell.xib */,
 				9183475327841096005E8EC7 /* StepStruct.swift */,
 				913E8EAF2785766800A8853C /* CalorieStruct.swift */,
 				A2C1A3792772FD52009CAE84 /* Assets.xcassets */,
@@ -249,10 +269,11 @@
 				A244D5FB278EB6D5008D30A2 /* NotificationCell.xib in Resources */,
 				A2C1A37D2772FD52009CAE84 /* LaunchScreen.storyboard in Resources */,
 				A2C1A37A2772FD52009CAE84 /* Assets.xcassets in Resources */,
+				915A8BB12791567500B1DECE /* TeamRankCell.xib in Resources */,
+				913E8EBB278FECD500A8853C /* PersonRankCell.xib in Resources */,
 				A2C1A3782772FD4C009CAE84 /* Main.storyboard in Resources */,
-				913E8EB6278D55EE00A8853C /* EventRankViewCell.xib in Resources */,
-				913E8EB4278D55DB00A8853C /* TeamRankViewCell.xib in Resources */,
 				A244D5F4278EAA81008D30A2 /* MemberCell.xib in Resources */,
+				915A8BB52791770C00B1DECE /* EventRankCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,6 +330,8 @@
 				A2C1A3712772FD4C009CAE84 /* AppDelegate.swift in Sources */,
 				A22EA106277AD0FB00D7DA92 /* AWSAPI.swift in Sources */,
 				9183475427841096005E8EC7 /* StepStruct.swift in Sources */,
+				915A8BB42791770C00B1DECE /* EventRankCell.swift in Sources */,
+				913E8EBA278FECD500A8853C /* PersonRankCell.swift in Sources */,
 				A21905EE2786ACD700288B76 /* StartView.swift in Sources */,
 				A21905F92786D0CC00288B76 /* CommunicationView.swift in Sources */,
 				A2FEF752279006FF00D8D537 /* ThreadView.swift in Sources */,
@@ -321,6 +344,7 @@
 				A2C1A3732772FD4C009CAE84 /* SceneDelegate.swift in Sources */,
 				A22EA10A277AE81400D7DA92 /* LoginViewController.swift in Sources */,
 				A21905FC2786D15500288B76 /* CommunicationCell.swift in Sources */,
+				915A8BB02791567500B1DECE /* TeamRankCell.swift in Sources */,
 				A22EA104277AD0E200D7DA92 /* YammerAPI.swift in Sources */,
 				A244D5FA278EB6D5008D30A2 /* NotificationCell.swift in Sources */,
 			);

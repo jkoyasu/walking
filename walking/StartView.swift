@@ -62,13 +62,12 @@ class StartView: UIViewController {
         
         callGraphAPI()
 //        YammerTokenが空ならログイン画面表示
-        if YMLoginClient.sharedInstance().storedAuthToken() == nil {
-            YMLoginClient.sharedInstance().startLogin(withContextViewController: self)
+//        if YMLoginClient.sharedInstance().storedAuthToken() == nil {
 //            let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "Login")
 //            self.present(loginViewController!, animated: true, completion: nil)
-        }
-        print("aa")
-        sleep(5)
+//        }
+//        callGraphAPI()
+        sleep(10)
     }
     
     func initMSAL() throws {
