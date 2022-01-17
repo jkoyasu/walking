@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		65C497E98D1A0A9CF7E6116E /* Pods_walking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A1C6D6C083B9BA7A6ACEE9D /* Pods_walking.framework */; };
 		913E8EB02785766800A8853C /* CalorieStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913E8EAF2785766800A8853C /* CalorieStruct.swift */; };
-		913E8EB2278D55C100A8853C /* PersonRankViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 913E8EB1278D55C100A8853C /* PersonRankViewCell.xib */; };
 		913E8EB4278D55DB00A8853C /* TeamRankViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 913E8EB3278D55DB00A8853C /* TeamRankViewCell.xib */; };
 		913E8EB6278D55EE00A8853C /* EventRankViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 913E8EB5278D55EE00A8853C /* EventRankViewCell.xib */; };
 		9183475427841096005E8EC7 /* StepStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9183475327841096005E8EC7 /* StepStruct.swift */; };
@@ -43,7 +42,6 @@
 		0A1C6D6C083B9BA7A6ACEE9D /* Pods_walking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_walking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		415DA5B3D9C96A2563F780D4 /* Pods-walking.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-walking.debug.xcconfig"; path = "Target Support Files/Pods-walking/Pods-walking.debug.xcconfig"; sourceTree = "<group>"; };
 		913E8EAF2785766800A8853C /* CalorieStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalorieStruct.swift; sourceTree = "<group>"; };
-		913E8EB1278D55C100A8853C /* PersonRankViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonRankViewCell.xib; sourceTree = "<group>"; };
 		913E8EB3278D55DB00A8853C /* TeamRankViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamRankViewCell.xib; sourceTree = "<group>"; };
 		913E8EB5278D55EE00A8853C /* EventRankViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventRankViewCell.xib; sourceTree = "<group>"; };
 		9183475327841096005E8EC7 /* StepStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepStruct.swift; sourceTree = "<group>"; };
@@ -167,7 +165,6 @@
 				A22EA109277AE81400D7DA92 /* LoginViewController.swift */,
 				A22EA105277AD0FB00D7DA92 /* AWSAPI.swift */,
 				A2C1A3762772FD4C009CAE84 /* Main.storyboard */,
-				913E8EB1278D55C100A8853C /* PersonRankViewCell.xib */,
 				913E8EB3278D55DB00A8853C /* TeamRankViewCell.xib */,
 				913E8EB5278D55EE00A8853C /* EventRankViewCell.xib */,
 				9183475327841096005E8EC7 /* StepStruct.swift */,
@@ -249,7 +246,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A21905FD2786D15500288B76 /* CommunicationCell.xib in Resources */,
-				913E8EB2278D55C100A8853C /* PersonRankViewCell.xib in Resources */,
 				A244D5FB278EB6D5008D30A2 /* NotificationCell.xib in Resources */,
 				A2C1A37D2772FD52009CAE84 /* LaunchScreen.storyboard in Resources */,
 				A2C1A37A2772FD52009CAE84 /* Assets.xcassets in Resources */,
