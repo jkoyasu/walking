@@ -67,7 +67,7 @@ class StartView: UIViewController {
 //            self.present(loginViewController!, animated: true, completion: nil)
 //        }
 //        callGraphAPI()
-        sleep(10)
+//        sleep(10)
     }
     
     func initMSAL() throws {
