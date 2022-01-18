@@ -585,9 +585,6 @@
                                         </constraints>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" image="arrow.clockwise.circle" catalog="system"/>
-                                        <connections>
-                                            <action selector="reloadButton2:" destination="wnb-AL-4CI" eventType="touchUpInside" id="Gn2-nS-CAG"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
