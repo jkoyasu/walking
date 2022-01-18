@@ -14,7 +14,6 @@
 		915A8BB02791567500B1DECE /* TeamRankCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915A8BAE2791567500B1DECE /* TeamRankCell.swift */; };
 		915A8BB12791567500B1DECE /* TeamRankCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 915A8BAF2791567500B1DECE /* TeamRankCell.xib */; };
 		915A8BB42791770C00B1DECE /* EventRankCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915A8BB22791770C00B1DECE /* EventRankCell.swift */; };
-		915A8BB52791770C00B1DECE /* EventRankCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 915A8BB32791770C00B1DECE /* EventRankCell.xib */; };
 		9183475427841096005E8EC7 /* StepStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9183475327841096005E8EC7 /* StepStruct.swift */; };
 		918347572784225A005E8EC7 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 918347562784225A005E8EC7 /* HealthKit.framework */; };
 		91834759278443F5005E8EC7 /* HealthKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91834758278443F5005E8EC7 /* HealthKitUI.framework */; };
@@ -51,7 +50,6 @@
 		915A8BAE2791567500B1DECE /* TeamRankCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamRankCell.swift; sourceTree = "<group>"; };
 		915A8BAF2791567500B1DECE /* TeamRankCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamRankCell.xib; sourceTree = "<group>"; };
 		915A8BB22791770C00B1DECE /* EventRankCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRankCell.swift; sourceTree = "<group>"; };
-		915A8BB32791770C00B1DECE /* EventRankCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventRankCell.xib; sourceTree = "<group>"; };
 		9183475327841096005E8EC7 /* StepStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepStruct.swift; sourceTree = "<group>"; };
 		9183475527842259005E8EC7 /* walking.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = walking.entitlements; sourceTree = "<group>"; };
 		918347562784225A005E8EC7 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
@@ -114,7 +112,6 @@
 				913E8EB8278FECD500A8853C /* PersonRankCell.swift */,
 				915A8BAE2791567500B1DECE /* TeamRankCell.swift */,
 				915A8BB22791770C00B1DECE /* EventRankCell.swift */,
-				915A8BB32791770C00B1DECE /* EventRankCell.xib */,
 				915A8BAF2791567500B1DECE /* TeamRankCell.xib */,
 				913E8EB9278FECD500A8853C /* PersonRankCell.xib */,
 			);
@@ -273,7 +270,6 @@
 				913E8EBB278FECD500A8853C /* PersonRankCell.xib in Resources */,
 				A2C1A3782772FD4C009CAE84 /* Main.storyboard in Resources */,
 				A244D5F4278EAA81008D30A2 /* MemberCell.xib in Resources */,
-				915A8BB52791770C00B1DECE /* EventRankCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -423,7 +419,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.6;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -478,7 +474,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

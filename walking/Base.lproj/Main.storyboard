@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cGs-XS-avr">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -176,52 +177,56 @@
                                     <constraint firstItem="u1h-yw-cas" firstAttribute="leading" secondItem="qHH-Zy-6Kw" secondAttribute="leading" id="quh-ZR-zNd"/>
                                 </constraints>
                             </view>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fPC-ZR-auZ">
-                                <rect key="frame" x="10" y="166" width="355" height="471"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="0Cw-aP-GJQ">
-                                <rect key="frame" x="5" y="125" width="220" height="31"/>
+                                <rect key="frame" x="5" y="125" width="280" height="43"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ghz-cK-yfk">
-                                        <rect key="frame" x="0.0" y="0.0" width="100" height="31"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="100" height="43"/>
                                         <color key="backgroundColor" systemColor="systemTealColor"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="100" id="r9y-kW-oxk"/>
                                         </constraints>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="投稿">
+                                            <fontDescription key="titleFontDescription" type="system" pointSize="24"/>
                                             <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </buttonConfiguration>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CcY-1r-yWB">
-                                        <rect key="frame" x="120" y="0.0" width="100" height="31"/>
+                                        <rect key="frame" x="110" y="0.0" width="170" height="43"/>
                                         <color key="backgroundColor" systemColor="systemTealColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="100" id="pVj-A8-OHB"/>
+                                            <constraint firstAttribute="width" constant="170" id="s5e-Eo-6QR"/>
                                         </constraints>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="画像を添付">
+                                            <fontDescription key="titleFontDescription" type="system" pointSize="24"/>
                                             <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </buttonConfiguration>
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="220" id="bwx-bT-hFV"/>
+                                    <constraint firstAttribute="width" constant="280" id="bwx-bT-hFV"/>
                                 </constraints>
                             </stackView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="interactive" translatesAutoresizingMaskIntoConstraints="NO" id="qIV-H8-Hfp">
+                                <rect key="frame" x="5" y="173" width="365" height="469"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Yo6-df-2eB"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="Yo6-df-2eB" firstAttribute="trailing" secondItem="qIV-H8-Hfp" secondAttribute="trailing" constant="5" id="16w-J3-K8f"/>
                             <constraint firstItem="qHH-Zy-6Kw" firstAttribute="leading" secondItem="Yo6-df-2eB" secondAttribute="leading" id="EII-fL-JwX"/>
-                            <constraint firstItem="fPC-ZR-auZ" firstAttribute="leading" secondItem="Yo6-df-2eB" secondAttribute="leading" constant="10" id="MaF-In-DHs"/>
+                            <constraint firstItem="qIV-H8-Hfp" firstAttribute="leading" secondItem="Yo6-df-2eB" secondAttribute="leading" constant="5" id="Ekj-IN-gDP"/>
+                            <constraint firstItem="Yo6-df-2eB" firstAttribute="bottom" secondItem="qIV-H8-Hfp" secondAttribute="bottom" constant="5" id="FJm-Zt-BKa"/>
+                            <constraint firstItem="qIV-H8-Hfp" firstAttribute="top" secondItem="0Cw-aP-GJQ" secondAttribute="bottom" constant="5" id="KOH-GK-HGe"/>
                             <constraint firstItem="0Cw-aP-GJQ" firstAttribute="top" secondItem="qHH-Zy-6Kw" secondAttribute="bottom" constant="5" id="TVk-Gb-0RM"/>
-                            <constraint firstItem="Yo6-df-2eB" firstAttribute="trailing" secondItem="fPC-ZR-auZ" secondAttribute="trailing" constant="10" id="ai5-FG-ZKg"/>
                             <constraint firstItem="0Cw-aP-GJQ" firstAttribute="leading" secondItem="Yo6-df-2eB" secondAttribute="leading" constant="5" id="azC-lf-jXO"/>
-                            <constraint firstItem="fPC-ZR-auZ" firstAttribute="top" secondItem="0Cw-aP-GJQ" secondAttribute="bottom" constant="10" id="bff-sE-oC8"/>
-                            <constraint firstItem="Yo6-df-2eB" firstAttribute="bottom" secondItem="fPC-ZR-auZ" secondAttribute="bottom" constant="10" id="cqq-Bp-wKr"/>
                             <constraint firstItem="qHH-Zy-6Kw" firstAttribute="trailing" secondItem="Yo6-df-2eB" secondAttribute="trailing" id="qPF-R5-RzE"/>
                             <constraint firstItem="qHH-Zy-6Kw" firstAttribute="top" secondItem="Yo6-df-2eB" secondAttribute="top" id="rcS-Mw-Gvr"/>
                         </constraints>
@@ -1396,6 +1401,9 @@ V2FsayBXb3JrERERESBUb2dldGhlcg
         <image name="myIcon" width="236" height="236"/>
         <image name="person.3" catalog="system" width="128" height="62"/>
         <image name="shoes" width="72.5" height="43"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
