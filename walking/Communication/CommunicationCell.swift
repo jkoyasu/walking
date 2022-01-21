@@ -27,18 +27,18 @@ class CommunicationCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-//    func setCell(message:[String:Any],name:String) {
-//
-//        self.ReplieButton.setImage(UIImage(systemName: "bubble.left"), for:.normal)
-//        self.LikeButton.setImage(UIImage(systemName: "heart"), for:.normal)
-//        let body = message["body"] as! [String:String]
-//        let date = message["created_at"] as! String
+    func setCell(message:[String:Any],name:String) {
+
+        self.ReplieButton.setImage(UIImage(systemName: "bubble.left"), for:.normal)
+        self.LikeButton.setImage(UIImage(systemName: "heart"), for:.normal)
+        let body = message["body"] as! [String:String]
+        let date = message["created_at"] as! String
 //        self.NameButton.setTitle(String(name.prefix(1)), for: .normal)
-//        self.UserName.text = name
-//        self.UserName.font = UIFont.boldSystemFont(ofSize: 17.0)
-//        self.Message.text = body["plain"]
-//        self.postDate.text = String(date.prefix(10))
-//      }
+        self.UserName.text = name
+        self.UserName.font = UIFont.boldSystemFont(ofSize: 17.0)
+        self.Message.text = body["plain"]
+        self.postDate.text = String(date.prefix(10))
+      }
     
     //mock用
     func setCell() -> CGSize {

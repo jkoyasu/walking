@@ -44,7 +44,8 @@
                                             <constraint firstAttribute="height" constant="60" id="LdG-zH-4nw"/>
                                             <constraint firstAttribute="width" constant="60" id="WbO-eX-SbU"/>
                                         </constraints>
-                                        <state key="normal" title="Button"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="info"/>
                                         <buttonConfiguration key="configuration" style="plain" image="info"/>
                                     </button>
                                 </subviews>
@@ -71,12 +72,14 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E2M-zk-usb">
                                         <rect key="frame" x="0.0" y="0.0" width="187.5" height="44"/>
-                                        <state key="normal" title="Button"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="bubble.left" catalog="system"/>
                                         <buttonConfiguration key="configuration" style="plain" image="bubble.left" catalog="system"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZaL-oX-USi">
                                         <rect key="frame" x="187.5" y="0.0" width="187.5" height="44"/>
-                                        <state key="normal" title="Button"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="heart" catalog="system"/>
                                         <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system"/>
                                     </button>
                                 </subviews>
@@ -254,6 +257,9 @@
                                             <fontDescription key="titleFontDescription" type="system" pointSize="24"/>
                                             <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="allPostTapped:" destination="srQ-rE-JO3" eventType="touchUpInside" id="Foc-WX-bij"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zRe-dN-sVC">
                                         <rect key="frame" x="187.5" y="0.0" width="187.5" height="43"/>
@@ -262,10 +268,13 @@
                                             <fontDescription key="titleFontDescription" type="system" pointSize="24"/>
                                             <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="teamPostTapped:" destination="srQ-rE-JO3" eventType="touchUpInside" id="335-wU-X9o"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rEj-WB-sIz">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rEj-WB-sIz" userLabel="CommonView">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="myIcon" translatesAutoresizingMaskIntoConstraints="NO" id="veF-c1-mc6">
@@ -285,7 +294,8 @@
                                         <constraints>
                                             <constraint firstAttribute="width" constant="60" id="ocg-zK-gRb"/>
                                         </constraints>
-                                        <state key="normal" title="Button"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="info"/>
                                         <buttonConfiguration key="configuration" style="plain" image="info"/>
                                         <connections>
                                             <segue destination="pk7-sb-sP9" kind="presentation" id="CYR-Vm-tSe"/>
@@ -294,6 +304,7 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemTealColor"/>
                                 <constraints>
+                                    <constraint firstAttribute="height" constant="120" id="86N-PL-ckn"/>
                                     <constraint firstItem="5v6-2U-gMf" firstAttribute="trailing" secondItem="veF-c1-mc6" secondAttribute="trailing" id="Jnd-Rt-Edv"/>
                                     <constraint firstItem="veF-c1-mc6" firstAttribute="bottom" secondItem="5v6-2U-gMf" secondAttribute="bottom" id="WVv-WR-966"/>
                                     <constraint firstAttribute="trailing" secondItem="QFm-j0-IjN" secondAttribute="trailing" constant="5" id="cZ8-xZ-Lec"/>
@@ -338,15 +349,16 @@
                             <constraint firstItem="qTv-vS-cn4" firstAttribute="top" secondItem="rEj-WB-sIz" secondAttribute="bottom" id="byr-nH-gvk"/>
                             <constraint firstItem="MQg-EM-JMv" firstAttribute="trailing" secondItem="ucy-ZR-ZkX" secondAttribute="trailing" id="e2k-kH-rAp"/>
                             <constraint firstItem="hrc-ud-JzN" firstAttribute="top" secondItem="ucy-ZR-ZkX" secondAttribute="bottom" id="i5h-Gs-Fam"/>
-                            <constraint firstItem="qTv-vS-cn4" firstAttribute="top" secondItem="a19-HW-oqC" secondAttribute="top" constant="120" id="nX7-gS-cox"/>
                             <constraint firstItem="qTv-vS-cn4" firstAttribute="leading" secondItem="a19-HW-oqC" secondAttribute="leading" id="uwU-qz-d2Z"/>
                             <constraint firstItem="hrc-ud-JzN" firstAttribute="trailing" secondItem="a19-HW-oqC" secondAttribute="trailing" id="yPX-bg-Oy5"/>
-                            <constraint firstItem="rEj-WB-sIz" firstAttribute="top" secondItem="MQg-EM-JMv" secondAttribute="top" id="zpd-zn-gKa"/>
+                            <constraint firstItem="rEj-WB-sIz" firstAttribute="top" secondItem="a19-HW-oqC" secondAttribute="top" id="zpd-zn-gKa"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="message" catalog="system" id="V8p-Rj-ys5"/>
                     <connections>
                         <outlet property="TableView" destination="ucy-ZR-ZkX" id="xJM-rK-TMz"/>
+                        <outlet property="allPostButton" destination="31s-Mg-i02" id="ooD-8Z-Ull"/>
+                        <outlet property="teamPostButton" destination="zRe-dN-sVC" id="ILV-hM-Yzz"/>
                         <segue destination="21K-LO-KSB" kind="showDetail" identifier="toThread" id="xs3-4C-cHe"/>
                     </connections>
                 </viewController>
@@ -388,7 +400,8 @@
                                             <constraint firstAttribute="height" constant="60" id="FgU-gX-Wml"/>
                                             <constraint firstAttribute="width" constant="60" id="I9M-05-o9R"/>
                                         </constraints>
-                                        <state key="normal" title="Button"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="info"/>
                                         <buttonConfiguration key="configuration" style="plain" image="info"/>
                                         <connections>
                                             <segue destination="pk7-sb-sP9" kind="presentation" id="5Hk-g5-eXS"/>
@@ -542,7 +555,8 @@
                                         <constraints>
                                             <constraint firstAttribute="width" constant="30" id="h4W-J0-Q8M"/>
                                         </constraints>
-                                        <state key="normal" title="Button"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="arrow.clockwise.circle" catalog="system"/>
                                         <buttonConfiguration key="configuration" style="plain" image="arrow.clockwise.circle" catalog="system"/>
                                     </button>
                                 </subviews>
@@ -583,7 +597,8 @@
                                         <constraints>
                                             <constraint firstAttribute="width" constant="30" id="Why-hp-eAy"/>
                                         </constraints>
-                                        <state key="normal" title="Button"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="arrow.clockwise.circle" catalog="system"/>
                                         <buttonConfiguration key="configuration" style="plain" image="arrow.clockwise.circle" catalog="system"/>
                                     </button>
                                 </subviews>
@@ -879,7 +894,8 @@ V2FsayBXb3JrERERESBUb2dldGhlcg
                                             <constraint firstAttribute="height" constant="60" id="ZRA-oK-SQe"/>
                                             <constraint firstAttribute="width" constant="60" id="irm-CK-oFf"/>
                                         </constraints>
-                                        <state key="normal" title="Button"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="info"/>
                                         <buttonConfiguration key="configuration" style="plain" image="info"/>
                                         <connections>
                                             <segue destination="pk7-sb-sP9" kind="presentation" id="siy-iW-4LI"/>
@@ -972,7 +988,8 @@ V2FsayBXb3JrERERESBUb2dldGhlcg
                                             <constraint firstAttribute="height" constant="60" id="JbU-Qc-9bW"/>
                                             <constraint firstAttribute="width" constant="60" id="xp0-pW-Pwi"/>
                                         </constraints>
-                                        <state key="normal" title="Button"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="info"/>
                                         <buttonConfiguration key="configuration" style="plain" image="info"/>
                                         <connections>
                                             <segue destination="pk7-sb-sP9" kind="presentation" id="ne6-Zr-mMs"/>
@@ -1382,7 +1399,7 @@ V2FsayBXb3JrERERESBUb2dldGhlcg
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="5Hk-g5-eXS"/>
+        <segue reference="CYR-Vm-tSe"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Ribbon" width="74" height="104"/>
