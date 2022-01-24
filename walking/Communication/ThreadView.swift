@@ -9,22 +9,21 @@ import UIKit
 
 class ThreadView: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    @IBOutlet weak var UserName: UILabel!
-    @IBOutlet weak var message: UILabel!
-    @IBOutlet weak var postDate: UILabel!
+    var message:[String:Any]?
+    var name:String?
+    
     @IBOutlet weak var TableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let body = self.message!["body"] as! [String:String]
+        
         TableView.dataSource = self
         TableView.delegate = self
-        TableView.register(UINib(nibName: "CommunicationCell", bundle: nil), forCellReuseIdentifier: "Cell")
+        TableView.register(UINib(nibName: "SelectedPostCell", bundle: nil), forCellReuseIdentifier: "selectedPostCell")
+        TableView.register(UINib(nibName: "CommunicationCell", bundle: nil), forCellReuseIdentifier: "replieCell")
         TableView.rowHeight = UITableView.automaticDimension
-        
-        self.UserName.text = "MCSY 之介"
-        self.postDate.text = DateUtils.stringFromDate(date: Date(), format: "YYYY/MM/DD")
-        self.message.text = "テストメッセージテストメッセージテストメッセージテストメッセージテストメッセージ"
 
         // Do any additional setup after loading the view.
     }
@@ -34,10 +33,19 @@ class ThreadView: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath ) as! CommunicationCell
-       cell.setCell()
-//        cell.setCell(message:self.messages[indexPath.row],name:nameList[self.messages[indexPath.row]["sender_id"] as! Int]!)
-        return cell
+        
+        switch indexPath.row{
+                    
+            case 0:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "selectedPostCell") as! SelectedPostCell
+            cell.setCell(message: self.message!, name: name!)
+                return cell
+
+            default:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "replieCell", for: indexPath ) as! CommunicationCell
+            cell.setCell(message: self.message!, name: name!)
+                return cell
+            }
     }
     
 

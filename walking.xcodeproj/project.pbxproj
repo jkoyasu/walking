@@ -26,6 +26,7 @@
 		A22EA104277AD0E200D7DA92 /* YammerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22EA103277AD0E200D7DA92 /* YammerAPI.swift */; };
 		A22EA106277AD0FB00D7DA92 /* AWSAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22EA105277AD0FB00D7DA92 /* AWSAPI.swift */; };
 		A22EA10A277AE81400D7DA92 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22EA109277AE81400D7DA92 /* LoginViewController.swift */; };
+		A234D27F279E614200BC0FEF /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A234D27E279E614200BC0FEF /* PostView.swift */; };
 		A244D5F0278EAA5C008D30A2 /* MemberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A244D5EF278EAA5C008D30A2 /* MemberView.swift */; };
 		A244D5F3278EAA81008D30A2 /* MemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A244D5F1278EAA81008D30A2 /* MemberCell.swift */; };
 		A244D5F4278EAA81008D30A2 /* MemberCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A244D5F2278EAA81008D30A2 /* MemberCell.xib */; };
@@ -33,6 +34,8 @@
 		A244D5FB278EB6D5008D30A2 /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A244D5F9278EB6D5008D30A2 /* NotificationCell.xib */; };
 		A244D5FD278EB75B008D30A2 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A244D5FC278EB75B008D30A2 /* NotificationView.swift */; };
 		A2BC7B8927964A0200035482 /* EventRankCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2BC7B8827964A0100035482 /* EventRankCell.xib */; };
+		A2BD72D2279EB0DD00C7F5DB /* SelectedPostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BD72D0279EB0DD00C7F5DB /* SelectedPostCell.swift */; };
+		A2BD72D3279EB0DD00C7F5DB /* SelectedPostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2BD72D1279EB0DD00C7F5DB /* SelectedPostCell.xib */; };
 		A2C1A3712772FD4C009CAE84 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C1A3702772FD4C009CAE84 /* AppDelegate.swift */; };
 		A2C1A3732772FD4C009CAE84 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C1A3722772FD4C009CAE84 /* SceneDelegate.swift */; };
 		A2C1A3752772FD4C009CAE84 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C1A3742772FD4C009CAE84 /* TabBarController.swift */; };
@@ -64,6 +67,7 @@
 		A22EA103277AD0E200D7DA92 /* YammerAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YammerAPI.swift; sourceTree = "<group>"; };
 		A22EA105277AD0FB00D7DA92 /* AWSAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWSAPI.swift; sourceTree = "<group>"; };
 		A22EA109277AE81400D7DA92 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		A234D27E279E614200BC0FEF /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 		A244D5EF278EAA5C008D30A2 /* MemberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberView.swift; sourceTree = "<group>"; };
 		A244D5F1278EAA81008D30A2 /* MemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberCell.swift; sourceTree = "<group>"; };
 		A244D5F2278EAA81008D30A2 /* MemberCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MemberCell.xib; sourceTree = "<group>"; };
@@ -71,6 +75,8 @@
 		A244D5F9278EB6D5008D30A2 /* NotificationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationCell.xib; sourceTree = "<group>"; };
 		A244D5FC278EB75B008D30A2 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		A2BC7B8827964A0100035482 /* EventRankCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventRankCell.xib; sourceTree = "<group>"; };
+		A2BD72D0279EB0DD00C7F5DB /* SelectedPostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedPostCell.swift; sourceTree = "<group>"; };
+		A2BD72D1279EB0DD00C7F5DB /* SelectedPostCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectedPostCell.xib; sourceTree = "<group>"; };
 		A2C1A36D2772FD4C009CAE84 /* walking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = walking.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2C1A3702772FD4C009CAE84 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A2C1A3722772FD4C009CAE84 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -127,7 +133,10 @@
 				A21905F82786D0CC00288B76 /* CommunicationView.swift */,
 				A2FEF751279006FF00D8D537 /* ThreadView.swift */,
 				A21905FA2786D15500288B76 /* CommunicationCell.swift */,
+				A2BD72D0279EB0DD00C7F5DB /* SelectedPostCell.swift */,
+				A2BD72D1279EB0DD00C7F5DB /* SelectedPostCell.xib */,
 				A21905FB2786D15500288B76 /* CommunicationCell.xib */,
+				A234D27E279E614200BC0FEF /* PostView.swift */,
 				A22EA103277AD0E200D7DA92 /* YammerAPI.swift */,
 			);
 			path = Communication;
@@ -269,6 +278,7 @@
 				A2BC7B8927964A0200035482 /* EventRankCell.xib in Resources */,
 				A244D5FB278EB6D5008D30A2 /* NotificationCell.xib in Resources */,
 				A2C1A37D2772FD52009CAE84 /* LaunchScreen.storyboard in Resources */,
+				A2BD72D3279EB0DD00C7F5DB /* SelectedPostCell.xib in Resources */,
 				A2C1A37A2772FD52009CAE84 /* Assets.xcassets in Resources */,
 				915A8BB12791567500B1DECE /* TeamRankCell.xib in Resources */,
 				913E8EBB278FECD500A8853C /* PersonRankCell.xib in Resources */,
@@ -336,6 +346,7 @@
 				A21905F92786D0CC00288B76 /* CommunicationView.swift in Sources */,
 				A2FEF752279006FF00D8D537 /* ThreadView.swift in Sources */,
 				A244D5FD278EB75B008D30A2 /* NotificationView.swift in Sources */,
+				A234D27F279E614200BC0FEF /* PostView.swift in Sources */,
 				A22EA0FC277ACA9500D7DA92 /* HomeView.swift in Sources */,
 				A244D5F3278EAA81008D30A2 /* MemberCell.swift in Sources */,
 				913E8EB02785766800A8853C /* CalorieStruct.swift in Sources */,
@@ -343,6 +354,7 @@
 				A22EA0FE277ACAB900D7DA92 /* RecordView.swift in Sources */,
 				A2C1A3732772FD4C009CAE84 /* SceneDelegate.swift in Sources */,
 				A22EA10A277AE81400D7DA92 /* LoginViewController.swift in Sources */,
+				A2BD72D2279EB0DD00C7F5DB /* SelectedPostCell.swift in Sources */,
 				A21905FC2786D15500288B76 /* CommunicationCell.swift in Sources */,
 				915A8BB02791567500B1DECE /* TeamRankCell.swift in Sources */,
 				A22EA104277AD0E200D7DA92 /* YammerAPI.swift in Sources */,
