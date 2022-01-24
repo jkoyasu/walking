@@ -26,6 +26,7 @@
 		A22EA104277AD0E200D7DA92 /* YammerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22EA103277AD0E200D7DA92 /* YammerAPI.swift */; };
 		A22EA106277AD0FB00D7DA92 /* AWSAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22EA105277AD0FB00D7DA92 /* AWSAPI.swift */; };
 		A22EA10A277AE81400D7DA92 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22EA109277AE81400D7DA92 /* LoginViewController.swift */; };
+		A234D27F279E614200BC0FEF /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A234D27E279E614200BC0FEF /* PostView.swift */; };
 		A244D5F0278EAA5C008D30A2 /* MemberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A244D5EF278EAA5C008D30A2 /* MemberView.swift */; };
 		A244D5F3278EAA81008D30A2 /* MemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A244D5F1278EAA81008D30A2 /* MemberCell.swift */; };
 		A244D5F4278EAA81008D30A2 /* MemberCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A244D5F2278EAA81008D30A2 /* MemberCell.xib */; };
@@ -64,6 +65,7 @@
 		A22EA103277AD0E200D7DA92 /* YammerAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YammerAPI.swift; sourceTree = "<group>"; };
 		A22EA105277AD0FB00D7DA92 /* AWSAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWSAPI.swift; sourceTree = "<group>"; };
 		A22EA109277AE81400D7DA92 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		A234D27E279E614200BC0FEF /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 		A244D5EF278EAA5C008D30A2 /* MemberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberView.swift; sourceTree = "<group>"; };
 		A244D5F1278EAA81008D30A2 /* MemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberCell.swift; sourceTree = "<group>"; };
 		A244D5F2278EAA81008D30A2 /* MemberCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MemberCell.xib; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 				A2FEF751279006FF00D8D537 /* ThreadView.swift */,
 				A21905FA2786D15500288B76 /* CommunicationCell.swift */,
 				A21905FB2786D15500288B76 /* CommunicationCell.xib */,
+				A234D27E279E614200BC0FEF /* PostView.swift */,
 				A22EA103277AD0E200D7DA92 /* YammerAPI.swift */,
 			);
 			path = Communication;
@@ -336,6 +339,7 @@
 				A21905F92786D0CC00288B76 /* CommunicationView.swift in Sources */,
 				A2FEF752279006FF00D8D537 /* ThreadView.swift in Sources */,
 				A244D5FD278EB75B008D30A2 /* NotificationView.swift in Sources */,
+				A234D27F279E614200BC0FEF /* PostView.swift in Sources */,
 				A22EA0FC277ACA9500D7DA92 /* HomeView.swift in Sources */,
 				A244D5F3278EAA81008D30A2 /* MemberCell.swift in Sources */,
 				913E8EB02785766800A8853C /* CalorieStruct.swift in Sources */,
