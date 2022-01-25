@@ -57,11 +57,7 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate  
         showTab(2)
         tableView?.reloadData()
     }
-
-    
-    @IBOutlet weak var command1: UICommand!
  
-    
     @IBAction func tappedEventButton(_ sender: Any) {
 
         dayPullDownButton.isHidden = true
