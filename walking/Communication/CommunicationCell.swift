@@ -40,18 +40,18 @@ class CommunicationCell: UITableViewCell {
         self.postDate.text = String(date.prefix(10))
       }
     
-    //mock用
-    func setCell() -> CGSize {
-        
-//        self.NameButton.setTitle("M之", for: .normal)
-        self.UserName.text = "MCSY 之介"
-        self.UserName.font = UIFont.boldSystemFont(ofSize: 17.0)
-        self.Message.text = "テストメッセージテストメッセージテストメッセージテストメッセージテストメッセージ"
-        var rect: CGSize = self.Message.sizeThatFits(CGSize(width: frame.width, height: CGFloat.greatestFiniteMagnitude))
-        self.postDate.text = DateUtils.stringFromDate(date: Date(), format: "YYYY/MM/DD")
-        self.ReplieButton.setImage(UIImage(systemName: "bubble.left"), for:.normal)
-        self.LikeButton.setImage(UIImage(systemName: "heart"), for:.normal)
-        
-        return rect
-      }
+//    //mock用
+//    func setCell() -> CGSize {
+//
+////        self.NameButton.setTitle("M之", for: .normal)
+//        self.UserName.text = "MCSY 之介"
+//        self.UserName.font = UIFont.boldSystemFont(ofSize: 17.0)
+//        self.Message.text = "テストメッセージテストメッセージテストメッセージテストメッセージテストメッセージ"
+//        var rect: CGSize = self.Message.sizeThatFits(CGSize(width: frame.width, height: CGFloat.greatestFiniteMagnitude))
+//        self.postDate.text = DateUtils.stringFromDate(date: Date(), format: "YYYY/MM/DD")
+//        self.ReplieButton.setImage(UIImage(systemName: "bubble.left"), for:.normal)
+//        self.LikeButton.setImage(UIImage(systemName: "heart"), for:.normal)
+//
+//        return rect
+//      }
 }

@@ -62,10 +62,10 @@ class StartView: UIViewController {
         
         callGraphAPI()
 //        YammerTokenが空ならログイン画面表示
-//        if YMLoginClient.sharedInstance().storedAuthToken() == nil {
-//            let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "Login")
-//            self.present(loginViewController!, animated: true, completion: nil)
-//        }
+        if YMLoginClient.sharedInstance().storedAuthToken() == nil {
+            let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "Login")
+            self.present(loginViewController!, animated: true, completion: nil)
+        }
 //        callGraphAPI()
 //        sleep(10)
     }

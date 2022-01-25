@@ -27,6 +27,8 @@ class CommunicationView: UIViewController, UITableViewDataSource, UITableViewDel
             TableView.reloadData()
         }
     }
+    var selectedmessage:[String:Any] = [:]
+    var selectedName:String = ""
     var replies:[[String:Any]] = []
     var references:[[String:Any]] = []
     var nameList:[Int:String] = [:]
@@ -79,8 +81,18 @@ class CommunicationView: UIViewController, UITableViewDataSource, UITableViewDel
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        self.selectedmessage = self.messages[indexPath.row]
+        self.selectedName = nameList[self.messages[indexPath.row]["sender_id"] as! Int]!
         performSegue(withIdentifier: "toThread", sender: nil)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+            if segue.identifier == "toThread" {
+                let nextVC = segue.destination as! ThreadView
+                nextVC.message = self.selectedmessage
+                nextVC.name = self.selectedName
+            }
+        }
     
     func loadMessage(){
         YammerAPI.APICAll{ [weak self] result in
