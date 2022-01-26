@@ -9,6 +9,6 @@ import Foundation
 
 struct StepStruct: Identifiable{
     var id: String
-    var datetime: Date
+    var datetime: String
     var steps: Int
 }

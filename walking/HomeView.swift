@@ -12,6 +12,7 @@ import HealthKitUI
 class HomeView: UIViewController {
 
 
+    @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var stepLabel: UILabel!
     @IBOutlet weak var calorieLabel: UILabel!
     @IBOutlet weak var infoButton: UIButton!
@@ -19,38 +20,58 @@ class HomeView: UIViewController {
     var stepStructs: [StepStruct] = []
     var calorieStructs: [CalorieStruct] = []
     
-    @IBAction func testButton(_ sender: Any) {
+    @IBAction func reloadButton(_ sender: Any) {
 
-        print("tapped")
-        stepLabel.text = String(stepStructs[stepStructs.count-1].steps)
-        stepLabel.addUinit(unit: "歩", size: stepLabel.font.pointSize / 2)
-        calorieLabel.text = String(calorieStructs[calorieStructs.count-1].calories)
-        calorieLabel.addUinit(unit: "kcal", size: calorieLabel.font.pointSize / 2)
+        reloadData()
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        let readDataTypes = Set([HKObjectType.quantityType(forIdentifier: .stepCount)!])
-        HKHealthStore().requestAuthorization(toShare: nil, read: readDataTypes) { success, _ in
-            if success {
-                self.getSteps()
-            }
-        }
+        reloadData()
         
-        let readDataTypes2 = Set([HKObjectType.quantityType(forIdentifier: .activeEnergyBurned)!])
-        HKHealthStore().requestAuthorization(toShare: nil, read: readDataTypes2) { success, _ in
-            if success {
-                self.getCalorie()
-            }
-        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
 //        stepLabel.text = "\(stepStructs[stepStructs.count-1].steps)歩"
     }
     
+    //データを取得する関数
+    func reloadData(){
+    
+        //      iPhoneから歩数情報を取得する
+                let readDataTypes = Set([HKObjectType.quantityType(forIdentifier: .stepCount)!])
+                HKHealthStore().requestAuthorization(toShare: nil, read: readDataTypes) { success, _ in
+                    if success {
+                        self.getSteps()
+                    }
+                }
+               
+        //      iPhoneからカロリー情報を取得する
+                let readDataTypes2 = Set([HKObjectType.quantityType(forIdentifier: .activeEnergyBurned)!])
+                HKHealthStore().requestAuthorization(toShare: nil, read: readDataTypes2) { success, _ in
+                    if success {
+                        self.getCalorie()
+                    }
+                }
+                
+        //      取得したデータをjson化
+        
+        //データ取得
+        
+        //画面更新
+        print("tapped")
+        //stepLabel.text = String(stepStructs[stepStructs.count-1].steps)
+        stepLabel.text = "12345"
+        stepLabel.addUinit(unit: "歩", size: stepLabel.font.pointSize / 2)
+        calorieLabel.text = "789"
+        //calorieLabel.text = String(calorieStructs[calorieStructs.count-1].calories)
+        calorieLabel.addUinit(unit: "kcal", size: calorieLabel.font.pointSize / 2)
+    }
+    
+//  歩数情報を習得する関数
     private func getSteps() {
         print("getSteps")
         
@@ -94,11 +115,11 @@ class HomeView: UIViewController {
                         /// 構造体にデータを格納する
                         let stepImput = StepStruct(
                             id: udid!,
-                            datetime: date,
+                            //datetime: date,
+                            datetime: Self.formatter.string(from: date),
                             steps: stepCount
                         )
                     /// 取得した歩数を配列に格納する。
-                        print(stepImput.id)
                     self.stepStructs.append(stepImput)
                         
                     ///データを表示
@@ -117,6 +138,7 @@ class HomeView: UIViewController {
         HKHealthStore().execute(query)
     }
     
+    //カロリー情報を取得する関数
     private func getCalorie() {
         print("getCalorie")
         
@@ -160,11 +182,11 @@ class HomeView: UIViewController {
                         /// 構造体にデータを格納する
                         let calorieImput = CalorieStruct(
                             id: udid!,
+                            //datetime: Self.formatter.string(from: date),
                             datetime: date,
                             calories: calorieCount
                         )
                     /// 取得した消費カロリーを配列に格納する。
-                    print(calorieImput.id)
                     self.calorieStructs.append(calorieImput)
                         
                     ///データを表示
@@ -199,5 +221,16 @@ extension UILabel {
         attributedString.append(unitString)
         
         self.attributedText = attributedString
+    }
+}
+
+//記録日時のフォーマッター
+extension HomeView {
+    private static var formatter: DateFormatter{
+        let formatter = DateFormatter()
+        formatter.timeZone = TimeZone(identifier: "Asia/Tokyo")
+        formatter.locale = Locale(identifier: "ja_JP")
+        formatter.dateFormat = "yyyy-MM-dd"
+        return formatter
     }
 }
