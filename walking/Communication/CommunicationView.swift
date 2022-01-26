@@ -87,12 +87,12 @@ class CommunicationView: UIViewController, UITableViewDataSource, UITableViewDel
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-            if segue.identifier == "toThread" {
+        if segue.identifier == "toThread" {
                 let nextVC = segue.destination as! ThreadView
                 nextVC.message = self.selectedmessage
                 nextVC.name = self.selectedName
-            }
         }
+    }
     
     func loadMessage(){
         YammerAPI.APICAll{ [weak self] result in

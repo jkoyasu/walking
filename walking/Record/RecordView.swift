@@ -7,8 +7,9 @@
 
 import UIKit
 
-class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate  {
+class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, UITabBarDelegate {
     
+    @IBOutlet weak var dayMenu: UIMenu!
     @IBOutlet weak var dayPullDownButton: UIButton!
     @IBOutlet weak var weekPullDownButton: UIButton!
     @IBOutlet weak var monthPullDownButton: UIButton!
@@ -16,7 +17,31 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate  
     var tabSelect:Int! = 1
     var termSelect:Int! = 1
     
-    @IBOutlet weak var dayMenu: UIMenu!
+    /// DateFomatterクラスのインスタンス生成
+    let dateFormatter = DateFormatter()
+    
+    func didSelectTab(tabBarController: TabBarController) {
+        print("first!")
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view.
+        showTab(tabSelect)
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(UINib(nibName: "PersonRankCell", bundle: nil), forCellReuseIdentifier: "PersonRankCell")
+        tableView.register(UINib(nibName: "TeamRankCell", bundle: nil), forCellReuseIdentifier: "TeamRankCell")
+        tableView.register(UINib(nibName: "EventRankCell", bundle: nil), forCellReuseIdentifier: "EventRankCell")
+        addMenuToButton()
+        
+        dateFormatter.dateFormat = "yyyy年M月d日"
+        self.dayPullDownButton.setTitle(dateFormatter.string(from: Date()),for: .normal)
+        self.weekPullDownButton.setTitle(dateFormatter.string(from: Calendar.current.date(byAdding: .day, value: -7, to: Date())!)+"〜"+dateFormatter.string(from: Date()),for: .normal)
+        dateFormatter.dateFormat = "yyyy年M月"
+        self.monthPullDownButton.setTitle(dateFormatter.string(from: Date()),for: .normal)
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 5
     }
@@ -25,16 +50,22 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate  
         
         if tabSelect == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "PersonRankCell", for: indexPath ) as! PersonRankCell
+            cell.setCell(index: indexPath)
             return cell
         }else if tabSelect == 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "TeamRankCell", for: indexPath ) as! TeamRankCell
+            cell.setCell(index: indexPath)
             return cell
         }else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "EventRankCell", for: indexPath ) as! EventRankCell
+            cell.setCell(index: indexPath)
             return cell
             
         }
-
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 
     @IBOutlet weak var dataButtonStackHeightConstraint: NSLayoutConstraint!
@@ -138,103 +169,62 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate  
             monthPullDownButton.isHidden = false
         }
     }
-        //UIbuttonのメニュー表示(iOS14以上でのみ機能）
-        func addMenuToButton(){
-            //日次
-            let dayButton1 = UIAction(title: "2022/1/7", image: nil) { (action) in
-                self.dayPullDownButton.setTitle("2022/1/7",for: .normal)
-            }
-            let dayButton2 = UIAction(title: "2022/1/6", image: nil){ (action) in
-                self.dayPullDownButton.setTitle("2022/1/6",for: .normal)
-            }
-            let dayButton3 = UIAction(title: "2022/1/5", image: nil){ (action) in
-                self.dayPullDownButton.setTitle("2022/1/5",for: .normal)
-            }
-            let dayButton4 = UIAction(title: "2022/1/4", image: nil){ (action) in
-                self.dayPullDownButton.setTitle("2022/1/4",for: .normal)
-            }
-            let dayButton5 = UIAction(title: "2022/1/3", image: nil){ (action) in
-                self.dayPullDownButton.setTitle("2022/1/3",for: .normal)
-            }
-            let dayButton6 = UIAction(title: "2022/1/2", image: nil){ (action) in
-                self.dayPullDownButton.setTitle("2022/1/2",for: .normal)
-            }
-            let dayButton7 = UIAction(title: "2022/1/1", image: nil){ (action) in
-                self.dayPullDownButton.setTitle("2022/1/1",for: .normal)
-            }
-            let dayButton8 = UIAction(title: "2021/12/31", image: nil) { (action) in
-                self.dayPullDownButton.setTitle("2021/12/31",for: .normal)
-            }
-            let dayButton9 = UIAction(title: "2021/12/30", image: nil){ (action) in
-                self.dayPullDownButton.setTitle("2021/12/30",for: .normal)
-            }
-            let dayButton10 = UIAction(title: "2021/12/29", image: nil){ (action) in
-                self.dayPullDownButton.setTitle("2021/12/29",for: .normal)
-            }
-            let dayButton11 = UIAction(title: "2021/12/28", image: nil){ (action) in
-                self.dayPullDownButton.setTitle("2021/12/28",for: .normal)
-            }
-            let dayButton12 = UIAction(title: "2021/12/27", image: nil){ (action) in
-                self.dayPullDownButton.setTitle("2021/12/27",for: .normal)
-            }
-            let dayButton13 = UIAction(title: "2021/12/26", image: nil){ (action) in
-                self.dayPullDownButton.setTitle("2021/12/26",for: .normal)
-            }
-            let dayButton14 = UIAction(title: "2021/12/25", image: nil){ (action) in
-                self.dayPullDownButton.setTitle("2021/12/25",for: .normal)
-            }
+    //UIbuttonのメニュー表示(iOS14以上でのみ機能）
+    func addMenuToButton(){
+        /// 変換フォーマット定義
+        dateFormatter.dateFormat = "yyyy年M月d日"
+        
+        var today = Date()
 
-            let dayMenu = UIMenu(title: "", image: nil, identifier: nil, options: .displayInline, children: [dayButton1, dayButton2, dayButton3, dayButton4, dayButton5, dayButton6, dayButton7,dayButton8, dayButton9, dayButton10, dayButton11, dayButton12, dayButton13, dayButton14])
-            dayPullDownButton.menu = dayMenu
-            dayPullDownButton.showsMenuAsPrimaryAction = true
-            
-            //週次
-            let weekButton1 = UIAction(title: "2022/1/1~2022/1/7", image: nil) { (action) in
-                self.weekPullDownButton.setTitle("2022/1/1~2022/1/7",for: .normal)
-            }
-            let weekButton2 = UIAction(title: "2021/12/25~2021/12/31", image: nil){ (action) in
-                self.weekPullDownButton.setTitle("2021/12/25~2021/12/31",for: .normal)
-            }
-            let weekButton3 = UIAction(title: "2021/12/18~2021/12/24", image: nil){ (action) in
-                self.weekPullDownButton.setTitle("2021/12/18~2021/12/24",for: .normal)
-            }
-            let weekButton4 = UIAction(title: "2021/12/11~2021/12/17", image: nil){ (action) in
-                self.weekPullDownButton.setTitle("2021/12/11~2021/12/17",for: .normal)
-            }
+        //日次
+        var daylist:[UIAction] = []
 
-            let weekMenu = UIMenu(title: "", image: nil, identifier: nil, options: .displayInline, children: [weekButton1, weekButton2, weekButton3, weekButton4])
-            weekPullDownButton.menu = weekMenu
-            weekPullDownButton.showsMenuAsPrimaryAction = true
+        for i in 0...13{
+            let modifiedDate = Calendar.current.date(byAdding: .day, value: -i, to: today)!
+            let dateString = dateFormatter.string(from: modifiedDate)
+            let action = UIAction(title: dateString, image: nil){ (action) in self.dayPullDownButton.setTitle(dateString,for: .normal)
+            }
+            daylist.append(action)
+        }
+
+        let dayMenu = UIMenu(title: "", image: nil, identifier: nil, options: .displayInline, children: daylist)
+        dayPullDownButton.menu = dayMenu
+        dayPullDownButton.showsMenuAsPrimaryAction = true
+        
+        //週次
+        var weeklist:[UIAction] = []
+        
+        for i in 0...3{
+            let modifiedDate = Calendar.current.date(byAdding: .day, value: -(i*7), to: today)!
+            let modifiedDate2 = Calendar.current.date(byAdding: .day, value: -((i+1)*7), to: today)!
+            let dateString = dateFormatter.string(from: modifiedDate)
+            let dateString2 = dateFormatter.string(from: modifiedDate2)
+            let weekString = dateString + "〜" + dateString2
+            let action = UIAction(title: weekString, image: nil){ (action) in self.dayPullDownButton.setTitle(weekString,for: .normal)
+            }
+            weeklist.append(action)
+        }
+
+        let weekMenu = UIMenu(title: "", image: nil, identifier: nil, options: .displayInline, children: weeklist)
+        weekPullDownButton.menu = weekMenu
+        weekPullDownButton.showsMenuAsPrimaryAction = true
             
             //月次
-            let monthButton1 = UIAction(title: "2022/1", image: nil) { (action) in
-                self.monthPullDownButton.setTitle("2022/1",for: .normal)
-            }
-            let monthButton2 = UIAction(title: "2021/12", image: nil){ (action) in
-                self.monthPullDownButton.setTitle("2021/12",for: .normal)
-            }
-            let monthButton3 = UIAction(title: "2021/11", image: nil){ (action) in
-                self.monthPullDownButton.setTitle("2021/11",for: .normal)
+            dateFormatter.dateFormat = "yyyy年M月"
+            
+            var monthlist:[UIAction] = []
+            
+            for i in 0...2{
+                let modifiedDate = Calendar.current.date(byAdding: .month, value: -i, to: today)!
+                let monthString = dateFormatter.string(from: modifiedDate)
+                let action = UIAction(title: monthString, image: nil){ (action) in self.dayPullDownButton.setTitle(monthString,for: .normal)
+                }
+                monthlist.append(action)
             }
             
-            let monthMenu = UIMenu(title: "", image: nil, identifier: nil, options: .displayInline, children: [monthButton1, monthButton2, monthButton3])
+            let monthMenu = UIMenu(title: "", image: nil, identifier: nil, options: .displayInline, children: monthlist)
             monthPullDownButton.menu = monthMenu
             monthPullDownButton.showsMenuAsPrimaryAction = true
         }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        showTab(tabSelect)
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.register(UINib(nibName: "PersonRankCell", bundle: nil), forCellReuseIdentifier: "PersonRankCell")
-        tableView.register(UINib(nibName: "TeamRankCell", bundle: nil), forCellReuseIdentifier: "TeamRankCell")
-        tableView.register(UINib(nibName: "EventRankCell", bundle: nil), forCellReuseIdentifier: "EventRankCell")
-        addMenuToButton()
-        self.dayPullDownButton.setTitle("2022/1/7",for: .normal)
-        self.weekPullDownButton.setTitle("2022/1/1~2022/1/7",for: .normal)
-        self.monthPullDownButton.setTitle("2022/1",for: .normal)
-    }
 
 }
