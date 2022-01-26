@@ -16,10 +16,7 @@ class LoginViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-         super.viewDidAppear(animated)
+        super.viewDidAppear(animated)
         YMLoginClient.sharedInstance().startLogin(withContextViewController: self)
-        if let account = YMLoginClient.sharedInstance().storedAuthToken(){
-            self.dismiss(animated: true, completion: nil)
-        }
     }
 }

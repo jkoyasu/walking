@@ -1294,13 +1294,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pvS-Gn-H5t">
-                                <rect key="frame" x="198" y="101" width="42" height="21"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c1t-VL-i0c">
+                                <rect key="frame" x="154" y="291" width="67" height="27"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <connections>
+                                    <segue destination="cCF-7K-urt" kind="presentation" modalPresentationStyle="fullScreen" id="IdZ-gO-WnF"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="NDn-xF-Wgm"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -1308,10 +1310,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JRV-zH-F0S" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="478" y="-1385"/>
+            <point key="canvasLocation" x="-2090.4000000000001" y="599.55022488755628"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="IdZ-gO-WnF"/>
         <segue reference="xg9-WP-vFV"/>
     </inferredMetricsTieBreakers>
     <resources>
