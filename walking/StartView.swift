@@ -11,10 +11,10 @@ import YammerSDK
 
 class StartView: UIViewController {
     //全情報取得
-    let kClientID = "66855f8a-60cd-445e-a9bb-8cd8eadbd3fa"
+    let kClientID = "2ce72229-93e5-4624-99e8-5a490cbe40f9"
     let kGraphEndpoint = "https://graph.microsoft.com/"
-    let kAuthority = "https://login.microsoftonline.com/common"
-    let kRedirectUri = "msauth.com.microsoft.identitysample.MSALiOS://auth"
+    let kAuthority = "https://login.microsoftonline.com/4c321fca-b3bc-4df6-b1da-a7c90c3dc546"
+    let kRedirectUri =  "msauth.com.walkingEventApp://auth"
 
     let kScopes: [String] = ["user.read"]
     var accessToken = String()
@@ -56,12 +56,12 @@ class StartView: UIViewController {
         
 //      Yammerのアクセス情報を取得
         callGraphAPI()
-//        YammerTokenが空ならログイ・zン画面表示
-//        if YMLoginClient.sharedInstance().storedAuthToken() == nil {
-//            YMLoginClient.sharedInstance().startLogin(withContextViewController: self)
-//            //let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "Login")
-//            //self.present(loginViewController!, animated: true, completion: nil)
-//        }
+//        YammerTokenが空ならログイン画面表示
+        if YMLoginClient.sharedInstance().storedAuthToken() == nil {
+            YMLoginClient.sharedInstance().startLogin(withContextViewController: self)
+            //let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "Login")
+            //self.present(loginViewController!, animated: true, completion: nil)
+        }
         
 //       AWSのログイン情報を取得
         
@@ -99,7 +99,7 @@ class StartView: UIViewController {
     }
     
     func updateLogging(text : String) {
-        
+        print(text)
         if Thread.isMainThread {
             self.loggingText = text
         } else {
@@ -107,6 +107,7 @@ class StartView: UIViewController {
                 self.loggingText = text
             }
         }
+        
     }
     
     typealias AccountCompletion = (MSALAccount?) -> Void
