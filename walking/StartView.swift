@@ -58,9 +58,9 @@ class StartView: UIViewController {
         callGraphAPI()
 //        YammerTokenが空ならログイン画面表示
         if YMLoginClient.sharedInstance().storedAuthToken() == nil {
-            YMLoginClient.sharedInstance().startLogin(withContextViewController: self)
-            //let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "Login")
-            //self.present(loginViewController!, animated: true, completion: nil)
+//            YMLoginClient.sharedInstance().startLogin(withContextViewController: self)
+            let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "Login")
+            self.present(loginViewController!, animated: true, completion: nil)
         }
         
 //       AWSのログイン情報を取得
