@@ -34,10 +34,13 @@
 		A244D5FA278EB6D5008D30A2 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A244D5F8278EB6D5008D30A2 /* NotificationCell.swift */; };
 		A244D5FB278EB6D5008D30A2 /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A244D5F9278EB6D5008D30A2 /* NotificationCell.xib */; };
 		A244D5FD278EB75B008D30A2 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A244D5FC278EB75B008D30A2 /* NotificationView.swift */; };
+		A2651EDE27A0D33E00B35DFC /* PersonRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2651EDD27A0D33E00B35DFC /* PersonRecord.swift */; };
+		A2651EE027A0D5F400B35DFC /* TeamRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2651EDF27A0D5F400B35DFC /* TeamRecord.swift */; };
+		A2651EE227A0D70D00B35DFC /* EventRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2651EE127A0D70D00B35DFC /* EventRecord.swift */; };
 		A2BC7B8927964A0200035482 /* EventRankCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2BC7B8827964A0100035482 /* EventRankCell.xib */; };
 		A2BD72D2279EB0DD00C7F5DB /* SelectedPostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BD72D0279EB0DD00C7F5DB /* SelectedPostCell.swift */; };
 		A2BD72D3279EB0DD00C7F5DB /* SelectedPostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2BD72D1279EB0DD00C7F5DB /* SelectedPostCell.xib */; };
-		A2BD72D6279FE28400C7F5DB /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BD72D5279FE28300C7F5DB /* Record.swift */; };
+		A2BD72D6279FE28400C7F5DB /* MyRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BD72D5279FE28300C7F5DB /* MyRecord.swift */; };
 		A2C1A3712772FD4C009CAE84 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C1A3702772FD4C009CAE84 /* AppDelegate.swift */; };
 		A2C1A3732772FD4C009CAE84 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C1A3722772FD4C009CAE84 /* SceneDelegate.swift */; };
 		A2C1A3752772FD4C009CAE84 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C1A3742772FD4C009CAE84 /* TabBarController.swift */; };
@@ -77,10 +80,13 @@
 		A244D5F8278EB6D5008D30A2 /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
 		A244D5F9278EB6D5008D30A2 /* NotificationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationCell.xib; sourceTree = "<group>"; };
 		A244D5FC278EB75B008D30A2 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
+		A2651EDD27A0D33E00B35DFC /* PersonRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonRecord.swift; sourceTree = "<group>"; };
+		A2651EDF27A0D5F400B35DFC /* TeamRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamRecord.swift; sourceTree = "<group>"; };
+		A2651EE127A0D70D00B35DFC /* EventRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRecord.swift; sourceTree = "<group>"; };
 		A2BC7B8827964A0100035482 /* EventRankCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventRankCell.xib; sourceTree = "<group>"; };
 		A2BD72D0279EB0DD00C7F5DB /* SelectedPostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedPostCell.swift; sourceTree = "<group>"; };
 		A2BD72D1279EB0DD00C7F5DB /* SelectedPostCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectedPostCell.xib; sourceTree = "<group>"; };
-		A2BD72D5279FE28300C7F5DB /* Record.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
+		A2BD72D5279FE28300C7F5DB /* MyRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRecord.swift; sourceTree = "<group>"; };
 		A2C1A36D2772FD4C009CAE84 /* walking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = walking.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2C1A3702772FD4C009CAE84 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A2C1A3722772FD4C009CAE84 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -121,7 +127,10 @@
 			isa = PBXGroup;
 			children = (
 				A22EA0FD277ACAB900D7DA92 /* RecordView.swift */,
-				A2BD72D5279FE28300C7F5DB /* Record.swift */,
+				A2BD72D5279FE28300C7F5DB /* MyRecord.swift */,
+				A2651EDD27A0D33E00B35DFC /* PersonRecord.swift */,
+				A2651EDF27A0D5F400B35DFC /* TeamRecord.swift */,
+				A2651EE127A0D70D00B35DFC /* EventRecord.swift */,
 				913E8EB8278FECD500A8853C /* PersonRankCell.swift */,
 				915A8BAE2791567500B1DECE /* TeamRankCell.swift */,
 				915A8BB22791770C00B1DECE /* EventRankCell.swift */,
@@ -352,11 +361,14 @@
 				A21905EE2786ACD700288B76 /* StartView.swift in Sources */,
 				A21905F92786D0CC00288B76 /* CommunicationView.swift in Sources */,
 				A2FEF752279006FF00D8D537 /* ThreadView.swift in Sources */,
+				A2651EE227A0D70D00B35DFC /* EventRecord.swift in Sources */,
 				A244D5FD278EB75B008D30A2 /* NotificationView.swift in Sources */,
+				A2651EDE27A0D33E00B35DFC /* PersonRecord.swift in Sources */,
 				A234D27F279E614200BC0FEF /* PostView.swift in Sources */,
 				A22EA0FC277ACA9500D7DA92 /* HomeView.swift in Sources */,
+				A2651EE027A0D5F400B35DFC /* TeamRecord.swift in Sources */,
 				A244D5F3278EAA81008D30A2 /* MemberCell.swift in Sources */,
-				A2BD72D6279FE28400C7F5DB /* Record.swift in Sources */,
+				A2BD72D6279FE28400C7F5DB /* MyRecord.swift in Sources */,
 				913E8EB02785766800A8853C /* CalorieStruct.swift in Sources */,
 				A244D5F0278EAA5C008D30A2 /* MemberView.swift in Sources */,
 				A22EA0FE277ACAB900D7DA92 /* RecordView.swift in Sources */,
