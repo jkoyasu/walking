@@ -17,13 +17,11 @@ class StartView: UIViewController {
     let kRedirectUri = "msauth.com.microsoft.identitysample.MSALiOS://auth"
 
     let kScopes: [String] = ["user.read"]
-
     var accessToken = String()
     var applicationContext : MSALPublicClientApplication?
     var webViewParamaters : MSALWebviewParameters?
 
     var loggingText: String?
-
     var currentAccount: MSALAccount?
 
     //CurrentTeam
@@ -39,7 +37,7 @@ class StartView: UIViewController {
     }
         
     
-    
+    //画面取得後
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -52,20 +50,30 @@ class StartView: UIViewController {
         
     }
     
+    //画面表示後
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+//      Yammerのアクセス情報を取得
+        callGraphAPI()
+//        YammerTokenが空ならログイ・zン画面表示
+//        if YMLoginClient.sharedInstance().storedAuthToken() == nil {
+//            YMLoginClient.sharedInstance().startLogin(withContextViewController: self)
+//            //let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "Login")
+//            //self.present(loginViewController!, animated: true, completion: nil)
+//        }
+        
+//       AWSのログイン情報を取得
+        
+        
+        
+//        取得後、TabViewControllerに移動
         defer{
             let TabViewController = self.storyboard?.instantiateViewController(withIdentifier: "Tab")
             performSegue(withIdentifier: "toTab", sender: nil)
         }
         
-        callGraphAPI()
-//        YammerTokenが空ならログイン画面表示
-        if YMLoginClient.sharedInstance().storedAuthToken() == nil {
-            let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "Login")
-            self.present(loginViewController!, animated: true, completion: nil)
-        }
+        
 //        callGraphAPI()
 //        sleep(10)
     }
@@ -147,6 +155,7 @@ class StartView: UIViewController {
         self.currentAccount = account
     }
     
+    //APIを取得
     func callGraphAPI() {
         
         self.loadCurrentAccount { (account) in
@@ -163,6 +172,7 @@ class StartView: UIViewController {
         }
     }
     
+    //ログイントークンを対話的に取得
     func acquireTokenInteractively() {
         
         guard let applicationContext = self.applicationContext else { return }
@@ -191,6 +201,7 @@ class StartView: UIViewController {
         }
     }
     
+    //ログイントークンを暗黙的に取得
     func acquireTokenSilently(_ account : MSALAccount!) {
         
         guard let applicationContext = self.applicationContext else { return }
