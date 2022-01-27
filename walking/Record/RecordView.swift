@@ -9,6 +9,8 @@ import UIKit
 
 class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, UITabBarDelegate {
     
+    var personRecord:PersonRecord?
+    
     @IBOutlet weak var dayMenu: UIMenu!
     @IBOutlet weak var dayPullDownButton: UIButton!
     @IBOutlet weak var weekPullDownButton: UIButton!
@@ -16,17 +18,16 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     @IBOutlet weak var tableView: UITableView!
     var tabSelect:Int! = 1
     var termSelect:Int! = 1
+    var startView = StartView()
     
     /// DateFomatterクラスのインスタンス生成
     let dateFormatter = DateFormatter()
     
-    func didSelectTab(tabBarController: TabBarController) {
-        print("first!")
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        loadMessage()
+        
         showTab(tabSelect)
         tableView.dataSource = self
         tableView.delegate = self
@@ -66,6 +67,10 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func didSelectTab(tabBarController: TabBarController) {
+        print("first!")
     }
 
     @IBOutlet weak var dataButtonStackHeightConstraint: NSLayoutConstraint!
@@ -209,22 +214,34 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
         weekPullDownButton.menu = weekMenu
         weekPullDownButton.showsMenuAsPrimaryAction = true
             
-            //月次
-            dateFormatter.dateFormat = "yyyy年M月"
+        //月次
+        dateFormatter.dateFormat = "yyyy年M月"
             
-            var monthlist:[UIAction] = []
+        var monthlist:[UIAction] = []
             
-            for i in 0...2{
-                let modifiedDate = Calendar.current.date(byAdding: .month, value: -i, to: today)!
-                let monthString = dateFormatter.string(from: modifiedDate)
-                let action = UIAction(title: monthString, image: nil){ (action) in self.dayPullDownButton.setTitle(monthString,for: .normal)
-                }
-                monthlist.append(action)
+        for i in 0...2{
+            let modifiedDate = Calendar.current.date(byAdding: .month, value: -i, to: today)!
+            let monthString = dateFormatter.string(from: modifiedDate)
+            let action = UIAction(title: monthString, image: nil){ (action) in self.dayPullDownButton.setTitle(monthString,for: .normal)
             }
-            
-            let monthMenu = UIMenu(title: "", image: nil, identifier: nil, options: .displayInline, children: monthlist)
-            monthPullDownButton.menu = monthMenu
-            monthPullDownButton.showsMenuAsPrimaryAction = true
+            monthlist.append(action)
         }
-
+        let monthMenu = UIMenu(title: "", image: nil, identifier: nil, options: .displayInline, children: monthlist)
+        monthPullDownButton.menu = monthMenu
+        monthPullDownButton.showsMenuAsPrimaryAction = true
+    }
+    
+    func loadMessage(){
+        AWSAPI.download(token: startView.accessToken) { [weak self] result in
+            switch result {
+            case .success(let result):
+                
+                print(result)
+                
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
 }
