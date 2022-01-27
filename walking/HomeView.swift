@@ -18,11 +18,12 @@ class HomeView: UIViewController {
     @IBOutlet weak var infoButton: UIButton!
     
     var stepStructs: [StepStruct] = []
+    var distanceStructs: [DistanceStruct] = []
     var calorieStructs: [CalorieStruct] = []
     
     @IBAction func reloadButton(_ sender: Any) {
 
-        reloadData()
+        pushData()
         
     }
     
@@ -30,7 +31,7 @@ class HomeView: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        reloadData()
+        pushData()
         
     }
     
@@ -38,14 +39,20 @@ class HomeView: UIViewController {
 //        stepLabel.text = "\(stepStructs[stepStructs.count-1].steps)歩"
     }
     
-    //データを取得する関数
-    func reloadData(){
+    //iPhoneデータを送る
+    func pushData(){
+        
+        stepStructs.removeAll()
+        distanceStructs.removeAll()
     
         //      iPhoneから歩数情報を取得する
-                let readDataTypes = Set([HKObjectType.quantityType(forIdentifier: .stepCount)!])
+            let readDataTypes = Set(arrayLiteral: HKObjectType.quantityType(forIdentifier: .stepCount)!, HKObjectType.quantityType(forIdentifier: .distanceWalkingRunning)!)
+//            let readDataTypes = Set(arrayLiteral: [HKObjectType.quantityType(forIdentifier: .stepCount)!],
+//                                                      [HKObjectType.quantityType(forIdentifier: .distanceWalkingRunning)!])
                 HKHealthStore().requestAuthorization(toShare: nil, read: readDataTypes) { success, _ in
                     if success {
                         self.getSteps()
+                        self.getDistance()
                     }
                 }
                
@@ -53,12 +60,23 @@ class HomeView: UIViewController {
                 let readDataTypes2 = Set([HKObjectType.quantityType(forIdentifier: .activeEnergyBurned)!])
                 HKHealthStore().requestAuthorization(toShare: nil, read: readDataTypes2) { success, _ in
                     if success {
-                        self.getCalorie()
+//                        self.getCalorie()
                     }
                 }
                 
-        //      取得したデータをjson化
+              //取得したデータをjson化
         
+        sleep(1)
+        for i in 0...7{
+            let walkingDataList = WalkingDataList(
+                aaaid:"aaaid",
+                date:self.stepStructs[i].datetime,
+                steps: stepStructs[i].steps,
+                distance: distanceStructs[i].distance,
+                calorie: 0
+            )
+//            walkingData.content.walkingDataList.append(walkingDataList)
+        }
         //データ取得
         
         //画面更新
@@ -112,10 +130,14 @@ class HomeView: UIViewController {
                         let udid = UIDevice.current.identifierForVendor?.uuidString
                         let stepValue = quantity.doubleValue(for: HKUnit.count())
                         let stepCount = Int(stepValue)
+//                        let distanceValue = HKUnit.meter()
+//                        let distanceValue = quantity.doubleValue(for: HKUnit.meter())
+//                        let distanceCount = Int(distanceValue)
+//                        let distanceCount = distanceValue.count
+                        
                         /// 構造体にデータを格納する
                         let stepImput = StepStruct(
-                            id: udid!,
-                            //datetime: date,
+//                            id: udid!,
                             datetime: Self.formatter.string(from: date),
                             steps: stepCount
                         )
@@ -123,14 +145,24 @@ class HomeView: UIViewController {
                     self.stepStructs.append(stepImput)
                         
                     ///データを表示
-                    print("\([self.stepStructs.count-1]):\(self.stepStructs[self.stepStructs.count-1].id)")
+//                    print("\([self.stepStructs.count-1]):\(self.stepStructs[self.stepStructs.count-1].id)")
+                    print("StepData")
                     print("\([self.stepStructs.count-1]):\(self.stepStructs[self.stepStructs.count-1].datetime)")
                     print("\([self.stepStructs.count-1]):\(self.stepStructs [self.stepStructs.count-1].steps)")
                     
                 } else {
                     // No Data
-                    print("Asseterror")
-                   // sampleArray.append(0.0)
+                    /// 構造体にデータを格納する
+                    let date = statistics.startDate
+                    let stepImput = StepStruct(
+//                                id: udid!
+                        datetime: Self.formatter.string(from: date),
+                        steps: 0
+                        )
+                    self.stepStructs.append(stepImput)
+                        print("No StepData")
+                        print("\([self.stepStructs.count-1]):\(self.stepStructs[self.stepStructs.count-1].datetime)")
+                        print("\([self.stepStructs.count-1]):\(self.stepStructs [self.stepStructs.count-1].steps)")
                 }
             }
         }
@@ -138,7 +170,91 @@ class HomeView: UIViewController {
         HKHealthStore().execute(query)
     }
     
-    //カロリー情報を取得する関数
+    //  距離情報を習得する関数
+        private func getDistance() {
+            print("getDistance")
+            
+            /// 取得したいサンプルデータの期間の開始日を指定する。（今回は７日前の日付を取得する。）
+            let sevenDaysAgo = Calendar.current.date(byAdding: DateComponents(day: -7), to: Date())!
+            let startDate = Calendar.current.startOfDay(for: sevenDaysAgo)
+
+            /// サンプルデータの検索条件を指定する。（フィルタリング）
+            let predicate = HKQuery.predicateForSamples(withStart: startDate,
+                                                        end: Date(),
+                                                        options: [])
+
+            /// サンプルデータを取得するためのクエリを生成する。
+            let query = HKStatisticsCollectionQuery(quantityType: HKObjectType.quantityType(forIdentifier: .distanceWalkingRunning)!,
+                                                    quantitySamplePredicate: predicate,
+                                                    options: .cumulativeSum,
+                                                    anchorDate: startDate,
+                                                    intervalComponents: DateComponents(day: 1))
+
+            /// クエリ結果を配列に格納 する
+            query.initialResultsHandler = { _, results, _ in
+                
+                /// `results (HKStatisticsCollection?)` からクエリ結果を取り出す。
+                guard let statsCollection = results else {
+                    print("queryError")
+                    return
+                }
+                
+                /// クエリ結果から期間（開始日・終了日）を指定して歩数の統計情報を取り出す。
+                    statsCollection.enumerateStatistics(from: startDate, to: Date()) { [self] statistics, _ in
+                        
+                        /// `statistics` に最小単位（今回は１日分の歩数）のサンプルデータが返ってくる。
+                        /// `statistics.sumQuantity()` でサンプルデータの合計（１日の合計歩数）を取得する。
+                        if let quantity = statistics.sumQuantity() {
+                            
+                            /// サンプルデータは`quantity.doubleValue`で取り出し、単位を指定して取得する。
+                            let date = statistics.startDate
+                            let udid = UIDevice.current.identifierForVendor?.uuidString
+//                            let stepValue = quantity.doubleValue(for: HKUnit.count())
+//                            let stepCount = Int(stepValue)
+//                            let distanceValue = HKUnit.meter()
+                            let distanceValue = quantity.doubleValue(for: HKUnit.meter())
+                            let distanceCount = Int(distanceValue)
+    //                        let distanceCount = distanceValue.count
+                            
+                            /// 構造体にデータを格納する
+                            let DistanceImput = DistanceStruct(
+//                                id: udid!,
+                                datetime: Self.formatter.string(from: date),
+                                distance: distanceCount
+                            )
+                        /// 取得した歩数を配列に格納する。
+                        self.distanceStructs.append(DistanceImput)
+                            
+                        ///データを表示
+//                        print("\([self.distanceStructs.count-1]):\(self.distanceStructs[self.distanceStructs.count-1].id)")
+                        print("No Distance Data")
+                        print("\([self.distanceStructs.count-1]):\(self.distanceStructs[self.distanceStructs.count-1].datetime)")
+                        print("\([self.distanceStructs.count-1]):\(self.distanceStructs[self.distanceStructs.count-1].distance)")
+                        
+                    } else {
+                        // No Data
+
+                        /// 構造体にデータを格納する
+                        let date = statistics.startDate
+                        let DistanceImput = DistanceStruct(
+//                                id: udid!
+                            datetime: Self.formatter.string(from: date),
+                            distance: 0
+                        )
+                    /// 取得した歩数を配列に格納する。
+                    self.distanceStructs.append(DistanceImput)
+                    }
+                        ///データを表示
+//                        print("\([self.distanceStructs.count-1]):\(self.distanceStructs[self.distanceStructs.count-1].id)")
+                        print("No Distance Data")
+                        print("\([self.distanceStructs.count-1]):\(self.distanceStructs[self.distanceStructs.count-1].datetime)")
+                        print("\([self.distanceStructs.count-1]):\(self.distanceStructs[self.distanceStructs.count-1].distance)")
+                }
+            }
+            print("execute")
+            HKHealthStore().execute(query)
+        }
+        //カロリー情報を取得する関数
     private func getCalorie() {
         print("getCalorie")
         
