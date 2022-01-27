@@ -7,9 +7,9 @@
 
 import Foundation
 
-struct PersonRecord{
+struct PersonRecord:Codable{
+    let content:PersonContent
     let errorMessage:String?
-    let content:PersonContent?
     
     enum CodingKeys: String, CodingKey {
         case errorMessage = "error_message"
@@ -30,12 +30,12 @@ struct PersonContent:Codable{
 }
 
 struct PersonRankingList:Codable{
-    let term:String
-    let ranking:PersonRanking
+    let term:String?
+    let ranking:[PersonRanking]
 }
 
 struct PersonRanking:Codable{
-    let term:String
+    let term:String?
     let rank:Int
     let mail:String?
     let name:String?

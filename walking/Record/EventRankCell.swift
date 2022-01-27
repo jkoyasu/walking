@@ -27,21 +27,23 @@ class EventRankCell: UITableViewCell {
         
         self.rankLabel.text = String(index.row+1)
         
-        if index.row == 0{
+        switch index.row{
+        case 0:
             self.crown.image = UIImage(systemName: "crown")
             self.crown.tintColor = UIColor.systemYellow
-        }
-        
-        if index.row == 1{
+            
+        case 1:
             self.crown.image = UIImage(systemName: "crown")
             self.crown.tintColor = UIColor.systemGray
-        }
         
-        if index.row == 2{
+        case 2:
             self.crown.image = UIImage(systemName: "crown")
             self.crown.tintColor = UIColor.systemBrown
+            
+        default:
+            self.crown.image = nil
+            self.crown.tintColor = nil
         }
-        
     }
-    
+
 }

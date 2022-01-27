@@ -694,6 +694,7 @@
                     </view>
                     <connections>
                         <segue destination="cCF-7K-urt" kind="presentation" identifier="toTab" modalPresentationStyle="fullScreen" id="LtM-VH-oFY"/>
+                        <segue destination="mta-ic-kMN" kind="presentation" identifier="toStart" modalPresentationStyle="fullScreen" id="6bh-T9-PGu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6gM-vZ-9AA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1294,11 +1295,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c1t-VL-i0c">
-                                <rect key="frame" x="154" y="291" width="67" height="27"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c1t-VL-i0c">
+                                <rect key="frame" x="0.0" y="308.5" width="375" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="cj2-Qs-xZG"/>
+                                </constraints>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="アプリケーションを始める">
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="24"/>
+                                </buttonConfiguration>
                                 <connections>
                                     <segue destination="cCF-7K-urt" kind="presentation" modalPresentationStyle="fullScreen" id="IdZ-gO-WnF"/>
                                 </connections>
@@ -1306,7 +1311,14 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="NDn-xF-Wgm"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="c1t-VL-i0c" firstAttribute="leading" secondItem="NDn-xF-Wgm" secondAttribute="leading" id="EW1-1l-doO"/>
+                            <constraint firstItem="NDn-xF-Wgm" firstAttribute="trailing" secondItem="c1t-VL-i0c" secondAttribute="trailing" id="LIH-hz-SAT"/>
+                            <constraint firstItem="c1t-VL-i0c" firstAttribute="centerY" secondItem="8BP-FJ-hKG" secondAttribute="centerY" id="MFT-ox-zBM"/>
+                            <constraint firstItem="c1t-VL-i0c" firstAttribute="centerX" secondItem="8BP-FJ-hKG" secondAttribute="centerX" id="U13-hS-t8w"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="HZ4-Jk-p0F"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JRV-zH-F0S" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

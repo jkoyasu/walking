@@ -13,7 +13,7 @@ class StartView: UIViewController {
     //全情報取得
     let kClientID = "2ce72229-93e5-4624-99e8-5a490cbe40f9"
     let kGraphEndpoint = "https://graph.microsoft.com/"
-    let kAuthority = "https://login.microsoftonline.com/4c321fca-b3bc-4df6-b1da-a7c90c3dc546"
+    let kAuthority = "https://login.microsoftonline.com/4c321fca-b3bc-4df6-b1da-a7c90c3dc546/oauth2/v2.0/authorize?"
     let kRedirectUri =  "msauth.com.walkingEventApp://auth"
 
     let kScopes: [String] = ["user.read"]
@@ -60,7 +60,7 @@ class StartView: UIViewController {
         if YMLoginClient.sharedInstance().storedAuthToken() == nil {
 //            YMLoginClient.sharedInstance().startLogin(withContextViewController: self)
             let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "Login")
-            self.present(loginViewController!, animated: true, completion: nil)
+            performSegue(withIdentifier: "toStart", sender: nil)
         }
         
 //       AWSのログイン情報を取得
