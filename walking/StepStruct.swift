@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct StepStruct: Identifiable{
-    var id: String
+struct StepStruct {
+//    var id: ObjectIdentifier
     var datetime: String
     var steps: Int
 }
