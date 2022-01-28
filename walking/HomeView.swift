@@ -64,9 +64,10 @@ class HomeView: UIViewController {
                     }
                 }
                 
-              //取得したデータをjson化
-        
+        //取得したデータをオブジェクト化
         sleep(1)
+        var walkingDataLists:[WalkingDataList]=[]
+        
         for i in 0...7{
             let walkingDataList = WalkingDataList(
                 aaaid:"aaaid",
@@ -75,9 +76,31 @@ class HomeView: UIViewController {
                 distance: distanceStructs[i].distance,
                 calorie: 0
             )
-//            walkingData.content.walkingDataList.append(walkingDataList)
+            walkingDataLists.append(walkingDataList)
         }
-        //データ取得
+            
+        let walkingData = WalkingData(
+            walkingDataLists:walkingDataLists
+        )
+        
+        //JSONEnoderの生成
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = .prettyPrinted
+        
+        do{
+            //構造体→JSONへのエンコード
+            let data = try encoder.encode(walkingDataLists)
+            print("JSON DATA")
+            print(String(data: data, encoding: .utf8)!)
+        }catch{
+            print(error)
+            
+        }
+        //データ送信
+        AWS API.po
+        
+        
+        
         
         //画面更新
         print("tapped")
