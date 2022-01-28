@@ -401,6 +401,8 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="47.5" id="ZJO-V6-YIQ"/>
+                                    <constraint firstItem="rIA-x2-2Gj" firstAttribute="width" secondItem="vqA-fE-ujm" secondAttribute="width" id="b7k-VZ-jLB"/>
+                                    <constraint firstItem="f5B-c0-KoY" firstAttribute="width" secondItem="vqA-fE-ujm" secondAttribute="width" id="h5G-ev-Jnr"/>
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pPd-eM-eI6" userLabel="DateLabelStack">
@@ -920,7 +922,8 @@
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="bY3-xc-fkf"/>
                                         </constraints>
-                                        <state key="normal" title="Button"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="arrow.clockwise.circle" catalog="system"/>
                                         <buttonConfiguration key="configuration" style="plain" image="arrow.clockwise.circle" catalog="system"/>
                                         <connections>
                                             <action selector="reloadButton:" destination="1r7-jM-UXr" eventType="touchUpInside" id="1Rx-cj-HCg"/>
@@ -1327,7 +1330,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="IdZ-gO-WnF"/>
-        <segue reference="xg9-WP-vFV"/>
+        <segue reference="5zE-cR-PsG"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Start" width="227" height="435.5"/>
