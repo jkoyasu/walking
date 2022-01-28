@@ -135,6 +135,18 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		913ABCC327A3F57A00FFF75D /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				91B1F71727A392BB00E87EEF /* HomeData.swift */,
+				A22EA0FB277ACA9400D7DA92 /* HomeView.swift */,
+				9183475327841096005E8EC7 /* StepStruct.swift */,
+				91B1F71527A25E2800E87EEF /* DistanceStruct.swift */,
+				913E8EAF2785766800A8853C /* CalorieStruct.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 		913E8EB7278FE9E400A8853C /* Record */ = {
 			isa = PBXGroup;
 			children = (
@@ -212,6 +224,7 @@
 		A2C1A36F2772FD4C009CAE84 /* walking */ = {
 			isa = PBXGroup;
 			children = (
+				913ABCC327A3F57A00FFF75D /* Home */,
 				913E8EB7278FE9E400A8853C /* Record */,
 				A244D5F7278EB6B5008D30A2 /* Notification */,
 				A244D5E8278EA0EA008D30A2 /* Member */,
@@ -222,15 +235,10 @@
 				A2C1A3722772FD4C009CAE84 /* SceneDelegate.swift */,
 				A2C1A3742772FD4C009CAE84 /* TabBarController.swift */,
 				A21905ED2786ACD700288B76 /* StartView.swift */,
-				A22EA0FB277ACA9400D7DA92 /* HomeView.swift */,
 				91B1F71327A23D9A00E87EEF /* WalkingData.swift */,
-				91B1F71727A392BB00E87EEF /* HomeData.swift */,
 				A22EA109277AE81400D7DA92 /* LoginViewController.swift */,
 				A22EA105277AD0FB00D7DA92 /* AWSAPI.swift */,
 				A2C1A3762772FD4C009CAE84 /* Main.storyboard */,
-				9183475327841096005E8EC7 /* StepStruct.swift */,
-				91B1F71527A25E2800E87EEF /* DistanceStruct.swift */,
-				913E8EAF2785766800A8853C /* CalorieStruct.swift */,
 				A2C1A3792772FD52009CAE84 /* Assets.xcassets */,
 				A2C1A37B2772FD52009CAE84 /* LaunchScreen.storyboard */,
 				A2C1A37E2772FD52009CAE84 /* Info.plist */,
