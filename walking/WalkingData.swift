@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+
 struct WalkingData:Codable{
     var walkingDataLists:[WalkingDataList]
 }

@@ -232,7 +232,7 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     }
     
     func loadMessage(){
-        AWSAPI.download(token: startView.accessToken) { [weak self] result in
+        AWSAPI.download(url:"https://xoli50a9r4.execute-api.ap-northeast-1.amazonaws.com/prod/select_personal_ranking_api",token: startView.accessToken) { [weak self] result in
             switch result {
             case .success(let result):
                 

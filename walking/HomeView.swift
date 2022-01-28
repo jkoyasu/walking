@@ -64,6 +64,7 @@ class HomeView: UIViewController {
                     }
                 }
                 
+
         //取得したデータをオブジェクト化
         sleep(1)
         var walkingDataLists:[WalkingDataList]=[]
@@ -96,11 +97,8 @@ class HomeView: UIViewController {
             print(error)
             
         }
-        //データ送信
-        AWS API.po
-        
-        
-        
+
+
         
         //画面更新
         print("tapped")
