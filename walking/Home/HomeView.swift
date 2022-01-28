@@ -11,15 +11,32 @@ import HealthKitUI
 
 class HomeView: UIViewController {
 
-
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var baseStackView: UIStackView!
+//    日付、歩数の表示
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var stepLabel: UILabel!
-    @IBOutlet weak var calorieLabel: UILabel!
+//    個人データの表示
+    @IBOutlet weak var personalRankLabel: UILabel!
+    @IBOutlet weak var distanceLabel: UILabel!
+//    チームのデータ表示
+    @IBOutlet weak var teamRankLabel: UILabel!
+    @IBOutlet weak var teamStepLabel: UILabel!
+//    イベント名の表示
+    @IBOutlet weak var eventNameLabel: UILabel!
+    @IBOutlet weak var eventTermLabel: UILabel!
+    
     @IBOutlet weak var infoButton: UIButton!
+    
     
     var stepStructs: [StepStruct] = []
     var distanceStructs: [DistanceStruct] = []
     var calorieStructs: [CalorieStruct] = []
+    
+    override func viewDidLayoutSubviews() {
+        scrollView.contentSize = baseStackView.frame.size
+        scrollView.flashScrollIndicators()
+    }
     
     @IBAction func reloadButton(_ sender: Any) {
 
@@ -105,9 +122,9 @@ class HomeView: UIViewController {
         //stepLabel.text = String(stepStructs[stepStructs.count-1].steps)
         stepLabel.text = "12345"
         stepLabel.addUinit(unit: "歩", size: stepLabel.font.pointSize / 2)
-        calorieLabel.text = "789"
+        distanceLabel.text = "789"
         //calorieLabel.text = String(calorieStructs[calorieStructs.count-1].calories)
-        calorieLabel.addUinit(unit: "kcal", size: calorieLabel.font.pointSize / 2)
+        distanceLabel.addUinit(unit: "kcal", size: distanceLabel.font.pointSize / 2)
     }
     
 //  歩数情報を習得する関数
