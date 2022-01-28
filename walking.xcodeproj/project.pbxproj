@@ -17,6 +17,9 @@
 		9183475427841096005E8EC7 /* StepStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9183475327841096005E8EC7 /* StepStruct.swift */; };
 		918347572784225A005E8EC7 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 918347562784225A005E8EC7 /* HealthKit.framework */; };
 		91834759278443F5005E8EC7 /* HealthKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91834758278443F5005E8EC7 /* HealthKitUI.framework */; };
+		91B1F71427A23D9A00E87EEF /* WalkingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B1F71327A23D9A00E87EEF /* WalkingData.swift */; };
+		91B1F71627A25E2800E87EEF /* DistanceStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B1F71527A25E2800E87EEF /* DistanceStruct.swift */; };
+		91B1F71827A392BB00E87EEF /* HomeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B1F71727A392BB00E87EEF /* HomeData.swift */; };
 		91EB803627965CCC0073E69E /* EventRankCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91EB803527965CCC0073E69E /* EventRankCell.xib */; };
 		A21905EE2786ACD700288B76 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21905ED2786ACD700288B76 /* StartView.swift */; };
 		A21905F92786D0CC00288B76 /* CommunicationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21905F82786D0CC00288B76 /* CommunicationView.swift */; };
@@ -63,6 +66,9 @@
 		9183475527842259005E8EC7 /* walking.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = walking.entitlements; sourceTree = "<group>"; };
 		918347562784225A005E8EC7 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		91834758278443F5005E8EC7 /* HealthKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKitUI.framework; path = System/Library/Frameworks/HealthKitUI.framework; sourceTree = SDKROOT; };
+		91B1F71327A23D9A00E87EEF /* WalkingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkingData.swift; sourceTree = "<group>"; };
+		91B1F71527A25E2800E87EEF /* DistanceStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceStruct.swift; sourceTree = "<group>"; };
+		91B1F71727A392BB00E87EEF /* HomeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeData.swift; sourceTree = "<group>"; };
 		91EB803527965CCC0073E69E /* EventRankCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = EventRankCell.xib; path = walking/Record/EventRankCell.xib; sourceTree = "<group>"; };
 		A21905ED2786ACD700288B76 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 		A21905F82786D0CC00288B76 /* CommunicationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationView.swift; sourceTree = "<group>"; };
@@ -208,10 +214,13 @@
 				A2C1A3742772FD4C009CAE84 /* TabBarController.swift */,
 				A21905ED2786ACD700288B76 /* StartView.swift */,
 				A22EA0FB277ACA9400D7DA92 /* HomeView.swift */,
+				91B1F71327A23D9A00E87EEF /* WalkingData.swift */,
+				91B1F71727A392BB00E87EEF /* HomeData.swift */,
 				A22EA109277AE81400D7DA92 /* LoginViewController.swift */,
 				A22EA105277AD0FB00D7DA92 /* AWSAPI.swift */,
 				A2C1A3762772FD4C009CAE84 /* Main.storyboard */,
 				9183475327841096005E8EC7 /* StepStruct.swift */,
+				91B1F71527A25E2800E87EEF /* DistanceStruct.swift */,
 				913E8EAF2785766800A8853C /* CalorieStruct.swift */,
 				A2C1A3792772FD52009CAE84 /* Assets.xcassets */,
 				A2C1A37B2772FD52009CAE84 /* LaunchScreen.storyboard */,
@@ -363,10 +372,13 @@
 				A2FEF752279006FF00D8D537 /* ThreadView.swift in Sources */,
 				A2651EE227A0D70D00B35DFC /* EventRecord.swift in Sources */,
 				A244D5FD278EB75B008D30A2 /* NotificationView.swift in Sources */,
+				91B1F71827A392BB00E87EEF /* HomeData.swift in Sources */,
 				A2651EDE27A0D33E00B35DFC /* PersonRecord.swift in Sources */,
+				91B1F71627A25E2800E87EEF /* DistanceStruct.swift in Sources */,
 				A234D27F279E614200BC0FEF /* PostView.swift in Sources */,
 				A22EA0FC277ACA9500D7DA92 /* HomeView.swift in Sources */,
 				A2651EE027A0D5F400B35DFC /* TeamRecord.swift in Sources */,
+				91B1F71427A23D9A00E87EEF /* WalkingData.swift in Sources */,
 				A244D5F3278EAA81008D30A2 /* MemberCell.swift in Sources */,
 				A2BD72D6279FE28400C7F5DB /* MyRecord.swift in Sources */,
 				913E8EB02785766800A8853C /* CalorieStruct.swift in Sources */,
