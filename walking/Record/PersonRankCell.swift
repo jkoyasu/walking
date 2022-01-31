@@ -12,6 +12,8 @@ class PersonRankCell: UITableViewCell {
     
     @IBOutlet weak var crown: UIImageView!
     @IBOutlet weak var rankLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var stepLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,7 +28,11 @@ class PersonRankCell: UITableViewCell {
     
     func setCell(index:IndexPath,record:[PersonRanking]){
         
-        self.rankLabel.text = String(index.row+1)
+        let current = record.filter({ $0.rank == index.row+1 })[0]
+        
+        self.rankLabel.text = String(current.rank)
+        self.nameLabel.text = current.name
+        self.stepLabel.text = String(current.steps)
         
         switch index.row{
         case 0:

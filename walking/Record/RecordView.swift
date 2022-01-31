@@ -30,6 +30,7 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     @IBOutlet weak var weekPullDownButton: UIButton!
     @IBOutlet weak var monthPullDownButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
+    var calendar = Calendar(identifier: .gregorian)
     var selectedTerm:String?
     var currentDay:String?
     var currentWeek:String?
@@ -57,11 +58,11 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
         //日付データ設定
         dateFormatter.dateFormat = "yyyy-MM-dd"
         self.currentDay = dateFormatter.string(from: Date())
-        self.currentWeek = dateFormatter.string(from: Calendar.current.date(byAdding: .day, value: -7, to: Date())!)+","+dateFormatter.string(from: Date())
+        self.currentWeek = dateFormatter.string(from: Calendar.current.date(byAdding: .day, value: -7, to: calendar.nextWeekend(startingAfter: Date())!.end)!)+","+dateFormatter.string(from: Calendar.current.date(byAdding: .day, value: -1, to: calendar.nextWeekend(startingAfter: Date())!.end)!)
         self.selectedTerm = self.currentDay
         dateFormatter.dateFormat = "yyyy年M月d日"
         self.dayPullDownButton.setTitle(dateFormatter.string(from: Date()),for: .normal)
-        self.weekPullDownButton.setTitle(dateFormatter.string(from: Calendar.current.date(byAdding: .day, value: -7, to: Date())!)+"〜"+dateFormatter.string(from: Date()),for: .normal)
+        self.weekPullDownButton.setTitle(dateFormatter.string(from: Calendar.current.date(byAdding: .day, value: -7, to: calendar.nextWeekend(startingAfter: Date())!.end)!)+"〜"+dateFormatter.string(from: Calendar.current.date(byAdding: .day, value: -1, to: calendar.nextWeekend(startingAfter: Date())!.end)!),for: .normal)
         dateFormatter.dateFormat = "M"
         self.currentMonth = dateFormatter.string(from: Date())
         dateFormatter.dateFormat = "yyyy年M月"
@@ -74,13 +75,37 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
                 switch termSelect{
                 case 1:
                     let rankingList = content.dailyRankingList.filter({ $0.term == self.selectedTerm! })
-                    return rankingList[0].ranking.count
+                    if rankingList[0].ranking.count > 0{
+                        if rankingList[0].ranking[0].rank != -1{
+                            return rankingList[0].ranking.count
+                        }else{
+                            return 0
+                        }
+                    }else{
+                        return 0
+                    }
                 case 2:
                     let rankingList = content.weeklyRankingList.filter({ $0.term == self.selectedTerm! })
-                    return rankingList[0].ranking.count
+                    if rankingList[0].ranking.count > 0{
+                        if rankingList[0].ranking[0].rank != -1{
+                            return rankingList[0].ranking.count
+                        }else{
+                            return 0
+                        }
+                    }else{
+                        return 0
+                    }
                 case 3:
                     let rankingList = content.monthlyRankingList.filter({ $0.term == self.selectedTerm! })
-                    return rankingList[0].ranking.count
+                    if rankingList[0].ranking.count > 0{
+                        if rankingList[0].ranking[0].rank != -1{
+                            return rankingList[0].ranking.count
+                        }else{
+                            return 0
+                        }
+                    }else{
+                        return 0
+                    }
                 default:
                     return 1
                 }
@@ -92,13 +117,37 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
                 switch termSelect{
                 case 1:
                     let rankingList = content.dailyRankingList.filter({ $0.term == self.selectedTerm! })
-                    return rankingList[0].ranking.count
+                    if rankingList[0].ranking.count > 0{
+                        if rankingList[0].ranking[0].rank != -1{
+                            return rankingList[0].ranking.count
+                        }else{
+                            return 0
+                        }
+                    }else{
+                        return 0
+                    }
                 case 2:
                     let rankingList = content.weeklyRankingList.filter({ $0.term == self.selectedTerm! })
-                    return rankingList[0].ranking.count
+                    if rankingList[0].ranking.count > 0{
+                        if rankingList[0].ranking[0].rank != -1{
+                            return rankingList[0].ranking.count
+                        }else{
+                            return 0
+                        }
+                    }else{
+                        return 0
+                    }
                 case 3:
                     let rankingList = content.monthlyRankingList.filter({ $0.term == self.selectedTerm! })
-                    return rankingList[0].ranking.count
+                    if rankingList[0].ranking.count > 0{
+                        if rankingList[0].ranking[0].rank != -1{
+                            return rankingList[0].ranking.count
+                        }else{
+                            return 0
+                        }
+                    }else{
+                        return 0
+                    }
                 default:
                     return 1
                 }
@@ -213,8 +262,8 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
         termSelect = 1
         showTerm(termSelect)
         tableView?.reloadData()
-        
     }
+    
     @IBAction func tappedWeekButton(_ sender: Any) {
         termSelect = 2
         showTerm(termSelect)
@@ -302,6 +351,7 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
                 self.dateFormatter.dateFormat = "yyyy-MM-d"
                 self.currentDay = self.dateFormatter.string(from: modifiedDate)
                 self.selectedTerm = self.dateFormatter.string(from: modifiedDate)
+                self.tableView.reloadData()
             }
             daylist.append(action)
         }
@@ -314,15 +364,16 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
         var weeklist:[UIAction] = []
         
         for i in 0...3{
-            let modifiedDate = Calendar.current.date(byAdding: .day, value: -(i*7), to: today)!
-            let modifiedDate2 = Calendar.current.date(byAdding: .day, value: -((i+1)*7), to: today)!
+            let modifiedDate = Calendar.current.date(byAdding: .day, value: -(i*7), to: Calendar.current.date(byAdding: .day, value: -1, to: calendar.nextWeekend(startingAfter: Date())!.end)!)!
+            let modifiedDate2 = Calendar.current.date(byAdding: .day, value: -((i+1)*7), to: calendar.nextWeekend(startingAfter: Date())!.end)!
             let dateString = dateFormatter.string(from: modifiedDate)
             let dateString2 = dateFormatter.string(from: modifiedDate2)
-            let weekString = dateString + "〜" + dateString2
-            let action = UIAction(title: weekString, image: nil){ (action) in self.dayPullDownButton.setTitle(weekString,for: .normal)
-                self.dateFormatter.dateFormat = "yyyy-MM-d"
-                self.currentWeek = self.dateFormatter.string(from: modifiedDate) + "," + self.dateFormatter.string(from: modifiedDate2)
-                self.selectedTerm = self.dateFormatter.string(from: modifiedDate) + "," + self.dateFormatter.string(from: modifiedDate2)
+            let weekString = dateString2 + "〜" + dateString
+            let action = UIAction(title: weekString, image: nil){ (action) in self.weekPullDownButton.setTitle(weekString,for: .normal)
+                self.dateFormatter.dateFormat = "yyyy-MM-dd"
+                self.currentWeek = self.dateFormatter.string(from: modifiedDate2) + "," + self.dateFormatter.string(from: modifiedDate)
+                self.selectedTerm = self.dateFormatter.string(from: modifiedDate2) + "," + self.dateFormatter.string(from: modifiedDate)
+                self.tableView.reloadData()
             }
             weeklist.append(action)
         }
@@ -343,6 +394,7 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
                 self.dateFormatter.dateFormat = "M"
                 self.currentMonth = self.dateFormatter.string(from: modifiedDate)
                 self.selectedTerm = self.dateFormatter.string(from: modifiedDate)
+                self.tableView.reloadData()
             }
             monthlist.append(action)
         }
@@ -358,7 +410,7 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     }
     
     func loadPersonalRanking(){
-        AWSAPI.download(url:"https://xoli50a9r4.execute-api.ap-northeast-1.amazonaws.com/prod/select_personal_ranking_api",token: startView.accessToken) { [weak self] result in
+        AWSAPI.download(url:"https://xoli50a9r4.execute-api.ap-northeast-1.amazonaws.com/prod/select_personal_ranking_api",token: startView.idToken) { [weak self] result in
             switch result {
             case .success(let result):
                 
@@ -376,7 +428,7 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     }
     
     func loadTeamRanking(){
-        AWSAPI.download(url:"https://xoli50a9r4.execute-api.ap-northeast-1.amazonaws.com/prod/select_team_ranking_api",token: startView.accessToken) { [weak self] result in
+        AWSAPI.download(url:"https://xoli50a9r4.execute-api.ap-northeast-1.amazonaws.com/prod/select_team_ranking_api",token: startView.idToken) { [weak self] result in
             switch result {
             case .success(let result):
                 
@@ -394,7 +446,7 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     }
     
     func loadEventRanking(){
-        AWSAPI.download(url:"https://xoli50a9r4.execute-api.ap-northeast-1.amazonaws.com/prod/select_team_ranking_api",token: startView.accessToken) { [weak self] result in
+        AWSAPI.download(url:"https://xoli50a9r4.execute-api.ap-northeast-1.amazonaws.com/prod/select_team_ranking_api",token: startView.idToken) { [weak self] result in
             switch result {
             case .success(let result):
                 
