@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct TeamRecord{
+struct TeamRecord:Codable{
     let errorMessage:String?
     let content:TeamContent?
     
@@ -30,12 +30,12 @@ struct TeamContent:Codable{
 }
 
 struct TeamRankingList:Codable{
-    let term:String
-    let ranking:TeamRanking
+    @StringForcible var term:String?
+    let ranking:[TeamRanking]
 }
 
 struct TeamRanking:Codable{
-    let term:String
+    @StringForcible var term:String?
     let rank:Int
     let teamId:String?
     let groupName:String?
@@ -49,3 +49,4 @@ struct TeamRanking:Codable{
         case avgSteps = "avg_steps"
     }
 }
+

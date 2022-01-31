@@ -48,8 +48,8 @@ class HomeView: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        pushData()
-        
+//        pushData()
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
