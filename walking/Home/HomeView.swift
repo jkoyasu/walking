@@ -10,6 +10,12 @@ import HealthKit
 import HealthKitUI
 
 class HomeView: UIViewController {
+    
+    var homeRecord:HomeRecord?{
+        didSet{
+            reloadHomeData()
+        }
+    }
 
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var baseStackView: UIStackView!
@@ -32,6 +38,8 @@ class HomeView: UIViewController {
     var stepStructs: [StepStruct] = []
     var distanceStructs: [DistanceStruct] = []
     var calorieStructs: [CalorieStruct] = []
+    //var homeData:HomeData!
+    var startView = StartView()
     
     override func viewDidLayoutSubviews() {
         scrollView.contentSize = baseStackView.frame.size
@@ -40,7 +48,8 @@ class HomeView: UIViewController {
     
     @IBAction func reloadButton(_ sender: Any) {
 
-        pushData()
+//        pushData()
+        reloadHomeData()
         
     }
     
@@ -48,7 +57,8 @@ class HomeView: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-//        pushData()
+        pushData()
+        reloadHomeData()
 
     }
     
@@ -292,6 +302,53 @@ class HomeView: UIViewController {
             print("execute")
             HKHealthStore().execute(query)
         }
+    
+    
+    //データを送信する
+    private func upsertSteps(){
+        AWSAPI.download(url:"https://xoli50a9r4.execute-api.ap-northeast-1.amazonawsd/upsert_steps_api",token: startView.accessToken) { [weak self] result in
+            switch result{
+            case .success(let result):
+                
+                do{
+                    print(self?.homeRecord)
+
+                }catch{
+                    print(error)
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    //Home画面からデータを取得する
+    private func reloadHomeData(){
+        print("reloadhomeData")
+        AWSAPI.download(url:"https://xoli50a9r4.execute-api.ap-northeast-1.amazonaws.com/prod/select_home_data_api",token: startView.accessToken) { [weak self] result in
+            switch result{
+            case .success(let result):
+                
+                do{
+                    let decoder = JSONDecoder()
+                    self!.homeRecord = try decoder.decode(HomeRecord.self, from: result as! Data)
+                    print(self?.homeRecord)
+                    print("get")
+                    
+                    //日付を送信する
+                    
+                    
+                    
+                }catch{
+                    print(error)
+                    print("error1")
+                }
+            case .failure(let error):
+                print(error)
+                print("error2")
+            }
+        }
+    }
         //カロリー情報を取得する関数
     private func getCalorie() {
         print("getCalorie")

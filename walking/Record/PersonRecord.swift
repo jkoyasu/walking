@@ -1,5 +1,6 @@
 import Foundation
 
+
 struct PersonRecord:Codable{
     let content:PersonContent
     let errorMessage:String?
