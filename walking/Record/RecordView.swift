@@ -9,13 +9,31 @@ import UIKit
 
 class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, UITabBarDelegate {
     
-    var personRecord:PersonRecord?
+    var personRecord:PersonRecord?{
+        didSet{
+            tableView.reloadData()
+        }
+    }
+    var teamRecord:TeamRecord?{
+        didSet{
+            tableView.reloadData()
+        }
+    }
+    var eventRecord:EventRecord?{
+        didSet{
+            tableView.reloadData()
+        }
+    }
     
     @IBOutlet weak var dayMenu: UIMenu!
     @IBOutlet weak var dayPullDownButton: UIButton!
     @IBOutlet weak var weekPullDownButton: UIButton!
     @IBOutlet weak var monthPullDownButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
+    var selectedTerm:String?
+    var currentDay:String?
+    var currentWeek:String?
+    var currentMonth:String?
     var tabSelect:Int! = 1
     var termSelect:Int! = 1
     var startView = StartView()
@@ -26,42 +44,129 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        loadMessage()
-        
+        loadRanking()
         showTab(tabSelect)
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(UINib(nibName: "PersonRankCell", bundle: nil), forCellReuseIdentifier: "PersonRankCell")
         tableView.register(UINib(nibName: "TeamRankCell", bundle: nil), forCellReuseIdentifier: "TeamRankCell")
         tableView.register(UINib(nibName: "EventRankCell", bundle: nil), forCellReuseIdentifier: "EventRankCell")
+        tableView.register(UINib(nibName: "ErrorCell", bundle: nil), forCellReuseIdentifier: "ErrorCell")
         addMenuToButton()
         
+        //日付データ設定
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        self.currentDay = dateFormatter.string(from: Date())
+        self.currentWeek = dateFormatter.string(from: Calendar.current.date(byAdding: .day, value: -7, to: Date())!)+","+dateFormatter.string(from: Date())
+        self.selectedTerm = self.currentDay
         dateFormatter.dateFormat = "yyyy年M月d日"
         self.dayPullDownButton.setTitle(dateFormatter.string(from: Date()),for: .normal)
         self.weekPullDownButton.setTitle(dateFormatter.string(from: Calendar.current.date(byAdding: .day, value: -7, to: Date())!)+"〜"+dateFormatter.string(from: Date()),for: .normal)
+        dateFormatter.dateFormat = "M"
+        self.currentMonth = dateFormatter.string(from: Date())
         dateFormatter.dateFormat = "yyyy年M月"
         self.monthPullDownButton.setTitle(dateFormatter.string(from: Date()),for: .normal)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        if tabSelect == 1 {
+            if let content = self.personRecord?.content {
+                switch termSelect{
+                case 1:
+                    let rankingList = content.dailyRankingList.filter({ $0.term == self.selectedTerm! })
+                    return rankingList[0].ranking.count
+                case 2:
+                    let rankingList = content.weeklyRankingList.filter({ $0.term == self.selectedTerm! })
+                    return rankingList[0].ranking.count
+                case 3:
+                    let rankingList = content.monthlyRankingList.filter({ $0.term == self.selectedTerm! })
+                    return rankingList[0].ranking.count
+                default:
+                    return 1
+                }
+            }else{
+                return 1
+            }
+        }else if tabSelect == 2 {
+            if let content = self.teamRecord?.content {
+                switch termSelect{
+                case 1:
+                    let rankingList = content.dailyRankingList.filter({ $0.term == self.selectedTerm! })
+                    return rankingList[0].ranking.count
+                case 2:
+                    let rankingList = content.weeklyRankingList.filter({ $0.term == self.selectedTerm! })
+                    return rankingList[0].ranking.count
+                case 3:
+                    let rankingList = content.monthlyRankingList.filter({ $0.term == self.selectedTerm! })
+                    return rankingList[0].ranking.count
+                default:
+                    return 1
+                }
+            }else{
+                return 1
+            }
+        }else{
+            if let content = self.eventRecord?.content{
+                return content.eventRanking.count
+            }else{
+                return 1
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if tabSelect == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "PersonRankCell", for: indexPath ) as! PersonRankCell
-            cell.setCell(index: indexPath)
-            return cell
+            if let content = self.personRecord?.content {
+                switch termSelect{
+                case 1:
+                    cell.setCell(index: indexPath, record: content.dailyRankingList.filter({ $0.term == self.selectedTerm! })[0].ranking)
+                    return cell
+                case 2:
+                    cell.setCell(index: indexPath, record: content.weeklyRankingList.filter({ $0.term == self.selectedTerm! })[0].ranking)
+                    return cell
+                case 3:
+                    cell.setCell(index: indexPath, record: content.monthlyRankingList.filter({ $0.term == self.selectedTerm! })[0].ranking)
+                    return cell
+                default:
+                    print("error")
+                    return cell
+                }
+            }else{
+                let cell = tableView.dequeueReusableCell(withIdentifier: "ErrorCell") as! ErrorCell
+                return cell
+            }
         }else if tabSelect == 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "TeamRankCell", for: indexPath ) as! TeamRankCell
-            cell.setCell(index: indexPath)
-            return cell
+            if let content = self.teamRecord?.content {
+                switch termSelect{
+                case 1:
+                    cell.setCell(index: indexPath, record: content.dailyRankingList.filter({ $0.term == self.selectedTerm! })[0].ranking)
+                    return cell
+                case 2:
+                    cell.setCell(index: indexPath, record: content.weeklyRankingList.filter({ $0.term == self.selectedTerm! })[0].ranking)
+                    return cell
+                case 3:
+                    cell.setCell(index: indexPath, record: content.monthlyRankingList.filter({ $0.term == self.selectedTerm! })[0].ranking)
+                    return cell
+                default:
+                    print("error")
+                    return cell
+                }
+            }else{
+                let cell = tableView.dequeueReusableCell(withIdentifier: "ErrorCell") as! ErrorCell
+                return cell
+            }
         }else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "EventRankCell", for: indexPath ) as! EventRankCell
-            cell.setCell(index: indexPath)
-            return cell
-            
+            if let content = self.eventRecord?.content{
+                cell.setCell(index: indexPath, record: content.eventRanking)
+                return cell
+            }else{
+                let cell = tableView.dequeueReusableCell(withIdentifier: "ErrorCell") as! ErrorCell
+                return cell
+            }
         }
     }
     
@@ -162,16 +267,22 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
             dayPullDownButton.isHidden = false
             weekPullDownButton.isHidden = true
             monthPullDownButton.isHidden = true
+            
+            self.selectedTerm = self.currentDay
         //2:週
         }else if termSelect == 2{
             dayPullDownButton.isHidden = true
             weekPullDownButton.isHidden = false
             monthPullDownButton.isHidden = true
+            
+            self.selectedTerm = self.currentWeek
         //3:月
         }else{
             dayPullDownButton.isHidden = true
             weekPullDownButton.isHidden = true
             monthPullDownButton.isHidden = false
+            
+            self.selectedTerm = self.currentMonth
         }
     }
     //UIbuttonのメニュー表示(iOS14以上でのみ機能）
@@ -188,6 +299,9 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
             let modifiedDate = Calendar.current.date(byAdding: .day, value: -i, to: today)!
             let dateString = dateFormatter.string(from: modifiedDate)
             let action = UIAction(title: dateString, image: nil){ (action) in self.dayPullDownButton.setTitle(dateString,for: .normal)
+                self.dateFormatter.dateFormat = "yyyy-MM-d"
+                self.currentDay = self.dateFormatter.string(from: modifiedDate)
+                self.selectedTerm = self.dateFormatter.string(from: modifiedDate)
             }
             daylist.append(action)
         }
@@ -206,6 +320,9 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
             let dateString2 = dateFormatter.string(from: modifiedDate2)
             let weekString = dateString + "〜" + dateString2
             let action = UIAction(title: weekString, image: nil){ (action) in self.dayPullDownButton.setTitle(weekString,for: .normal)
+                self.dateFormatter.dateFormat = "yyyy-MM-d"
+                self.currentWeek = self.dateFormatter.string(from: modifiedDate) + "," + self.dateFormatter.string(from: modifiedDate2)
+                self.selectedTerm = self.dateFormatter.string(from: modifiedDate) + "," + self.dateFormatter.string(from: modifiedDate2)
             }
             weeklist.append(action)
         }
@@ -223,6 +340,9 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
             let modifiedDate = Calendar.current.date(byAdding: .month, value: -i, to: today)!
             let monthString = dateFormatter.string(from: modifiedDate)
             let action = UIAction(title: monthString, image: nil){ (action) in self.dayPullDownButton.setTitle(monthString,for: .normal)
+                self.dateFormatter.dateFormat = "M"
+                self.currentMonth = self.dateFormatter.string(from: modifiedDate)
+                self.selectedTerm = self.dateFormatter.string(from: modifiedDate)
             }
             monthlist.append(action)
         }
@@ -231,13 +351,60 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
         monthPullDownButton.showsMenuAsPrimaryAction = true
     }
     
-    func loadMessage(){
+    func loadRanking(){
+        loadPersonalRanking()
+        loadTeamRanking()
+        loadEventRanking()
+    }
+    
+    func loadPersonalRanking(){
         AWSAPI.download(url:"https://xoli50a9r4.execute-api.ap-northeast-1.amazonaws.com/prod/select_personal_ranking_api",token: startView.accessToken) { [weak self] result in
             switch result {
             case .success(let result):
                 
-                print(result)
+                do{
+                    let decoder = JSONDecoder()
+                    self!.personRecord = try decoder.decode(PersonRecord.self, from: result as! Data)
+                    print(self?.personRecord)
+                }catch{
+                    print(error)
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    func loadTeamRanking(){
+        AWSAPI.download(url:"https://xoli50a9r4.execute-api.ap-northeast-1.amazonaws.com/prod/select_team_ranking_api",token: startView.accessToken) { [weak self] result in
+            switch result {
+            case .success(let result):
                 
+                do{
+                    let decoder = JSONDecoder()
+                    self!.teamRecord = try decoder.decode(TeamRecord.self, from: result as! Data)
+                    print(self?.teamRecord)
+                }catch{
+                    print(error)
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    func loadEventRanking(){
+        AWSAPI.download(url:"https://xoli50a9r4.execute-api.ap-northeast-1.amazonaws.com/prod/select_team_ranking_api",token: startView.accessToken) { [weak self] result in
+            switch result {
+            case .success(let result):
+                
+                do{
+                    let decoder = JSONDecoder()
+                    self!.eventRecord = try decoder.decode(EventRecord.self, from: result as! Data)
+                    print(self?.eventRecord)
+                }catch{
+                    print(error)
+                }
             case .failure(let error):
                 print(error)
             }
