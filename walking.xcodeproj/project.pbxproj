@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		65C497E98D1A0A9CF7E6116E /* Pods_walking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A1C6D6C083B9BA7A6ACEE9D /* Pods_walking.framework */; };
+		913ABCDA27A785A200FFF75D /* HomeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913ABCD527A785A200FFF75D /* HomeData.swift */; };
+		913ABCDB27A785A200FFF75D /* DistanceStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913ABCD627A785A200FFF75D /* DistanceStruct.swift */; };
+		913ABCDC27A785A200FFF75D /* StepStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913ABCD727A785A200FFF75D /* StepStruct.swift */; };
+		913ABCDD27A785A200FFF75D /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913ABCD827A785A200FFF75D /* HomeView.swift */; };
+		913ABCDE27A785A200FFF75D /* CalorieStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913ABCD927A785A200FFF75D /* CalorieStruct.swift */; };
 		913E8EBA278FECD500A8853C /* PersonRankCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913E8EB8278FECD500A8853C /* PersonRankCell.swift */; };
 		913E8EBB278FECD500A8853C /* PersonRankCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 913E8EB9278FECD500A8853C /* PersonRankCell.xib */; };
 		915A8BB02791567500B1DECE /* TeamRankCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915A8BAE2791567500B1DECE /* TeamRankCell.swift */; };
@@ -16,13 +21,11 @@
 		918347572784225A005E8EC7 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 918347562784225A005E8EC7 /* HealthKit.framework */; };
 		91834759278443F5005E8EC7 /* HealthKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91834758278443F5005E8EC7 /* HealthKitUI.framework */; };
 		91B1F71427A23D9A00E87EEF /* WalkingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B1F71327A23D9A00E87EEF /* WalkingData.swift */; };
-		91B1F71827A392BB00E87EEF /* HomeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B1F71727A392BB00E87EEF /* HomeData.swift */; };
 		91EB803627965CCC0073E69E /* EventRankCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91EB803527965CCC0073E69E /* EventRankCell.xib */; };
 		A21905EE2786ACD700288B76 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21905ED2786ACD700288B76 /* StartView.swift */; };
 		A21905F92786D0CC00288B76 /* CommunicationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21905F82786D0CC00288B76 /* CommunicationView.swift */; };
 		A21905FC2786D15500288B76 /* CommunicationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21905FA2786D15500288B76 /* CommunicationCell.swift */; };
 		A21905FD2786D15500288B76 /* CommunicationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A21905FB2786D15500288B76 /* CommunicationCell.xib */; };
-		A22EA0FC277ACA9500D7DA92 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22EA0FB277ACA9400D7DA92 /* HomeView.swift */; };
 		A22EA0FE277ACAB900D7DA92 /* RecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22EA0FD277ACAB900D7DA92 /* RecordView.swift */; };
 		A22EA104277AD0E200D7DA92 /* YammerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22EA103277AD0E200D7DA92 /* YammerAPI.swift */; };
 		A22EA106277AD0FB00D7DA92 /* AWSAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22EA105277AD0FB00D7DA92 /* AWSAPI.swift */; };
@@ -37,9 +40,6 @@
 		A260875827A3DADE0040A227 /* ErrorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A260875627A3DADE0040A227 /* ErrorCell.swift */; };
 		A260875927A3DADE0040A227 /* ErrorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A260875727A3DADE0040A227 /* ErrorCell.xib */; };
 		A260875B27A3FD9E0040A227 /* CalenderExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A260875A27A3FD9E0040A227 /* CalenderExtension.swift */; };
-		A260876427A77D5F0040A227 /* StepStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = A260876327A77D5F0040A227 /* StepStruct.swift */; };
-		A260876627A77D690040A227 /* DistanceStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = A260876527A77D690040A227 /* DistanceStruct.swift */; };
-		A260876827A77D700040A227 /* CalorieStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = A260876727A77D700040A227 /* CalorieStruct.swift */; };
 		A2651EDE27A0D33E00B35DFC /* PersonRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2651EDD27A0D33E00B35DFC /* PersonRecord.swift */; };
 		A2651EE027A0D5F400B35DFC /* TeamRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2651EDF27A0D5F400B35DFC /* TeamRecord.swift */; };
 		A2651EE227A0D70D00B35DFC /* EventRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2651EE127A0D70D00B35DFC /* EventRecord.swift */; };
@@ -59,6 +59,11 @@
 /* Begin PBXFileReference section */
 		0A1C6D6C083B9BA7A6ACEE9D /* Pods_walking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_walking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		415DA5B3D9C96A2563F780D4 /* Pods-walking.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-walking.debug.xcconfig"; path = "Target Support Files/Pods-walking/Pods-walking.debug.xcconfig"; sourceTree = "<group>"; };
+		913ABCD527A785A200FFF75D /* HomeData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeData.swift; sourceTree = "<group>"; };
+		913ABCD627A785A200FFF75D /* DistanceStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DistanceStruct.swift; sourceTree = "<group>"; };
+		913ABCD727A785A200FFF75D /* StepStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepStruct.swift; sourceTree = "<group>"; };
+		913ABCD827A785A200FFF75D /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		913ABCD927A785A200FFF75D /* CalorieStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalorieStruct.swift; sourceTree = "<group>"; };
 		913E8EB8278FECD500A8853C /* PersonRankCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonRankCell.swift; sourceTree = "<group>"; };
 		913E8EB9278FECD500A8853C /* PersonRankCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonRankCell.xib; sourceTree = "<group>"; };
 		915A8BAE2791567500B1DECE /* TeamRankCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamRankCell.swift; sourceTree = "<group>"; };
@@ -68,13 +73,11 @@
 		918347562784225A005E8EC7 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		91834758278443F5005E8EC7 /* HealthKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKitUI.framework; path = System/Library/Frameworks/HealthKitUI.framework; sourceTree = SDKROOT; };
 		91B1F71327A23D9A00E87EEF /* WalkingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkingData.swift; sourceTree = "<group>"; };
-		91B1F71727A392BB00E87EEF /* HomeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeData.swift; sourceTree = "<group>"; };
 		91EB803527965CCC0073E69E /* EventRankCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = EventRankCell.xib; path = walking/Record/EventRankCell.xib; sourceTree = "<group>"; };
 		A21905ED2786ACD700288B76 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 		A21905F82786D0CC00288B76 /* CommunicationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationView.swift; sourceTree = "<group>"; };
 		A21905FA2786D15500288B76 /* CommunicationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationCell.swift; sourceTree = "<group>"; };
 		A21905FB2786D15500288B76 /* CommunicationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommunicationCell.xib; sourceTree = "<group>"; };
-		A22EA0FB277ACA9400D7DA92 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		A22EA0FD277ACAB900D7DA92 /* RecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordView.swift; sourceTree = "<group>"; };
 		A22EA103277AD0E200D7DA92 /* YammerAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YammerAPI.swift; sourceTree = "<group>"; };
 		A22EA105277AD0FB00D7DA92 /* AWSAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWSAPI.swift; sourceTree = "<group>"; };
@@ -89,9 +92,6 @@
 		A260875627A3DADE0040A227 /* ErrorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorCell.swift; sourceTree = "<group>"; };
 		A260875727A3DADE0040A227 /* ErrorCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ErrorCell.xib; sourceTree = "<group>"; };
 		A260875A27A3FD9E0040A227 /* CalenderExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderExtension.swift; sourceTree = "<group>"; };
-		A260876327A77D5F0040A227 /* StepStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StepStruct.swift; path = walking/StepStruct.swift; sourceTree = SOURCE_ROOT; };
-		A260876527A77D690040A227 /* DistanceStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DistanceStruct.swift; path = walking/DistanceStruct.swift; sourceTree = SOURCE_ROOT; };
-		A260876727A77D700040A227 /* CalorieStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CalorieStruct.swift; path = walking/CalorieStruct.swift; sourceTree = SOURCE_ROOT; };
 		A2651EDD27A0D33E00B35DFC /* PersonRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonRecord.swift; sourceTree = "<group>"; };
 		A2651EDF27A0D5F400B35DFC /* TeamRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamRecord.swift; sourceTree = "<group>"; };
 		A2651EE127A0D70D00B35DFC /* EventRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRecord.swift; sourceTree = "<group>"; };
@@ -138,11 +138,11 @@
 		913ABCC327A3F57A00FFF75D /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				91B1F71727A392BB00E87EEF /* HomeData.swift */,
-				A22EA0FB277ACA9400D7DA92 /* HomeView.swift */,
-				A260876727A77D700040A227 /* CalorieStruct.swift */,
-				A260876327A77D5F0040A227 /* StepStruct.swift */,
-				A260876527A77D690040A227 /* DistanceStruct.swift */,
+				913ABCD827A785A200FFF75D /* HomeView.swift */,
+				913ABCD527A785A200FFF75D /* HomeData.swift */,
+				913ABCD727A785A200FFF75D /* StepStruct.swift */,
+				913ABCD627A785A200FFF75D /* DistanceStruct.swift */,
+				913ABCD927A785A200FFF75D /* CalorieStruct.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -379,31 +379,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A260876827A77D700040A227 /* CalorieStruct.swift in Sources */,
 				A2C1A3752772FD4C009CAE84 /* TabBarController.swift in Sources */,
 				A2C1A3712772FD4C009CAE84 /* AppDelegate.swift in Sources */,
+				913ABCDC27A785A200FFF75D /* StepStruct.swift in Sources */,
 				A22EA106277AD0FB00D7DA92 /* AWSAPI.swift in Sources */,
-				A260876627A77D690040A227 /* DistanceStruct.swift in Sources */,
 				A260875827A3DADE0040A227 /* ErrorCell.swift in Sources */,
 				915A8BB42791770C00B1DECE /* EventRankCell.swift in Sources */,
 				913E8EBA278FECD500A8853C /* PersonRankCell.swift in Sources */,
 				A21905EE2786ACD700288B76 /* StartView.swift in Sources */,
 				A21905F92786D0CC00288B76 /* CommunicationView.swift in Sources */,
+				913ABCDD27A785A200FFF75D /* HomeView.swift in Sources */,
 				A2FEF752279006FF00D8D537 /* ThreadView.swift in Sources */,
 				A2651EE227A0D70D00B35DFC /* EventRecord.swift in Sources */,
 				A244D5FD278EB75B008D30A2 /* NotificationView.swift in Sources */,
-				91B1F71827A392BB00E87EEF /* HomeData.swift in Sources */,
-				A260876427A77D5F0040A227 /* StepStruct.swift in Sources */,
 				A260875B27A3FD9E0040A227 /* CalenderExtension.swift in Sources */,
 				A2651EDE27A0D33E00B35DFC /* PersonRecord.swift in Sources */,
 				A234D27F279E614200BC0FEF /* PostView.swift in Sources */,
-				A22EA0FC277ACA9500D7DA92 /* HomeView.swift in Sources */,
+				913ABCDB27A785A200FFF75D /* DistanceStruct.swift in Sources */,
+				913ABCDA27A785A200FFF75D /* HomeData.swift in Sources */,
 				A2651EE027A0D5F400B35DFC /* TeamRecord.swift in Sources */,
 				91B1F71427A23D9A00E87EEF /* WalkingData.swift in Sources */,
 				A244D5F3278EAA81008D30A2 /* MemberCell.swift in Sources */,
 				A2BD72D6279FE28400C7F5DB /* MyRecord.swift in Sources */,
 				A244D5F0278EAA5C008D30A2 /* MemberView.swift in Sources */,
 				A22EA0FE277ACAB900D7DA92 /* RecordView.swift in Sources */,
+				913ABCDE27A785A200FFF75D /* CalorieStruct.swift in Sources */,
 				A2C1A3732772FD4C009CAE84 /* SceneDelegate.swift in Sources */,
 				A22EA10A277AE81400D7DA92 /* LoginViewController.swift in Sources */,
 				A2BD72D2279EB0DD00C7F5DB /* SelectedPostCell.swift in Sources */,

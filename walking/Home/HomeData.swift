@@ -8,11 +8,13 @@
 import Foundation
 import Metal
 
+//Inputデータ
 struct HomeData : Codable{
     let aaaid: String?
     let teamid: Int
 }
 
+//Outputデータ
 struct HomeRecord : Codable{
     let content:HomeContent
     let errorMessage:String?
@@ -33,6 +35,7 @@ struct HomeContent : Codable{
     }
 }
 
+//個人のデータ
 struct PersonalData : Codable{
     let steps: Int
     let distance: Int
@@ -49,10 +52,19 @@ struct PersonalData : Codable{
     }
 }
 
+//チームのデータ
 struct TeamData : Codable{
-    let steps_: Int
+    let steps: Int
     let distance: Int
     let calorie: Int
     let ranking: Int
-    let total_count : Int
+    let totalCount: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case steps
+        case distance
+        case calorie
+        case ranking
+        case totalCount = "total_count"
+    }
 }
