@@ -18,6 +18,7 @@ class StartView: UIViewController {
 
     let kScopes: [String] = ["user.read"]
     var accessToken = String()
+    var idToken = String()
     var applicationContext : MSALPublicClientApplication?
     var webViewParamaters : MSALWebviewParameters?
 
@@ -182,6 +183,11 @@ class StartView: UIViewController {
         let parameters = MSALInteractiveTokenParameters(scopes: kScopes, webviewParameters: webViewParameters)
         parameters.promptType = .selectAccount
         
+        var requestError: NSError? = nil
+        let request = MSALClaimsRequest(jsonString: "{\"id_token\":{\"auth_time\":{\"essential\":true},\"acr\":{\"values\":[\"urn:mace:incommon:iap:silver\"]}}}",error: &requestError)
+        
+        parameters.claimsRequest = request
+        
         applicationContext.acquireToken(with: parameters) { (result, error) in
             
             if let error = error {
@@ -222,6 +228,11 @@ class StartView: UIViewController {
         
         let parameters = MSALSilentTokenParameters(scopes: kScopes, account: account)
         
+        var requestError: NSError? = nil
+        let request = MSALClaimsRequest(jsonString: "{\"id_token\":{\"auth_time\":{\"essential\":true},\"acr\":{\"values\":[\"urn:mace:incommon:iap:silver\"]}}}",error: &requestError)
+        
+        parameters.claimsRequest = request
+        
         applicationContext.acquireTokenSilent(with: parameters) { (result, error) in
             
             if let error = error {
@@ -253,6 +264,7 @@ class StartView: UIViewController {
                 return
             }
             
+            self.idToken = result.idToken!
             self.accessToken = result.accessToken
             self.updateLogging(text: "Refreshed Access token is \(self.accessToken)")
         }
