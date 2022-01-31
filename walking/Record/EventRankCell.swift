@@ -9,6 +9,7 @@ import UIKit
 
 class EventRankCell: UITableViewCell {
 
+    
     @IBOutlet weak var rankLabel: UILabel!
     @IBOutlet weak var crown: UIImageView!
     
@@ -23,7 +24,7 @@ class EventRankCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func setCell(index:IndexPath){
+    func setCell(index:IndexPath,record:[EventRanking]){
         
         self.rankLabel.text = String(index.row+1)
         

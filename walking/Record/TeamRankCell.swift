@@ -9,6 +9,7 @@ import UIKit
 
 class TeamRankCell: UITableViewCell {
 
+    
     @IBOutlet weak var rankLabel: UILabel!
     @IBOutlet weak var crown: UIImageView!
     
@@ -23,7 +24,7 @@ class TeamRankCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func setCell(index:IndexPath){
+    func setCell(index:IndexPath,record:[TeamRanking]){
         
         self.rankLabel.text = String(index.row+1)
         
