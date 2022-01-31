@@ -9,6 +9,7 @@ import UIKit
 
 class PersonRankCell: UITableViewCell {
 
+    
     @IBOutlet weak var crown: UIImageView!
     @IBOutlet weak var rankLabel: UILabel!
     
@@ -23,7 +24,7 @@ class PersonRankCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func setCell(index:IndexPath){
+    func setCell(index:IndexPath,record:[PersonRanking]){
         
         self.rankLabel.text = String(index.row+1)
         

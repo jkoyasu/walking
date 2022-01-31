@@ -37,6 +37,8 @@
 		A244D5FA278EB6D5008D30A2 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A244D5F8278EB6D5008D30A2 /* NotificationCell.swift */; };
 		A244D5FB278EB6D5008D30A2 /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A244D5F9278EB6D5008D30A2 /* NotificationCell.xib */; };
 		A244D5FD278EB75B008D30A2 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A244D5FC278EB75B008D30A2 /* NotificationView.swift */; };
+		A260875E27A771210040A227 /* ErrorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A260875C27A771210040A227 /* ErrorCell.swift */; };
+		A260875F27A771210040A227 /* ErrorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A260875D27A771210040A227 /* ErrorCell.xib */; };
 		A2651EDE27A0D33E00B35DFC /* PersonRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2651EDD27A0D33E00B35DFC /* PersonRecord.swift */; };
 		A2651EE027A0D5F400B35DFC /* TeamRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2651EDF27A0D5F400B35DFC /* TeamRecord.swift */; };
 		A2651EE227A0D70D00B35DFC /* EventRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2651EE127A0D70D00B35DFC /* EventRecord.swift */; };
@@ -86,6 +88,8 @@
 		A244D5F8278EB6D5008D30A2 /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
 		A244D5F9278EB6D5008D30A2 /* NotificationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationCell.xib; sourceTree = "<group>"; };
 		A244D5FC278EB75B008D30A2 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
+		A260875C27A771210040A227 /* ErrorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorCell.swift; sourceTree = "<group>"; };
+		A260875D27A771210040A227 /* ErrorCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ErrorCell.xib; sourceTree = "<group>"; };
 		A2651EDD27A0D33E00B35DFC /* PersonRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonRecord.swift; sourceTree = "<group>"; };
 		A2651EDF27A0D5F400B35DFC /* TeamRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamRecord.swift; sourceTree = "<group>"; };
 		A2651EE127A0D70D00B35DFC /* EventRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRecord.swift; sourceTree = "<group>"; };
@@ -152,9 +156,11 @@
 				913E8EB8278FECD500A8853C /* PersonRankCell.swift */,
 				915A8BAE2791567500B1DECE /* TeamRankCell.swift */,
 				915A8BB22791770C00B1DECE /* EventRankCell.swift */,
+				A260875C27A771210040A227 /* ErrorCell.swift */,
 				A2BC7B8827964A0100035482 /* EventRankCell.xib */,
 				915A8BAF2791567500B1DECE /* TeamRankCell.xib */,
 				913E8EB9278FECD500A8853C /* PersonRankCell.xib */,
+				A260875D27A771210040A227 /* ErrorCell.xib */,
 			);
 			path = Record;
 			sourceTree = "<group>";
@@ -310,6 +316,7 @@
 				A21905FD2786D15500288B76 /* CommunicationCell.xib in Resources */,
 				A2BC7B8927964A0200035482 /* EventRankCell.xib in Resources */,
 				A244D5FB278EB6D5008D30A2 /* NotificationCell.xib in Resources */,
+				A260875F27A771210040A227 /* ErrorCell.xib in Resources */,
 				A2C1A37D2772FD52009CAE84 /* LaunchScreen.storyboard in Resources */,
 				A2BD72D3279EB0DD00C7F5DB /* SelectedPostCell.xib in Resources */,
 				A2C1A37A2772FD52009CAE84 /* Assets.xcassets in Resources */,
@@ -373,6 +380,7 @@
 				A2C1A3712772FD4C009CAE84 /* AppDelegate.swift in Sources */,
 				A22EA106277AD0FB00D7DA92 /* AWSAPI.swift in Sources */,
 				9183475427841096005E8EC7 /* StepStruct.swift in Sources */,
+				A260875E27A771210040A227 /* ErrorCell.swift in Sources */,
 				915A8BB42791770C00B1DECE /* EventRankCell.swift in Sources */,
 				913E8EBA278FECD500A8853C /* PersonRankCell.swift in Sources */,
 				A21905EE2786ACD700288B76 /* StartView.swift in Sources */,

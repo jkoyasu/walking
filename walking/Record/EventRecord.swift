@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct EventRecord{
+struct EventRecord:Codable{
     let errorMessage:String?
     let content:EventContent?
     
@@ -26,7 +26,7 @@ struct EventContent:Codable{
 }
 
 struct EventRanking:Codable{
-    let term:String
+    @StringForcible var term:String?
     let rank:Int
     let teamId:String?
     let groupName:String?
