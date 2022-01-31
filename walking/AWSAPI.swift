@@ -10,8 +10,7 @@ import Foundation
 
 enum AWSAPI{
 
-    static func download(url:String,token:String,handler: @escaping (Result<Data, UserAPIError>) -> Void){
-        
+    static func download(url:String,token:String,handler: @escaping (Result<Any, UserAPIError>) -> Void){
         var urlComponents = URLComponents(string: url)!
     //        var urlComponents = URLComponents(string: "https://graph.microsoft.com/v1.0/me/")!
         var request = URLRequest(url: urlComponents.url!)
@@ -21,13 +20,7 @@ enum AWSAPI{
         var tmp:[String:Any] = [:]
 
         let task = URLSession.shared.dataTask(with: request) { data, response, error in guard let data = data else { return }
-            let result: Result<Data, UserAPIError>
-            defer {
-                DispatchQueue.main.async {
-                    handler(result)
-                }
-            }
-            
+            var result: Result<Data, UserAPIError>
             result = .success(data)
         }
         task.resume()
