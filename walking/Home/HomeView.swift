@@ -122,9 +122,9 @@ class HomeView: UIViewController {
         //stepLabel.text = String(stepStructs[stepStructs.count-1].steps)
         stepLabel.text = "12345"
         stepLabel.addUinit(unit: "歩", size: stepLabel.font.pointSize / 2)
-        distanceLabel.text = "789"
+        distanceLabel.text = "7.89"
         //calorieLabel.text = String(calorieStructs[calorieStructs.count-1].calories)
-        distanceLabel.addUinit(unit: "kcal", size: distanceLabel.font.pointSize / 2)
+        distanceLabel.addUinit(unit: "km", size: distanceLabel.font.pointSize / 2)
     }
     
 //  歩数情報を習得する関数
