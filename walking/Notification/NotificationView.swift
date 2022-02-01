@@ -27,4 +27,9 @@ class NotificationView: UIViewController, UITableViewDataSource, UITableViewDele
         let cell = tableView.dequeueReusableCell(withIdentifier: "NotificationCell", for: indexPath ) as! NotificationCell
         return cell
     }
+    
+    @IBAction func exit(_ sender: Any) {
+        self.dismiss(animated: true)
+    }
+    
 }

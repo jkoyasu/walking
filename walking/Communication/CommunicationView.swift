@@ -15,7 +15,7 @@ class CommunicationView: UIViewController, UITableViewDataSource, UITableViewDel
     let selectedButtonsAttributes: [NSAttributedString.Key : Any] = [
         .foregroundColor : UIColor.black,
         .font : UIFont.systemFont(ofSize: 24.0),
-        NSAttributedString.Key(rawValue:NSAttributedString.Key.underlineStyle.rawValue):NSUnderlineStyle.thick.rawValue,NSAttributedString.Key.underlineColor: UIColor.systemTeal
+        NSAttributedString.Key(rawValue:NSAttributedString.Key.underlineStyle.rawValue):NSUnderlineStyle.thick.rawValue,NSAttributedString.Key.underlineColor: #colorLiteral(red: 0.03529411765, green: 0.4784313725, blue: 0.4784313725, alpha: 1)
         ]
     let ButtonsAttributes: [NSAttributedString.Key : Any] = [
         .foregroundColor : UIColor.black,

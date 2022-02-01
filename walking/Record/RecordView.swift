@@ -30,6 +30,21 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     @IBOutlet weak var weekPullDownButton: UIButton!
     @IBOutlet weak var monthPullDownButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
+    let selectedButtonsAttributes: [NSAttributedString.Key : Any] = [
+        .foregroundColor : UIColor.black,
+        .font : UIFont.systemFont(ofSize: 24.0),
+        NSAttributedString.Key(rawValue:NSAttributedString.Key.underlineStyle.rawValue):NSUnderlineStyle.thick.rawValue,NSAttributedString.Key.underlineColor: #colorLiteral(red: 0.03529411765, green: 0.4784313725, blue: 0.4784313725, alpha: 1)
+        ]
+    let selectedTermButtonsAttributes: [NSAttributedString.Key : Any] = [
+        .foregroundColor : UIColor.black,
+        .font : UIFont.systemFont(ofSize: 24.0),
+        NSAttributedString.Key(rawValue:NSAttributedString.Key.underlineStyle.rawValue):NSUnderlineStyle.thick.rawValue,NSAttributedString.Key.underlineColor: UIColor.white
+        ]
+    let ButtonsAttributes: [NSAttributedString.Key : Any] = [
+        .foregroundColor : UIColor.black,
+        .font : UIFont.systemFont(ofSize: 24.0)
+        ]
+    
     var calendar = Calendar(identifier: .gregorian)
     var selectedTerm:String?
     var currentDay:String?
@@ -45,7 +60,6 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        startView.callGraphAPI()
         loadRanking()
         showTab(tabSelect)
         tableView.dataSource = self
@@ -55,6 +69,13 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
         tableView.register(UINib(nibName: "EventRankCell", bundle: nil), forCellReuseIdentifier: "EventRankCell")
         tableView.register(UINib(nibName: "ErrorCell", bundle: nil), forCellReuseIdentifier: "ErrorCell")
         addMenuToButton()
+        
+        self.dayPullDownButton.layer.borderColor = UIColor.gray.cgColor
+        self.weekPullDownButton.layer.borderColor = UIColor.gray.cgColor
+        self.monthPullDownButton.layer.borderColor = UIColor.gray.cgColor
+        self.dayPullDownButton.layer.borderWidth = 1
+        self.weekPullDownButton.layer.borderWidth = 2
+        self.monthPullDownButton.layer.borderWidth = 3
         
         //日付データ設定
         dateFormatter.dateFormat = "yyyy-MM-dd"
@@ -228,6 +249,14 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
         print("first!")
     }
 
+    
+
+    @IBOutlet weak var personalButton: UIButton!
+    @IBOutlet weak var teamButton: UIButton!
+    @IBOutlet weak var eventButton: UIButton!
+    @IBOutlet weak var dayButton: UIButton!
+    @IBOutlet weak var weekButton: UIButton!
+    @IBOutlet weak var monthButton: UIButton!
     @IBOutlet weak var dataButtonStackHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var dataLabelStackHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var eventTitleStackHeightConstraint: NSLayoutConstraint!
@@ -278,6 +307,12 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     
     //タブ表示（個人/チーム/イベント）を制御
     private func showTab(_ tabSelect: Int){
+        let selectedPersonalButtonText = NSAttributedString(string: "個人", attributes: selectedButtonsAttributes)
+        let personalButtonText = NSAttributedString(string: "個人", attributes: ButtonsAttributes)
+        let selectedTeamButtonText = NSAttributedString(string: "チーム", attributes: selectedButtonsAttributes)
+        let teamButtonText = NSAttributedString(string: "チーム", attributes: ButtonsAttributes)
+        let selectedEventButtonText = NSAttributedString(string: "イベント", attributes: selectedButtonsAttributes)
+        let eventButtonText = NSAttributedString(string: "イベント", attributes: ButtonsAttributes)
         //1:個人
         if tabSelect == 1 {
             dataLabelStackHeightConstraint.constant = 47.5
@@ -286,7 +321,13 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
             eventLabelStackHeightConstraint.constant = 0
             reloadButton1.isHidden = false
             reloadButton2.isHidden = true
+            dayButton.isHidden = false
+            weekButton.isHidden = false
+            monthButton.isHidden = false
             showTerm(termSelect)
+            personalButton.setAttributedTitle(selectedPersonalButtonText, for: .normal)
+            teamButton.setAttributedTitle(teamButtonText, for: .normal)
+            eventButton.setAttributedTitle(eventButtonText, for: .normal)
         //2:チーム
         }else if tabSelect == 2{
             dataLabelStackHeightConstraint.constant = 47.5
@@ -295,7 +336,13 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
             eventLabelStackHeightConstraint.constant = 0
             reloadButton1.isHidden = false
             reloadButton2.isHidden = true
+            dayButton.isHidden = false
+            weekButton.isHidden = false
+            monthButton.isHidden = false
             showTerm(termSelect)
+            personalButton.setAttributedTitle(personalButtonText, for: .normal)
+            teamButton.setAttributedTitle(selectedTeamButtonText, for: .normal)
+            eventButton.setAttributedTitle(eventButtonText, for: .normal)
         //3: イベント
         }else{
             dataLabelStackHeightConstraint.constant = 0
@@ -305,18 +352,35 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
             dayPullDownButton.isHidden = true
             weekPullDownButton.isHidden = true
             monthPullDownButton.isHidden = true
+            dayButton.isHidden = true
+            weekButton.isHidden = true
+            monthButton.isHidden = true
             reloadButton1.isHidden = true
             reloadButton2.isHidden = false
+            personalButton.setAttributedTitle(personalButtonText, for: .normal)
+            teamButton.setAttributedTitle(teamButtonText, for: .normal)
+            eventButton.setAttributedTitle(selectedEventButtonText, for: .normal)
         }
     }
     
     //タブ表示（日/週/月）を制御
     private func showTerm(_ termSelect: Int){
+        let selectedDayButtonText = NSAttributedString(string: "日", attributes: selectedTermButtonsAttributes)
+        let dayButtonText = NSAttributedString(string: "日", attributes: ButtonsAttributes)
+        let selectedWeekButtonText = NSAttributedString(string: "週", attributes: selectedTermButtonsAttributes)
+        let weekButtonText = NSAttributedString(string: "週", attributes: ButtonsAttributes)
+        let selectedMonthButtonText = NSAttributedString(string: "月", attributes: selectedTermButtonsAttributes)
+        let monthButtonText = NSAttributedString(string: "月", attributes: ButtonsAttributes)
+        
         //1:日
         if termSelect == 1 {
             dayPullDownButton.isHidden = false
             weekPullDownButton.isHidden = true
             monthPullDownButton.isHidden = true
+            
+            dayButton.setAttributedTitle(selectedDayButtonText, for: .normal)
+            weekButton.setAttributedTitle(weekButtonText, for: .normal)
+            monthButton.setAttributedTitle(monthButtonText, for: .normal)
             
             self.selectedTerm = self.currentDay
         //2:週
@@ -325,12 +389,20 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
             weekPullDownButton.isHidden = false
             monthPullDownButton.isHidden = true
             
+            dayButton.setAttributedTitle(dayButtonText, for: .normal)
+            weekButton.setAttributedTitle(selectedWeekButtonText, for: .normal)
+            monthButton.setAttributedTitle(monthButtonText, for: .normal)
+            
             self.selectedTerm = self.currentWeek
         //3:月
         }else{
             dayPullDownButton.isHidden = true
             weekPullDownButton.isHidden = true
             monthPullDownButton.isHidden = false
+            
+            dayButton.setAttributedTitle(dayButtonText, for: .normal)
+            weekButton.setAttributedTitle(weekButtonText, for: .normal)
+            monthButton.setAttributedTitle(selectedMonthButtonText, for: .normal)
             
             self.selectedTerm = self.currentMonth
         }
@@ -447,7 +519,7 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     }
     
     func loadEventRanking(){
-        AWSAPI.download(url:"https://xoli50a9r4.execute-api.ap-northeast-1.amazonaws.com/prod/select_team_ranking_api",token: idToken) { [weak self] result in
+        AWSAPI.download(url:"https://xoli50a9r4.execute-api.ap-northeast-1.amazonaws.com/prod/select_event_api",token: idToken) { [weak self] result in
             switch result {
             case .success(let result):
                 

@@ -57,7 +57,7 @@ class HomeView: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        pushData()
+//        pushData()
         reloadHomeData()
 
     }
@@ -306,7 +306,7 @@ class HomeView: UIViewController {
     
     //データを送信する
     private func upsertSteps(){
-        AWSAPI.download(url:"https://xoli50a9r4.execute-api.ap-northeast-1.amazonawsd/upsert_steps_api",token: startView.accessToken) { [weak self] result in
+        AWSAPI.download(url:"https://xoli50a9r4.execute-api.ap-northeast-1.amazonawsd/upsert_steps_api",token: idToken) { [weak self] result in
             switch result{
             case .success(let result):
                 
@@ -325,7 +325,7 @@ class HomeView: UIViewController {
     //Home画面からデータを取得する
     private func reloadHomeData(){
         print("reloadhomeData")
-        AWSAPI.download(url:"https://xoli50a9r4.execute-api.ap-northeast-1.amazonaws.com/prod/select_home_data_api",token: startView.accessToken) { [weak self] result in
+        AWSAPI.download(url:"https://xoli50a9r4.execute-api.ap-northeast-1.amazonaws.com/prod/select_home_data_api",token: idToken) { [weak self] result in
             switch result{
             case .success(let result):
                 
