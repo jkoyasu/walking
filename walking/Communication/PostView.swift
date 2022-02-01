@@ -21,5 +21,8 @@ class PostView: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func exit(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
     
 }

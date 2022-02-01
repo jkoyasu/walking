@@ -48,5 +48,9 @@ class ThreadView: UIViewController, UITableViewDelegate, UITableViewDataSource {
             }
     }
     
+    @IBAction func exit(_ sender: Any) {
+        self.dismiss(animated: true)
+    }
+    
 
 }

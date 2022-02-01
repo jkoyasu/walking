@@ -11,6 +11,7 @@ import YammerSDK
 
 var accessToken = String()
 var idToken = String()
+var mailId = String()
 
 class StartView: UIViewController {
     //全情報取得
@@ -168,6 +169,7 @@ class StartView: UIViewController {
                 // We check to see if we have a current logged in account.
                 // If we don't, then we need to sign someone in.
                 self.acquireTokenInteractively()
+                self.getmyInfo()
                 return
             }
             
@@ -204,8 +206,10 @@ class StartView: UIViewController {
             }
             
             accessToken = result.accessToken
+            idToken = result.idToken!
             self.updateLogging(text: "Access token is \(accessToken)")
             self.updateCurrentAccount(account: result.account)
+            self.getmyInfo()
         }
     }
     
@@ -267,7 +271,33 @@ class StartView: UIViewController {
             
             idToken = result.idToken!
             accessToken = result.accessToken
-            self.updateLogging(text: "Refreshed Id token is \(idToken)")
+            self.updateLogging(text: "Refreshed Id token is \(accessToken)")
+            self.getmyInfo()
         }
     }
+    
+    func getmyInfo(){
+        let url = URL(string: "https://graph.microsoft.com/v1.0/me/")
+        var request = URLRequest(url: url!)
+        
+        // Set the Authorization header for the request. We use Bearer tokens, so we specify Bearer + the token we got from the result
+        request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            
+            if let error = error {
+                self.updateLogging(text: "Couldn't get graph result: \(error)")
+                return
+            }
+            
+            guard let result = try? JSONSerialization.jsonObject(with: data!, options: []) as! [String:Any] else {
+                self.updateLogging(text:"Couldn't deserialize result JSON")
+                return
+            }
+
+            self.updateLogging(text: "Result from Graph: \(result))")
+            mailId = result["userPrincipalName"] as! String
+            print(mailId)
+        }.resume()
+    }
+    
 }
