@@ -14,14 +14,14 @@ struct WalkingData:Codable{
 }
 
 struct WalkingDataList:Codable{
-    var aaaid:String?
+    var aadid:String?
     var date:String?
     var steps:Int
     var distance:Int
     var calorie:Int
     
     enum CodingKeys: String, CodingKey {
-        case aaaid
+        case aadid
         case date
         case steps
         case distance
