@@ -48,8 +48,8 @@ class HomeView: UIViewController {
     
     @IBAction func reloadButton(_ sender: Any) {
 
-//        pushData()
-        reloadHomeData()
+        pushData()
+//        reloadHomeData()
         
     }
     
@@ -57,7 +57,7 @@ class HomeView: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-//        pushData()
+ //       pushData()
         reloadHomeData()
 
     }
@@ -69,6 +69,7 @@ class HomeView: UIViewController {
     //iPhoneデータを送る
     func pushData(){
         
+        //構造体の初期化
         stepStructs.removeAll()
         distanceStructs.removeAll()
     
@@ -84,21 +85,20 @@ class HomeView: UIViewController {
                 }
                
         //      iPhoneからカロリー情報を取得する
-                let readDataTypes2 = Set([HKObjectType.quantityType(forIdentifier: .activeEnergyBurned)!])
-                HKHealthStore().requestAuthorization(toShare: nil, read: readDataTypes2) { success, _ in
-                    if success {
+//                let readDataTypes2 = Set([HKObjectType.quantityType(forIdentifier: .activeEnergyBurned)!])
+//                HKHealthStore().requestAuthorization(toShare: nil, read: readDataTypes2) { success, _ in
+//                    if success {
 //                        self.getCalorie()
-                    }
-                }
+//                    }
+//                }
                 
-
         //取得したデータをオブジェクト化
         sleep(1)
         var walkingDataLists:[WalkingDataList]=[]
         
         for i in 0...7{
             let walkingDataList = WalkingDataList(
-                aaaid:"aaaid",
+                aadid:"3312756@mchcgr.jp",
                 date:self.stepStructs[i].datetime,
                 steps: stepStructs[i].steps,
                 distance: distanceStructs[i].distance,
@@ -111,24 +111,22 @@ class HomeView: UIViewController {
             walkingDataLists:walkingDataLists
         )
         
-        //JSONEnoderの生成
+        //JSONEncoderの生成
         let encoder = JSONEncoder()
         encoder.outputFormatting = .prettyPrinted
         
         do{
             //構造体→JSONへのエンコード
-            let data = try encoder.encode(walkingDataLists)
+            let data = try encoder.encode(walkingData)
             print("JSON DATA")
             print(String(data: data, encoding: .utf8)!)
+            //データを送信する
+            upsertSteps(data: data)
         }catch{
             print(error)
-            
         }
-
-
         
         //画面更新
-        print("tapped")
         //stepLabel.text = String(stepStructs[stepStructs.count-1].steps)
         stepLabel.text = "12345"
         stepLabel.addUinit(unit: "歩", size: stepLabel.font.pointSize / 2)
@@ -144,19 +142,19 @@ class HomeView: UIViewController {
         /// 取得したいサンプルデータの期間の開始日を指定する。（今回は７日前の日付を取得する。）
         let sevenDaysAgo = Calendar.current.date(byAdding: DateComponents(day: -7), to: Date())!
         let startDate = Calendar.current.startOfDay(for: sevenDaysAgo)
-
+        
         /// サンプルデータの検索条件を指定する。（フィルタリング）
         let predicate = HKQuery.predicateForSamples(withStart: startDate,
                                                     end: Date(),
                                                     options: [])
-
+        
         /// サンプルデータを取得するためのクエリを生成する。
         let query = HKStatisticsCollectionQuery(quantityType: HKObjectType.quantityType(forIdentifier: .stepCount)!,
                                                 quantitySamplePredicate: predicate,
                                                 options: .cumulativeSum,
                                                 anchorDate: startDate,
                                                 intervalComponents: DateComponents(day: 1))
-
+        
         /// クエリ結果を配列に格納 する
         query.initialResultsHandler = { _, results, _ in
             
@@ -305,26 +303,29 @@ class HomeView: UIViewController {
     
     
     //データを送信する
-    private func upsertSteps(){
-        AWSAPI.download(url:"https://xoli50a9r4.execute-api.ap-northeast-1.amazonawsd/upsert_steps_api",token: idToken) { [weak self] result in
+    private func upsertSteps(data:Data){
+        print("upsertSteps")
+        AWSAPI.upload(message:data, url:"https://xoli50a9r4.execute-api.ap-northeast-1.amazonaws.com/prod/upsert_steps_api",token: idToken) { [weak self] result in
             switch result{
             case .success(let result):
                 
                 do{
-                    print(self?.homeRecord)
-
+                    print("upsert data")
+                    print(result)
                 }catch{
                     print(error)
                 }
+                
             case .failure(let error):
                 print(error)
+                print("upload error")
             }
         }
     }
     
     //Home画面からデータを取得する
     private func reloadHomeData(){
-        print("reloadhomeData")
+        print("reloadHomeData")
         AWSAPI.download(url:"https://xoli50a9r4.execute-api.ap-northeast-1.amazonaws.com/prod/select_home_data_api",token: idToken) { [weak self] result in
             switch result{
             case .success(let result):
