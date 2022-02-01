@@ -16,9 +16,8 @@ enum AWSAPI{
     //        var urlComponents = URLComponents(string: "https://graph.microsoft.com/v1.0/me/")!
         var request = URLRequest(url: urlComponents.url!)
         request.httpMethod = "POST"
-    //        request.setValue(self.accessToken, forHTTPHeaderField: "Authorization")
+            request.setValue(token, forHTTPHeaderField: "Authorization")
         print(request.allHTTPHeaderFields)
-        var tmp:[String:Any] = [:]
 
         let task = URLSession.shared.dataTask(with: request) { data, response, error in guard let data = data else { return }
             let result: Result<Data, UserAPIError>

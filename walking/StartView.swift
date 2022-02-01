@@ -9,6 +9,9 @@ import UIKit
 import MSAL
 import YammerSDK
 
+var accessToken = String()
+var idToken = String()
+
 class StartView: UIViewController {
     //全情報取得
     let kClientID = "2ce72229-93e5-4624-99e8-5a490cbe40f9"
@@ -17,8 +20,6 @@ class StartView: UIViewController {
     let kRedirectUri =  "msauth.com.walkingEventApp://auth"
 
     let kScopes: [String] = ["user.read"]
-    var accessToken = String()
-    var idToken = String()
     var applicationContext : MSALPublicClientApplication?
     var webViewParamaters : MSALWebviewParameters?
 
@@ -144,7 +145,7 @@ class StartView: UIViewController {
             }
             
             self.updateLogging(text: "Account signed out. Updating UX")
-            self.accessToken = ""
+            accessToken = ""
             self.updateCurrentAccount(account: nil)
             
             if let completion = completion {
@@ -202,8 +203,8 @@ class StartView: UIViewController {
                 return
             }
             
-            self.accessToken = result.accessToken
-            self.updateLogging(text: "Access token is \(self.accessToken)")
+            accessToken = result.accessToken
+            self.updateLogging(text: "Access token is \(accessToken)")
             self.updateCurrentAccount(account: result.account)
         }
     }
@@ -264,9 +265,9 @@ class StartView: UIViewController {
                 return
             }
             
-            self.idToken = result.idToken!
-            self.accessToken = result.accessToken
-            self.updateLogging(text: "Refreshed Access token is \(self.accessToken)")
+            idToken = result.idToken!
+            accessToken = result.accessToken
+            self.updateLogging(text: "Refreshed Id token is \(idToken)")
         }
     }
 }
