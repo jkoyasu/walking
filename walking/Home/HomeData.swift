@@ -10,7 +10,7 @@ import Metal
 
 //Inputデータ
 struct HomeData : Codable{
-    let aaaid: String?
+    let aadid: String
     let teamid: Int
 }
 

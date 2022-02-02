@@ -13,7 +13,7 @@ class HomeView: UIViewController {
     
     var homeRecord:HomeRecord?{
         didSet{
-            reloadHomeData()
+//            reloadHomeData()
         }
     }
 
@@ -48,8 +48,8 @@ class HomeView: UIViewController {
     
     @IBAction func reloadButton(_ sender: Any) {
 
-        pushData()
-//        reloadHomeData()
+//        pushData()
+        reloadHomeData()
         
     }
     
@@ -57,7 +57,7 @@ class HomeView: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
- //       pushData()
+        pushData()
         reloadHomeData()
 
     }
@@ -66,7 +66,7 @@ class HomeView: UIViewController {
 //        stepLabel.text = "\(stepStructs[stepStructs.count-1].steps)歩"
     }
     
-    //iPhoneデータを送る
+    //iPhoneからデータを送る
     func pushData(){
         
         //構造体の初期化
@@ -98,7 +98,7 @@ class HomeView: UIViewController {
         
         for i in 0...7{
             let walkingDataList = WalkingDataList(
-                aadid:"3312756@mchcgr.jp",
+                aadid:mailId,
                 date:self.stepStructs[i].datetime,
                 steps: stepStructs[i].steps,
                 distance: distanceStructs[i].distance,
@@ -305,12 +305,16 @@ class HomeView: UIViewController {
     //データを送信する
     private func upsertSteps(data:Data){
         print("upsertSteps")
+        
+        
         AWSAPI.upload(message:data, url:"https://xoli50a9r4.execute-api.ap-northeast-1.amazonaws.com/prod/upsert_steps_api",token: idToken) { [weak self] result in
             switch result{
             case .success(let result):
                 
                 do{
-                    print("upsert data")
+                    print(String(data: result, encoding: .utf8)!)
+                    let decoder = JSONDecoder()
+//                    self!.walkingResult = try decoder.decode(WalkingResult.self, from: result as! Data)
                     print(result)
                 }catch{
                     print(error)
@@ -323,23 +327,39 @@ class HomeView: UIViewController {
         }
     }
     
-    //Home画面からデータを取得する
+    //Home画面のデータを取得する
     private func reloadHomeData(){
         print("reloadHomeData")
-        AWSAPI.download(url:"https://xoli50a9r4.execute-api.ap-northeast-1.amazonaws.com/prod/select_home_data_api",token: idToken) { [weak self] result in
+        
+        //送信データを取得
+        let homeData = HomeData(
+            aadid: "0284920@mchcgr.com",
+            teamid:1
+        )
+        
+        print(homeData.aadid)
+        print(homeData.teamid)
+        print(idToken)
+
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = .prettyPrinted
+        
+        let encodedData = try? encoder.encode(homeData)
+        print("JSON DATA")
+        print(String(data: encodedData!, encoding: .utf8)!)
+        
+        
+        AWSAPI.upload(message: encodedData!, url:"https://xoli50a9r4.execute-api.ap-northeast-1.amazonaws.com/prod/select_home_data_api",token: idToken) { [weak self] result in
             switch result{
             case .success(let result):
-                
+
                 do{
+                    print(String(data: result, encoding: .utf8)!)
+                    
                     let decoder = JSONDecoder()
                     self!.homeRecord = try decoder.decode(HomeRecord.self, from: result as! Data)
                     print(self?.homeRecord)
-                    print("get")
-                    
-                    //日付を送信する
-                    
-                    
-                    
+
                 }catch{
                     print(error)
                     print("error1")

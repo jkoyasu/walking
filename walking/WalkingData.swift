@@ -29,4 +29,14 @@ struct WalkingDataList:Codable{
     }
 }
 
+struct WalkingResult:Codable{
+    var errorMessage:String?
+    var content:Data
+    
+    enum CodingKeys: String, CodingKey {
+        case errorMessage = "error_message"
+        case content
+    }
+}
+
 
