@@ -16,7 +16,8 @@ enum AWSAPI{
     //        var urlComponents = URLComponents(string: "https://graph.microsoft.com/v1.0/me/")!
         var request = URLRequest(url: urlComponents.url!)
         request.httpMethod = "POST"
-            request.setValue(token, forHTTPHeaderField: "Authorization")
+        request.setValue(token, forHTTPHeaderField: "Authorization")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         print(request.allHTTPHeaderFields)
 
         let task = URLSession.shared.dataTask(with: request) { data, response, error in guard let data = data else { return }
@@ -35,16 +36,13 @@ enum AWSAPI{
     
     //message本文あり
     static func upload(message:Data,url:String,token:String,handler: @escaping (Result<Data, UserAPIError>) -> Void){
-        
-        print("message")
-
         var urlComponents = URLComponents(string: url)!
 //        var urlComponents = URLComponents(string: "https://graph.microsoft.com/v1.0/me/")!
         var request = URLRequest(url: urlComponents.url!)
         request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue(token, forHTTPHeaderField: "Authorization")
         request.httpBody = message
-        print(request.allHTTPHeaderFields)
 
         let task = URLSession.shared.dataTask(with: request) { data, response, error in guard let data = data else { return }
             let result: Result<Data, UserAPIError>

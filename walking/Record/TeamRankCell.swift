@@ -10,7 +10,9 @@ import UIKit
 class TeamRankCell: UITableViewCell {
 
     
+    @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var rankLabel: UILabel!
+    @IBOutlet weak var stepLabel: UILabel!
     @IBOutlet weak var crown: UIImageView!
     
     override func awakeFromNib() {
@@ -25,6 +27,12 @@ class TeamRankCell: UITableViewCell {
     }
     
     func setCell(index:IndexPath,record:[TeamRanking]){
+        
+        let current = record.filter({ $0.rank == index.row+1 })[0]
+        
+        self.rankLabel.text = String(current.rank)
+        self.nameLabel.text = current.groupName
+        self.stepLabel.text = String(current.avgSteps)
         
         self.rankLabel.text = String(index.row+1)
         
