@@ -68,78 +68,9 @@ class HomeView: UIViewController {
 //        stepLabel.text = "\(stepStructs[stepStructs.count-1].steps)歩"
     }
     
-    //iPhoneからデータを送る
-    func pushData(){
-        
-        //構造体の初期化
-        stepStructs.removeAll()
-        distanceStructs.removeAll()
-    
-        //      iPhoneから歩数情報を取得する
-            let readDataTypes = Set(arrayLiteral: HKObjectType.quantityType(forIdentifier: .stepCount)!, HKObjectType.quantityType(forIdentifier: .distanceWalkingRunning)!)
-//            let readDataTypes = Set(arrayLiteral: [HKObjectType.quantityType(forIdentifier: .stepCount)!],
-//                                                      [HKObjectType.quantityType(forIdentifier: .distanceWalkingRunning)!])
-                HKHealthStore().requestAuthorization(toShare: nil, read: readDataTypes) { success, _ in
-                    if success {
-                        self.getSteps()
-                        self.getDistance()
-                    }
-                }
-               
-        //      iPhoneからカロリー情報を取得する
-//                let readDataTypes2 = Set([HKObjectType.quantityType(forIdentifier: .activeEnergyBurned)!])
-//                HKHealthStore().requestAuthorization(toShare: nil, read: readDataTypes2) { success, _ in
-//                    if success {
-//                        self.getCalorie()
-//                    }
-//                }
-                
-        //取得したデータをオブジェクト化
-        sleep(1)
-        var walkingDataLists:[WalkingDataList]=[]
-        
-        for i in 0...7{
-            let walkingDataList = WalkingDataList(
-                aadid:ApplicationData.shared.mailId,
-                date:self.stepStructs[i].datetime,
-                steps: stepStructs[i].steps,
-                distance: distanceStructs[i].distance,
-                calorie: 0
-            )
-            walkingDataLists.append(walkingDataList)
-        }
-            
-        let walkingData = WalkingData(
-            walkingDataList:walkingDataLists
-        )
-        
-        //JSONEncoderの生成
-        let encoder = JSONEncoder()
-        encoder.outputFormatting = .prettyPrinted
-        
-        do{
-            //構造体→JSONへのエンコード
-            let data = try encoder.encode(walkingData)
-            print("JSON DATA")
-            print(String(data: data, encoding: .utf8)!)
-            //データを送信する
-            upsertSteps(data: data)
-        }catch{
-            print(error)
-        }
-        
-        //画面更新
-        //stepLabel.text = String(stepStructs[stepStructs.count-1].steps)
-        stepLabel.text = "12345"
-        stepLabel.addUinit(unit: "歩", size: stepLabel.font.pointSize / 2)
-        distanceLabel.text = "7.89"
-        //calorieLabel.text = String(calorieStructs[calorieStructs.count-1].calories)
-        distanceLabel.addUinit(unit: "km", size: distanceLabel.font.pointSize / 2)
-    }
-    
     func reloadStepLabel(){
         
-        let string = String(ApplicationData.shared.homeRecord?.content.personalData.steps)
+        let string = String(ApplicationData.shared.homeRecord!.content.personalData.steps)
         stepLabel.text = string
         stepLabel.addUinit(unit: "歩", size: stepLabel.font.pointSize / 2)
         distanceLabel.text = "7.89"
@@ -147,6 +78,77 @@ class HomeView: UIViewController {
         distanceLabel.addUinit(unit: "km", size: distanceLabel.font.pointSize / 2)
         
     }
+    
+//    //iPhoneからデータを送る
+//    func pushData(){
+//
+//        //構造体の初期化
+//        stepStructs.removeAll()
+//        distanceStructs.removeAll()
+//
+//        //      iPhoneから歩数情報を取得する
+//            let readDataTypes = Set(arrayLiteral: HKObjectType.quantityType(forIdentifier: .stepCount)!, HKObjectType.quantityType(forIdentifier: .distanceWalkingRunning)!)
+////            let readDataTypes = Set(arrayLiteral: [HKObjectType.quantityType(forIdentifier: .stepCount)!],
+////                                                      [HKObjectType.quantityType(forIdentifier: .distanceWalkingRunning)!])
+//                HKHealthStore().requestAuthorization(toShare: nil, read: readDataTypes) { success, _ in
+//                    if success {
+//                        self.getSteps()
+//                        self.getDistance()
+//                    }
+//                }
+//
+//        //      iPhoneからカロリー情報を取得する
+////                let readDataTypes2 = Set([HKObjectType.quantityType(forIdentifier: .activeEnergyBurned)!])
+////                HKHealthStore().requestAuthorization(toShare: nil, read: readDataTypes2) { success, _ in
+////                    if success {
+////                        self.getCalorie()
+////                    }
+////                }
+//
+//        //取得したデータをオブジェクト化
+//        sleep(1)
+//        var walkingDataLists:[WalkingDataList]=[]
+//
+//        for i in 0...7{
+//            let walkingDataList = WalkingDataList(
+//                aadid:ApplicationData.shared.mailId,
+//                date:self.stepStructs[i].datetime,
+//                steps: stepStructs[i].steps,
+//                distance: distanceStructs[i].distance,
+//                calorie: 0
+//            )
+//            walkingDataLists.append(walkingDataList)
+//        }
+//
+//        let walkingData = WalkingData(
+//            walkingDataList:walkingDataLists
+//        )
+//
+//        //JSONEncoderの生成
+//        let encoder = JSONEncoder()
+//        encoder.outputFormatting = .prettyPrinted
+//
+//        do{
+//            //構造体→JSONへのエンコード
+//            let data = try encoder.encode(walkingData)
+//            print("JSON DATA")
+//            print(String(data: data, encoding: .utf8)!)
+//            //データを送信する
+//            upsertSteps(data: data)
+//        }catch{
+//            print(error)
+//        }
+//
+//        //画面更新
+//        //stepLabel.text = String(stepStructs[stepStructs.count-1].steps)
+//        stepLabel.text = "12345"
+//        stepLabel.addUinit(unit: "歩", size: stepLabel.font.pointSize / 2)
+//        distanceLabel.text = "7.89"
+//        //calorieLabel.text = String(calorieStructs[calorieStructs.count-1].calories)
+//        distanceLabel.addUinit(unit: "km", size: distanceLabel.font.pointSize / 2)
+//    }
+    
+
     
 //  歩数情報を習得する関数
     private func getSteps() {
