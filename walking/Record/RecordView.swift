@@ -483,7 +483,7 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     }
     
     func loadPersonalRanking(){
-        AWSAPI.download(url:"https://xoli50a9r4.execute-api.ap-northeast-1.amazonaws.com/prod/select_personal_ranking_api",token: idToken) { [weak self] result in
+        AWSAPI.download(url:"https://xoli50a9r4.execute-api.ap-northeast-1.amazonaws.com/prod/select_personal_ranking_api",token: ApplicationData.shared.idToken) { [weak self] result in
             switch result {
             case .success(let result):
                 
@@ -504,7 +504,7 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
         let data:[String] = []
         let encoder = JSONEncoder()
         let encoded = try! encoder.encode(data)
-        AWSAPI.download(url:"https://xoli50a9r4.execute-api.ap-northeast-1.amazonaws.com/prod/select_team_ranking_api",token: idToken) { [weak self] result in
+        AWSAPI.download(url:"https://xoli50a9r4.execute-api.ap-northeast-1.amazonaws.com/prod/select_team_ranking_api",token: ApplicationData.shared.idToken) { [weak self] result in
             switch result {
             case .success(let result):
                 
@@ -523,7 +523,7 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     }
     
     func loadEventRanking(){
-        AWSAPI.download(url:"https://xoli50a9r4.execute-api.ap-northeast-1.amazonaws.com/prod/select_event_api",token: idToken) { [weak self] result in
+        AWSAPI.download(url:"https://xoli50a9r4.execute-api.ap-northeast-1.amazonaws.com/prod/select_event_api",token: ApplicationData.shared.idToken) { [weak self] result in
             switch result {
             case .success(let result):
                 
