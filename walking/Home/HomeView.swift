@@ -22,6 +22,7 @@ class HomeView: UIViewController {
 //    日付、歩数の表示
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var stepLabel: UILabel!
+    
 //    個人データの表示
     @IBOutlet weak var personalRankLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
@@ -48,7 +49,7 @@ class HomeView: UIViewController {
     
     @IBAction func reloadButton(_ sender: Any) {
 
-//        ApplicationData.shared.pushData()
+        ApplicationData.shared.pushData()
         ApplicationData.shared.reloadHomeData()
         reloadStepLabel()
         
@@ -60,12 +61,12 @@ class HomeView: UIViewController {
         
         ApplicationData.shared.pushData()
         ApplicationData.shared.reloadHomeData()
-        reloadStepLabel()
+        //reloadStepLabel()
 
     }
     
     override func viewDidAppear(_ animated: Bool) {
-//        stepLabel.text = "\(stepStructs[stepStructs.count-1].steps)歩"
+        
     }
     
     func reloadStepLabel(){
@@ -75,7 +76,7 @@ class HomeView: UIViewController {
         stepLabel.addUinit(unit: "歩", size: stepLabel.font.pointSize / 2)
         distanceLabel.text = "7.89"
         //calorieLabel.text = String(calorieStructs[calorieStructs.count-1].calories)
-        distanceLabel.addUinit(unit: "km", size: distanceLabel.font.pointSize / 2)
+        distanceLabel?.addUinit(unit: "km", size: distanceLabel.font.pointSize / 2)
         
     }
     
@@ -348,8 +349,8 @@ class HomeView: UIViewController {
         
         //送信データを取得
         let homeData = HomeData(
-            aadid: "0284920@mchcgr.com",
-            teamid:1
+            aadid: ApplicationData.shared.mailId,
+            teamid: 3
         )
 
         let encoder = JSONEncoder()

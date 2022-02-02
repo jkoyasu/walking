@@ -3,7 +3,6 @@
 //  walking
 //
 //  Created by koyasu on 2022/02/02.
-//
 
 import Foundation
 import HealthKit
@@ -14,6 +13,7 @@ extension ApplicationData{
     //iPhoneからデータを送る
     func pushData(){
         
+//
         //構造体の初期化
         self.stepStructs = []
         self.distanceStructs = []
@@ -41,34 +41,39 @@ extension ApplicationData{
         sleep(1)
         var walkingDataLists:[WalkingDataList]=[]
         
-        for i in 0...7{
-            let walkingDataList = WalkingDataList(
-                aadid:ApplicationData.shared.mailId,
-                date:self.stepStructs?[i].datetime,
-                steps: (stepStructs?[i].steps)!,
-                distance: (distanceStructs?[i].distance)!,
-                calorie: 0
+        if stepStructs!.count >= 1{
+        
+            for i in 0...7{
+                let walkingDataList = WalkingDataList(
+                    aadid:ApplicationData.shared.mailId,
+                    date:self.stepStructs?[i].datetime,
+                    steps: (stepStructs?[i].steps)!,
+                    distance: (distanceStructs?[i].distance)!,
+                    calorie: 0
+                )
+                walkingDataLists.append(walkingDataList)
+            }
+                
+            let walkingData = WalkingData(
+                walkingDataList:walkingDataLists
             )
-            walkingDataLists.append(walkingDataList)
-        }
             
-        let walkingData = WalkingData(
-            walkingDataList:walkingDataLists
-        )
-        
-        //JSONEncoderの生成
-        let encoder = JSONEncoder()
-        encoder.outputFormatting = .prettyPrinted
-        
-        do{
-            //構造体→JSONへのエンコード
-            let data = try encoder.encode(walkingData)
-            print("JSON DATA")
-            print(String(data: data, encoding: .utf8)!)
-            //データを送信する
-            upsertSteps(data: data)
-        }catch{
-            print(error)
+            //JSONEncoderの生成
+            let encoder = JSONEncoder()
+            encoder.outputFormatting = .prettyPrinted
+            
+            do{
+                //構造体→JSONへのエンコード
+                let data = try encoder.encode(walkingData)
+                print("JSON DATA")
+                print(String(data: data, encoding: .utf8)!)
+                //データを送信する
+                upsertSteps(data: data)
+            }catch{
+                print(error)
+            }
+        }else{
+            print("歩数・距離の取得に失敗しました。")
         }
         
     }
@@ -113,10 +118,7 @@ extension ApplicationData{
                         let date = statistics.startDate
                         let stepValue = quantity.doubleValue(for: HKUnit.count())
                         let stepCount = Int(stepValue)
-//                        let distanceValue = HKUnit.meter()
-//                        let distanceValue = quantity.doubleValue(for: HKUnit.meter())
-//                        let distanceCount = Int(distanceValue)
-//                        let distanceCount = distanceValue.count
+
                         
                         /// 構造体にデータを格納する
                         let stepImput = StepStruct(
@@ -127,7 +129,6 @@ extension ApplicationData{
                     self.stepStructs!.append(stepImput)
                         
                     ///データを表示
-//                    print("\([self.stepStructs.count-1]):\(self.stepStructs[self.stepStructs.count-1].id)")
                     print("StepData")
                         print("\([self.stepStructs!.count-1]):\(self.stepStructs![self.stepStructs!.count-1].datetime)")
                         print("\([self.stepStructs!.count-1]):\(self.stepStructs![self.stepStructs!.count-1].steps)")
@@ -137,7 +138,6 @@ extension ApplicationData{
                     /// 構造体にデータを格納する
                     let date = statistics.startDate
                      let stepImput = StepStruct(
-//                                id: udid!
                         datetime: Self.formatter.string(from: date),
                         steps: 0
                         )
@@ -190,16 +190,11 @@ extension ApplicationData{
                             
                             /// サンプルデータは`quantity.doubleValue`で取り出し、単位を指定して取得する。
                             let date = statistics.startDate
-//                            let stepValue = quantity.doubleValue(for: HKUnit.count())
-//                            let stepCount = Int(stepValue)
-//                            let distanceValue = HKUnit.meter()
                             let distanceValue = quantity.doubleValue(for: HKUnit.meter())
                             let distanceCount = Int(distanceValue)
-    //                        let distanceCount = distanceValue.count
                             
                             /// 構造体にデータを格納する
                             let DistanceImput = DistanceStruct(
-//                                id: udid!,
                                 datetime: Self.formatter.string(from: date),
                                 distance: distanceCount
                             )
@@ -207,7 +202,6 @@ extension ApplicationData{
                         self.distanceStructs!.append(DistanceImput)
                             
                         ///データを表示
-//                        print("\([self.distanceStructs.count-1]):\(self.distanceStructs[self.distanceStructs.count-1].id)")
                         print("No Distance Data")
                         print("\([self.distanceStructs!.count-1]):\(self.distanceStructs![self.distanceStructs!.count-1].datetime)")
                         print("\([self.distanceStructs!.count-1]):\(self.distanceStructs![self.distanceStructs!.count-1].distance)")
@@ -218,7 +212,6 @@ extension ApplicationData{
                         /// 構造体にデータを格納する
                         let date = statistics.startDate
                         let DistanceImput = DistanceStruct(
-//                                id: udid!
                             datetime: Self.formatter.string(from: date),
                             distance: 0
                         )
@@ -226,7 +219,6 @@ extension ApplicationData{
                     self.distanceStructs!.append(DistanceImput)
                     }
                         ///データを表示
-//                        print("\([self.distanceStructs.count-1]):\(self.distanceStructs[self.distanceStructs.count-1].id)")
                         print("No Distance Data")
                         print("\([self.distanceStructs!.count-1]):\(self.distanceStructs![self.distanceStructs!.count-1].datetime)")
                         print("\([self.distanceStructs!.count-1]):\(self.distanceStructs![self.distanceStructs!.count-1].distance)")
@@ -268,8 +260,9 @@ extension ApplicationData{
         
         //送信データを取得
         let homeData = HomeData(
-            aadid: "0284920@mchcgr.com",
-            teamid:1
+            aadid: ApplicationData.shared.mailId,
+            teamid: 3
+//            teamid:ApplicationData.shared.team!.content.teamId
         )
         
 
@@ -286,11 +279,11 @@ extension ApplicationData{
             case .success(let result):
 
                 do{
-                    print(String(data: result, encoding: .utf8)!)
-                    
                     let decoder = JSONDecoder()
-                    self!.homeRecord = try decoder.decode(HomeRecord.self, from: result)
+                    print(String(data: result, encoding: .utf8)!)
+                    self?.homeRecord = try decoder.decode(HomeRecord.self, from: result)
                     print(self?.homeRecord)
+                    //HomeView().reloadStepLabel()
 
                 }catch{
                     print(error)
