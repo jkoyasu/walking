@@ -48,8 +48,9 @@ class HomeView: UIViewController {
     
     @IBAction func reloadButton(_ sender: Any) {
 
-//        pushData()
-        reloadHomeData()
+//        ApplicationData.shared.pushData()
+        ApplicationData.shared.reloadHomeData()
+        reloadStepLabel()
         
     }
     
@@ -57,8 +58,9 @@ class HomeView: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-//        pushData()
-        reloadHomeData()
+        ApplicationData.shared.pushData()
+        ApplicationData.shared.reloadHomeData()
+        reloadStepLabel()
 
     }
     
@@ -108,7 +110,7 @@ class HomeView: UIViewController {
         }
             
         let walkingData = WalkingData(
-            walkingDataLists:walkingDataLists
+            walkingDataList:walkingDataLists
         )
         
         //JSONEncoderの生成
@@ -133,6 +135,17 @@ class HomeView: UIViewController {
         distanceLabel.text = "7.89"
         //calorieLabel.text = String(calorieStructs[calorieStructs.count-1].calories)
         distanceLabel.addUinit(unit: "km", size: distanceLabel.font.pointSize / 2)
+    }
+    
+    func reloadStepLabel(){
+        
+        let string = String(ApplicationData.shared.homeRecord?.content.personalData.steps)
+        stepLabel.text = string
+        stepLabel.addUinit(unit: "歩", size: stepLabel.font.pointSize / 2)
+        distanceLabel.text = "7.89"
+        //calorieLabel.text = String(calorieStructs[calorieStructs.count-1].calories)
+        distanceLabel.addUinit(unit: "km", size: distanceLabel.font.pointSize / 2)
+        
     }
     
 //  歩数情報を習得する関数

@@ -54,16 +54,12 @@ struct PersonalData : Codable{
 
 //チームのデータ
 struct TeamData : Codable{
-    let steps: Int
-    let distance: Int
-    let calorie: Int
+    let avgSteps: Int
     let ranking: Int
     let totalCount: Int
     
     enum CodingKeys: String, CodingKey {
-        case steps
-        case distance
-        case calorie
+        case avgSteps = "avg_steps"
         case ranking
         case totalCount = "total_count"
     }
