@@ -10,7 +10,11 @@ import UIKit
 
 
 struct WalkingData:Codable{
-    var walkingDataLists:[WalkingDataList]
+    var walkingDataList:[WalkingDataList]
+    
+    enum CodingKeys: String, CodingKey {
+        case walkingDataList = "walking_data_list"
+    }
 }
 
 struct WalkingDataList:Codable{
@@ -31,7 +35,7 @@ struct WalkingDataList:Codable{
 
 struct WalkingResult:Codable{
     var errorMessage:String?
-    var content:Data
+    var content:String?
     
     enum CodingKeys: String, CodingKey {
         case errorMessage = "error_message"

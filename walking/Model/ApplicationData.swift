@@ -11,6 +11,23 @@ class ApplicationData{
     
     static var shared = ApplicationData()
     
+    var stepStructs: [StepStruct]?
+    var distanceStructs: [DistanceStruct]?
+    var calorieStructs: [CalorieStruct]?
+    
+    var homeRecord:HomeRecord?{
+        didSet{
+            HomeView().reloadStepLabel()
+//            reloadHomeData()
+        }
+    }
+    
+    var walkingResult:WalkingResult?{
+        didSet{
+//            reloadHomeData()
+        }
+    }
+    
     //AADのToken
     var accessToken = String()
     var idToken = String()
