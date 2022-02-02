@@ -9,9 +9,6 @@ import UIKit
 import MSAL
 import YammerSDK
 
-var accessToken = String()
-var idToken = String()
-var mailId = String()
 
 class StartView: UIViewController {
     //全情報取得
@@ -141,7 +138,7 @@ class StartView: UIViewController {
             }
             
             self.updateLogging(text: "Account signed out. Updating UX")
-            accessToken = ""
+            ApplicationData.shared.accessToken = ""
             self.updateCurrentAccount(account: nil)
             
             if let completion = completion {
@@ -199,9 +196,9 @@ class StartView: UIViewController {
                 return
             }
             
-            accessToken = result.accessToken
-            idToken = result.idToken!
-            self.updateLogging(text: "Access token is \(accessToken)")
+            ApplicationData.shared.accessToken = result.accessToken
+            ApplicationData.shared.idToken = result.idToken!
+            self.updateLogging(text: "Access token is \(ApplicationData.shared.accessToken)")
             self.updateCurrentAccount(account: result.account)
             self.getmyInfo()
         }
@@ -263,20 +260,21 @@ class StartView: UIViewController {
                 return
             }
             
-            idToken = result.idToken!
-            accessToken = result.accessToken
-            self.updateLogging(text: "Refreshed Id token is \(accessToken)")
+            ApplicationData.shared.idToken = result.idToken!
+            ApplicationData.shared.accessToken = result.accessToken
+            self.updateLogging(text: "Refreshed Id token is \(ApplicationData.shared.accessToken)")
             self.getmyInfo()
         }
     }
     
+    //AAD上の自分の情報取得
     func getmyInfo(){
         let url = URL(string: "https://graph.microsoft.com/v1.0/me/")
         var request = URLRequest(url: url!)
         
         // Set the Authorization header for the request. We use Bearer tokens, so we specify Bearer + the token we got from the result
-        print("----",accessToken)
-        request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+        print("----",ApplicationData.shared.accessToken)
+        request.setValue("Bearer \(ApplicationData.shared.accessToken)", forHTTPHeaderField: "Authorization")
         URLSession.shared.dataTask(with: request) { data, response, error in
             
             if let error = error {
@@ -291,58 +289,10 @@ class StartView: UIViewController {
 
             self.updateLogging(text: "Result from Graph: \(result))")
             let MailId = result["userPrincipalName"] as! String
-            mailId = MailId
-            self.authorizeAWS(id:MailId)
-            self.loadMyRanking(id: MailId)
+            ApplicationData.shared.mailId = MailId
+            ApplicationData.shared
+                .authorizeAWS(id:ApplicationData.shared.mailId)
+            ApplicationData.shared.loadMyRanking(id: ApplicationData.shared.mailId)
         }.resume()
     }
-    
-    func loadMyRanking(id:String){
-        let data = ["aadid":id]
-        let encoder = JSONEncoder()
-        let encoded = try! encoder.encode(data)
-        
-        AWSAPI.upload(message: encoded, url: "https://xoli50a9r4.execute-api.ap-northeast-1.amazonaws.com/prod/select_personal_ranking_api", token: idToken) { [weak self] result in
-            switch result {
-            case .success(let result):
-                
-                do{
-                    let decoder = JSONDecoder()
-                    let str = try JSONSerialization.jsonObject(with: result, options: JSONSerialization.ReadingOptions.allowFragments) as! [String : Any]
-//                    StartView.team = try decoder.decode(Team.self, from: result)
-                    print("myInfo",str)
-                }catch{
-                    print("myInfo",error)
-                }
-            case .failure(let error):
-                print(error)
-            }
-        }
-        
-    }
-    
-    func authorizeAWS(id:String){
-        let data = ["aadid":id]
-        let encoder = JSONEncoder()
-        let encoded = try! encoder.encode(data)
-        
-        AWSAPI.upload(message: encoded, url: "https://xoli50a9r4.execute-api.ap-northeast-1.amazonaws.com/prod/select_team_api", token: idToken) { [weak self] result in
-            switch result {
-            case .success(let result):
-                
-                do{
-                    let decoder = JSONDecoder()
-//                    let str = try JSONSerialization.jsonObject(with: result, options: JSONSerialization.ReadingOptions.allowFragments) as! [String : Any]
-                    StartView.team = try decoder.decode(Team.self, from: result)
-                    print("teamInfo",StartView.team)
-                }catch{
-                    print("teamInfo",error)
-                }
-            case .failure(let error):
-                print(error)
-            }
-        }
-        
-    }
-    
 }

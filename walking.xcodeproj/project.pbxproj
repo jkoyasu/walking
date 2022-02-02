@@ -41,6 +41,8 @@
 		A260875927A3DADE0040A227 /* ErrorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A260875727A3DADE0040A227 /* ErrorCell.xib */; };
 		A260875B27A3FD9E0040A227 /* CalenderExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A260875A27A3FD9E0040A227 /* CalenderExtension.swift */; };
 		A260877327AA19480040A227 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = A260877227AA19480040A227 /* Team.swift */; };
+		A260877527AA4DF00040A227 /* ApplicationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A260877427AA4DEF0040A227 /* ApplicationData.swift */; };
+		A260877A27AA57660040A227 /* AppliCationDataExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = A260877927AA57650040A227 /* AppliCationDataExtention.swift */; };
 		A2651EDE27A0D33E00B35DFC /* PersonRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2651EDD27A0D33E00B35DFC /* PersonRecord.swift */; };
 		A2651EE027A0D5F400B35DFC /* TeamRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2651EDF27A0D5F400B35DFC /* TeamRecord.swift */; };
 		A2651EE227A0D70D00B35DFC /* EventRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2651EE127A0D70D00B35DFC /* EventRecord.swift */; };
@@ -94,6 +96,8 @@
 		A260875727A3DADE0040A227 /* ErrorCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ErrorCell.xib; sourceTree = "<group>"; };
 		A260875A27A3FD9E0040A227 /* CalenderExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderExtension.swift; sourceTree = "<group>"; };
 		A260877227AA19480040A227 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
+		A260877427AA4DEF0040A227 /* ApplicationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationData.swift; sourceTree = "<group>"; };
+		A260877927AA57650040A227 /* AppliCationDataExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppliCationDataExtention.swift; sourceTree = "<group>"; };
 		A2651EDD27A0D33E00B35DFC /* PersonRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonRecord.swift; sourceTree = "<group>"; };
 		A2651EDF27A0D5F400B35DFC /* TeamRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamRecord.swift; sourceTree = "<group>"; };
 		A2651EE127A0D70D00B35DFC /* EventRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRecord.swift; sourceTree = "<group>"; };
@@ -204,6 +208,15 @@
 			path = Notification;
 			sourceTree = "<group>";
 		};
+		A260877627AA4EB90040A227 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A260877427AA4DEF0040A227 /* ApplicationData.swift */,
+				A260877927AA57650040A227 /* AppliCationDataExtention.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		A2C1A3642772FD4C009CAE84 = {
 			isa = PBXGroup;
 			children = (
@@ -237,6 +250,7 @@
 				A2C1A3722772FD4C009CAE84 /* SceneDelegate.swift */,
 				A2C1A3742772FD4C009CAE84 /* TabBarController.swift */,
 				A21905ED2786ACD700288B76 /* StartView.swift */,
+				A260877627AA4EB90040A227 /* Model */,
 				A260877227AA19480040A227 /* Team.swift */,
 				91B1F71327A23D9A00E87EEF /* WalkingData.swift */,
 				A22EA109277AE81400D7DA92 /* LoginViewController.swift */,
@@ -394,8 +408,10 @@
 				913ABCDD27A785A200FFF75D /* HomeView.swift in Sources */,
 				A2FEF752279006FF00D8D537 /* ThreadView.swift in Sources */,
 				A2651EE227A0D70D00B35DFC /* EventRecord.swift in Sources */,
+				A260877527AA4DF00040A227 /* ApplicationData.swift in Sources */,
 				A244D5FD278EB75B008D30A2 /* NotificationView.swift in Sources */,
 				A260875B27A3FD9E0040A227 /* CalenderExtension.swift in Sources */,
+				A260877A27AA57660040A227 /* AppliCationDataExtention.swift in Sources */,
 				A2651EDE27A0D33E00B35DFC /* PersonRecord.swift in Sources */,
 				A234D27F279E614200BC0FEF /* PostView.swift in Sources */,
 				913ABCDB27A785A200FFF75D /* DistanceStruct.swift in Sources */,

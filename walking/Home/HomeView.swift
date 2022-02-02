@@ -57,7 +57,7 @@ class HomeView: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        pushData()
+//        pushData()
         reloadHomeData()
 
     }
@@ -98,7 +98,7 @@ class HomeView: UIViewController {
         
         for i in 0...7{
             let walkingDataList = WalkingDataList(
-                aadid:mailId,
+                aadid:ApplicationData.shared.mailId,
                 date:self.stepStructs[i].datetime,
                 steps: stepStructs[i].steps,
                 distance: distanceStructs[i].distance,
@@ -200,7 +200,7 @@ class HomeView: UIViewController {
                     // No Data
                     /// 構造体にデータを格納する
                     let date = statistics.startDate
-                    let stepImput = StepStruct(
+                     let stepImput = StepStruct(
 //                                id: udid!
                         datetime: Self.formatter.string(from: date),
                         steps: 0
@@ -307,7 +307,7 @@ class HomeView: UIViewController {
         print("upsertSteps")
         
         
-        AWSAPI.upload(message:data, url:"https://xoli50a9r4.execute-api.ap-northeast-1.amazonaws.com/prod/upsert_steps_api",token: idToken) { [weak self] result in
+        AWSAPI.upload(message:data, url:"https://xoli50a9r4.execute-api.ap-northeast-1.amazonaws.com/prod/upsert_steps_api",token: ApplicationData.shared.idToken) { [weak self] result in
             switch result{
             case .success(let result):
                 
@@ -336,10 +336,6 @@ class HomeView: UIViewController {
             aadid: "0284920@mchcgr.com",
             teamid:1
         )
-        
-        print(homeData.aadid)
-        print(homeData.teamid)
-        print(idToken)
 
         let encoder = JSONEncoder()
         encoder.outputFormatting = .prettyPrinted
@@ -349,7 +345,7 @@ class HomeView: UIViewController {
         print(String(data: encodedData!, encoding: .utf8)!)
         
         
-        AWSAPI.upload(message: encodedData!, url:"https://xoli50a9r4.execute-api.ap-northeast-1.amazonaws.com/prod/select_home_data_api",token: idToken) { [weak self] result in
+        AWSAPI.upload(message: encodedData!, url:"https://xoli50a9r4.execute-api.ap-northeast-1.amazonaws.com/prod/select_home_data_api",token: ApplicationData.shared.idToken) { [weak self] result in
             switch result{
             case .success(let result):
 
