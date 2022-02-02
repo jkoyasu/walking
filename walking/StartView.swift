@@ -23,14 +23,13 @@ class StartView: UIViewController {
     let kScopes: [String] = ["user.read"]
     var applicationContext : MSALPublicClientApplication?
     var webViewParamaters : MSALWebviewParameters?
-
     var loggingText: String?
     var currentAccount: MSALAccount?
 
     //CurrentTeam
     var CurrentTeams = 0
     //JoinedTeams
-    var JoinedTeams = [["TeamName":"〇○チーム","Id":20000],["TeamName":"××チーム","Id":30000]]
+    static var team:Team?
     
     var YM = YMLoginClient.sharedInstance().storedAuthToken(){
         didSet{
@@ -65,10 +64,6 @@ class StartView: UIViewController {
             let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "Login")
             performSegue(withIdentifier: "toStart", sender: nil)
         }
-        
-//       AWSのログイン情報を取得
-        
-        
         
 //        取得後、TabViewControllerに移動
         defer{
@@ -169,7 +164,6 @@ class StartView: UIViewController {
                 // We check to see if we have a current logged in account.
                 // If we don't, then we need to sign someone in.
                 self.acquireTokenInteractively()
-                self.getmyInfo()
                 return
             }
             
@@ -281,6 +275,7 @@ class StartView: UIViewController {
         var request = URLRequest(url: url!)
         
         // Set the Authorization header for the request. We use Bearer tokens, so we specify Bearer + the token we got from the result
+        print("----",accessToken)
         request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
         URLSession.shared.dataTask(with: request) { data, response, error in
             
@@ -295,9 +290,59 @@ class StartView: UIViewController {
             }
 
             self.updateLogging(text: "Result from Graph: \(result))")
-            mailId = result["userPrincipalName"] as! String
-            print(mailId)
+            let MailId = result["userPrincipalName"] as! String
+            mailId = MailId
+            self.authorizeAWS(id:MailId)
+            self.loadMyRanking(id: MailId)
         }.resume()
+    }
+    
+    func loadMyRanking(id:String){
+        let data = ["aadid":id]
+        let encoder = JSONEncoder()
+        let encoded = try! encoder.encode(data)
+        
+        AWSAPI.upload(message: encoded, url: "https://xoli50a9r4.execute-api.ap-northeast-1.amazonaws.com/prod/select_personal_ranking_api", token: idToken) { [weak self] result in
+            switch result {
+            case .success(let result):
+                
+                do{
+                    let decoder = JSONDecoder()
+                    let str = try JSONSerialization.jsonObject(with: result, options: JSONSerialization.ReadingOptions.allowFragments) as! [String : Any]
+//                    StartView.team = try decoder.decode(Team.self, from: result)
+                    print("myInfo",str)
+                }catch{
+                    print("myInfo",error)
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
+        
+    }
+    
+    func authorizeAWS(id:String){
+        let data = ["aadid":id]
+        let encoder = JSONEncoder()
+        let encoded = try! encoder.encode(data)
+        
+        AWSAPI.upload(message: encoded, url: "https://xoli50a9r4.execute-api.ap-northeast-1.amazonaws.com/prod/select_team_api", token: idToken) { [weak self] result in
+            switch result {
+            case .success(let result):
+                
+                do{
+                    let decoder = JSONDecoder()
+//                    let str = try JSONSerialization.jsonObject(with: result, options: JSONSerialization.ReadingOptions.allowFragments) as! [String : Any]
+                    StartView.team = try decoder.decode(Team.self, from: result)
+                    print("teamInfo",StartView.team)
+                }catch{
+                    print("teamInfo",error)
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
+        
     }
     
 }

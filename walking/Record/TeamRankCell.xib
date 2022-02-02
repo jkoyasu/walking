@@ -64,7 +64,9 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="crown" destination="G8c-9H-fIh" id="NqQ-op-Y49"/>
+                <outlet property="nameLabel" destination="aal-RQ-L7P" id="yK2-jA-rOe"/>
                 <outlet property="rankLabel" destination="HTE-yl-hv3" id="6zV-mk-ylB"/>
+                <outlet property="stepLabel" destination="dek-tK-PUI" id="htB-pb-ehm"/>
             </connections>
             <point key="canvasLocation" x="-3552.1739130434785" y="-1200"/>
         </tableViewCell>

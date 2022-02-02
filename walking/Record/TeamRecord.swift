@@ -37,7 +37,7 @@ struct TeamRankingList:Codable{
 struct TeamRanking:Codable{
     @StringForcible var term:String?
     let rank:Int
-    let teamId:String?
+    @StringForcible var teamId:String?
     let groupName:String?
     let avgSteps:Int
     
