@@ -966,9 +966,8 @@
                                     <constraint firstItem="fRz-hQ-oVw" firstAttribute="top" secondItem="qYI-SU-2wE" secondAttribute="top" constant="25" id="yzJ-T0-xkm"/>
                                 </constraints>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NvK-Hq-EIx">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NvK-Hq-EIx">
                                 <rect key="frame" x="0.0" y="117" width="375" height="480"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="jpX-Xu-SY6" userLabel="BaseStack">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="530"/>
@@ -1291,9 +1290,13 @@
                         <viewLayoutGuide key="safeArea" id="9GR-lS-cQi"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="NvK-Hq-EIx" firstAttribute="top" secondItem="qYI-SU-2wE" secondAttribute="bottom" constant="27" id="29g-Ka-wJt"/>
+                            <constraint firstItem="NvK-Hq-EIx" firstAttribute="leading" secondItem="qYI-SU-2wE" secondAttribute="leading" id="Kk0-8v-ZTA"/>
                             <constraint firstItem="qYI-SU-2wE" firstAttribute="leading" secondItem="9GR-lS-cQi" secondAttribute="leading" id="QzV-mR-v7c"/>
                             <constraint firstItem="qYI-SU-2wE" firstAttribute="top" secondItem="AiW-GL-LN7" secondAttribute="top" id="R6w-GE-7Zr"/>
                             <constraint firstItem="9GR-lS-cQi" firstAttribute="trailing" secondItem="qYI-SU-2wE" secondAttribute="trailing" id="bXL-Vi-0fl"/>
+                            <constraint firstItem="NvK-Hq-EIx" firstAttribute="width" secondItem="qYI-SU-2wE" secondAttribute="width" id="eK6-zA-OBU"/>
+                            <constraint firstItem="9GR-lS-cQi" firstAttribute="bottom" secondItem="NvK-Hq-EIx" secondAttribute="bottom" constant="21" id="wmQ-ht-pZo"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="house" catalog="system" landscapeImage="house" largeContentSizeImage="house" id="qB0-zG-XY3"/>
@@ -1306,7 +1309,7 @@
                         <outlet property="infoButton" destination="fRz-hQ-oVw" id="yfW-Ft-fYS"/>
                         <outlet property="personalRankLabel" destination="GFu-Y3-bJv" id="BVx-M7-ztR"/>
                         <outlet property="scrollView" destination="NvK-Hq-EIx" id="SuE-eT-mHX"/>
-                        <outlet property="stepLabel" destination="i1j-Eh-kfW" id="1TV-U0-12g"/>
+                        <outlet property="stepLabel" destination="i1j-Eh-kfW" id="3jG-DX-PBw"/>
                         <outlet property="teamRankLabel" destination="d0G-a1-5PB" id="SHw-hL-iZj"/>
                         <outlet property="teamStepLabel" destination="yBY-iB-TMj" id="DkJ-Bh-QKK"/>
                     </connections>
@@ -1354,7 +1357,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="IdZ-gO-WnF"/>
+        <segue reference="LtM-VH-oFY"/>
         <segue reference="5zE-cR-PsG"/>
     </inferredMetricsTieBreakers>
     <resources>
