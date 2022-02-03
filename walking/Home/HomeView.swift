@@ -61,7 +61,7 @@ class HomeView: UIViewController {
         // Do any additional setup after loading the view.
  //       loadHome()
  //
-        indicatorView.isHidden = false
+        indicatorView.isHidden = true
         ApplicationData.shared.pushData()
         ApplicationData.shared.reloadHomeData()
 //        //reloadStepLabel()
