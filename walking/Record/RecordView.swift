@@ -12,6 +12,7 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     var personRecord:PersonRecord?{
         didSet{
             tableView.reloadData()
+            self.indicatorView.isHidden = true
         }
     }
     var teamRecord:TeamRecord?{
@@ -25,6 +26,7 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
         }
     }
     
+    @IBOutlet weak var indicatorView: UIView!
     @IBOutlet weak var dayMenu: UIMenu!
     @IBOutlet weak var dayPullDownButton: UIButton!
     @IBOutlet weak var weekPullDownButton: UIButton!
@@ -60,6 +62,7 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        indicatorView.isHidden = true
         loadRanking()
         showTab(tabSelect)
         tableView.dataSource = self
@@ -97,7 +100,8 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
                 switch termSelect{
                 case 1:
                     let rankingList = content.dailyRankingList.filter({ $0.term == self.selectedTerm! })
-                    if rankingList[0].ranking.count > 0{
+//                    if rankingList[0].ranking.count > 0{
+                    if rankingList.count > 0{
                         if rankingList[0].ranking[0].rank != -1{
                             return rankingList[0].ranking.count
                         }else{
@@ -265,6 +269,10 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     @IBOutlet weak var eventTermLabel: UILabel!
     @IBOutlet weak var reloadButton1: UIButton!
     @IBOutlet weak var reloadButton2: UIButton!
+    
+    @IBAction func tappedReloadButton(_ sender: Any) {
+        self.loadRanking()
+    }
     
     @IBAction func tappedPersonalButton(_ sender: Any) {
         tabSelect = 1
@@ -477,6 +485,7 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     }
     
     func loadRanking(){
+        self.indicatorView.isHidden = false
         loadPersonalRanking()
         loadTeamRanking()
         loadEventRanking()
