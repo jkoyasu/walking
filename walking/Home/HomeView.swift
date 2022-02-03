@@ -16,7 +16,8 @@ class HomeView: UIViewController {
 //            reloadHomeData()
         }
     }
-
+    @IBOutlet weak var indicatorView: UIView!
+    
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var baseStackView: UIStackView!
 //    日付、歩数の表示
@@ -27,6 +28,7 @@ class HomeView: UIViewController {
     @IBOutlet weak var personalRankLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
 //    チームのデータ表示
+    @IBOutlet weak var teamNameLabel: UILabel!
     @IBOutlet weak var teamRankLabel: UILabel!
     @IBOutlet weak var teamStepLabel: UILabel!
 //    イベント名の表示
@@ -48,20 +50,21 @@ class HomeView: UIViewController {
     }
     
     @IBAction func reloadButton(_ sender: Any) {
-
-        ApplicationData.shared.pushData()
-        ApplicationData.shared.reloadHomeData()
-        reloadStepLabel()
+//
+        
+       loadHome()
         
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
+ //       loadHome()
+ //
+        indicatorView.isHidden = false
         ApplicationData.shared.pushData()
         ApplicationData.shared.reloadHomeData()
-        //reloadStepLabel()
+//        //reloadStepLabel()
 
     }
     
@@ -69,14 +72,46 @@ class HomeView: UIViewController {
         
     }
     
+    func loadHome(){
+        self.indicatorView.isHidden = false
+        ApplicationData.shared.pushData()
+        ApplicationData.shared.reloadHomeData()
+        reloadStepLabel()
+    }
+    
     func reloadStepLabel(){
         
+        let dateString = Self.formatter2.string(from: Date())
+        dateLabel.text = dateString + "の記録"
+        
         let string = String(ApplicationData.shared.homeRecord!.content.personalData.steps)
+//        dataLabel.text =
         stepLabel.text = string
         stepLabel.addUinit(unit: "歩", size: stepLabel.font.pointSize / 2)
-        distanceLabel.text = "7.89"
-        //calorieLabel.text = String(calorieStructs[calorieStructs.count-1].calories)
+        
+        personalRankLabel.text = String(ApplicationData.shared.homeRecord!.content.personalData.ranking)
+        personalRankLabel.addUinit(unit: "位", size: personalRankLabel.font.pointSize / 2)
+        
+        //距離データはメートル表記をキロに変換して返す。
+        var personalDistance = ApplicationData.shared.homeRecord!.content.personalData.distance
+        var personalDistanceKilo:Double = Double(personalDistance / 1000 * 1000)
+        var personalDistance2 = round(personalDistanceKilo) / 1000
+        distanceLabel.text = String(personalDistance2)
         distanceLabel?.addUinit(unit: "km", size: distanceLabel.font.pointSize / 2)
+        
+        teamNameLabel.text = String(StartView.team!.content.groupName)
+        //teamNameLabel.addUinit(unit: "チーム", size: teamNameLabel.font.pointSize / 2)
+        
+        teamRankLabel.text = String(ApplicationData.shared.homeRecord!.content.teamData.ranking)
+        teamRankLabel?.addUinit(unit: "位", size: teamRankLabel.font.pointSize / 2)
+        
+        teamStepLabel.text = String(ApplicationData.shared.homeRecord!.content.teamData.avgSteps)
+        teamStepLabel?.addUinit(unit: "歩", size: teamStepLabel.font.pointSize / 2)
+        
+        eventNameLabel.text = ""
+        eventTermLabel.text = ""
+        
+        indicatorView.isHidden = true
         
     }
     
@@ -199,7 +234,6 @@ class HomeView: UIViewController {
                         
                         /// 構造体にデータを格納する
                         let stepImput = StepStruct(
-//                            id: udid!,
                             datetime: Self.formatter.string(from: date),
                             steps: stepCount
                         )
@@ -207,7 +241,6 @@ class HomeView: UIViewController {
                     self.stepStructs.append(stepImput)
                         
                     ///データを表示
-//                    print("\([self.stepStructs.count-1]):\(self.stepStructs[self.stepStructs.count-1].id)")
                     print("StepData")
                     print("\([self.stepStructs.count-1]):\(self.stepStructs[self.stepStructs.count-1].datetime)")
                     print("\([self.stepStructs.count-1]):\(self.stepStructs [self.stepStructs.count-1].steps)")
@@ -217,7 +250,6 @@ class HomeView: UIViewController {
                     /// 構造体にデータを格納する
                     let date = statistics.startDate
                      let stepImput = StepStruct(
-//                                id: udid!
                         datetime: Self.formatter.string(from: date),
                         steps: 0
                         )
@@ -475,6 +507,14 @@ extension HomeView {
         formatter.timeZone = TimeZone(identifier: "Asia/Tokyo")
         formatter.locale = Locale(identifier: "ja_JP")
         formatter.dateFormat = "yyyy-MM-dd"
+        return formatter
+    }
+    
+    private static var formatter2: DateFormatter{
+        let formatter = DateFormatter()
+        formatter.timeZone = TimeZone(identifier: "Asia/Tokyo")
+        formatter.locale = Locale(identifier: "ja_JP")
+        formatter.dateStyle = .long
         return formatter
     }
 }
