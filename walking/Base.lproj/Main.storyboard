@@ -490,6 +490,9 @@
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" image="arrow.clockwise.circle" catalog="system"/>
                                         <buttonConfiguration key="configuration" style="plain" image="arrow.clockwise.circle" catalog="system"/>
+                                        <connections>
+                                            <action selector="tappedReloadButton:" destination="wnb-AL-4CI" eventType="touchUpInside" id="Fqu-fe-DUb"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -532,6 +535,9 @@
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" image="arrow.clockwise.circle" catalog="system"/>
                                         <buttonConfiguration key="configuration" style="plain" image="arrow.clockwise.circle" catalog="system"/>
+                                        <connections>
+                                            <action selector="tappedReloadButton:" destination="wnb-AL-4CI" eventType="touchUpInside" id="U0F-dv-sEN"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -608,10 +614,28 @@
                                     <constraint firstAttribute="bottom" secondItem="8IG-2L-HEp" secondAttribute="bottom" constant="15" id="z3Y-e6-mTQ"/>
                                 </constraints>
                             </view>
+                            <view userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L79-bM-A00">
+                                <rect key="frame" x="0.0" y="90" width="375" height="528"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="R2o-It-cXm">
+                                        <rect key="frame" x="162.5" y="239" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="JF3-Vi-5bj"/>
+                                            <constraint firstAttribute="width" constant="50" id="hYl-M0-gZA"/>
+                                        </constraints>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.85098039219999999" green="0.85098039219999999" blue="0.85098039219999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="R2o-It-cXm" firstAttribute="centerX" secondItem="L79-bM-A00" secondAttribute="centerX" id="0Ut-qm-AqE"/>
+                                    <constraint firstItem="R2o-It-cXm" firstAttribute="centerY" secondItem="L79-bM-A00" secondAttribute="centerY" id="dNl-rd-Pnj"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Lzl-O7-gS0"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="Lzl-O7-gS0" firstAttribute="bottom" secondItem="L79-bM-A00" secondAttribute="bottom" id="2Mr-fG-jR8"/>
                             <constraint firstItem="Lzl-O7-gS0" firstAttribute="trailing" secondItem="Gf1-Dk-5MW" secondAttribute="trailing" id="8kI-oF-Oc0"/>
                             <constraint firstItem="Lzl-O7-gS0" firstAttribute="trailing" secondItem="8nN-wk-r5H" secondAttribute="trailing" id="8vD-yu-ROX"/>
                             <constraint firstItem="Lzl-O7-gS0" firstAttribute="trailing" secondItem="Yw0-hJ-pwZ" secondAttribute="trailing" id="BWc-Of-OK9"/>
@@ -624,6 +648,7 @@
                             <constraint firstAttribute="trailing" secondItem="n8O-yE-ryV" secondAttribute="trailing" id="GO4-ck-glV"/>
                             <constraint firstItem="scZ-ho-Mv1" firstAttribute="leading" secondItem="Lzl-O7-gS0" secondAttribute="leading" id="KpI-FY-Rnb"/>
                             <constraint firstItem="Yw0-hJ-pwZ" firstAttribute="trailing" secondItem="Lzl-O7-gS0" secondAttribute="trailing" id="PUa-Dd-v16"/>
+                            <constraint firstItem="L79-bM-A00" firstAttribute="leading" secondItem="Lzl-O7-gS0" secondAttribute="leading" id="SR3-HY-m0f"/>
                             <constraint firstItem="8nN-wk-r5H" firstAttribute="top" secondItem="Gf1-Dk-5MW" secondAttribute="bottom" id="TJV-eK-3u7"/>
                             <constraint firstItem="Lzl-O7-gS0" firstAttribute="bottom" secondItem="8nN-wk-r5H" secondAttribute="bottom" id="TUk-RQ-ADh"/>
                             <constraint firstItem="Bm5-cw-NHl" firstAttribute="leading" secondItem="Lzl-O7-gS0" secondAttribute="leading" id="YGl-Ai-NoT"/>
@@ -636,6 +661,8 @@
                             <constraint firstItem="pPd-eM-eI6" firstAttribute="top" secondItem="Bm5-cw-NHl" secondAttribute="bottom" id="gjV-Kb-EJ7"/>
                             <constraint firstItem="8nN-wk-r5H" firstAttribute="leading" secondItem="Lzl-O7-gS0" secondAttribute="leading" id="hPz-iz-CLG"/>
                             <constraint firstItem="Lzl-O7-gS0" firstAttribute="trailing" secondItem="Bm5-cw-NHl" secondAttribute="trailing" id="jE2-KB-2mn"/>
+                            <constraint firstItem="Lzl-O7-gS0" firstAttribute="trailing" secondItem="L79-bM-A00" secondAttribute="trailing" id="m3e-VO-QFy"/>
+                            <constraint firstItem="L79-bM-A00" firstAttribute="top" secondItem="n8O-yE-ryV" secondAttribute="bottom" id="wO6-8x-iJS"/>
                             <constraint firstItem="Bm5-cw-NHl" firstAttribute="leading" secondItem="Lzl-O7-gS0" secondAttribute="leading" id="wm1-Th-SbS"/>
                         </constraints>
                     </view>
@@ -651,6 +678,7 @@
                         <outlet property="eventTermLabel" destination="d48-1v-40b" id="xga-hO-Lzh"/>
                         <outlet property="eventTitleLabel" destination="Xo5-q4-K7r" id="NNs-ZP-XqI"/>
                         <outlet property="eventTitleStackHeightConstraint" destination="OF6-1K-uLA" id="yKR-fh-wBg"/>
+                        <outlet property="indicatorView" destination="L79-bM-A00" id="4Nb-CM-xaZ"/>
                         <outlet property="monthButton" destination="f5B-c0-KoY" id="5n0-Q1-RC4"/>
                         <outlet property="monthPullDownButton" destination="tOx-D7-ieX" id="5Sx-O0-L1B"/>
                         <outlet property="personalButton" destination="9TP-B5-Wvv" id="xl0-jb-mpu"/>

@@ -28,14 +28,14 @@ class TeamRankCell: UITableViewCell {
     
     func setCell(index:IndexPath,record:[TeamRanking]){
         
-        let current = record.filter({ $0.rank == index.row+1 })[0]
+        let current = record.filter({ $0.rank == index.row+1 })
         
-        self.rankLabel.text = String(current.rank)
-        self.nameLabel.text = current.groupName
-        self.stepLabel.text = String(current.avgSteps)
-        
-        self.rankLabel.text = String(index.row+1)
-        
+        if current.count > 0{
+            self.rankLabel.text = String(current[0].rank)
+            self.nameLabel.text = current[0].groupName
+            self.stepLabel.text = String(current[0].avgSteps)
+        }
+
         switch index.row{
         case 0:
             self.crown.image = UIImage(systemName: "crown")
