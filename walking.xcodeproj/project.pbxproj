@@ -56,6 +56,7 @@
 		A2C1A3782772FD4C009CAE84 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2C1A3762772FD4C009CAE84 /* Main.storyboard */; };
 		A2C1A37A2772FD52009CAE84 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2C1A3792772FD52009CAE84 /* Assets.xcassets */; };
 		A2C1A37D2772FD52009CAE84 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2C1A37B2772FD52009CAE84 /* LaunchScreen.storyboard */; };
+		A2DD8B1527ACF751003E6D81 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DD8B1427ACF751003E6D81 /* TitleView.swift */; };
 		A2FEF752279006FF00D8D537 /* ThreadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2FEF751279006FF00D8D537 /* ThreadView.swift */; };
 /* End PBXBuildFile section */
 
@@ -113,6 +114,7 @@
 		A2C1A3792772FD52009CAE84 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A2C1A37C2772FD52009CAE84 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A2C1A37E2772FD52009CAE84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A2DD8B1427ACF751003E6D81 /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
 		A2FEF751279006FF00D8D537 /* ThreadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadView.swift; sourceTree = "<group>"; };
 		AAF723D015DE791EF430EC91 /* Pods-walking.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-walking.release.xcconfig"; path = "Target Support Files/Pods-walking/Pods-walking.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -250,6 +252,7 @@
 				A2C1A3722772FD4C009CAE84 /* SceneDelegate.swift */,
 				A2C1A3742772FD4C009CAE84 /* TabBarController.swift */,
 				A21905ED2786ACD700288B76 /* StartView.swift */,
+				A2DD8B1427ACF751003E6D81 /* TitleView.swift */,
 				A260877627AA4EB90040A227 /* Model */,
 				A260877227AA19480040A227 /* Team.swift */,
 				91B1F71327A23D9A00E87EEF /* WalkingData.swift */,
@@ -419,6 +422,7 @@
 				A2651EE027A0D5F400B35DFC /* TeamRecord.swift in Sources */,
 				91B1F71427A23D9A00E87EEF /* WalkingData.swift in Sources */,
 				A244D5F3278EAA81008D30A2 /* MemberCell.swift in Sources */,
+				A2DD8B1527ACF751003E6D81 /* TitleView.swift in Sources */,
 				A2BD72D6279FE28400C7F5DB /* MyRecord.swift in Sources */,
 				A244D5F0278EAA5C008D30A2 /* MemberView.swift in Sources */,
 				A22EA0FE277ACAB900D7DA92 /* RecordView.swift in Sources */,
@@ -579,8 +583,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = walking/walking.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = MHAGM665WL;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -598,10 +602,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.3;
+				MARKETING_VERSION = 1.0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.walkingEventApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = walkingEvent;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -634,7 +638,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.3;
+				MARKETING_VERSION = 1.0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.walkingEventApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = walkingEvent;

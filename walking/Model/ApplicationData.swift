@@ -75,6 +75,7 @@ class ApplicationData{
 //                    let str = try JSONSerialization.jsonObject(with: result, options: JSONSerialization.ReadingOptions.allowFragments) as! [String : Any]
 //                    StartView.team = try decoder.decode(Team.self, from: result)
                     self!.team = try decoder.decode(Team.self, from: result)
+                    print("teamInfo",self?.team)
 
                 }catch{
                     print("teamInfo",error)
