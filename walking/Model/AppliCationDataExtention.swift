@@ -26,7 +26,7 @@ extension ApplicationData{
                     if success {
                         self.getSteps()
                         self.getDistance()
-                    }
+                    }else{return}
                 }
                
         //      iPhoneからカロリー情報を取得する
@@ -255,14 +255,14 @@ extension ApplicationData{
     }
     
     //Home画面のデータを取得する
-    func reloadHomeData(){
+    func reloadHomeData(closure: @escaping ()->Void) {
         print("reloadHomeData")
         
         //送信データを取得
         let homeData = HomeData(
             aadid: ApplicationData.shared.mailId,
-            teamid: StartView.team!.content.teamId
-//            teamid:ApplicationData.shared.team!.content.teamId
+//            teamid: StartView.team!.content.teamId
+            teamid:ApplicationData.shared.team!.content.teamId
         )
         
 
@@ -270,7 +270,7 @@ extension ApplicationData{
         encoder.outputFormatting = .prettyPrinted
         
         let encodedData = try? encoder.encode(homeData)
-        print("JSON DATA")
+        print("SEND DATA")
         print(String(data: encodedData!, encoding: .utf8)!)
         
         
@@ -280,9 +280,12 @@ extension ApplicationData{
 
                 do{
                     let decoder = JSONDecoder()
-                    print(String(data: result, encoding: .utf8)!)
+//                    print(String(data: result, encoding: .utf8)!)
                     self?.homeRecord = try decoder.decode(HomeRecord.self, from: result)
-                    print(self?.homeRecord)
+                    print("HOMERECORD")
+                    print(self?.homeRecord!)
+                    print("END")
+                    closure()
                     //HomeView().reloadStepLabel()
 
                 }catch{

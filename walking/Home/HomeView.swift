@@ -11,11 +11,12 @@ import HealthKitUI
 
 class HomeView: UIViewController {
     
-    var homeRecord:HomeRecord?{
-        didSet{
-//            reloadHomeData()
-        }
-    }
+//    var homeRecord:HomeRecord?{
+//        didSet{
+//            reloadStepLabel()
+//            indicatorView.isHidden = true
+//        }
+//    }
     @IBOutlet weak var indicatorView: UIView!
     
     @IBOutlet weak var scrollView: UIScrollView!
@@ -44,6 +45,7 @@ class HomeView: UIViewController {
     //var homeData:HomeData!
     var startView = StartView()
     
+    
     override func viewDidLayoutSubviews() {
         scrollView.contentSize = baseStackView.frame.size
         scrollView.flashScrollIndicators()
@@ -51,21 +53,14 @@ class HomeView: UIViewController {
     
     @IBAction func reloadButton(_ sender: Any) {
 //
-        
-       loadHome()
-        
+        self.loadHome()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
- //       loadHome()
- //
         indicatorView.isHidden = true
-        ApplicationData.shared.pushData()
-        ApplicationData.shared.reloadHomeData()
-//        //reloadStepLabel()
-
+        self.loadHome()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -73,116 +68,123 @@ class HomeView: UIViewController {
     }
     
     func loadHome(){
-        self.indicatorView.isHidden = false
+        indicatorView.isHidden = false
         ApplicationData.shared.pushData()
-        ApplicationData.shared.reloadHomeData()
-        reloadStepLabel()
+        ApplicationData.shared.reloadHomeData(){
+            self.reloadStepLabel()
+        }
     }
     
     func reloadStepLabel(){
         
-        let dateString = Self.formatter2.string(from: Date())
+        print("REFRESH STEP LABEL")
+        let dateString = HomeView.formatter2.string(from: Date())
         dateLabel.text = dateString + "の記録"
         
         let string = String(ApplicationData.shared.homeRecord!.content.personalData.steps)
+//        let string = String(self.homeRecord!.content.personalData.steps)
 //        dataLabel.text =
         stepLabel.text = string
         stepLabel.addUinit(unit: "歩", size: stepLabel.font.pointSize / 2)
         
         personalRankLabel.text = String(ApplicationData.shared.homeRecord!.content.personalData.ranking)
+//        personalRankLabel.text = String(self.homeRecord!.content.personalData.ranking)
         personalRankLabel.addUinit(unit: "位", size: personalRankLabel.font.pointSize / 2)
         
         //距離データはメートル表記をキロに変換して返す。
         var personalDistance = ApplicationData.shared.homeRecord!.content.personalData.distance
+//        var personalDistance = self.homeRecord!.content.personalData.distance
         var personalDistanceKilo:Double = Double(personalDistance / 1000 * 1000)
         var personalDistance2 = round(personalDistanceKilo) / 1000
         distanceLabel.text = String(personalDistance2)
         distanceLabel?.addUinit(unit: "km", size: distanceLabel.font.pointSize / 2)
         
-        teamNameLabel.text = String(StartView.team!.content.groupName)
+//        teamNameLabel.text = String(StartView.team!.content.groupName)
+        teamNameLabel.text = String(ApplicationData.shared.team!.content.groupName)
         //teamNameLabel.addUinit(unit: "チーム", size: teamNameLabel.font.pointSize / 2)
         
         teamRankLabel.text = String(ApplicationData.shared.homeRecord!.content.teamData.ranking)
+//        teamRankLabel.text = String(self.homeRecord!.content.teamData.ranking)
         teamRankLabel?.addUinit(unit: "位", size: teamRankLabel.font.pointSize / 2)
         
         teamStepLabel.text = String(ApplicationData.shared.homeRecord!.content.teamData.avgSteps)
+//        teamStepLabel.text = String(self.homeRecord!.content.teamData.avgSteps)
+        
         teamStepLabel?.addUinit(unit: "歩", size: teamStepLabel.font.pointSize / 2)
         
         eventNameLabel.text = ""
         eventTermLabel.text = ""
         
-        indicatorView.isHidden = true
-        
     }
     
-//    //iPhoneからデータを送る
-//    func pushData(){
-//
-//        //構造体の初期化
-//        stepStructs.removeAll()
-//        distanceStructs.removeAll()
-//
-//        //      iPhoneから歩数情報を取得する
-//            let readDataTypes = Set(arrayLiteral: HKObjectType.quantityType(forIdentifier: .stepCount)!, HKObjectType.quantityType(forIdentifier: .distanceWalkingRunning)!)
-////            let readDataTypes = Set(arrayLiteral: [HKObjectType.quantityType(forIdentifier: .stepCount)!],
-////                                                      [HKObjectType.quantityType(forIdentifier: .distanceWalkingRunning)!])
-//                HKHealthStore().requestAuthorization(toShare: nil, read: readDataTypes) { success, _ in
+    //iPhoneからデータを送る
+    func pushData(){
+
+        //構造体の初期化
+        stepStructs.removeAll()
+        distanceStructs.removeAll()
+
+        //      iPhoneから歩数情報を取得する
+            let readDataTypes = Set(arrayLiteral: HKObjectType.quantityType(forIdentifier: .stepCount)!, HKObjectType.quantityType(forIdentifier: .distanceWalkingRunning)!)
+//            let readDataTypes = Set(arrayLiteral: [HKObjectType.quantityType(forIdentifier: .stepCount)!],
+//                                                      [HKObjectType.quantityType(forIdentifier: .distanceWalkingRunning)!])
+                HKHealthStore().requestAuthorization(toShare: nil, read: readDataTypes) { success, _ in
+                    if success {
+                        self.getSteps()
+                        self.getDistance()
+                    }
+                }
+
+        //      iPhoneからカロリー情報を取得する
+//                let readDataTypes2 = Set([HKObjectType.quantityType(forIdentifier: .activeEnergyBurned)!])
+//                HKHealthStore().requestAuthorization(toShare: nil, read: readDataTypes2) { success, _ in
 //                    if success {
-//                        self.getSteps()
-//                        self.getDistance()
+//                        self.getCalorie()
 //                    }
 //                }
-//
-//        //      iPhoneからカロリー情報を取得する
-////                let readDataTypes2 = Set([HKObjectType.quantityType(forIdentifier: .activeEnergyBurned)!])
-////                HKHealthStore().requestAuthorization(toShare: nil, read: readDataTypes2) { success, _ in
-////                    if success {
-////                        self.getCalorie()
-////                    }
-////                }
-//
-//        //取得したデータをオブジェクト化
-//        sleep(1)
-//        var walkingDataLists:[WalkingDataList]=[]
-//
-//        for i in 0...7{
-//            let walkingDataList = WalkingDataList(
-//                aadid:ApplicationData.shared.mailId,
-//                date:self.stepStructs[i].datetime,
-//                steps: stepStructs[i].steps,
-//                distance: distanceStructs[i].distance,
-//                calorie: 0
-//            )
-//            walkingDataLists.append(walkingDataList)
-//        }
-//
-//        let walkingData = WalkingData(
-//            walkingDataList:walkingDataLists
-//        )
-//
-//        //JSONEncoderの生成
-//        let encoder = JSONEncoder()
-//        encoder.outputFormatting = .prettyPrinted
-//
-//        do{
-//            //構造体→JSONへのエンコード
-//            let data = try encoder.encode(walkingData)
-//            print("JSON DATA")
-//            print(String(data: data, encoding: .utf8)!)
-//            //データを送信する
-//            upsertSteps(data: data)
-//        }catch{
-//            print(error)
-//        }
-//
-//        //画面更新
-//        //stepLabel.text = String(stepStructs[stepStructs.count-1].steps)
-//        stepLabel.text = "12345"
-//        stepLabel.addUinit(unit: "歩", size: stepLabel.font.pointSize / 2)
-//        distanceLabel.text = "7.89"
-//        //calorieLabel.text = String(calorieStructs[calorieStructs.count-1].calories)
-//        distanceLabel.addUinit(unit: "km", size: distanceLabel.font.pointSize / 2)
-//    }
+
+        //取得したデータをオブジェクト化
+        sleep(1)
+        var walkingDataLists:[WalkingDataList]=[]
+
+        for i in 0...7{
+            let walkingDataList = WalkingDataList(
+                aadid:ApplicationData.shared.mailId,
+                date:self.stepStructs[i].datetime,
+                steps: stepStructs[i].steps,
+                distance: distanceStructs[i].distance,
+                calorie: 0
+            )
+            walkingDataLists.append(walkingDataList)
+        }
+
+        let walkingData = WalkingData(
+            walkingDataList:walkingDataLists
+        )
+
+        //JSONEncoderの生成
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = .prettyPrinted
+
+        do{
+            //構造体→JSONへのエンコード
+            let data = try encoder.encode(walkingData)
+            print("JSON DATA")
+            print(String(data: data, encoding: .utf8)!)
+            //データを送信する
+            upsertSteps(data: data)
+        }catch{
+            print(error)
+        }
+
+        //画面更新
+        //stepLabel.text = String(stepStructs[stepStructs.count-1].steps)
+        stepLabel.text = "12345"
+        stepLabel.addUinit(unit: "歩", size: stepLabel.font.pointSize / 2)
+        distanceLabel.text = "7.89"
+        //calorieLabel.text = String(calorieStructs[calorieStructs.count-1].calories)
+        distanceLabel.addUinit(unit: "km", size: distanceLabel.font.pointSize / 2)
+    }
     
 
     
@@ -382,7 +384,7 @@ class HomeView: UIViewController {
         //送信データを取得
         let homeData = HomeData(
             aadid: ApplicationData.shared.mailId,
-            teamid: 3
+            teamid: ApplicationData.shared.team!.content.teamId
         )
 
         let encoder = JSONEncoder()
@@ -401,8 +403,8 @@ class HomeView: UIViewController {
                     print(String(data: result, encoding: .utf8)!)
                     
                     let decoder = JSONDecoder()
-                    self!.homeRecord = try decoder.decode(HomeRecord.self, from: result as! Data)
-                    print(self?.homeRecord)
+//                    self!.homeRecord = try decoder.decode(HomeRecord.self, from: result as! Data)
+//                    print(self?.homeRecord)
 
                 }catch{
                     print(error)
