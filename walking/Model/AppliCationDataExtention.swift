@@ -261,7 +261,7 @@ extension ApplicationData{
         //送信データを取得
         let homeData = HomeData(
             aadid: ApplicationData.shared.mailId,
-            teamid: 3
+            teamid: StartView.team!.content.teamId
 //            teamid:ApplicationData.shared.team!.content.teamId
         )
         

@@ -17,8 +17,8 @@ class ApplicationData{
     
     var homeRecord:HomeRecord?{
         didSet{
-            HomeView().reloadStepLabel()
-//            reloadHomeData()
+//            self.indicatorView.isHidden = true
+//            HomeView().reloadStepLabel()
         }
     }
     
