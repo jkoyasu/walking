@@ -10,6 +10,7 @@ import UIKit
 class CommunicationView: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var TableView: UITableView!
+    @IBOutlet weak var indicatorView: UIView!
     @IBOutlet weak var allPostButton: UIButton!
     @IBOutlet weak var teamPostButton: UIButton!
     let selectedButtonsAttributes: [NSAttributedString.Key : Any] = [
@@ -25,6 +26,7 @@ class CommunicationView: UIViewController, UITableViewDataSource, UITableViewDel
     var messages:[[String:Any]] = []{
         didSet {
             TableView.reloadData()
+            indicatorView.isHidden = true
         }
     }
     var selectedmessage:[String:Any] = [:]
@@ -51,6 +53,7 @@ class CommunicationView: UIViewController, UITableViewDataSource, UITableViewDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        indicatorView.isHidden = false
         self.loadMessage()
         TableView.dataSource = self
         TableView.delegate = self
