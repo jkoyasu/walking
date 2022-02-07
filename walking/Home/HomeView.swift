@@ -11,12 +11,12 @@ import HealthKitUI
 
 class HomeView: UIViewController {
     
-    var homeRecord:HomeRecord?{
-        didSet{
-            reloadStepLabel()
-            indicatorView.isHidden = true
-        }
-    }
+//    var homeRecord:HomeRecord?{
+//        didSet{
+//            reloadStepLabel()
+//            indicatorView.isHidden = true
+//        }
+//    }
     @IBOutlet weak var indicatorView: UIView!
     
     @IBOutlet weak var scrollView: UIScrollView!
@@ -53,23 +53,14 @@ class HomeView: UIViewController {
     
     @IBAction func reloadButton(_ sender: Any) {
 //
-        
-       loadHome()
-        
+        self.loadHome()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
- //       loadHome()
- //
         indicatorView.isHidden = true
-//        ApplicationData.shared.pushData()
-        pushData()
-        reloadHomeData()
-//        ApplicationData.shared.reloadHomeData()
-//        reloadStepLabel()
-
+        self.loadHome()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -78,31 +69,31 @@ class HomeView: UIViewController {
     
     func loadHome(){
         indicatorView.isHidden = false
-        pushData()
-        reloadHomeData()
-//        ApplicationData.shared.pushData()
-//        ApplicationData.shared.reloadHomeData()
-        reloadStepLabel()
+        ApplicationData.shared.pushData()
+        ApplicationData.shared.reloadHomeData(){
+            self.reloadStepLabel()
+        }
     }
     
     func reloadStepLabel(){
         
+        print("REFRESH STEP LABEL")
         let dateString = HomeView.formatter2.string(from: Date())
         dateLabel.text = dateString + "の記録"
         
-//        let string = String(ApplicationData.shared.homeRecord!.content.personalData.steps)
-        let string = String(self.homeRecord!.content.personalData.steps)
+        let string = String(ApplicationData.shared.homeRecord!.content.personalData.steps)
+//        let string = String(self.homeRecord!.content.personalData.steps)
 //        dataLabel.text =
         stepLabel.text = string
         stepLabel.addUinit(unit: "歩", size: stepLabel.font.pointSize / 2)
         
-//        personalRankLabel.text = String(ApplicationData.shared.homeRecord!.content.personalData.ranking)
-        personalRankLabel.text = String(self.homeRecord!.content.personalData.ranking)
+        personalRankLabel.text = String(ApplicationData.shared.homeRecord!.content.personalData.ranking)
+//        personalRankLabel.text = String(self.homeRecord!.content.personalData.ranking)
         personalRankLabel.addUinit(unit: "位", size: personalRankLabel.font.pointSize / 2)
         
         //距離データはメートル表記をキロに変換して返す。
-//        var personalDistance = ApplicationData.shared.homeRecord!.content.personalData.distance
-        var personalDistance = self.homeRecord!.content.personalData.distance
+        var personalDistance = ApplicationData.shared.homeRecord!.content.personalData.distance
+//        var personalDistance = self.homeRecord!.content.personalData.distance
         var personalDistanceKilo:Double = Double(personalDistance / 1000 * 1000)
         var personalDistance2 = round(personalDistanceKilo) / 1000
         distanceLabel.text = String(personalDistance2)
@@ -112,12 +103,12 @@ class HomeView: UIViewController {
         teamNameLabel.text = String(ApplicationData.shared.team!.content.groupName)
         //teamNameLabel.addUinit(unit: "チーム", size: teamNameLabel.font.pointSize / 2)
         
-//        teamRankLabel.text = String(ApplicationData.shared.homeRecord!.content.teamData.ranking)
-        teamRankLabel.text = String(self.homeRecord!.content.teamData.ranking)
+        teamRankLabel.text = String(ApplicationData.shared.homeRecord!.content.teamData.ranking)
+//        teamRankLabel.text = String(self.homeRecord!.content.teamData.ranking)
         teamRankLabel?.addUinit(unit: "位", size: teamRankLabel.font.pointSize / 2)
         
-//        teamStepLabel.text = String(ApplicationData.shared.homeRecord!.content.teamData.avgSteps)
-        teamStepLabel.text = String(self.homeRecord!.content.teamData.avgSteps)
+        teamStepLabel.text = String(ApplicationData.shared.homeRecord!.content.teamData.avgSteps)
+//        teamStepLabel.text = String(self.homeRecord!.content.teamData.avgSteps)
         
         teamStepLabel?.addUinit(unit: "歩", size: teamStepLabel.font.pointSize / 2)
         
@@ -412,8 +403,8 @@ class HomeView: UIViewController {
                     print(String(data: result, encoding: .utf8)!)
                     
                     let decoder = JSONDecoder()
-                    self!.homeRecord = try decoder.decode(HomeRecord.self, from: result as! Data)
-                    print(self?.homeRecord)
+//                    self!.homeRecord = try decoder.decode(HomeRecord.self, from: result as! Data)
+//                    print(self?.homeRecord)
 
                 }catch{
                     print(error)
