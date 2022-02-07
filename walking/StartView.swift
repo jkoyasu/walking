@@ -292,7 +292,9 @@ class StartView: UIViewController {
             ApplicationData.shared
                 .authorizeAWS(id:ApplicationData.shared.mailId)
             ApplicationData.shared.loadMyRanking(id: ApplicationData.shared.mailId)
-            self.forwardButton.isEnabled = true
+            DispatchQueue.main.async {
+                self.forwardButton.isEnabled = true
+            }
         }.resume()
     }
 }

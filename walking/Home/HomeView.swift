@@ -115,6 +115,7 @@ class HomeView: UIViewController {
         eventNameLabel.text = ""
         eventTermLabel.text = ""
         
+        self.indicatorView.isHidden = true
     }
     
     //iPhoneからデータを送る

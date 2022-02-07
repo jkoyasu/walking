@@ -61,7 +61,9 @@ class TitleView: UIViewController {
                         //                self.performSegue(withIdentifier: "toStart", sender: nil)
         //                            }
                 }else{
-                    self.performSegue(withIdentifier: "toMSAL", sender: nil)
+                    DispatchQueue.main.async {
+                        self.performSegue(withIdentifier: "toMSAL", sender: nil)
+                    }
                 }
             }
         }

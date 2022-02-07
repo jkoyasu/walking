@@ -46,7 +46,6 @@
 		A2651EDE27A0D33E00B35DFC /* PersonRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2651EDD27A0D33E00B35DFC /* PersonRecord.swift */; };
 		A2651EE027A0D5F400B35DFC /* TeamRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2651EDF27A0D5F400B35DFC /* TeamRecord.swift */; };
 		A2651EE227A0D70D00B35DFC /* EventRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2651EE127A0D70D00B35DFC /* EventRecord.swift */; };
-		A2BC7B8927964A0200035482 /* EventRankCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2BC7B8827964A0100035482 /* EventRankCell.xib */; };
 		A2BD72D2279EB0DD00C7F5DB /* SelectedPostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BD72D0279EB0DD00C7F5DB /* SelectedPostCell.swift */; };
 		A2BD72D3279EB0DD00C7F5DB /* SelectedPostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2BD72D1279EB0DD00C7F5DB /* SelectedPostCell.xib */; };
 		A2BD72D6279FE28400C7F5DB /* MyRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BD72D5279FE28300C7F5DB /* MyRecord.swift */; };
@@ -337,7 +336,6 @@
 			files = (
 				91EB803627965CCC0073E69E /* EventRankCell.xib in Resources */,
 				A21905FD2786D15500288B76 /* CommunicationCell.xib in Resources */,
-				A2BC7B8927964A0200035482 /* EventRankCell.xib in Resources */,
 				A244D5FB278EB6D5008D30A2 /* NotificationCell.xib in Resources */,
 				A260875927A3DADE0040A227 /* ErrorCell.xib in Resources */,
 				A2C1A37D2772FD52009CAE84 /* LaunchScreen.storyboard in Resources */,
