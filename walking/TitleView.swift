@@ -1,16 +1,16 @@
 //
-//  StartView.swift
+//  TitleView.swift
 //  walking
 //
-//  Created by koyasu on 2022/01/06.
+//  Created by koyasu on 2022/02/04.
 //
 
 import UIKit
 import MSAL
 import YammerSDK
+import HealthKit
 
-
-class StartView: UIViewController {
+class TitleView: UIViewController {
     //全情報取得
     let kClientID = "2ce72229-93e5-4624-99e8-5a490cbe40f9"
     let kGraphEndpoint = "https://graph.microsoft.com/"
@@ -30,14 +30,9 @@ class StartView: UIViewController {
     
     var YM = YMLoginClient.sharedInstance().storedAuthToken()
         
-    @IBOutlet weak var forwardButton: UIButton!
-    
     //画面取得後
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        forwardButton.isEnabled = false
-        
         do {
             try self.initMSAL()
         } catch let error {
@@ -52,25 +47,27 @@ class StartView: UIViewController {
         super.viewDidAppear(animated)
         
 //      Yammerのアクセス情報を取得
-        callGraphAPI()
-
-//        YammerTokenが空ならログイン画面表示
-//            if YMLoginClient.sharedInstance().storedAuthToken() == nil {
-//                let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "Login")
-//                self.performSegue(withIdentifier: "toStart", sender: nil)
-//            }
+        let readDataTypes = Set(arrayLiteral: HKObjectType.quantityType(forIdentifier: .stepCount)!, HKObjectType.quantityType(forIdentifier: .distanceWalkingRunning)!)
+        HKHealthStore().requestAuthorization(toShare: nil, read: readDataTypes) { success, _ in
+            if success {
+                if let currentAccount = self.currentAccount{
+                    self.callGraphAPI()
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 7.0) {
+                        self.performSegue(withIdentifier: "toTab", sender: nil)
+                    }
+                        //        YammerTokenが空ならログイン画面表示
+                        //            if YMLoginClient.sharedInstance().storedAuthToken() == nil {
+                        //                self.performSegue(withIdentifier: "toStart", sender: nil)
+        //                            }
+                }else{
+                    DispatchQueue.main.async {
+                        self.performSegue(withIdentifier: "toMSAL", sender: nil)
+                    }
+                }
+            }
+        }
     }
-    
-    @IBAction func tappedForwardButton(_ sender: Any) {
-//                YammerTokenが空ならログイン画面表示
-//                    if YMLoginClient.sharedInstance().storedAuthToken() == nil {
-//                        let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "Login")
-//                        self.performSegue(withIdentifier: "fromStartToLogin", sender: nil)
-//                    }
-        let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "Tab")
-        self.performSegue(withIdentifier: "fromStartToTab", sender: nil)
-    }
-    
     
     func initMSAL() throws {
         
@@ -292,9 +289,6 @@ class StartView: UIViewController {
             ApplicationData.shared
                 .authorizeAWS(id:ApplicationData.shared.mailId)
             ApplicationData.shared.loadMyRanking(id: ApplicationData.shared.mailId)
-            DispatchQueue.main.async {
-                self.forwardButton.isEnabled = true
-            }
         }.resume()
     }
 }

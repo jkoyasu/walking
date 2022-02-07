@@ -788,10 +788,10 @@
             </objects>
             <point key="canvasLocation" x="560.79999999999995" y="-678.71064467766121"/>
         </scene>
-        <!--Start View-->
+        <!--Title View-->
         <scene sceneID="S5m-Mn-ngl">
             <objects>
-                <viewController id="cGs-XS-avr" customClass="StartView" customModule="walking" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="cGs-XS-avr" customClass="TitleView" customModule="walking" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="B1h-ak-Trq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -812,6 +812,7 @@
                     <connections>
                         <segue destination="cCF-7K-urt" kind="presentation" identifier="toTab" modalPresentationStyle="fullScreen" id="LtM-VH-oFY"/>
                         <segue destination="mta-ic-kMN" kind="presentation" identifier="toStart" modalPresentationStyle="fullScreen" id="6bh-T9-PGu"/>
+                        <segue destination="93X-Rt-3Lo" kind="presentation" identifier="toMSAL" modalPresentationStyle="fullScreen" id="Ugx-wI-Dgt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6gM-vZ-9AA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1391,6 +1392,45 @@
             </objects>
             <point key="canvasLocation" x="-373.60000000000002" y="-1183.3583208395803"/>
         </scene>
+        <!--Start View-->
+        <scene sceneID="hw4-rm-UaI">
+            <objects>
+                <viewController storyboardIdentifier="MSAL" id="93X-Rt-3Lo" customClass="StartView" customModule="walking" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Pkf-mY-JcM">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b4n-gP-Q2p">
+                                <rect key="frame" x="151" y="308.5" width="73" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="rhs-9x-lNG"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="進む">
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="24"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="tappedForwardButton:" destination="93X-Rt-3Lo" eventType="touchUpInside" id="RcX-NP-8a8"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="2Ds-qb-lrt"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="b4n-gP-Q2p" firstAttribute="centerX" secondItem="Pkf-mY-JcM" secondAttribute="centerX" id="aub-lC-7M7"/>
+                            <constraint firstItem="b4n-gP-Q2p" firstAttribute="centerY" secondItem="Pkf-mY-JcM" secondAttribute="centerY" id="qoQ-x2-mXa"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="forwardButton" destination="b4n-gP-Q2p" id="0bV-Bk-6YM"/>
+                        <segue destination="mta-ic-kMN" kind="presentation" identifier="fromStartToLogin" modalPresentationStyle="fullScreen" id="mBj-DB-Xcw"/>
+                        <segue destination="cCF-7K-urt" kind="presentation" identifier="fromStartToTab" modalPresentationStyle="fullScreen" id="dG7-Et-GN0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Y8r-B0-Cj2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2794" y="600"/>
+        </scene>
         <!--Login View Controller-->
         <scene sceneID="DjW-PF-FZe">
             <objects>
@@ -1405,7 +1445,7 @@
                                     <constraint firstAttribute="height" constant="50" id="cj2-Qs-xZG"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="アプリケーションを始める">
+                                <buttonConfiguration key="configuration" style="plain" title="進む">
                                     <fontDescription key="titleFontDescription" type="system" pointSize="24"/>
                                 </buttonConfiguration>
                                 <connections>
@@ -1426,11 +1466,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JRV-zH-F0S" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2090.4000000000001" y="599.55022488755628"/>
+            <point key="canvasLocation" x="-1798" y="600"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="LtM-VH-oFY"/>
+        <segue reference="mBj-DB-Xcw"/>
+        <segue reference="dG7-Et-GN0"/>
         <segue reference="xg9-WP-vFV"/>
     </inferredMetricsTieBreakers>
     <resources>
