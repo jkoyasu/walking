@@ -9,27 +9,31 @@ import HealthKit
 
 extension ApplicationData{
     
-
-    //iPhoneからデータを送る
-    func pushData(){
+    //iPhoneからAWSに歩数・距離データを送信する関数
+    func pushData(closure: @escaping ()->Void){
         
-//
         //構造体の初期化
         self.stepStructs = []
         self.distanceStructs = []
     
-        //      iPhoneから歩数情報を取得する
-            let readDataTypes = Set(arrayLiteral: HKObjectType.quantityType(forIdentifier: .stepCount)!, HKObjectType.quantityType(forIdentifier: .distanceWalkingRunning)!)
-//            let readDataTypes = Set(arrayLiteral: [HKObjectType.quantityType(forIdentifier: .stepCount)!],
-//                                                      [HKObjectType.quantityType(forIdentifier: .distanceWalkingRunning)!])
-                HKHealthStore().requestAuthorization(toShare: nil, read: readDataTypes) { success, _ in
-                    if success {
-                        self.getSteps()
-                        self.getDistance()
-                    }else{return}
+        //iPhoneから歩数情報を取得する
+        let readDataTypes = Set(arrayLiteral: HKObjectType.quantityType(forIdentifier: .stepCount)!, HKObjectType.quantityType(forIdentifier: .distanceWalkingRunning)!)
+
+        HKHealthStore().requestAuthorization(toShare: nil, read: readDataTypes) { success, _ in
+            if success {
+                self.getSteps()
+                self.getDistance()
+                defer{
+                    closure()
                 }
-               
-        //      iPhoneからカロリー情報を取得する
+            }else{
+                print("ヘルスケアの認証に失敗しました。")
+                closure()
+                return
+            }
+        }
+           
+//      iPhoneからカロリー情報を取得する
 //                let readDataTypes2 = Set([HKObjectType.quantityType(forIdentifier: .activeEnergyBurned)!])
 //                HKHealthStore().requestAuthorization(toShare: nil, read: readDataTypes2) { success, _ in
 //                    if success {
@@ -37,8 +41,7 @@ extension ApplicationData{
 //                    }
 //                }
                 
-        //取得したデータをオブジェクト化
-        sleep(1)
+        //iPhoneから取得したデータをオブジェクト化
         var walkingDataLists:[WalkingDataList]=[]
         
         if stepStructs!.count >= 1{
@@ -74,11 +77,12 @@ extension ApplicationData{
             }
         }else{
             print("歩数・距離の取得に失敗しました。")
+            return
         }
         
     }
     
-//  歩数情報を習得する関数
+//  歩数情報を取得するサブプログラム
     private func getSteps() {
         print("getSteps")
         
@@ -102,6 +106,74 @@ extension ApplicationData{
         query.initialResultsHandler = { _, results, _ in
             
             /// `results (HKStatisticsCollection?)` からクエリ結果を取り出す。
+        guard let statsCollection = results else {
+            print("queryError")
+            return
+        }
+            
+        /// クエリ結果から期間（開始日・終了日）を指定して歩数の統計情報を取り出す。
+        statsCollection.enumerateStatistics(from: startDate, to: Date()) { [self] statistics, _ in
+                
+        /// `statistics` に最小単位（今回は１日分の歩数）のサンプルデータが返ってくる。
+        /// `statistics.sumQuantity()` でサンプルデータの合計（１日の合計歩数）を取得する。
+            if let quantity = statistics.sumQuantity() {
+                
+                /// サンプルデータは`quantity.doubleValue`で取り出し、単位を指定して取得する。
+                let date = statistics.startDate
+                let stepValue = quantity.doubleValue(for: HKUnit.count())
+                let stepCount = Int(stepValue)
+                
+                // 構造体にデータを格納する
+                let stepImput = StepStruct(
+                    datetime: Self.formatter.string(from: date),
+                    steps: stepCount
+                )
+                /// 取得した歩数を配列に格納する。
+                self.stepStructs!.append(stepImput)
+                        
+                    
+            } else {
+                    //当該日時にデータがない場合、構造体に0歩としてデータを格納する
+                        let date = statistics.startDate
+                        let stepImput = StepStruct(
+                            datetime: Self.formatter.string(from: date),
+                            steps: 0
+                            )
+                        
+                        self.stepStructs!.append(stepImput)
+                    }
+                    //ログ出力
+                        print("歩数データ\([self.stepStructs!.count-1]):\(self.stepStructs![self.stepStructs!.count-1].datetime):\(self.stepStructs![self.stepStructs!.count-1].steps)歩")
+            }
+        }
+        print("execute")
+        HKHealthStore().execute(query)
+    }
+    
+    //  iPhoneから距離情報を習得するサブプログラム
+    private func getDistance() {
+        print("getDistance")
+        
+        /// 取得したいサンプルデータの期間の開始日を指定する。（今回は７日前の日付を取得する。）
+        let sevenDaysAgo = Calendar.current.date(byAdding: DateComponents(day: -7), to: Date())!
+        let startDate = Calendar.current.startOfDay(for: sevenDaysAgo)
+
+        /// サンプルデータの検索条件を指定する。（フィルタリング）
+        let predicate = HKQuery.predicateForSamples(withStart: startDate,
+                                                    end: Date(),
+                                                    options: [])
+
+        /// サンプルデータを取得するためのクエリを生成する。
+        let query = HKStatisticsCollectionQuery(quantityType: HKObjectType.quantityType(forIdentifier: .distanceWalkingRunning)!,
+                                                quantitySamplePredicate: predicate,
+                                                options: .cumulativeSum,
+                                                anchorDate: startDate,
+                                                intervalComponents: DateComponents(day: 1))
+
+        /// クエリ結果を配列に格納 する
+        query.initialResultsHandler = { _, results, _ in
+            
+            /// `results (HKStatisticsCollection?)` からクエリ結果を取り出す。
             guard let statsCollection = results else {
                 print("queryError")
                 return
@@ -112,189 +184,107 @@ extension ApplicationData{
                     
                     /// `statistics` に最小単位（今回は１日分の歩数）のサンプルデータが返ってくる。
                     /// `statistics.sumQuantity()` でサンプルデータの合計（１日の合計歩数）を取得する。
-                    if let quantity = statistics.sumQuantity() {
-                        
-                        /// サンプルデータは`quantity.doubleValue`で取り出し、単位を指定して取得する。
-                        let date = statistics.startDate
-                        let stepValue = quantity.doubleValue(for: HKUnit.count())
-                        let stepCount = Int(stepValue)
-
-                        
-                        /// 構造体にデータを格納する
-                        let stepImput = StepStruct(
-                            datetime: Self.formatter.string(from: date),
-                            steps: stepCount
-                        )
-                    /// 取得した歩数を配列に格納する。
-                    self.stepStructs!.append(stepImput)
-                        
-                    ///データを表示
-                    print("StepData")
-                        print("\([self.stepStructs!.count-1]):\(self.stepStructs![self.stepStructs!.count-1].datetime)")
-                        print("\([self.stepStructs!.count-1]):\(self.stepStructs![self.stepStructs!.count-1].steps)")
+                if let quantity = statistics.sumQuantity() {
+                    
+                    /// サンプルデータは`quantity.doubleValue`で取り出し、単位を指定して取得する。
+                    let date = statistics.startDate
+                    let distanceValue = quantity.doubleValue(for: HKUnit.meter())
+                    let distanceCount = Int(distanceValue)
+                    
+                    /// 構造体にデータ距離情報を取得
+                    let DistanceImput = DistanceStruct(
+                        datetime: Self.formatter.string(from: date),
+                        distance: distanceCount
+                    )
+                /// 取得した歩数を配列に格納する。
+                    self.distanceStructs!.append(DistanceImput)
                     
                 } else {
-                    // No Data
-                    /// 構造体にデータを格納する
+                    // 記録なしの場合、構造体に0mとしてデータを格納
                     let date = statistics.startDate
-                     let stepImput = StepStruct(
+                    let DistanceImput = DistanceStruct(
                         datetime: Self.formatter.string(from: date),
-                        steps: 0
-                        )
-                    self.stepStructs!.append(stepImput)
-                        print("No StepData")
-                    print("\([self.stepStructs!.count-1]):\(self.stepStructs![self.stepStructs!.count-1].datetime)")
-                    print("\([self.stepStructs!.count-1]):\(self.stepStructs![self.stepStructs!.count-1].steps)")
+                        distance: 0
+                    )
+                    // 取得した歩数を配列に格納する。
+                    self.distanceStructs!.append(DistanceImput)
+
                 }
+                //ログ出力
+                print("距離データ\([self.distanceStructs!.count-1]):\(self.distanceStructs![self.distanceStructs!.count-1].datetime):\(self.distanceStructs![self.distanceStructs!.count-1].distance)m")
             }
         }
         print("execute")
         HKHealthStore().execute(query)
     }
     
-    //  距離情報を習得する関数
-        private func getDistance() {
-            print("getDistance")
-            
-            /// 取得したいサンプルデータの期間の開始日を指定する。（今回は７日前の日付を取得する。）
-            let sevenDaysAgo = Calendar.current.date(byAdding: DateComponents(day: -7), to: Date())!
-            let startDate = Calendar.current.startOfDay(for: sevenDaysAgo)
-
-            /// サンプルデータの検索条件を指定する。（フィルタリング）
-            let predicate = HKQuery.predicateForSamples(withStart: startDate,
-                                                        end: Date(),
-                                                        options: [])
-
-            /// サンプルデータを取得するためのクエリを生成する。
-            let query = HKStatisticsCollectionQuery(quantityType: HKObjectType.quantityType(forIdentifier: .distanceWalkingRunning)!,
-                                                    quantitySamplePredicate: predicate,
-                                                    options: .cumulativeSum,
-                                                    anchorDate: startDate,
-                                                    intervalComponents: DateComponents(day: 1))
-
-            /// クエリ結果を配列に格納 する
-            query.initialResultsHandler = { _, results, _ in
-                
-                /// `results (HKStatisticsCollection?)` からクエリ結果を取り出す。
-                guard let statsCollection = results else {
-                    print("queryError")
-                    return
-                }
-                
-                /// クエリ結果から期間（開始日・終了日）を指定して歩数の統計情報を取り出す。
-                    statsCollection.enumerateStatistics(from: startDate, to: Date()) { [self] statistics, _ in
-                        
-                        /// `statistics` に最小単位（今回は１日分の歩数）のサンプルデータが返ってくる。
-                        /// `statistics.sumQuantity()` でサンプルデータの合計（１日の合計歩数）を取得する。
-                        if let quantity = statistics.sumQuantity() {
-                            
-                            /// サンプルデータは`quantity.doubleValue`で取り出し、単位を指定して取得する。
-                            let date = statistics.startDate
-                            let distanceValue = quantity.doubleValue(for: HKUnit.meter())
-                            let distanceCount = Int(distanceValue)
-                            
-                            /// 構造体にデータを格納する
-                            let DistanceImput = DistanceStruct(
-                                datetime: Self.formatter.string(from: date),
-                                distance: distanceCount
-                            )
-                        /// 取得した歩数を配列に格納する。
-                        self.distanceStructs!.append(DistanceImput)
-                            
-                        ///データを表示
-                        print("No Distance Data")
-                        print("\([self.distanceStructs!.count-1]):\(self.distanceStructs![self.distanceStructs!.count-1].datetime)")
-                        print("\([self.distanceStructs!.count-1]):\(self.distanceStructs![self.distanceStructs!.count-1].distance)")
-                        
-                    } else {
-                        // No Data
-
-                        /// 構造体にデータを格納する
-                        let date = statistics.startDate
-                        let DistanceImput = DistanceStruct(
-                            datetime: Self.formatter.string(from: date),
-                            distance: 0
-                        )
-                    /// 取得した歩数を配列に格納する。
-                    self.distanceStructs!.append(DistanceImput)
-                    }
-                        ///データを表示
-                        print("No Distance Data")
-                        print("\([self.distanceStructs!.count-1]):\(self.distanceStructs![self.distanceStructs!.count-1].datetime)")
-                        print("\([self.distanceStructs!.count-1]):\(self.distanceStructs![self.distanceStructs!.count-1].distance)")
-                }
-            }
-            print("execute")
-            HKHealthStore().execute(query)
-        }
-    
-    
-    //データを送信する
+    //歩数データをサーバに送信するサブプログラム
     private func upsertSteps(data:Data){
         print("upsertSteps")
         
-        
         AWSAPI.upload(message:data, url:"https://xoli50a9r4.execute-api.ap-northeast-1.amazonaws.com/prod/upsert_steps_api",token: ApplicationData.shared.idToken) { [weak self] result in
+            
             switch result{
             case .success(let result):
-                
                 do{
                     print(String(data: result, encoding: .utf8)!)
                     let decoder = JSONDecoder()
                     self!.walkingResult = try decoder.decode(WalkingResult.self, from: result)
                     print(self!.walkingResult)
                 }catch{
+                    print("歩数データの取得に失敗しました。")
                     print(error)
+                    return
                 }
                 
             case .failure(let error):
+                print("サーバとの通信に失敗しました。")
                 print(error)
-                print("upload error")
+                return
             }
         }
     }
     
-    //Home画面のデータを取得する
+    //Home画面に配置するデータを取得する
     func reloadHomeData(closure: @escaping ()->Void) {
         print("reloadHomeData")
         
-        //送信データを取得
+        //サーバに個人を特定するデータを送信
         let homeData = HomeData(
             aadid: ApplicationData.shared.mailId,
-//            teamid: StartView.team!.content.teamId
             teamid:ApplicationData.shared.team!.content.teamId
         )
-        
-
         let encoder = JSONEncoder()
         encoder.outputFormatting = .prettyPrinted
-        
         let encodedData = try? encoder.encode(homeData)
+        
         print("SEND DATA")
         print(String(data: encodedData!, encoding: .utf8)!)
         
-        
+        //AWSAPIにてデータを受信
         AWSAPI.upload(message: encodedData!, url:"https://xoli50a9r4.execute-api.ap-northeast-1.amazonaws.com/prod/select_home_data_api",token: ApplicationData.shared.idToken) { [weak self] result in
+        
+        //故意にエラーを発生させるスクリプト
+//        AWSAPI.upload(message: encodedData!, url:"https://error.xoli50a9r4.execute-api.ap-northeast-1.amazonaws.com/prod/select_home_data_api",token: ApplicationData.shared.idToken) { [weak self] result in
+            
             switch result{
             case .success(let result):
-
                 do{
                     let decoder = JSONDecoder()
-//                    print(String(data: result, encoding: .utf8)!)
                     self?.homeRecord = try decoder.decode(HomeRecord.self, from: result)
-                    print("HOMERECORD")
+                    print("ホーム画面データ")
                     print(self?.homeRecord!)
-                    print("END")
                     closure()
-                    //HomeView().reloadStepLabel()
 
                 }catch{
                     print(error)
-                    print("error1")
+                    print("受信データを展開できませんでした")
+                    closure()
                 }
             case .failure(let error):
                 print(error)
-                print("error2")
+                print("サーバとの通信に失敗しました。")
+                closure()
             }
         }
     }

@@ -1337,8 +1337,8 @@
                                 <viewLayoutGuide key="contentLayoutGuide" id="auO-UX-ITi"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="mDX-S6-1qk"/>
                             </scrollView>
-                            <view alpha="0.59999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sln-u7-qBk" userLabel="Indicator View">
-                                <rect key="frame" x="0.0" y="90" width="375" height="528"/>
+                            <view alpha="0.59999999999999998" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sln-u7-qBk" userLabel="Indicator View">
+                                <rect key="frame" x="0.0" y="94" width="375" height="528"/>
                                 <subviews>
                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="0bN-rf-V3A">
                                         <rect key="frame" x="162.5" y="239" width="50" height="50"/>
@@ -1472,7 +1472,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="mBj-DB-Xcw"/>
         <segue reference="dG7-Et-GN0"/>
-        <segue reference="xg9-WP-vFV"/>
+        <segue reference="5zE-cR-PsG"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Start" width="227" height="435.5"/>
