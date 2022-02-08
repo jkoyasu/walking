@@ -28,7 +28,7 @@ class PersonRankCell: UITableViewCell {
     
     func setCell(index:IndexPath,record:[PersonRanking]){
         
-        var current = record.filter({ $0.rank == index.row+1 })
+        let current = record.filter({ $0.rank == index.row+1 })
         
         if current.count > 0{
             self.rankLabel.text = String(current[0].rank)
