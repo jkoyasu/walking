@@ -28,12 +28,13 @@ class PersonRankCell: UITableViewCell {
     
     func setCell(index:IndexPath,record:[PersonRanking]){
         
-        let current = record.filter({ $0.rank == index.row+1 })
+        var sortedRecord = record
+        sortedRecord.sort { $0.rank < $1.rank }
         
-        if current.count > 0{
-            self.rankLabel.text = String(current[0].rank)
-            self.nameLabel.text = current[0].name
-            self.stepLabel.text = String(current[0].steps)
+        if sortedRecord.count >= index.row{
+            self.rankLabel.text = String(sortedRecord[index.row].rank)
+            self.nameLabel.text = sortedRecord[index.row].name
+            self.stepLabel.text = String(sortedRecord[index.row].steps)
         }
         
         switch index.row{
