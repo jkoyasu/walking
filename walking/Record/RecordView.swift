@@ -68,12 +68,12 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
         self.currentDay = dateFormatter.string(from: Date())
         self.currentWeek = dateFormatter.string(from: Calendar.current.date(byAdding: .day, value: -7, to: calendar.nextWeekend(startingAfter: Date())!.end)!)+","+dateFormatter.string(from: Calendar.current.date(byAdding: .day, value: -1, to: calendar.nextWeekend(startingAfter: Date())!.end)!)
         self.selectedTerm = self.currentDay
-        dateFormatter.dateFormat = "yyyy年M月d日"
+        dateFormatter.dateFormat = "M月d日"
         self.dayPullDownButton.setTitle(dateFormatter.string(from: Date()),for: .normal)
         self.weekPullDownButton.setTitle(dateFormatter.string(from: Calendar.current.date(byAdding: .day, value: -7, to: calendar.nextWeekend(startingAfter: Date())!.end)!)+"〜"+dateFormatter.string(from: Calendar.current.date(byAdding: .day, value: -1, to: calendar.nextWeekend(startingAfter: Date())!.end)!),for: .normal)
         dateFormatter.dateFormat = "M"
         self.currentMonth = dateFormatter.string(from: Date())
-        dateFormatter.dateFormat = "yyyy年M月"
+        dateFormatter.dateFormat = "M月"
         self.monthPullDownButton.setTitle(dateFormatter.string(from: Date()),for: .normal)
     }
     
@@ -412,7 +412,7 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
             let modifiedDate = Calendar.current.date(byAdding: .day, value: -i, to: today)!
             let dateString = dateFormatter.string(from: modifiedDate)
             let action = UIAction(title: dateString, image: nil){ (action) in self.dayPullDownButton.setTitle(dateString,for: .normal)
-                self.dateFormatter.dateFormat = "yyyy-MM-d"
+                self.dateFormatter.dateFormat = "yyyy-MM-dd"
                 self.currentDay = self.dateFormatter.string(from: modifiedDate)
                 self.selectedTerm = self.dateFormatter.string(from: modifiedDate)
                 self.tableView.reloadData()
