@@ -304,6 +304,7 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
         let teamButtonText = NSAttributedString(string: "チーム", attributes: ButtonsAttributes)
         let selectedEventButtonText = NSAttributedString(string: "イベント", attributes: selectedButtonsAttributes)
         let eventButtonText = NSAttributedString(string: "イベント", attributes: ButtonsAttributes)
+        
         //1:個人
         if tabSelect == 1 {
             dataLabelStackHeightConstraint.constant = 47.5
@@ -363,15 +364,18 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
         let selectedMonthButtonText = NSAttributedString(string: "月", attributes: selectedTermButtonsAttributes)
         let monthButtonText = NSAttributedString(string: "月", attributes: ButtonsAttributes)
         
+        let selectedTabColor = UIColor(red: 210.0/255.0, green: 238.0/255.0, blue: 212.0/255.0, alpha: 1.0)
+        let unSelectedTabColor = UIColor(red: 121.0/255.0, green: 202.0/255.0, blue: 124.0/255.0, alpha: 1.0)
+        
         //1:日
         if termSelect == 1 {
             dayPullDownButton.isHidden = false
             weekPullDownButton.isHidden = true
             monthPullDownButton.isHidden = true
             
-            dayButton.setAttributedTitle(selectedDayButtonText, for: .normal)
-            weekButton.setAttributedTitle(weekButtonText, for: .normal)
-            monthButton.setAttributedTitle(monthButtonText, for: .normal)
+            dayButton.backgroundColor = selectedTabColor
+            weekButton.backgroundColor = unSelectedTabColor
+            monthButton.backgroundColor = unSelectedTabColor
             
             self.selectedTerm = self.currentDay
         //2:週
@@ -380,9 +384,9 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
             weekPullDownButton.isHidden = false
             monthPullDownButton.isHidden = true
             
-            dayButton.setAttributedTitle(dayButtonText, for: .normal)
-            weekButton.setAttributedTitle(selectedWeekButtonText, for: .normal)
-            monthButton.setAttributedTitle(monthButtonText, for: .normal)
+            dayButton.backgroundColor = unSelectedTabColor
+            weekButton.backgroundColor = selectedTabColor
+            monthButton.backgroundColor = unSelectedTabColor
             
             self.selectedTerm = self.currentWeek
         //3:月
@@ -391,9 +395,9 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
             weekPullDownButton.isHidden = true
             monthPullDownButton.isHidden = false
             
-            dayButton.setAttributedTitle(dayButtonText, for: .normal)
-            weekButton.setAttributedTitle(weekButtonText, for: .normal)
-            monthButton.setAttributedTitle(selectedMonthButtonText, for: .normal)
+            dayButton.backgroundColor = unSelectedTabColor
+            weekButton.backgroundColor = unSelectedTabColor
+            monthButton.backgroundColor = selectedTabColor
             
             self.selectedTerm = self.currentMonth
         }

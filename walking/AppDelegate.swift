@@ -33,9 +33,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         
-        YMLoginClient.sharedInstance().appClientID = "5KFoSJHaXkuOsDcrqQC1w"
-        YMLoginClient.sharedInstance().appClientSecret = "RWyuyOJAhPHSBAk66WzgQJPGwX8DtufREiIoHHV30g"
-        YMLoginClient.sharedInstance().authRedirectURI = "msauth.com.microsoft.identitysample.msalios://auth"
+        YMLoginClient.sharedInstance().appClientID = "OaAZYIZcjA7CymR4OoMbgg"
+        YMLoginClient.sharedInstance().appClientSecret = "PdI9hQQW3CUGFq9S0riClqzWFxBhXNLxLT7a9XM"
+        YMLoginClient.sharedInstance().authRedirectURI = "msauth.com.walkingeventapp://auth"
         
         return true
     }
