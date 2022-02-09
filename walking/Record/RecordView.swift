@@ -357,13 +357,6 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     
     //タブ表示（日/週/月）を制御
     private func showTerm(_ termSelect: Int){
-        let selectedDayButtonText = NSAttributedString(string: "日", attributes: selectedTermButtonsAttributes)
-        let dayButtonText = NSAttributedString(string: "日", attributes: ButtonsAttributes)
-        let selectedWeekButtonText = NSAttributedString(string: "週", attributes: selectedTermButtonsAttributes)
-        let weekButtonText = NSAttributedString(string: "週", attributes: ButtonsAttributes)
-        let selectedMonthButtonText = NSAttributedString(string: "月", attributes: selectedTermButtonsAttributes)
-        let monthButtonText = NSAttributedString(string: "月", attributes: ButtonsAttributes)
-        
         let selectedTabColor = UIColor(red: 210.0/255.0, green: 238.0/255.0, blue: 212.0/255.0, alpha: 1.0)
         let unSelectedTabColor = UIColor(red: 121.0/255.0, green: 202.0/255.0, blue: 124.0/255.0, alpha: 1.0)
         
@@ -405,7 +398,7 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     //UIbuttonのメニュー表示(iOS14以上でのみ機能）
     func addMenuToButton(){
         /// 変換フォーマット定義
-        dateFormatter.dateFormat = "yyyy年M月d日"
+        dateFormatter.dateFormat = "M月d日"
         
         var today = Date()
 
@@ -451,14 +444,14 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
         weekPullDownButton.showsMenuAsPrimaryAction = true
             
         //月次
-        dateFormatter.dateFormat = "yyyy年M月"
+        dateFormatter.dateFormat = "M月"
             
         var monthlist:[UIAction] = []
             
         for i in 0...2{
             let modifiedDate = Calendar.current.date(byAdding: .month, value: -i, to: today)!
             let monthString = dateFormatter.string(from: modifiedDate)
-            let action = UIAction(title: monthString, image: nil){ (action) in self.dayPullDownButton.setTitle(monthString,for: .normal)
+            let action = UIAction(title: monthString, image: nil){ (action) in self.monthPullDownButton.setTitle(monthString,for: .normal)
                 self.dateFormatter.dateFormat = "M"
                 self.currentMonth = self.dateFormatter.string(from: modifiedDate)
                 self.selectedTerm = self.dateFormatter.string(from: modifiedDate)

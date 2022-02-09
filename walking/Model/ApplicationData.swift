@@ -41,7 +41,7 @@ class ApplicationData{
     //自分のチーム情報
     var team:Team?
     
-    func loadMyRanking(id:String){
+    func loadMyRanking(id:String, completion: @escaping (Bool)->Void){
         let data = ["aadid":id]
         let encoder = JSONEncoder()
         let encoded = try! encoder.encode(data)
@@ -55,6 +55,8 @@ class ApplicationData{
                     let str = try JSONSerialization.jsonObject(with: result, options: JSONSerialization.ReadingOptions.allowFragments) as! [String : Any]
 //                    StartView.team = try decoder.decode(Team.self, from: result)
                     print("myInfo",str)
+                    completion(true)
+                    return
                 }catch{
                     print("myInfo",error)
                 }
@@ -62,31 +64,32 @@ class ApplicationData{
                 print(error)
             }
         }
-        
     }
     
-    func authorizeAWS(id:String){
+    func authorizeAWS(id:String, completion: @escaping (Bool)->Void){
         let data = ["aadid":id]
         let encoder = JSONEncoder()
         let encoded = try! encoder.encode(data)
         
-        AWSAPI.upload(message: encoded, url: "https://xoli50a9r4.execute-api.ap-northeast-1.amazonaws.com/prod/select_team_api", token: ApplicationData.shared.idToken) { [weak self] result in
+        AWSAPI.upload(message: encoded, url: "https://xoli50a9r4.execute-api.ap-northeast-1.amazonaws.com/prod/select_team_api", token: ApplicationData.shared.idToken) { result in
             switch result {
             case .success(let result):
                 
                 do{
                     let decoder = JSONDecoder()
 //                    let str = try JSONSerialization.jsonObject(with: result, options: JSONSerialization.ReadingOptions.allowFragments) as! [String : Any]
-//                    StartView.team = try decoder.decode(Team.self, from: result)
-                    self!.team = try decoder.decode(Team.self, from: result)
-                    print("teamInfo",self?.team)
-
+                    ApplicationData.shared.team = try decoder.decode(Team.self, from: result)
+                    print("teamInfo",ApplicationData.shared.team ?? "" )
+                    completion(true)
+                    return
                 }catch{
                     print("teamInfo",error)
                 }
             case .failure(let error):
                 print(error)
             }
+            completion(false)
+            return
         }
     }
     

@@ -51,18 +51,19 @@ class TitleView: UIViewController {
         HKHealthStore().requestAuthorization(toShare: nil, read: readDataTypes) { success, _ in
             if success {
                 if let currentAccount = self.currentAccount{
-                    self.callGraphAPI()
                     
 //        YammerTokenが空ならログイン画面表示
-                    if YMLoginClient.sharedInstance().storedAuthToken() == nil {
-                        DispatchQueue.main.async {
-                            self.performSegue(withIdentifier: "toStart", sender: nil)
-                        }
-                    }
+//                    if YMLoginClient.sharedInstance().storedAuthToken() == nil {
+//                        DispatchQueue.main.async {
+//                            self.performSegue(withIdentifier: "toStart", sender: nil)
+//                        }
+//                    }
                     
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
-                        self.performSegue(withIdentifier: "toTab", sender: nil)
-                    }
+                    self.callGraphAPI()
+                    
+//                    DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+//                        self.performSegue(withIdentifier: "toTab", sender: nil)
+//                    }
                 }else{
                     DispatchQueue.main.async {
                         self.performSegue(withIdentifier: "toMSAL", sender: nil)
@@ -74,10 +75,9 @@ class TitleView: UIViewController {
     
     func finishCallGraphAPI(result: Bool) {
         //tabのHomeViewにteamが必要ですから、ここに判断を追加
-//        if (result) {
-//            let TabViewController = self.storyboard?.instantiateViewController(withIdentifier: "Tab")
-//            self.performSegue(withIdentifier: "toTab", sender: nil)
-//        }
+        if (result) {
+            self.performSegue(withIdentifier: "toTab", sender: nil)
+        }
     }
     
     func initMSAL() throws {
@@ -220,8 +220,11 @@ class TitleView: UIViewController {
     
     //ログイントークンを暗黙的に取得
     func acquireTokenSilently(_ account : MSALAccount!, completion : @escaping (Bool)->Void) {
-
-        guard let applicationContext = self.applicationContext else { return }
+        
+        guard let applicationContext = self.applicationContext else {
+            completion(false)
+            return
+        }
         
         /**
          
@@ -258,8 +261,8 @@ class TitleView: UIViewController {
                     if (nsError.code == MSALError.interactionRequired.rawValue) {
                         
                         DispatchQueue.main.async {
-                            self.acquireTokenInteractively(){ success in
-                                self.finishCallGraphAPI(result:success)
+                            self.acquireTokenInteractively(){ result in
+                                completion(result)
                             }
                         }
                         return
@@ -267,12 +270,14 @@ class TitleView: UIViewController {
                 }
                 
                 self.updateLogging(text: "Could not acquire token silently: \(error)")
+                completion(false)
                 return
             }
             
             guard let result = result else {
                 
                 self.updateLogging(text: "Could not acquire token: No result returned")
+                completion(false)
                 return
             }
             
@@ -280,7 +285,7 @@ class TitleView: UIViewController {
             ApplicationData.shared.accessToken = result.accessToken
             self.updateLogging(text: "Refreshed Id token is \(ApplicationData.shared.accessToken)")
             self.getmyInfo(){ result in
-                completion(result)
+                completion(true)
                 return
             }
         }
@@ -309,9 +314,12 @@ class TitleView: UIViewController {
             self.updateLogging(text: "Result from Graph: \(result))")
             let MailId = result["userPrincipalName"] as! String
             ApplicationData.shared.mailId = MailId
-            ApplicationData.shared
-                .authorizeAWS(id:ApplicationData.shared.mailId)
-            ApplicationData.shared.loadMyRanking(id: ApplicationData.shared.mailId)
+            ApplicationData.shared.authorizeAWS(id:ApplicationData.shared.mailId) { team in
+                ApplicationData.shared.loadMyRanking(id: ApplicationData.shared.mailId) { result in
+                    completion(result)
+                    return
+                }
+            }
         }.resume()
     }
 }
