@@ -265,10 +265,10 @@ extension ApplicationData{
         print(String(data: encodedData!, encoding: .utf8)!)
         
         //AWSAPIにてデータを受信
-//        AWSAPI.upload(message: encodedData!, url:"https://xoli50a9r4.execute-api.ap-northeast-1.amazonaws.com/prod/select_home_data_api",token: ApplicationData.shared.idToken) { [weak self] result in
+        AWSAPI.upload(message: encodedData!, url:"https://xoli50a9r4.execute-api.ap-northeast-1.amazonaws.com/prod/select_home_data_api",token: ApplicationData.shared.idToken) { [weak self] result in
         
         //故意にエラーを発生させるスクリプト
-        AWSAPI.upload(message: encodedData!, url:"https://error.xoli50a9r4.execute-api.ap-northeast-1.amazonaws.com/prod/select_home_data_api",token: ApplicationData.shared.idToken) { [weak self] result in
+//        AWSAPI.upload(message: encodedData!, url:"https://error.xoli50a9r4.execute-api.ap-northeast-1.amazonaws.com/prod/select_home_data_api",token: ApplicationData.shared.idToken) { [weak self] result in
             
             let result = result
             
