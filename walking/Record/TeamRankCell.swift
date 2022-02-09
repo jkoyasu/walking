@@ -15,6 +15,19 @@ class TeamRankCell: UITableViewCell {
     @IBOutlet weak var stepLabel: UILabel!
     @IBOutlet weak var crown: UIImageView!
     
+    let attrs1 : [NSAttributedString.Key : Any] = [
+        .font : UIFont.boldSystemFont(ofSize: 20.0)
+        ]
+    let attrs2 : [NSAttributedString.Key : Any] = [
+        .font : UIFont.boldSystemFont(ofSize: 25.0)
+        ]
+    let attrs3 : [NSAttributedString.Key : Any] = [
+        .font : UIFont.boldSystemFont(ofSize: 20.0)
+        ]
+    let attrs4 : [NSAttributedString.Key : Any] = [
+        .font : UIFont.boldSystemFont(ofSize: 15.0)
+        ]
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -27,16 +40,28 @@ class TeamRankCell: UITableViewCell {
     }
     
     func setCell(index:IndexPath,record:[TeamRanking]){
+        var sortedRecord = record
+        sortedRecord.sort { $0.rank < $1.rank }
         
-        let current = record.filter({ $0.rank == index.row+1 })
-        
-        if current.count > 0{
-            self.rankLabel.text = String(current[0].rank)
-            self.nameLabel.text = current[0].groupName
-            self.stepLabel.text = String(current[0].avgSteps)
-        }
+        if sortedRecord.count >= index.row{
+            self.rankLabel.text = String(sortedRecord[index.row].rank)
+            
+            var firstWord = sortedRecord[index.row].groupName!
 
-        switch index.row{
+            
+            var attributedText = NSMutableAttributedString(string:firstWord, attributes: attrs1)
+
+            self.nameLabel.attributedText = attributedText
+            
+            firstWord = String(sortedRecord[index.row].avgSteps)
+            var secondWord = "歩"
+            attributedText = NSMutableAttributedString(string:firstWord, attributes: attrs3)
+            attributedText.append(NSAttributedString(string: secondWord, attributes: attrs4))
+            
+            self.stepLabel.attributedText = attributedText
+        }
+        
+        switch sortedRecord[index.row].rank{
         case 1:
             self.crown.image = UIImage(systemName: "crown")
             self.crown.tintColor = UIColor.systemYellow

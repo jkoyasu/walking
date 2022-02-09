@@ -67,8 +67,14 @@ class StartView: UIViewController {
 //                        let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "Login")
 //                        self.performSegue(withIdentifier: "fromStartToLogin", sender: nil)
 //                    }
-        let loginViewController = self.storyboard?.instantiateViewController(withIdentifier: "Tab")
-        self.performSegue(withIdentifier: "fromStartToTab", sender: nil)
+        ApplicationData.shared.authorizeAWS(id:ApplicationData.shared.mailId) { team in
+            ApplicationData.shared.loadMyRanking(id: ApplicationData.shared.mailId) { result in
+                DispatchQueue.main.async {
+                    self.performSegue(withIdentifier: "fromStartToTab", sender: nil)
+                    return
+                }
+            }
+        }
     }
     
     
@@ -289,9 +295,9 @@ class StartView: UIViewController {
             self.updateLogging(text: "Result from Graph: \(result))")
             let MailId = result["userPrincipalName"] as! String
             ApplicationData.shared.mailId = MailId
-            ApplicationData.shared
-                .authorizeAWS(id:ApplicationData.shared.mailId)
-            ApplicationData.shared.loadMyRanking(id: ApplicationData.shared.mailId)
+//            ApplicationData.shared
+//                .authorizeAWS(id:ApplicationData.shared.mailId)
+//            ApplicationData.shared.loadMyRanking(id: ApplicationData.shared.mailId)
             DispatchQueue.main.async {
                 self.forwardButton.isEnabled = true
             }

@@ -19,7 +19,7 @@ class PersonRankCell: UITableViewCell {
         .font : UIFont.boldSystemFont(ofSize: 20.0)
         ]
     let attrs2 : [NSAttributedString.Key : Any] = [
-        .font : UIFont.boldSystemFont(ofSize: 25.0)
+        .font : UIFont.boldSystemFont(ofSize: 20.0)
         ]
     let attrs3 : [NSAttributedString.Key : Any] = [
         .font : UIFont.boldSystemFont(ofSize: 20.0)
@@ -55,7 +55,7 @@ class PersonRankCell: UITableViewCell {
 
             self.nameLabel.attributedText = attributedText
             
-            firstWord = String(sortedRecord[0].steps)
+            firstWord = String(sortedRecord[index.row].steps)
             secondWord = "歩"
             attributedText = NSMutableAttributedString(string:firstWord, attributes: attrs3)
             attributedText.append(NSAttributedString(string: secondWord, attributes: attrs4))
