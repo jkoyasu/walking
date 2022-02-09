@@ -53,13 +53,16 @@ class TitleView: UIViewController {
                 if let currentAccount = self.currentAccount{
                     self.callGraphAPI()
                     
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 7.0) {
+//        YammerTokenが空ならログイン画面表示
+                    if YMLoginClient.sharedInstance().storedAuthToken() == nil {
+                        DispatchQueue.main.async {
+                            self.performSegue(withIdentifier: "toStart", sender: nil)
+                        }
+                    }
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
                         self.performSegue(withIdentifier: "toTab", sender: nil)
                     }
-                        //        YammerTokenが空ならログイン画面表示
-                        //            if YMLoginClient.sharedInstance().storedAuthToken() == nil {
-                        //                self.performSegue(withIdentifier: "toStart", sender: nil)
-        //                            }
                 }else{
                     DispatchQueue.main.async {
                         self.performSegue(withIdentifier: "toMSAL", sender: nil)
@@ -67,6 +70,14 @@ class TitleView: UIViewController {
                 }
             }
         }
+    }
+    
+    func finishCallGraphAPI(result: Bool) {
+        //tabのHomeViewにteamが必要ですから、ここに判断を追加
+//        if (result) {
+//            let TabViewController = self.storyboard?.instantiateViewController(withIdentifier: "Tab")
+//            self.performSegue(withIdentifier: "toTab", sender: nil)
+//        }
     }
     
     func initMSAL() throws {
@@ -156,17 +167,21 @@ class TitleView: UIViewController {
                 
                 // We check to see if we have a current logged in account.
                 // If we don't, then we need to sign someone in.
-                self.acquireTokenInteractively()
+                self.acquireTokenInteractively(){ success in
+                    self.finishCallGraphAPI(result:success)
+                }
                 return
             }
             
-            self.acquireTokenSilently(currentAccount)
+            self.acquireTokenSilently(currentAccount){ success in
+                self.finishCallGraphAPI(result: success)
+            }
         }
     }
     
     //ログイントークンを対話的に取得
-    func acquireTokenInteractively() {
-        
+    func acquireTokenInteractively(completion: @escaping (Bool)->Void) {
+
         guard let applicationContext = self.applicationContext else { return }
         guard let webViewParameters = self.webViewParamaters else { return }
 
@@ -196,13 +211,16 @@ class TitleView: UIViewController {
             ApplicationData.shared.idToken = result.idToken!
             self.updateLogging(text: "Access token is \(ApplicationData.shared.accessToken)")
             self.updateCurrentAccount(account: result.account)
-            self.getmyInfo()
+            self.getmyInfo(){ result in
+                completion(result)
+                return
+            }
         }
     }
     
     //ログイントークンを暗黙的に取得
-    func acquireTokenSilently(_ account : MSALAccount!) {
-        
+    func acquireTokenSilently(_ account : MSALAccount!, completion : @escaping (Bool)->Void) {
+
         guard let applicationContext = self.applicationContext else { return }
         
         /**
@@ -240,7 +258,9 @@ class TitleView: UIViewController {
                     if (nsError.code == MSALError.interactionRequired.rawValue) {
                         
                         DispatchQueue.main.async {
-                            self.acquireTokenInteractively()
+                            self.acquireTokenInteractively(){ success in
+                                self.finishCallGraphAPI(result:success)
+                            }
                         }
                         return
                     }
@@ -259,12 +279,15 @@ class TitleView: UIViewController {
             ApplicationData.shared.idToken = result.idToken!
             ApplicationData.shared.accessToken = result.accessToken
             self.updateLogging(text: "Refreshed Id token is \(ApplicationData.shared.accessToken)")
-            self.getmyInfo()
+            self.getmyInfo(){ result in
+                completion(result)
+                return
+            }
         }
     }
     
     //AAD上の自分の情報取得
-    func getmyInfo(){
+    func getmyInfo(completion:@escaping(Bool)->Void){
         let url = URL(string: "https://graph.microsoft.com/v1.0/me/")
         var request = URLRequest(url: url!)
         

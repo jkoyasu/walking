@@ -15,6 +15,19 @@ class PersonRankCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var stepLabel: UILabel!
     
+    let attrs1 : [NSAttributedString.Key : Any] = [
+        .font : UIFont.boldSystemFont(ofSize: 20.0)
+        ]
+    let attrs2 : [NSAttributedString.Key : Any] = [
+        .font : UIFont.boldSystemFont(ofSize: 25.0)
+        ]
+    let attrs3 : [NSAttributedString.Key : Any] = [
+        .font : UIFont.boldSystemFont(ofSize: 20.0)
+        ]
+    let attrs4 : [NSAttributedString.Key : Any] = [
+        .font : UIFont.boldSystemFont(ofSize: 15.0)
+        ]
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -28,24 +41,38 @@ class PersonRankCell: UITableViewCell {
     
     func setCell(index:IndexPath,record:[PersonRanking]){
         
-        let current = record.filter({ $0.rank == index.row+1 })
+        var sortedRecord = record
+        sortedRecord.sort { $0.rank < $1.rank }
         
-        if current.count > 0{
-            self.rankLabel.text = String(current[0].rank)
-            self.nameLabel.text = current[0].name
-            self.stepLabel.text = String(current[0].steps)
+        if sortedRecord.count >= index.row{
+            self.rankLabel.text = String(sortedRecord[index.row].rank)
+            
+            var firstWord = sortedRecord[index.row].name!
+            var secondWord = "さん"
+            
+            var attributedText = NSMutableAttributedString(string:firstWord, attributes: attrs1)
+            attributedText.append(NSAttributedString(string: secondWord, attributes: attrs2))
+
+            self.nameLabel.attributedText = attributedText
+            
+            firstWord = String(sortedRecord[0].steps)
+            secondWord = "歩"
+            attributedText = NSMutableAttributedString(string:firstWord, attributes: attrs3)
+            attributedText.append(NSAttributedString(string: secondWord, attributes: attrs4))
+            
+            self.stepLabel.attributedText = attributedText
         }
         
-        switch index.row{
-        case 0:
+        switch sortedRecord[index.row].rank{
+        case 1:
             self.crown.image = UIImage(systemName: "crown")
             self.crown.tintColor = UIColor.systemYellow
             
-        case 1:
+        case 2:
             self.crown.image = UIImage(systemName: "crown")
             self.crown.tintColor = UIColor.systemGray
         
-        case 2:
+        case 3:
             self.crown.image = UIImage(systemName: "crown")
             self.crown.tintColor = UIColor.systemBrown
             

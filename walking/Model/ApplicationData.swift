@@ -29,6 +29,10 @@ class ApplicationData{
         }
     }
     
+    var personRecord:PersonRecord?
+    var teamRecord:TeamRecord?
+    var eventRecord:EventRecord?
+    
     //AADのToken
     var accessToken = String()
     var idToken = String()
@@ -87,5 +91,58 @@ class ApplicationData{
         }
     }
     
+    func loadPersonalRanking(closure: @escaping ()->Void){
+        AWSAPI.download(url:"https://xoli50a9r4.execute-api.ap-northeast-1.amazonaws.com/prod/select_personal_ranking_api",token: ApplicationData.shared.idToken) { [weak self] result in
+            switch result {
+            case .success(let result):
+                
+                do{
+                    let decoder = JSONDecoder()
+                    self?.personRecord = try decoder.decode(PersonRecord.self, from: result)
+                    closure()
+                }catch{
+                    print(error)
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    func loadTeamRanking(closure: @escaping ()->Void){
+        AWSAPI.download(url:"https://xoli50a9r4.execute-api.ap-northeast-1.amazonaws.com/prod/select_team_ranking_api",token: ApplicationData.shared.idToken) { [weak self] result in
+            switch result {
+            case .success(let result):
+                
+                do{
+                    let decoder = JSONDecoder()
+                    self!.teamRecord = try decoder.decode(TeamRecord.self, from: result)
+                    closure()
+                }catch{
+                    print(error)
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    func loadEventRanking(closure: @escaping ()->Void){
+        AWSAPI.download(url:"https://xoli50a9r4.execute-api.ap-northeast-1.amazonaws.com/prod/select_event_api",token: ApplicationData.shared.idToken) { [weak self] result in
+            switch result {
+            case .success(let result):
+                
+                do{
+                    let decoder = JSONDecoder()
+                    self!.eventRecord = try decoder.decode(EventRecord.self, from: result)
+                    closure()
+                }catch{
+                    print(error)
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
     
 }

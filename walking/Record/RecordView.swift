@@ -9,23 +9,6 @@ import UIKit
 
 class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, UITabBarDelegate {
     
-    var personRecord:PersonRecord?{
-        didSet{
-            tableView.reloadData()
-            self.indicatorView.isHidden = true
-        }
-    }
-    var teamRecord:TeamRecord?{
-        didSet{
-            tableView.reloadData()
-        }
-    }
-    var eventRecord:EventRecord?{
-        didSet{
-            tableView.reloadData()
-        }
-    }
-    
     @IBOutlet weak var indicatorView: UIView!
     @IBOutlet weak var dayMenu: UIMenu!
     @IBOutlet weak var dayPullDownButton: UIButton!
@@ -85,18 +68,18 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
         self.currentDay = dateFormatter.string(from: Date())
         self.currentWeek = dateFormatter.string(from: Calendar.current.date(byAdding: .day, value: -7, to: calendar.nextWeekend(startingAfter: Date())!.end)!)+","+dateFormatter.string(from: Calendar.current.date(byAdding: .day, value: -1, to: calendar.nextWeekend(startingAfter: Date())!.end)!)
         self.selectedTerm = self.currentDay
-        dateFormatter.dateFormat = "yyyy年M月d日"
+        dateFormatter.dateFormat = "M月d日"
         self.dayPullDownButton.setTitle(dateFormatter.string(from: Date()),for: .normal)
         self.weekPullDownButton.setTitle(dateFormatter.string(from: Calendar.current.date(byAdding: .day, value: -7, to: calendar.nextWeekend(startingAfter: Date())!.end)!)+"〜"+dateFormatter.string(from: Calendar.current.date(byAdding: .day, value: -1, to: calendar.nextWeekend(startingAfter: Date())!.end)!),for: .normal)
         dateFormatter.dateFormat = "M"
         self.currentMonth = dateFormatter.string(from: Date())
-        dateFormatter.dateFormat = "yyyy年M月"
+        dateFormatter.dateFormat = "M月"
         self.monthPullDownButton.setTitle(dateFormatter.string(from: Date()),for: .normal)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tabSelect == 1 {
-            if let content = self.personRecord?.content {
+            if let content = ApplicationData.shared.personRecord?.content {
                 switch termSelect{
                 case 1:
                     let rankingList = content.dailyRankingList.filter({ $0.term == self.selectedTerm! })
@@ -139,7 +122,7 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
                 return 1
             }
         }else if tabSelect == 2 {
-            if let content = self.teamRecord?.content {
+            if let content = ApplicationData.shared.teamRecord?.content {
                 switch termSelect{
                 case 1:
                     let rankingList = content.dailyRankingList.filter({ $0.term == self.selectedTerm! })
@@ -181,7 +164,7 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
                 return 1
             }
         }else{
-            if let content = self.eventRecord?.content{
+            if let content = ApplicationData.shared.eventRecord?.content{
                 return content.eventRanking.count
             }else{
                 return 1
@@ -193,7 +176,7 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
         
         if tabSelect == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "PersonRankCell", for: indexPath ) as! PersonRankCell
-            if let content = self.personRecord?.content {
+            if let content = ApplicationData.shared.personRecord?.content {
                 switch termSelect{
                 case 1:
                     cell.setCell(index: indexPath, record: content.dailyRankingList.filter({ $0.term == self.selectedTerm! })[0].ranking)
@@ -214,7 +197,7 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
             }
         }else if tabSelect == 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "TeamRankCell", for: indexPath ) as! TeamRankCell
-            if let content = self.teamRecord?.content {
+            if let content = ApplicationData.shared.teamRecord?.content {
                 switch termSelect{
                 case 1:
                     cell.setCell(index: indexPath, record: content.dailyRankingList.filter({ $0.term == self.selectedTerm! })[0].ranking)
@@ -235,7 +218,7 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
             }
         }else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "EventRankCell", for: indexPath ) as! EventRankCell
-            if let content = self.eventRecord?.content{
+            if let content = ApplicationData.shared.eventRecord?.content{
                 cell.setCell(index: indexPath, record: content.eventRanking)
                 return cell
             }else{
@@ -321,6 +304,7 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
         let teamButtonText = NSAttributedString(string: "チーム", attributes: ButtonsAttributes)
         let selectedEventButtonText = NSAttributedString(string: "イベント", attributes: selectedButtonsAttributes)
         let eventButtonText = NSAttributedString(string: "イベント", attributes: ButtonsAttributes)
+        
         //1:個人
         if tabSelect == 1 {
             dataLabelStackHeightConstraint.constant = 47.5
@@ -380,15 +364,18 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
         let selectedMonthButtonText = NSAttributedString(string: "月", attributes: selectedTermButtonsAttributes)
         let monthButtonText = NSAttributedString(string: "月", attributes: ButtonsAttributes)
         
+        let selectedTabColor = UIColor(red: 210.0/255.0, green: 238.0/255.0, blue: 212.0/255.0, alpha: 1.0)
+        let unSelectedTabColor = UIColor(red: 121.0/255.0, green: 202.0/255.0, blue: 124.0/255.0, alpha: 1.0)
+        
         //1:日
         if termSelect == 1 {
             dayPullDownButton.isHidden = false
             weekPullDownButton.isHidden = true
             monthPullDownButton.isHidden = true
             
-            dayButton.setAttributedTitle(selectedDayButtonText, for: .normal)
-            weekButton.setAttributedTitle(weekButtonText, for: .normal)
-            monthButton.setAttributedTitle(monthButtonText, for: .normal)
+            dayButton.backgroundColor = selectedTabColor
+            weekButton.backgroundColor = unSelectedTabColor
+            monthButton.backgroundColor = unSelectedTabColor
             
             self.selectedTerm = self.currentDay
         //2:週
@@ -397,9 +384,9 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
             weekPullDownButton.isHidden = false
             monthPullDownButton.isHidden = true
             
-            dayButton.setAttributedTitle(dayButtonText, for: .normal)
-            weekButton.setAttributedTitle(selectedWeekButtonText, for: .normal)
-            monthButton.setAttributedTitle(monthButtonText, for: .normal)
+            dayButton.backgroundColor = unSelectedTabColor
+            weekButton.backgroundColor = selectedTabColor
+            monthButton.backgroundColor = unSelectedTabColor
             
             self.selectedTerm = self.currentWeek
         //3:月
@@ -408,9 +395,9 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
             weekPullDownButton.isHidden = true
             monthPullDownButton.isHidden = false
             
-            dayButton.setAttributedTitle(dayButtonText, for: .normal)
-            weekButton.setAttributedTitle(weekButtonText, for: .normal)
-            monthButton.setAttributedTitle(selectedMonthButtonText, for: .normal)
+            dayButton.backgroundColor = unSelectedTabColor
+            weekButton.backgroundColor = unSelectedTabColor
+            monthButton.backgroundColor = selectedTabColor
             
             self.selectedTerm = self.currentMonth
         }
@@ -429,7 +416,7 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
             let modifiedDate = Calendar.current.date(byAdding: .day, value: -i, to: today)!
             let dateString = dateFormatter.string(from: modifiedDate)
             let action = UIAction(title: dateString, image: nil){ (action) in self.dayPullDownButton.setTitle(dateString,for: .normal)
-                self.dateFormatter.dateFormat = "yyyy-MM-d"
+                self.dateFormatter.dateFormat = "yyyy-MM-dd"
                 self.currentDay = self.dateFormatter.string(from: modifiedDate)
                 self.selectedTerm = self.dateFormatter.string(from: modifiedDate)
                 self.tableView.reloadData()
@@ -486,67 +473,13 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     
     func loadRanking(){
         self.indicatorView.isHidden = false
-        loadPersonalRanking()
-        loadTeamRanking()
-        loadEventRanking()
-    }
-    
-    func loadPersonalRanking(){
-        AWSAPI.download(url:"https://xoli50a9r4.execute-api.ap-northeast-1.amazonaws.com/prod/select_personal_ranking_api",token: ApplicationData.shared.idToken) { [weak self] result in
-            switch result {
-            case .success(let result):
-                
-                do{
-                    let decoder = JSONDecoder()
-                    self!.personRecord = try decoder.decode(PersonRecord.self, from: result as! Data)
-                    print(self?.personRecord)
-                }catch{
-                    print(error)
+        ApplicationData.shared.loadPersonalRanking(){
+            ApplicationData.shared.loadTeamRanking(){
+                ApplicationData.shared.loadEventRanking(){
+                    self.tableView.reloadData()
+                    self.indicatorView.isHidden = true
                 }
-            case .failure(let error):
-                print(error)
             }
         }
     }
-    
-    func loadTeamRanking(){
-        let data:[String] = []
-        let encoder = JSONEncoder()
-        let encoded = try! encoder.encode(data)
-        AWSAPI.download(url:"https://xoli50a9r4.execute-api.ap-northeast-1.amazonaws.com/prod/select_team_ranking_api",token: ApplicationData.shared.idToken) { [weak self] result in
-            switch result {
-            case .success(let result):
-                
-                do{
-                    let str = try JSONSerialization.jsonObject(with: result, options: JSONSerialization.ReadingOptions.allowFragments) as! [String : Any]
-                    let decoder = JSONDecoder()
-                    self!.teamRecord = try decoder.decode(TeamRecord.self, from: result as! Data)
-                    print("teamRecord",self?.teamRecord,str)
-                }catch{
-                    print(error)
-                }
-            case .failure(let error):
-                print(error)
-            }
-        }
-    }
-    
-    func loadEventRanking(){
-        AWSAPI.download(url:"https://xoli50a9r4.execute-api.ap-northeast-1.amazonaws.com/prod/select_event_api",token: ApplicationData.shared.idToken) { [weak self] result in
-            switch result {
-            case .success(let result):
-                
-                do{
-                    let decoder = JSONDecoder()
-                    self!.eventRecord = try decoder.decode(EventRecord.self, from: result as! Data)
-                    print(self?.eventRecord)
-                }catch{
-                    print(error)
-                }
-            case .failure(let error):
-                print(error)
-            }
-        }
-    }
-    
 }
