@@ -29,15 +29,15 @@ class EventRankCell: UITableViewCell {
         self.rankLabel.text = String(index.row+1)
         
         switch index.row{
-        case 0:
+        case 1:
             self.crown.image = UIImage(systemName: "crown")
             self.crown.tintColor = UIColor.systemYellow
             
-        case 1:
+        case 2:
             self.crown.image = UIImage(systemName: "crown")
             self.crown.tintColor = UIColor.systemGray
         
-        case 2:
+        case 3:
             self.crown.image = UIImage(systemName: "crown")
             self.crown.tintColor = UIColor.systemBrown
             

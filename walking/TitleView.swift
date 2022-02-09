@@ -53,13 +53,16 @@ class TitleView: UIViewController {
                 if let currentAccount = self.currentAccount{
                     self.callGraphAPI()
                     
+//        YammerTokenが空ならログイン画面表示
+                    if YMLoginClient.sharedInstance().storedAuthToken() == nil {
+                        DispatchQueue.main.async {
+                            self.performSegue(withIdentifier: "toStart", sender: nil)
+                        }
+                    }
+                    
                     DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
                         self.performSegue(withIdentifier: "toTab", sender: nil)
                     }
-                        //        YammerTokenが空ならログイン画面表示
-                        //            if YMLoginClient.sharedInstance().storedAuthToken() == nil {
-                        //                self.performSegue(withIdentifier: "toStart", sender: nil)
-        //                            }
                 }else{
                     DispatchQueue.main.async {
                         self.performSegue(withIdentifier: "toMSAL", sender: nil)
