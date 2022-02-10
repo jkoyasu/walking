@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cGs-XS-avr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cGs-XS-avr">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="UIMenu" message="Requires Xcode 11 or later." minToolsVersion="11.0" requiredIntegratedClassName="UICommandDiff"/>
@@ -426,7 +426,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vqA-fE-ujm">
                                         <rect key="frame" x="0.0" y="0.0" width="125" height="47.5"/>
                                         <color key="backgroundColor" red="0.0" green="0.5" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <color key="tintColor" systemColor="systemBackgroundColor"/>
+                                        <color key="tintColor" systemColor="labelColor"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="日">
                                             <fontDescription key="titleFontDescription" type="system" pointSize="24"/>
@@ -438,7 +438,7 @@
                                     <button contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rIA-x2-2Gj">
                                         <rect key="frame" x="125" y="0.0" width="125" height="47.5"/>
                                         <color key="backgroundColor" red="0.0" green="0.5" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <color key="tintColor" systemColor="systemBackgroundColor"/>
+                                        <color key="tintColor" systemColor="labelColor"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="週">
                                             <fontDescription key="titleFontDescription" type="system" pointSize="24"/>
@@ -450,7 +450,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f5B-c0-KoY">
                                         <rect key="frame" x="250" y="0.0" width="125" height="47.5"/>
                                         <color key="backgroundColor" red="0.0" green="0.5" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <color key="tintColor" systemColor="systemBackgroundColor"/>
+                                        <color key="tintColor" systemColor="labelColor"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="月">
                                             <fontDescription key="titleFontDescription" type="system" pointSize="24"/>
@@ -588,7 +588,6 @@
                                         <color key="backgroundColor" red="0.85098039219999999" green="0.85098039219999999" blue="0.85098039219999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="60" id="BVh-si-R6m"/>
-                                            <constraint firstAttribute="height" constant="60" id="nR7-Zi-GXL"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="37"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -1020,8 +1019,8 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NvK-Hq-EIx">
                                 <rect key="frame" x="0.0" y="90" width="375" height="528"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="jpX-Xu-SY6" userLabel="BaseStack">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="530"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="jpX-Xu-SY6" userLabel="BaseStack">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="560"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TPQ-pn-Qiv" userLabel="DateStack">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
@@ -1064,7 +1063,7 @@
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="inW-T2-hPp" userLabel="StepStack">
-                                                <rect key="frame" x="0.0" y="50" width="375" height="160"/>
+                                                <rect key="frame" x="0.0" y="60" width="375" height="160"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i1j-Eh-kfW">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
@@ -1174,7 +1173,7 @@
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="iF0-oP-FpP" userLabel="TeamStack">
-                                                <rect key="frame" x="0.0" y="210" width="375" height="140"/>
+                                                <rect key="frame" x="0.0" y="230" width="375" height="140"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="九州出身チーム" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pnq-yL-BZZ">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
@@ -1274,6 +1273,7 @@
                                                         </constraints>
                                                     </stackView>
                                                 </subviews>
+                                                <color key="backgroundColor" red="0.92549019607843142" green="0.92549019607843142" blue="0.92549019607843142" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstItem="Pnq-yL-BZZ" firstAttribute="top" secondItem="iF0-oP-FpP" secondAttribute="top" id="8Rk-vz-l0K"/>
                                                     <constraint firstAttribute="height" constant="140" id="AYK-3j-IRU"/>
@@ -1282,7 +1282,7 @@
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="3cg-wb-wyo" userLabel="EventStack">
-                                                <rect key="frame" x="0.0" y="350" width="375" height="180"/>
+                                                <rect key="frame" x="0.0" y="380" width="375" height="180"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="開催中イベント" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EKT-SC-Qvs">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
@@ -1309,6 +1309,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
+                                                <color key="backgroundColor" red="0.92549019607843142" green="0.92549019607843142" blue="0.92549019607843142" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstItem="EKT-SC-Qvs" firstAttribute="top" secondItem="3cg-wb-wyo" secondAttribute="top" id="1lv-X3-5jR"/>
                                                     <constraint firstItem="AYN-tJ-cNY" firstAttribute="leading" secondItem="3cg-wb-wyo" secondAttribute="leading" id="2bC-XX-ypj"/>
@@ -1337,8 +1338,8 @@
                                 <viewLayoutGuide key="contentLayoutGuide" id="auO-UX-ITi"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="mDX-S6-1qk"/>
                             </scrollView>
-                            <view alpha="0.59999999999999998" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sln-u7-qBk" userLabel="Indicator View">
-                                <rect key="frame" x="0.0" y="94" width="375" height="528"/>
+                            <view alpha="0.59999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sln-u7-qBk" userLabel="Indicator View">
+                                <rect key="frame" x="0.0" y="90" width="375" height="528"/>
                                 <subviews>
                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="0bN-rf-V3A">
                                         <rect key="frame" x="162.5" y="239" width="50" height="50"/>
@@ -1470,9 +1471,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="6bh-T9-PGu"/>
-        <segue reference="LtM-VH-oFY"/>
-        <segue reference="lTd-Hi-K9Q"/>
+        <segue reference="mBj-DB-Xcw"/>
+        <segue reference="dG7-Et-GN0"/>
+        <segue reference="5zE-cR-PsG"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Start" width="227" height="435.5"/>
