@@ -10,6 +10,7 @@ import Foundation
 class ApplicationData{
     
     static var shared = ApplicationData()
+    var errorCode: Error?
     
     var stepStructs: [StepStruct]?
     var distanceStructs: [DistanceStruct]?

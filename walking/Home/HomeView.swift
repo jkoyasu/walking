@@ -86,30 +86,51 @@ class HomeView: UIViewController {
     
     //表記を行う
     func reloadStepLabel(){
-                
-        print("RELOAD STEP LABEL")
-        let dateString = HomeView.formatter2.string(from: Date())
-        dateLabel.text = dateString + "の記録"
-        let string = String(ApplicationData.shared.homeRecord!.content.personalData.steps)
-        stepLabel.text = string
-        stepLabel.addUinit(unit: "歩", size: stepLabel.font.pointSize / 2)
-        personalRankLabel.text = String(ApplicationData.shared.homeRecord!.content.personalData.ranking)
-        personalRankLabel.addUinit(unit: "位", size: personalRankLabel.font.pointSize / 2)
-        //距離データはメートル表記をキロに変換して返す。
-        var personalDistance = ApplicationData.shared.homeRecord!.content.personalData.distance
-        var personalDistanceKilo:Double = Double(personalDistance / 1000 * 1000)
-        var personalDistance2 = round(personalDistanceKilo) / 1000
-        distanceLabel.text = String(personalDistance2)
-        distanceLabel?.addUinit(unit: "km", size: distanceLabel.font.pointSize / 2)
-        //チーム名の変更
-        teamNameLabel.text = String(ApplicationData.shared.team!.content.groupName)
-        teamRankLabel.text = String(ApplicationData.shared.homeRecord!.content.teamData.ranking)
-        teamRankLabel?.addUinit(unit: "位", size: teamRankLabel.font.pointSize / 2)
-        teamStepLabel.text = String(ApplicationData.shared.homeRecord!.content.teamData.avgSteps)
-        teamStepLabel?.addUinit(unit: "歩", size: teamStepLabel.font.pointSize / 2)
-        eventNameLabel.text = ""
-        eventTermLabel.text = ""
-        self.indicatorView.isHidden = true
+//        print (ApplicationData.failure)
+//        switch ApplicationData{
+//        case .success:
+        
+        if let error = ApplicationData.shared.errorCode {
+            print("RELOAD STEP LABEL WITH ERROR")
+            let dateString = HomeView.formatter2.string(from: Date())
+            dateLabel.text = dateString + "の記録"
+//            stepLabel.text = "データの取得に失敗しました code:\(ApplicationData.shared.errorCode!)"
+            stepLabel.text = "データの取得に失敗しました"
+            stepLabel.font = UIFont.systemFont(ofSize: 18)
+            personalRankLabel.text = ""
+            distanceLabel.text = ""
+            teamNameLabel.text = ""
+            teamRankLabel.text = ""
+            teamStepLabel.text = ""
+            eventNameLabel.text = ""
+            eventTermLabel.text = ""
+            self.indicatorView.isHidden = true
+            
+        }else{
+            print("RELOAD STEP LABEL")
+            let dateString = HomeView.formatter2.string(from: Date())
+            dateLabel.text = dateString + "の記録"
+            let string = String(ApplicationData.shared.homeRecord!.content.personalData.steps)
+            stepLabel.text = string
+            stepLabel.addUinit(unit: "歩", size: stepLabel.font.pointSize / 2)
+            personalRankLabel.text = String(ApplicationData.shared.homeRecord!.content.personalData.ranking)
+            personalRankLabel.addUinit(unit: "位", size: personalRankLabel.font.pointSize / 2)
+            //距離データはメートル表記をキロに変換して返す。
+            var personalDistance = ApplicationData.shared.homeRecord!.content.personalData.distance
+            var personalDistanceKilo:Double = Double(personalDistance / 1000 * 1000)
+            var personalDistance2 = round(personalDistanceKilo) / 1000
+            distanceLabel.text = String(personalDistance2)
+            distanceLabel?.addUinit(unit: "km", size: distanceLabel.font.pointSize / 2)
+            //チーム名の変更
+            teamNameLabel.text = String(ApplicationData.shared.team!.content.groupName)
+            teamRankLabel.text = String(ApplicationData.shared.homeRecord!.content.teamData.ranking)
+            teamRankLabel?.addUinit(unit: "位", size: teamRankLabel.font.pointSize / 2)
+            teamStepLabel.text = String(ApplicationData.shared.homeRecord!.content.teamData.avgSteps)
+            teamStepLabel?.addUinit(unit: "歩", size: teamStepLabel.font.pointSize / 2)
+            eventNameLabel.text = ""
+            eventTermLabel.text = ""
+            self.indicatorView.isHidden = true
+        }
     }
 }
 

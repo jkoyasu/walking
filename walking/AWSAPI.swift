@@ -9,6 +9,7 @@ import Foundation
 
 enum AWSAPIError: Error{
     case AWSInvalidRequest
+    case AWSUnauthorized
     case AWSNoBodyContent
     //case invalidBodyContent(reason: String)
 }
@@ -32,6 +33,12 @@ enum AWSAPI{
                     handler(result)
                 }
             }
+
+            if let httpResponse = response as? HTTPURLResponse,
+                  httpResponse.statusCode == 401  {
+                      result = .failure(.AWSUnauthorized)
+                      return
+                  }
             
             guard let httpResponse = response as? HTTPURLResponse,
                   httpResponse.statusCode == 200 else {

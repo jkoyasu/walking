@@ -32,7 +32,8 @@ extension ApplicationData{
                 return
             }
         }
-           
+        
+        sleep(1)
 //      iPhoneからカロリー情報を取得する
 //                let readDataTypes2 = Set([HKObjectType.quantityType(forIdentifier: .activeEnergyBurned)!])
 //                HKHealthStore().requestAuthorization(toShare: nil, read: readDataTypes2) { success, _ in
@@ -73,10 +74,11 @@ extension ApplicationData{
                 //データを送信する
                 upsertSteps(data: data)
             }catch{
+                print("データのJSON化に失敗しました。")
                 print(error)
             }
         }else{
-            print("歩数・距離の取得に失敗しました。")
+            print("iPhoneからのデータ取得に失敗しました。")
             return
         }
         
@@ -230,6 +232,7 @@ extension ApplicationData{
                     print(String(data: result, encoding: .utf8)!)
                     let decoder = JSONDecoder()
                     self!.walkingResult = try decoder.decode(WalkingResult.self, from: result)
+                    print("歩数データを送信しました。")
                     print(self!.walkingResult)
                 }catch{
                     print("歩数データの取得に失敗しました。")
@@ -246,7 +249,7 @@ extension ApplicationData{
     }
     
     //Home画面に配置するデータを取得する
-    func reloadHomeData(closure: @escaping ()->Void) {
+    func reloadHomeData(closure: @escaping ()-> Void){
         print("reloadHomeData")
         
         //サーバに個人を特定するデータを送信
@@ -267,6 +270,8 @@ extension ApplicationData{
         //故意にエラーを発生させるスクリプト
 //        AWSAPI.upload(message: encodedData!, url:"https://error.xoli50a9r4.execute-api.ap-northeast-1.amazonaws.com/prod/select_home_data_api",token: ApplicationData.shared.idToken) { [weak self] result in
             
+            let result = result
+            
             switch result{
             case .success(let result):
                 do{
@@ -282,8 +287,10 @@ extension ApplicationData{
                     closure()
                 }
             case .failure(let error):
-                print(error)
+                print("error:\(error)")
                 print("サーバとの通信に失敗しました。")
+                self!.errorCode = error
+                print(self!.errorCode)
                 closure()
             }
         }
