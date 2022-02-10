@@ -15,6 +15,7 @@ class ApplicationData{
     var stepStructs: [StepStruct]?
     var distanceStructs: [DistanceStruct]?
     var calorieStructs: [CalorieStruct]?
+    var pushedData: Data?
     
     var homeRecord:HomeRecord?{
         didSet{

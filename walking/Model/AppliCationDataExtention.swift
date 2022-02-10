@@ -6,6 +6,8 @@
 
 import Foundation
 import HealthKit
+import UIKit
+import WebKit
 
 extension ApplicationData{
     
@@ -15,16 +17,21 @@ extension ApplicationData{
         //構造体の初期化
         self.stepStructs = []
         self.distanceStructs = []
+        
     
         //iPhoneから歩数情報を取得する
         let readDataTypes = Set(arrayLiteral: HKObjectType.quantityType(forIdentifier: .stepCount)!, HKObjectType.quantityType(forIdentifier: .distanceWalkingRunning)!)
 
         HKHealthStore().requestAuthorization(toShare: nil, read: readDataTypes) { success, _ in
             if success {
-                self.getSteps()
-                self.getDistance()
-                defer{
-                    closure()
+                self.getSteps(){result in
+                    self.getDistance(){result in
+                        self.mergeData(){result in
+                            self.upsertSteps(data:self.pushedData!){result in
+                                closure()
+                            }
+                        }
+                    }
                 }
             }else{
                 print("ヘルスケアの認証に失敗しました。")
@@ -32,8 +39,7 @@ extension ApplicationData{
                 return
             }
         }
-        
-        sleep(1)
+    }
 //      iPhoneからカロリー情報を取得する
 //                let readDataTypes2 = Set([HKObjectType.quantityType(forIdentifier: .activeEnergyBurned)!])
 //                HKHealthStore().requestAuthorization(toShare: nil, read: readDataTypes2) { success, _ in
@@ -41,10 +47,9 @@ extension ApplicationData{
 //                        self.getCalorie()
 //                    }
 //                }
-                
+    private func mergeData(completion: @escaping (Bool)->Void){
         //iPhoneから取得したデータをオブジェクト化
         var walkingDataLists:[WalkingDataList]=[]
-        
         if stepStructs!.count >= 1{
         
             for i in 0...7{
@@ -68,11 +73,12 @@ extension ApplicationData{
             
             do{
                 //構造体→JSONへのエンコード
-                let data = try encoder.encode(walkingData)
+                self.pushedData = try encoder.encode(walkingData)
                 print("JSON DATA")
-                print(String(data: data, encoding: .utf8)!)
+                print(String(data: self.pushedData!, encoding: .utf8)!)
+                completion(true)
                 //データを送信する
-                upsertSteps(data: data)
+                //upsertSteps(data: data)
             }catch{
                 print("データのJSON化に失敗しました。")
                 print(error)
@@ -81,11 +87,10 @@ extension ApplicationData{
             print("iPhoneからのデータ取得に失敗しました。")
             return
         }
-        
     }
-    
+
 //  歩数情報を取得するサブプログラム
-    private func getSteps() {
+    private func getSteps(completion: @escaping (Bool)->Void) {
         print("getSteps")
         
         /// 取得したいサンプルデータの期間の開始日を指定する。（今回は７日前の日付を取得する。）
@@ -133,7 +138,6 @@ extension ApplicationData{
                 /// 取得した歩数を配列に格納する。
                 self.stepStructs!.append(stepImput)
                         
-                    
             } else {
                     //当該日時にデータがない場合、構造体に0歩としてデータを格納する
                         let date = statistics.startDate
@@ -147,13 +151,16 @@ extension ApplicationData{
                     //ログ出力
                         print("歩数データ\([self.stepStructs!.count-1]):\(self.stepStructs![self.stepStructs!.count-1].datetime):\(self.stepStructs![self.stepStructs!.count-1].steps)歩")
             }
+            completion(true)
         }
+        
         print("execute")
         HKHealthStore().execute(query)
+        
     }
     
     //  iPhoneから距離情報を習得するサブプログラム
-    private func getDistance() {
+    private func getDistance(completion: @escaping (Bool)->Void) {
         print("getDistance")
         
         /// 取得したいサンプルデータの期間の開始日を指定する。（今回は７日前の日付を取得する。）
@@ -178,6 +185,7 @@ extension ApplicationData{
             /// `results (HKStatisticsCollection?)` からクエリ結果を取り出す。
             guard let statsCollection = results else {
                 print("queryError")
+                completion(false)
                 return
             }
             
@@ -215,13 +223,15 @@ extension ApplicationData{
                 //ログ出力
                 print("距離データ\([self.distanceStructs!.count-1]):\(self.distanceStructs![self.distanceStructs!.count-1].datetime):\(self.distanceStructs![self.distanceStructs!.count-1].distance)m")
             }
-        }
+            completion(true)
+        }//query
         print("execute")
         HKHealthStore().execute(query)
+        
     }
     
     //歩数データをサーバに送信するサブプログラム
-    private func upsertSteps(data:Data){
+    private func upsertSteps(data:Data,completion: @escaping (Bool)->Void){
         print("upsertSteps")
         
         AWSAPI.upload(message:data, url:"https://xoli50a9r4.execute-api.ap-northeast-1.amazonaws.com/prod/upsert_steps_api",token: ApplicationData.shared.idToken) { [weak self] result in
@@ -234,15 +244,17 @@ extension ApplicationData{
                     self!.walkingResult = try decoder.decode(WalkingResult.self, from: result)
                     print("歩数データを送信しました。")
                     print(self!.walkingResult)
+                    completion(true)
                 }catch{
                     print("歩数データの取得に失敗しました。")
                     print(error)
-                    return
+                    //completion(true)
                 }
                 
             case .failure(let error):
                 print("サーバとの通信に失敗しました。")
                 print(error)
+                //completion(false)
                 return
             }
         }
