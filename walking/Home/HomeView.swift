@@ -52,7 +52,8 @@ class HomeView: UIViewController {
     }
     
     @IBAction func reloadButton(_ sender: Any) {
-//
+        //reloadボタンを押すとトークンを故意に削除（デバッグ用）
+        //ApplicationData.shared.idToken = ""
         self.loadHome()
     }
     
@@ -70,7 +71,6 @@ class HomeView: UIViewController {
     func loadHome(){
         
         indicatorView.isHidden = false
-        
         ApplicationData.shared.pushData(){
             ApplicationData.shared.reloadHomeData(){
                 self.reloadStepLabel()
@@ -78,19 +78,22 @@ class HomeView: UIViewController {
         }
     }
         
-    func pushDataResult(){
-        print("pushDataResult")
-    }
-    
     
     //表記を行う
     func reloadStepLabel(){
-//        print (ApplicationData.failure)
-//        switch ApplicationData{
-//        case .success:
         
         if let error = ApplicationData.shared.errorCode {
+            
+            if ApplicationData.shared.httpErrorCode == 401{
+//                self.presentingViewController?.dismiss(animated: true, completion: nil)
+                ApplicationData.shared.httpErrorCode = 0
+                self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+//                TitleView.acquireTokenSilently(MSALAccount!, completion : @escaping (Bool)->Void) {
+//                    return
+//                }
+           }
             print("RELOAD STEP LABEL WITH ERROR")
+            print(ApplicationData.shared.errorCode)
             let dateString = HomeView.formatter2.string(from: Date())
             dateLabel.text = dateString + "の記録"
 //            stepLabel.text = "データの取得に失敗しました code:\(ApplicationData.shared.errorCode!)"

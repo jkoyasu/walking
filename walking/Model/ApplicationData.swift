@@ -11,7 +11,7 @@ class ApplicationData{
     
     static var shared = ApplicationData()
     var errorCode: Error?
-    
+    var httpErrorCode: Int?
     var stepStructs: [StepStruct]?
     var distanceStructs: [DistanceStruct]?
     var calorieStructs: [CalorieStruct]?

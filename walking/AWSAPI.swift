@@ -25,6 +25,8 @@ enum AWSAPI{
         request.setValue(token, forHTTPHeaderField: "Authorization")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         print(request.allHTTPHeaderFields)
+        
+
 
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             let result: Result<Data, AWSAPIError>
@@ -34,6 +36,7 @@ enum AWSAPI{
                 }
             }
 
+            
             if let httpResponse = response as? HTTPURLResponse,
                   httpResponse.statusCode == 401  {
                       result = .failure(.AWSUnauthorized)
@@ -74,11 +77,16 @@ enum AWSAPI{
                 }
             }
             
-            guard let httpResponse = response as? HTTPURLResponse,
-                  httpResponse.statusCode == 200 else {
-                      result = .failure(.AWSInvalidRequest)
-                      return
-                  }
+            if let httpResponse = response as? HTTPURLResponse,httpResponse.statusCode == 401  {
+                ApplicationData.shared.httpErrorCode = 401
+                result = .failure(.AWSUnauthorized)
+                return
+            }
+            
+            guard let httpResponse = response as? HTTPURLResponse,httpResponse.statusCode == 200 else {
+                result = .failure(.AWSInvalidRequest)
+                return
+            }
             
             guard let data = data else {
                 result = .failure(.AWSNoBodyContent)
