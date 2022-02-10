@@ -72,13 +72,12 @@ class HomeView: UIViewController {
         indicatorView.isHidden = false
         
         ApplicationData.shared.pushData(){
-            self.pushDataResult()
-        }
-        ApplicationData.shared.reloadHomeData(){
-            self.reloadStepLabel()
+            ApplicationData.shared.reloadHomeData(){
+                self.reloadStepLabel()
+            }
         }
     }
-    
+        
     func pushDataResult(){
         print("pushDataResult")
     }
