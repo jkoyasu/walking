@@ -56,12 +56,12 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
         tableView.register(UINib(nibName: "ErrorCell", bundle: nil), forCellReuseIdentifier: "ErrorCell")
         addMenuToButton()
         
-        self.dayPullDownButton.layer.borderColor = UIColor.gray.cgColor
-        self.weekPullDownButton.layer.borderColor = UIColor.gray.cgColor
-        self.monthPullDownButton.layer.borderColor = UIColor.gray.cgColor
-        self.dayPullDownButton.layer.borderWidth = 1
-        self.weekPullDownButton.layer.borderWidth = 2
-        self.monthPullDownButton.layer.borderWidth = 3
+//        self.dayPullDownButton.layer.borderColor = UIColor.gray.cgColor
+//        self.weekPullDownButton.layer.borderColor = UIColor.gray.cgColor
+//        self.monthPullDownButton.layer.borderColor = UIColor.gray.cgColor
+//        self.dayPullDownButton.layer.borderWidth = 1
+//        self.weekPullDownButton.layer.borderWidth = 2
+//        self.monthPullDownButton.layer.borderWidth = 3
         
         //日付データ設定
         dateFormatter.dateFormat = "yyyy-MM-dd"
