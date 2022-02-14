@@ -10,7 +10,7 @@ import HealthKit
 import HealthKitUI
 
 class HomeView: UIViewController {
-    
+   
 //    var homeRecord:HomeRecord?{
 //        didSet{
 //            reloadStepLabel()
@@ -53,13 +53,28 @@ class HomeView: UIViewController {
     
     @IBAction func reloadButton(_ sender: Any) {
         //reloadボタンを押すとトークンを故意に削除（デバッグ用）
-        //ApplicationData.shared.idToken = ""
+        ApplicationData.shared.idToken = ""
         self.loadHome()
+    }
+    
+    func setup(){
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+        scrollView.refreshControl = refreshControl
+    }
+    
+    @objc func handleRefresh(sender: UIRefreshControl) {
+        // ここが引っ張られるたびに呼び出される
+        self.loadHome()
+        sender.endRefreshing()
+
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        setup()
         indicatorView.isHidden = true
         self.loadHome()
     }
@@ -83,52 +98,57 @@ class HomeView: UIViewController {
     func reloadStepLabel(){
         
         if let error = ApplicationData.shared.errorCode {
-            
             if ApplicationData.shared.httpErrorCode == 401{
-//                self.presentingViewController?.dismiss(animated: true, completion: nil)
-                ApplicationData.shared.httpErrorCode = 0
+                ApplicationData.shared.httpErrorCode = nil
+                ApplicationData.shared.errorCode = nil
                 self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
-//                TitleView.acquireTokenSilently(MSALAccount!, completion : @escaping (Bool)->Void) {
-//                    return
-//                }
-           }
-            print("RELOAD STEP LABEL WITH ERROR")
-            print(ApplicationData.shared.errorCode)
-            let dateString = HomeView.formatter2.string(from: Date())
-            dateLabel.text = dateString + "の記録"
-//            stepLabel.text = "データの取得に失敗しました code:\(ApplicationData.shared.errorCode!)"
-            stepLabel.text = "データの取得に失敗しました"
-            stepLabel.font = UIFont.systemFont(ofSize: 18)
-            personalRankLabel.text = ""
-            distanceLabel.text = ""
-            teamNameLabel.text = ""
-            teamRankLabel.text = ""
-            teamStepLabel.text = ""
-            eventNameLabel.text = ""
-            eventTermLabel.text = ""
-            self.indicatorView.isHidden = true
-            
+            }else{
+                print("RELOAD STEP LABEL WITH ERROR")
+                print(ApplicationData.shared.errorCode)
+                let dateString = HomeView.formatter2.string(from: Date())
+                dateLabel.text = dateString + "の記録"
+                stepLabel.text = "データの取得に失敗しました"
+                stepLabel.font = UIFont.systemFont(ofSize: 18)
+                personalRankLabel.text = ""
+                distanceLabel.text = ""
+                teamNameLabel.text = ""
+                teamRankLabel.text = ""
+                teamStepLabel.text = ""
+                eventNameLabel.text = ""
+                eventTermLabel.text = ""
+                self.indicatorView.isHidden = true
+            }
         }else{
             print("RELOAD STEP LABEL")
             let dateString = HomeView.formatter2.string(from: Date())
-            dateLabel.text = dateString + "の記録"
-            let string = String(ApplicationData.shared.homeRecord!.content.personalData.steps)
-            stepLabel.text = string
-            stepLabel.addUinit(unit: "歩", size: stepLabel.font.pointSize / 2)
+            dateLabel.text = dateString
+            //歩数データはカンマ区切りにする
+            let steps = ApplicationData.shared.homeRecord!.content.personalData.steps
+            let stepString = String.localizedStringWithFormat("%d", steps)
+            stepLabel.text = stepString
+            stepLabel.addUnit(unit: "歩", size: stepLabel.font.pointSize / 2)
             personalRankLabel.text = String(ApplicationData.shared.homeRecord!.content.personalData.ranking)
-            personalRankLabel.addUinit(unit: "位", size: personalRankLabel.font.pointSize / 2)
+            //個人ランキングに参加人数を追加
+            let personalEntry = "位/\(ApplicationData.shared.homeRecord!.content.personalData.totalCount)名"
+            personalRankLabel.addUnit(unit: personalEntry, size: personalRankLabel.font.pointSize / 2)
             //距離データはメートル表記をキロに変換して返す。
-            var personalDistance = ApplicationData.shared.homeRecord!.content.personalData.distance
-            var personalDistanceKilo:Double = Double(personalDistance / 1000 * 1000)
-            var personalDistance2 = round(personalDistanceKilo) / 1000
+            let personalDistance = ApplicationData.shared.homeRecord!.content.personalData.distance
+            let personalDistanceKilo:Double = Double(personalDistance / 1000 * 1000)
+            let personalDistance2 = round(personalDistanceKilo) / 1000
             distanceLabel.text = String(personalDistance2)
-            distanceLabel?.addUinit(unit: "km", size: distanceLabel.font.pointSize / 2)
+            distanceLabel?.addUnit(unit: "km", size: distanceLabel.font.pointSize / 2)
             //チーム名の変更
             teamNameLabel.text = String(ApplicationData.shared.team!.content.groupName)
             teamRankLabel.text = String(ApplicationData.shared.homeRecord!.content.teamData.ranking)
-            teamRankLabel?.addUinit(unit: "位", size: teamRankLabel.font.pointSize / 2)
-            teamStepLabel.text = String(ApplicationData.shared.homeRecord!.content.teamData.avgSteps)
-            teamStepLabel?.addUinit(unit: "歩", size: teamStepLabel.font.pointSize / 2)
+            //チームランキングに参加チーム数を追加
+            let teamEntry = "位/\(ApplicationData.shared.homeRecord!.content.teamData.totalCount)チーム"
+            teamRankLabel?.addUnit(unit: teamEntry, size: teamRankLabel.font.pointSize / 2)
+            //チーム平均歩数はカンマ区切りにする
+            let teamSteps = ApplicationData.shared.homeRecord!.content.teamData.avgSteps
+            let teamStepString = String.localizedStringWithFormat("%d", teamSteps)
+            teamStepLabel.text = teamStepString
+            teamStepLabel?.addUnit(unit: "歩", size: teamStepLabel.font.pointSize / 2)
+            //イベントは後日表記
             eventNameLabel.text = ""
             eventTermLabel.text = ""
             self.indicatorView.isHidden = true
@@ -138,7 +158,7 @@ class HomeView: UIViewController {
 
 //ラベルに単位を付記する関数
 extension UILabel {
-    func addUinit(unit: String, size: CGFloat) {
+    func addUnit(unit: String, size: CGFloat) {
         guard let label = self.text else {
             return
         }
@@ -169,7 +189,7 @@ extension HomeView {
         let formatter = DateFormatter()
         formatter.timeZone = TimeZone(identifier: "Asia/Tokyo")
         formatter.locale = Locale(identifier: "ja_JP")
-        formatter.dateStyle = .long
+        formatter.dateFormat = "M月d日の記録"
         return formatter
     }
 }
