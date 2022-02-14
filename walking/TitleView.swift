@@ -56,7 +56,7 @@ class TitleView: UIViewController {
 //                    if YMLoginClient.sharedInstance().storedAuthToken() == nil {
 //                        DispatchQueue.main.async {
 //                            self.performSegue(withIdentifier: "toStart", sender: nil)
-//                        }
+                        }
 //                    }
                     
                     self.callGraphAPI()

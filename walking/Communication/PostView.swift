@@ -13,7 +13,9 @@ class PostView: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        postText.layer.borderColor = UIColor.gray.cgColor
+        postText.layer.borderWidth = 1
+        postText.becomeFirstResponder()
         // Do any additional setup after loading the view.
     }
     
