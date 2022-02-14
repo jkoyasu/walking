@@ -242,9 +242,9 @@ extension ApplicationData{
                 
                 if ApplicationData.shared.httpErrorCode == 401 {
                     print("サーバとの認証に失敗しました。")
-//                self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
-//                TitleView?.popToRootViewController(animated: true)
-//                    return
+
+                    completion(false)
+                    return
                 }
                 print("サーバとの通信に失敗しました。")
                 print(error)
