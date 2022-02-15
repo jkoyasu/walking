@@ -1076,7 +1076,7 @@
                                                             <constraint firstAttribute="height" constant="80" id="ya4-8J-RjS"/>
                                                         </constraints>
                                                         <attributedString key="attributedText">
-                                                            <fragment content="12,345">
+                                                            <fragment content="---">
                                                                 <attributes>
                                                                     <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                                     <font key="NSFont" size="48" name="HiraginoSans-W4"/>
@@ -1112,7 +1112,7 @@
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="123" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GFu-Y3-bJv" userLabel="personalRankLabel">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="---" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="123" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GFu-Y3-bJv" userLabel="personalRankLabel">
                                                                         <rect key="frame" x="0.0" y="20" width="172.5" height="60"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="36"/>
                                                                         <nil key="textColor"/>
@@ -1145,7 +1145,7 @@
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="789" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S6J-mZ-nxk">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="---" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S6J-mZ-nxk">
                                                                         <rect key="frame" x="0.0" y="20" width="172.5" height="60"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="36"/>
                                                                         <nil key="textColor"/>
@@ -1190,7 +1190,7 @@
                                                         <color key="textColor" red="0.0" green="0.50196078431372548" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="九州出身チーム" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pnq-yL-BZZ">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="---" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pnq-yL-BZZ">
                                                         <rect key="frame" x="0.0" y="30" width="375" height="60"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="60" id="Zdq-GW-a9O"/>
@@ -1224,7 +1224,7 @@
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d0G-a1-5PB" userLabel="teamRankLabel">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="---" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d0G-a1-5PB" userLabel="teamRankLabel">
                                                                         <rect key="frame" x="0.0" y="20" width="172.5" height="60"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="36"/>
                                                                         <nil key="textColor"/>
@@ -1260,7 +1260,7 @@
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="789" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yBY-iB-TMj" userLabel="teamStepLabel">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="---" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yBY-iB-TMj" userLabel="teamStepLabel">
                                                                         <rect key="frame" x="0.0" y="20" width="172.5" height="60"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="36"/>
                                                                         <nil key="textColor"/>
@@ -1307,7 +1307,7 @@
                                                         <color key="textColor" red="0.0" green="0.5" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="現在開催中のイベントはありません。" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AYN-tJ-cNY">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="---" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AYN-tJ-cNY">
                                                         <rect key="frame" x="0.0" y="30" width="375" height="60"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="60" id="0P2-Xw-VmP"/>
@@ -1316,7 +1316,7 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2022/06/01~2022/07/31" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4bh-m7-K9f">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="---" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4bh-m7-K9f">
                                                         <rect key="frame" x="0.0" y="90" width="375" height="30"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                         <nil key="textColor"/>
@@ -1343,7 +1343,6 @@
                                     <constraint firstItem="jpX-Xu-SY6" firstAttribute="bottom" secondItem="auO-UX-ITi" secondAttribute="bottom" constant="490" id="Aid-WC-Nyb"/>
                                     <constraint firstItem="jpX-Xu-SY6" firstAttribute="width" secondItem="auO-UX-ITi" secondAttribute="width" id="It4-wG-mhZ"/>
                                     <constraint firstItem="auO-UX-ITi" firstAttribute="trailing" secondItem="jpX-Xu-SY6" secondAttribute="trailing" id="MBw-YN-PjP"/>
-                                    <constraint firstItem="jpX-Xu-SY6" firstAttribute="top" secondItem="mDX-S6-1qk" secondAttribute="top" id="ZW1-rl-mI2"/>
                                     <constraint firstItem="jpX-Xu-SY6" firstAttribute="top" secondItem="auO-UX-ITi" secondAttribute="top" id="cNs-H6-9e4"/>
                                     <constraint firstItem="mDX-S6-1qk" firstAttribute="trailing" secondItem="jpX-Xu-SY6" secondAttribute="trailing" id="e8v-BK-V4D"/>
                                     <constraint firstItem="jpX-Xu-SY6" firstAttribute="leading" secondItem="auO-UX-ITi" secondAttribute="leading" id="utU-j2-1Fn"/>
@@ -1468,8 +1467,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="6bh-T9-PGu"/>
-        <segue reference="IdZ-gO-WnF"/>
+        <segue reference="mBj-DB-Xcw"/>
+        <segue reference="dG7-Et-GN0"/>
         <segue reference="xg9-WP-vFV"/>
     </inferredMetricsTieBreakers>
     <resources>

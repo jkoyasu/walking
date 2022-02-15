@@ -8,6 +8,7 @@ import Foundation
 import HealthKit
 import UIKit
 import WebKit
+import MSAL
 
 extension ApplicationData{
     
