@@ -67,8 +67,8 @@ class HomeView: UIViewController {
         //reloadボタンを押すとトークンを故意に削除（デバッグ用）
          
 //        ApplicationData.shared.makeError()
-        ApplicationData.shared.httpErrorCode = 401
-        ApplicationData.shared.idToken = ""
+//        ApplicationData.shared.httpErrorCode = 401
+//        ApplicationData.shared.idToken = ""
         // ここが引っ張られるたびに呼び出される
         self.loadHome()
         sender.endRefreshing()
