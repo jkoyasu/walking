@@ -46,8 +46,8 @@
 		A260877327AA19480040A227 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = A260877227AA19480040A227 /* Team.swift */; };
 		A260877527AA4DF00040A227 /* ApplicationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A260877427AA4DEF0040A227 /* ApplicationData.swift */; };
 		A260877A27AA57660040A227 /* AppliCationDataExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = A260877927AA57650040A227 /* AppliCationDataExtention.swift */; };
-		A28BEBEC27BC86F0009B1276 /* EventRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28BEBEA27BC86F0009B1276 /* EventRecord.swift */; };
-		A28BEBED27BC86F0009B1276 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28BEBEB27BC86F0009B1276 /* Events.swift */; };
+		A28BEBF027BC8B1A009B1276 /* EventRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28BEBEE27BC8B1A009B1276 /* EventRecord.swift */; };
+		A28BEBF127BC8B1A009B1276 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28BEBEF27BC8B1A009B1276 /* Events.swift */; };
 		A2BD72D2279EB0DD00C7F5DB /* SelectedPostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BD72D0279EB0DD00C7F5DB /* SelectedPostCell.swift */; };
 		A2BD72D3279EB0DD00C7F5DB /* SelectedPostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2BD72D1279EB0DD00C7F5DB /* SelectedPostCell.xib */; };
 		A2C1A3712772FD4C009CAE84 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C1A3702772FD4C009CAE84 /* AppDelegate.swift */; };
@@ -102,8 +102,8 @@
 		A260877227AA19480040A227 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		A260877427AA4DEF0040A227 /* ApplicationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationData.swift; sourceTree = "<group>"; };
 		A260877927AA57650040A227 /* AppliCationDataExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppliCationDataExtention.swift; sourceTree = "<group>"; };
-		A28BEBEA27BC86F0009B1276 /* EventRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventRecord.swift; path = Model/EventRecord.swift; sourceTree = SOURCE_ROOT; };
-		A28BEBEB27BC86F0009B1276 /* Events.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Events.swift; path = Model/Events.swift; sourceTree = SOURCE_ROOT; };
+		A28BEBEE27BC8B1A009B1276 /* EventRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventRecord.swift; path = work/Model/EventRecord.swift; sourceTree = SOURCE_ROOT; };
+		A28BEBEF27BC8B1A009B1276 /* Events.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Events.swift; path = work/Model/Events.swift; sourceTree = SOURCE_ROOT; };
 		A2BC7B8827964A0100035482 /* EventRankCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventRankCell.xib; sourceTree = "<group>"; };
 		A2BD72D0279EB0DD00C7F5DB /* SelectedPostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedPostCell.swift; sourceTree = "<group>"; };
 		A2BD72D1279EB0DD00C7F5DB /* SelectedPostCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectedPostCell.xib; sourceTree = "<group>"; };
@@ -215,8 +215,8 @@
 				A22C048627BC7A2200A70FA8 /* MyRecord.swift */,
 				A22C048427BC7A1600A70FA8 /* TeamRecord.swift */,
 				A22C048C27BC7ADC00A70FA8 /* PersonRecord.swift */,
-				A28BEBEA27BC86F0009B1276 /* EventRecord.swift */,
-				A28BEBEB27BC86F0009B1276 /* Events.swift */,
+				A28BEBEE27BC8B1A009B1276 /* EventRecord.swift */,
+				A28BEBEF27BC8B1A009B1276 /* Events.swift */,
 				A260877427AA4DEF0040A227 /* ApplicationData.swift */,
 				A260877927AA57650040A227 /* AppliCationDataExtention.swift */,
 			);
@@ -400,7 +400,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A28BEBED27BC86F0009B1276 /* Events.swift in Sources */,
+				A28BEBF127BC8B1A009B1276 /* Events.swift in Sources */,
 				A2C1A3752772FD4C009CAE84 /* TabBarController.swift in Sources */,
 				A22C048527BC7A1700A70FA8 /* TeamRecord.swift in Sources */,
 				A2C1A3712772FD4C009CAE84 /* AppDelegate.swift in Sources */,
@@ -409,8 +409,8 @@
 				A260875827A3DADE0040A227 /* ErrorCell.swift in Sources */,
 				915A8BB42791770C00B1DECE /* EventRankCell.swift in Sources */,
 				A21905EE2786ACD700288B76 /* StartView.swift in Sources */,
+				A28BEBF027BC8B1A009B1276 /* EventRecord.swift in Sources */,
 				A21905F92786D0CC00288B76 /* CommunicationView.swift in Sources */,
-				A28BEBEC27BC86F0009B1276 /* EventRecord.swift in Sources */,
 				913ABCDD27A785A200FFF75D /* HomeView.swift in Sources */,
 				A22C048D27BC7ADC00A70FA8 /* PersonRecord.swift in Sources */,
 				A2FEF752279006FF00D8D537 /* ThreadView.swift in Sources */,
