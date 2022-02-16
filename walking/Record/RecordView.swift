@@ -46,7 +46,6 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         indicatorView.isHidden = true
-        setup()
         loadRanking()
         showTab(tabSelect)
         tableView.dataSource = self
@@ -237,16 +236,7 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
         print("first!")
     }
 
-    func setup() {
-        let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
-        tableView.refreshControl = refreshControl
-    }
     
-    @objc func handleRefresh(sender : UIRefreshControl) {
-        self.loadRanking()
-        sender.endRefreshing()
-    }
 
     @IBOutlet weak var personalButton: UIButton!
     @IBOutlet weak var teamButton: UIButton!
@@ -478,10 +468,10 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
         self.indicatorView.isHidden = false
         ApplicationData.shared.loadPersonalRanking(){
             ApplicationData.shared.loadTeamRanking(){
-//                ApplicationData.shared.loadEventRanking(){
+                ApplicationData.shared.loadEventRanking(){
                     self.tableView.reloadData()
                     self.indicatorView.isHidden = true
-//                }
+                }
             }
         }
     }
