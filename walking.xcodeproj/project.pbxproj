@@ -13,7 +13,6 @@
 		913ABCDC27A785A200FFF75D /* StepStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913ABCD727A785A200FFF75D /* StepStruct.swift */; };
 		913ABCDD27A785A200FFF75D /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913ABCD827A785A200FFF75D /* HomeView.swift */; };
 		913ABCDE27A785A200FFF75D /* CalorieStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913ABCD927A785A200FFF75D /* CalorieStruct.swift */; };
-		913E8EBA278FECD500A8853C /* PersonRankCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913E8EB8278FECD500A8853C /* PersonRankCell.swift */; };
 		913E8EBB278FECD500A8853C /* PersonRankCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 913E8EB9278FECD500A8853C /* PersonRankCell.xib */; };
 		915A8BB02791567500B1DECE /* TeamRankCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915A8BAE2791567500B1DECE /* TeamRankCell.swift */; };
 		915A8BB12791567500B1DECE /* TeamRankCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 915A8BAF2791567500B1DECE /* TeamRankCell.xib */; };
@@ -27,6 +26,10 @@
 		A21905FC2786D15500288B76 /* CommunicationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21905FA2786D15500288B76 /* CommunicationCell.swift */; };
 		A21905FD2786D15500288B76 /* CommunicationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A21905FB2786D15500288B76 /* CommunicationCell.xib */; };
 		A22C048327BB65AA00A70FA8 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22C048227BB65AA00A70FA8 /* Events.swift */; };
+		A22C048527BC7A1700A70FA8 /* TeamRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22C048427BC7A1600A70FA8 /* TeamRecord.swift */; };
+		A22C048727BC7A2200A70FA8 /* MyRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22C048627BC7A2200A70FA8 /* MyRecord.swift */; };
+		A22C048D27BC7ADC00A70FA8 /* PersonRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22C048C27BC7ADC00A70FA8 /* PersonRecord.swift */; };
+		A22C048F27BC7B2F00A70FA8 /* PersonRankCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22C048E27BC7B2F00A70FA8 /* PersonRankCell.swift */; };
 		A22EA0FE277ACAB900D7DA92 /* RecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22EA0FD277ACAB900D7DA92 /* RecordView.swift */; };
 		A22EA104277AD0E200D7DA92 /* YammerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22EA103277AD0E200D7DA92 /* YammerAPI.swift */; };
 		A22EA106277AD0FB00D7DA92 /* AWSAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22EA105277AD0FB00D7DA92 /* AWSAPI.swift */; };
@@ -44,12 +47,9 @@
 		A260877327AA19480040A227 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = A260877227AA19480040A227 /* Team.swift */; };
 		A260877527AA4DF00040A227 /* ApplicationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A260877427AA4DEF0040A227 /* ApplicationData.swift */; };
 		A260877A27AA57660040A227 /* AppliCationDataExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = A260877927AA57650040A227 /* AppliCationDataExtention.swift */; };
-		A2651EDE27A0D33E00B35DFC /* PersonRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2651EDD27A0D33E00B35DFC /* PersonRecord.swift */; };
-		A2651EE027A0D5F400B35DFC /* TeamRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2651EDF27A0D5F400B35DFC /* TeamRecord.swift */; };
 		A2651EE227A0D70D00B35DFC /* EventRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2651EE127A0D70D00B35DFC /* EventRecord.swift */; };
 		A2BD72D2279EB0DD00C7F5DB /* SelectedPostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BD72D0279EB0DD00C7F5DB /* SelectedPostCell.swift */; };
 		A2BD72D3279EB0DD00C7F5DB /* SelectedPostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2BD72D1279EB0DD00C7F5DB /* SelectedPostCell.xib */; };
-		A2BD72D6279FE28400C7F5DB /* MyRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BD72D5279FE28300C7F5DB /* MyRecord.swift */; };
 		A2C1A3712772FD4C009CAE84 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C1A3702772FD4C009CAE84 /* AppDelegate.swift */; };
 		A2C1A3732772FD4C009CAE84 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C1A3722772FD4C009CAE84 /* SceneDelegate.swift */; };
 		A2C1A3752772FD4C009CAE84 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C1A3742772FD4C009CAE84 /* TabBarController.swift */; };
@@ -68,7 +68,6 @@
 		913ABCD727A785A200FFF75D /* StepStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepStruct.swift; sourceTree = "<group>"; };
 		913ABCD827A785A200FFF75D /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		913ABCD927A785A200FFF75D /* CalorieStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalorieStruct.swift; sourceTree = "<group>"; };
-		913E8EB8278FECD500A8853C /* PersonRankCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonRankCell.swift; sourceTree = "<group>"; };
 		913E8EB9278FECD500A8853C /* PersonRankCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonRankCell.xib; sourceTree = "<group>"; };
 		915A8BAE2791567500B1DECE /* TeamRankCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamRankCell.swift; sourceTree = "<group>"; };
 		915A8BAF2791567500B1DECE /* TeamRankCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamRankCell.xib; sourceTree = "<group>"; };
@@ -83,6 +82,10 @@
 		A21905FA2786D15500288B76 /* CommunicationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationCell.swift; sourceTree = "<group>"; };
 		A21905FB2786D15500288B76 /* CommunicationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommunicationCell.xib; sourceTree = "<group>"; };
 		A22C048227BB65AA00A70FA8 /* Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
+		A22C048427BC7A1600A70FA8 /* TeamRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TeamRecord.swift; path = walking/Record/TeamRecord.swift; sourceTree = SOURCE_ROOT; };
+		A22C048627BC7A2200A70FA8 /* MyRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyRecord.swift; path = walking/Record/MyRecord.swift; sourceTree = SOURCE_ROOT; };
+		A22C048C27BC7ADC00A70FA8 /* PersonRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PersonRecord.swift; path = walking/Record/PersonRecord.swift; sourceTree = SOURCE_ROOT; };
+		A22C048E27BC7B2F00A70FA8 /* PersonRankCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PersonRankCell.swift; path = ../../../../../.Trash/PersonRankCell.swift; sourceTree = "<group>"; };
 		A22EA0FD277ACAB900D7DA92 /* RecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordView.swift; sourceTree = "<group>"; };
 		A22EA103277AD0E200D7DA92 /* YammerAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YammerAPI.swift; sourceTree = "<group>"; };
 		A22EA105277AD0FB00D7DA92 /* AWSAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWSAPI.swift; sourceTree = "<group>"; };
@@ -100,13 +103,10 @@
 		A260877227AA19480040A227 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		A260877427AA4DEF0040A227 /* ApplicationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationData.swift; sourceTree = "<group>"; };
 		A260877927AA57650040A227 /* AppliCationDataExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppliCationDataExtention.swift; sourceTree = "<group>"; };
-		A2651EDD27A0D33E00B35DFC /* PersonRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonRecord.swift; sourceTree = "<group>"; };
-		A2651EDF27A0D5F400B35DFC /* TeamRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamRecord.swift; sourceTree = "<group>"; };
 		A2651EE127A0D70D00B35DFC /* EventRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRecord.swift; sourceTree = "<group>"; };
 		A2BC7B8827964A0100035482 /* EventRankCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventRankCell.xib; sourceTree = "<group>"; };
 		A2BD72D0279EB0DD00C7F5DB /* SelectedPostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedPostCell.swift; sourceTree = "<group>"; };
 		A2BD72D1279EB0DD00C7F5DB /* SelectedPostCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectedPostCell.xib; sourceTree = "<group>"; };
-		A2BD72D5279FE28300C7F5DB /* MyRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRecord.swift; sourceTree = "<group>"; };
 		A2C1A36D2772FD4C009CAE84 /* walking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = walking.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2C1A3702772FD4C009CAE84 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A2C1A3722772FD4C009CAE84 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -160,7 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				A22EA0FD277ACAB900D7DA92 /* RecordView.swift */,
-				913E8EB8278FECD500A8853C /* PersonRankCell.swift */,
+				A22C048E27BC7B2F00A70FA8 /* PersonRankCell.swift */,
 				A260875627A3DADE0040A227 /* ErrorCell.swift */,
 				915A8BAE2791567500B1DECE /* TeamRankCell.swift */,
 				915A8BB22791770C00B1DECE /* EventRankCell.swift */,
@@ -210,9 +210,9 @@
 		A260877627AA4EB90040A227 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				A2BD72D5279FE28300C7F5DB /* MyRecord.swift */,
-				A2651EDD27A0D33E00B35DFC /* PersonRecord.swift */,
-				A2651EDF27A0D5F400B35DFC /* TeamRecord.swift */,
+				A22C048627BC7A2200A70FA8 /* MyRecord.swift */,
+				A22C048427BC7A1600A70FA8 /* TeamRecord.swift */,
+				A22C048C27BC7ADC00A70FA8 /* PersonRecord.swift */,
 				A2651EE127A0D70D00B35DFC /* EventRecord.swift */,
 				A22C048227BB65AA00A70FA8 /* Events.swift */,
 				A260877427AA4DEF0040A227 /* ApplicationData.swift */,
@@ -401,15 +401,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				A2C1A3752772FD4C009CAE84 /* TabBarController.swift in Sources */,
+				A22C048527BC7A1700A70FA8 /* TeamRecord.swift in Sources */,
 				A2C1A3712772FD4C009CAE84 /* AppDelegate.swift in Sources */,
 				913ABCDC27A785A200FFF75D /* StepStruct.swift in Sources */,
 				A22EA106277AD0FB00D7DA92 /* AWSAPI.swift in Sources */,
 				A260875827A3DADE0040A227 /* ErrorCell.swift in Sources */,
 				915A8BB42791770C00B1DECE /* EventRankCell.swift in Sources */,
-				913E8EBA278FECD500A8853C /* PersonRankCell.swift in Sources */,
 				A21905EE2786ACD700288B76 /* StartView.swift in Sources */,
 				A21905F92786D0CC00288B76 /* CommunicationView.swift in Sources */,
 				913ABCDD27A785A200FFF75D /* HomeView.swift in Sources */,
+				A22C048D27BC7ADC00A70FA8 /* PersonRecord.swift in Sources */,
 				A2FEF752279006FF00D8D537 /* ThreadView.swift in Sources */,
 				A2651EE227A0D70D00B35DFC /* EventRecord.swift in Sources */,
 				A260877527AA4DF00040A227 /* ApplicationData.swift in Sources */,
@@ -417,20 +418,19 @@
 				A260875B27A3FD9E0040A227 /* CalenderExtension.swift in Sources */,
 				A260877A27AA57660040A227 /* AppliCationDataExtention.swift in Sources */,
 				A22C048327BB65AA00A70FA8 /* Events.swift in Sources */,
-				A2651EDE27A0D33E00B35DFC /* PersonRecord.swift in Sources */,
 				A234D27F279E614200BC0FEF /* PostView.swift in Sources */,
 				913ABCDB27A785A200FFF75D /* DistanceStruct.swift in Sources */,
 				913ABCDA27A785A200FFF75D /* HomeData.swift in Sources */,
-				A2651EE027A0D5F400B35DFC /* TeamRecord.swift in Sources */,
 				91B1F71427A23D9A00E87EEF /* WalkingData.swift in Sources */,
 				A244D5F3278EAA81008D30A2 /* MemberCell.swift in Sources */,
 				A2DD8B1527ACF751003E6D81 /* TitleView.swift in Sources */,
-				A2BD72D6279FE28400C7F5DB /* MyRecord.swift in Sources */,
 				A244D5F0278EAA5C008D30A2 /* MemberView.swift in Sources */,
 				A22EA0FE277ACAB900D7DA92 /* RecordView.swift in Sources */,
 				913ABCDE27A785A200FFF75D /* CalorieStruct.swift in Sources */,
+				A22C048F27BC7B2F00A70FA8 /* PersonRankCell.swift in Sources */,
 				A2C1A3732772FD4C009CAE84 /* SceneDelegate.swift in Sources */,
 				A22EA10A277AE81400D7DA92 /* LoginViewController.swift in Sources */,
+				A22C048727BC7A2200A70FA8 /* MyRecord.swift in Sources */,
 				A2BD72D2279EB0DD00C7F5DB /* SelectedPostCell.swift in Sources */,
 				A21905FC2786D15500288B76 /* CommunicationCell.swift in Sources */,
 				915A8BB02791567500B1DECE /* TeamRankCell.swift in Sources */,
