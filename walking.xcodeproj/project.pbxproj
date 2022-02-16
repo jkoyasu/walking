@@ -26,6 +26,7 @@
 		A21905F92786D0CC00288B76 /* CommunicationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21905F82786D0CC00288B76 /* CommunicationView.swift */; };
 		A21905FC2786D15500288B76 /* CommunicationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21905FA2786D15500288B76 /* CommunicationCell.swift */; };
 		A21905FD2786D15500288B76 /* CommunicationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A21905FB2786D15500288B76 /* CommunicationCell.xib */; };
+		A22C048327BB65AA00A70FA8 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22C048227BB65AA00A70FA8 /* Events.swift */; };
 		A22EA0FE277ACAB900D7DA92 /* RecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22EA0FD277ACAB900D7DA92 /* RecordView.swift */; };
 		A22EA104277AD0E200D7DA92 /* YammerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22EA103277AD0E200D7DA92 /* YammerAPI.swift */; };
 		A22EA106277AD0FB00D7DA92 /* AWSAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22EA105277AD0FB00D7DA92 /* AWSAPI.swift */; };
@@ -81,6 +82,7 @@
 		A21905F82786D0CC00288B76 /* CommunicationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationView.swift; sourceTree = "<group>"; };
 		A21905FA2786D15500288B76 /* CommunicationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationCell.swift; sourceTree = "<group>"; };
 		A21905FB2786D15500288B76 /* CommunicationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommunicationCell.xib; sourceTree = "<group>"; };
+		A22C048227BB65AA00A70FA8 /* Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
 		A22EA0FD277ACAB900D7DA92 /* RecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordView.swift; sourceTree = "<group>"; };
 		A22EA103277AD0E200D7DA92 /* YammerAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YammerAPI.swift; sourceTree = "<group>"; };
 		A22EA105277AD0FB00D7DA92 /* AWSAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWSAPI.swift; sourceTree = "<group>"; };
@@ -158,10 +160,6 @@
 			isa = PBXGroup;
 			children = (
 				A22EA0FD277ACAB900D7DA92 /* RecordView.swift */,
-				A2BD72D5279FE28300C7F5DB /* MyRecord.swift */,
-				A2651EDD27A0D33E00B35DFC /* PersonRecord.swift */,
-				A2651EDF27A0D5F400B35DFC /* TeamRecord.swift */,
-				A2651EE127A0D70D00B35DFC /* EventRecord.swift */,
 				913E8EB8278FECD500A8853C /* PersonRankCell.swift */,
 				A260875627A3DADE0040A227 /* ErrorCell.swift */,
 				915A8BAE2791567500B1DECE /* TeamRankCell.swift */,
@@ -212,6 +210,11 @@
 		A260877627AA4EB90040A227 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A2BD72D5279FE28300C7F5DB /* MyRecord.swift */,
+				A2651EDD27A0D33E00B35DFC /* PersonRecord.swift */,
+				A2651EDF27A0D5F400B35DFC /* TeamRecord.swift */,
+				A2651EE127A0D70D00B35DFC /* EventRecord.swift */,
+				A22C048227BB65AA00A70FA8 /* Events.swift */,
 				A260877427AA4DEF0040A227 /* ApplicationData.swift */,
 				A260877927AA57650040A227 /* AppliCationDataExtention.swift */,
 			);
@@ -413,6 +416,7 @@
 				A244D5FD278EB75B008D30A2 /* NotificationView.swift in Sources */,
 				A260875B27A3FD9E0040A227 /* CalenderExtension.swift in Sources */,
 				A260877A27AA57660040A227 /* AppliCationDataExtention.swift in Sources */,
+				A22C048327BB65AA00A70FA8 /* Events.swift in Sources */,
 				A2651EDE27A0D33E00B35DFC /* PersonRecord.swift in Sources */,
 				A234D27F279E614200BC0FEF /* PostView.swift in Sources */,
 				913ABCDB27A785A200FFF75D /* DistanceStruct.swift in Sources */,
@@ -594,7 +598,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.6;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -631,7 +635,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.6;
 				LD_RUNPATH_SEARCH_PATHS = (
