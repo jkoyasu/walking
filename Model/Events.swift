@@ -17,6 +17,7 @@ struct Events:Codable{
     }
 }
 
+
 struct EventsContent:Codable{
     @StringForcible var createDate:String?
     let eventDetail:String

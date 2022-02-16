@@ -210,6 +210,8 @@
 		A260877627AA4EB90040A227 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				91B1F71327A23D9A00E87EEF /* WalkingData.swift */,
+				A260877227AA19480040A227 /* Team.swift */,
 				A22C048627BC7A2200A70FA8 /* MyRecord.swift */,
 				A22C048427BC7A1600A70FA8 /* TeamRecord.swift */,
 				A22C048C27BC7ADC00A70FA8 /* PersonRecord.swift */,
@@ -256,8 +258,6 @@
 				A21905ED2786ACD700288B76 /* StartView.swift */,
 				A2DD8B1427ACF751003E6D81 /* TitleView.swift */,
 				A260877627AA4EB90040A227 /* Model */,
-				A260877227AA19480040A227 /* Team.swift */,
-				91B1F71327A23D9A00E87EEF /* WalkingData.swift */,
 				A22EA109277AE81400D7DA92 /* LoginViewController.swift */,
 				A22EA105277AD0FB00D7DA92 /* AWSAPI.swift */,
 				A2C1A3762772FD4C009CAE84 /* Main.storyboard */,

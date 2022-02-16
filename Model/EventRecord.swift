@@ -20,6 +20,7 @@ struct EventRecord:Codable{
 struct EventContent:Codable{
     let eventRanking:[EventRanking]
 
+    
     enum CodingKeys: String, CodingKey {
         case eventRanking = "event_ranking"
     }

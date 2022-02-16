@@ -9,6 +9,8 @@ import UIKit
 
 class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, UITabBarDelegate {
     
+    
+    
     @IBOutlet weak var indicatorView: UIView!
     @IBOutlet weak var dayMenu: UIMenu!
     @IBOutlet weak var dayPullDownButton: UIButton!
