@@ -6,8 +6,21 @@
 //
 
 import Foundation
+import MSAL
 
 class ApplicationData{
+    
+    //全情報取得
+    let kClientID = "2ce72229-93e5-4624-99e8-5a490cbe40f9"
+    let kGraphEndpoint = "https://graph.microsoft.com/"
+    let kAuthority = "https://login.microsoftonline.com/4c321fca-b3bc-4df6-b1da-a7c90c3dc546/oauth2/v2.0/authorize?"
+    let kRedirectUri =  "msauth.com.walkingEventApp://auth"
+
+    let kScopes: [String] = ["user.read"]
+    var applicationContext : MSALPublicClientApplication?
+    var webViewParamaters : MSALWebviewParameters?
+    var loggingText: String?
+    var currentAccount: MSALAccount?
     
     static var shared = ApplicationData()
     var errorCode: Error?
@@ -16,6 +29,8 @@ class ApplicationData{
     var distanceStructs: [DistanceStruct]?
     var calorieStructs: [CalorieStruct]?
     var pushedData: Data?
+    
+    var currentViewController: UIViewController?
     
     var homeRecord:HomeRecord?{
         didSet{

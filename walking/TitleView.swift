@@ -33,6 +33,8 @@ class TitleView: UIViewController {
     //画面取得後
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        ApplicationData.shared.currentViewController = self
         do {
             try self.initMSAL()
         } catch let error {
@@ -40,6 +42,12 @@ class TitleView: UIViewController {
         }
         self.loadCurrentAccount()
         
+        do {
+            try ApplicationData.shared.initMSAL()
+        } catch let error {
+            ApplicationData.shared.updateLogging(text: "Unable to create Application Context \(error)")
+        }
+        ApplicationData.shared.loadCurrentAccount()
     }
     
     //画面表示後
@@ -56,7 +64,7 @@ class TitleView: UIViewController {
 //                    if YMLoginClient.sharedInstance().storedAuthToken() == nil {
 //                        DispatchQueue.main.async {
 //                            self.performSegue(withIdentifier: "toStart", sender: nil)
-                        }
+//                        }
 //                    }
                     
                     self.callGraphAPI()
