@@ -34,3 +34,4 @@ struct MyRanking: Codable{
     let rank:Int
     let steps:Int
 }
+
