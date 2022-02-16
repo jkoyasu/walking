@@ -28,7 +28,6 @@
 		A22C048527BC7A1700A70FA8 /* TeamRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22C048427BC7A1600A70FA8 /* TeamRecord.swift */; };
 		A22C048727BC7A2200A70FA8 /* MyRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22C048627BC7A2200A70FA8 /* MyRecord.swift */; };
 		A22C048D27BC7ADC00A70FA8 /* PersonRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22C048C27BC7ADC00A70FA8 /* PersonRecord.swift */; };
-		A22C048F27BC7B2F00A70FA8 /* PersonRankCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22C048E27BC7B2F00A70FA8 /* PersonRankCell.swift */; };
 		A22EA0FE277ACAB900D7DA92 /* RecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22EA0FD277ACAB900D7DA92 /* RecordView.swift */; };
 		A22EA104277AD0E200D7DA92 /* YammerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22EA103277AD0E200D7DA92 /* YammerAPI.swift */; };
 		A22EA106277AD0FB00D7DA92 /* AWSAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A22EA105277AD0FB00D7DA92 /* AWSAPI.swift */; };
@@ -46,8 +45,11 @@
 		A260877327AA19480040A227 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = A260877227AA19480040A227 /* Team.swift */; };
 		A260877527AA4DF00040A227 /* ApplicationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A260877427AA4DEF0040A227 /* ApplicationData.swift */; };
 		A260877A27AA57660040A227 /* AppliCationDataExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = A260877927AA57650040A227 /* AppliCationDataExtention.swift */; };
+		A286EA6027BCF28100190253 /* PersonRankCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A286EA5F27BCF28000190253 /* PersonRankCell.swift */; };
 		A28BEBF027BC8B1A009B1276 /* EventRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28BEBEE27BC8B1A009B1276 /* EventRecord.swift */; };
 		A28BEBF127BC8B1A009B1276 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28BEBEF27BC8B1A009B1276 /* Events.swift */; };
+		A28BEBF327BCD6FD009B1276 /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28BEBF227BCD6FD009B1276 /* Member.swift */; };
+		A28BEBF527BCD71C009B1276 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28BEBF427BCD71C009B1276 /* Notification.swift */; };
 		A2BD72D2279EB0DD00C7F5DB /* SelectedPostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BD72D0279EB0DD00C7F5DB /* SelectedPostCell.swift */; };
 		A2BD72D3279EB0DD00C7F5DB /* SelectedPostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A2BD72D1279EB0DD00C7F5DB /* SelectedPostCell.xib */; };
 		A2C1A3712772FD4C009CAE84 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C1A3702772FD4C009CAE84 /* AppDelegate.swift */; };
@@ -84,7 +86,6 @@
 		A22C048427BC7A1600A70FA8 /* TeamRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TeamRecord.swift; path = walking/Record/TeamRecord.swift; sourceTree = SOURCE_ROOT; };
 		A22C048627BC7A2200A70FA8 /* MyRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyRecord.swift; path = walking/Record/MyRecord.swift; sourceTree = SOURCE_ROOT; };
 		A22C048C27BC7ADC00A70FA8 /* PersonRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PersonRecord.swift; path = walking/Record/PersonRecord.swift; sourceTree = SOURCE_ROOT; };
-		A22C048E27BC7B2F00A70FA8 /* PersonRankCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PersonRankCell.swift; path = ../../../../../.Trash/PersonRankCell.swift; sourceTree = "<group>"; };
 		A22EA0FD277ACAB900D7DA92 /* RecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordView.swift; sourceTree = "<group>"; };
 		A22EA103277AD0E200D7DA92 /* YammerAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YammerAPI.swift; sourceTree = "<group>"; };
 		A22EA105277AD0FB00D7DA92 /* AWSAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWSAPI.swift; sourceTree = "<group>"; };
@@ -102,8 +103,11 @@
 		A260877227AA19480040A227 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		A260877427AA4DEF0040A227 /* ApplicationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationData.swift; sourceTree = "<group>"; };
 		A260877927AA57650040A227 /* AppliCationDataExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppliCationDataExtention.swift; sourceTree = "<group>"; };
+		A286EA5F27BCF28000190253 /* PersonRankCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PersonRankCell.swift; path = work/Record/PersonRankCell.swift; sourceTree = SOURCE_ROOT; };
 		A28BEBEE27BC8B1A009B1276 /* EventRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventRecord.swift; path = work/Model/EventRecord.swift; sourceTree = SOURCE_ROOT; };
 		A28BEBEF27BC8B1A009B1276 /* Events.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Events.swift; path = work/Model/Events.swift; sourceTree = SOURCE_ROOT; };
+		A28BEBF227BCD6FD009B1276 /* Member.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
+		A28BEBF427BCD71C009B1276 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		A2BC7B8827964A0100035482 /* EventRankCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventRankCell.xib; sourceTree = "<group>"; };
 		A2BD72D0279EB0DD00C7F5DB /* SelectedPostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedPostCell.swift; sourceTree = "<group>"; };
 		A2BD72D1279EB0DD00C7F5DB /* SelectedPostCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectedPostCell.xib; sourceTree = "<group>"; };
@@ -160,7 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				A22EA0FD277ACAB900D7DA92 /* RecordView.swift */,
-				A22C048E27BC7B2F00A70FA8 /* PersonRankCell.swift */,
+				A286EA5F27BCF28000190253 /* PersonRankCell.swift */,
 				A260875627A3DADE0040A227 /* ErrorCell.swift */,
 				915A8BAE2791567500B1DECE /* TeamRankCell.swift */,
 				915A8BB22791770C00B1DECE /* EventRankCell.swift */,
@@ -211,6 +215,8 @@
 			isa = PBXGroup;
 			children = (
 				91B1F71327A23D9A00E87EEF /* WalkingData.swift */,
+				A28BEBF227BCD6FD009B1276 /* Member.swift */,
+				A28BEBF427BCD71C009B1276 /* Notification.swift */,
 				A260877227AA19480040A227 /* Team.swift */,
 				A22C048627BC7A2200A70FA8 /* MyRecord.swift */,
 				A22C048427BC7A1600A70FA8 /* TeamRecord.swift */,
@@ -419,15 +425,17 @@
 				A260875B27A3FD9E0040A227 /* CalenderExtension.swift in Sources */,
 				A260877A27AA57660040A227 /* AppliCationDataExtention.swift in Sources */,
 				A234D27F279E614200BC0FEF /* PostView.swift in Sources */,
+				A28BEBF327BCD6FD009B1276 /* Member.swift in Sources */,
+				A28BEBF527BCD71C009B1276 /* Notification.swift in Sources */,
 				913ABCDB27A785A200FFF75D /* DistanceStruct.swift in Sources */,
 				913ABCDA27A785A200FFF75D /* HomeData.swift in Sources */,
 				91B1F71427A23D9A00E87EEF /* WalkingData.swift in Sources */,
 				A244D5F3278EAA81008D30A2 /* MemberCell.swift in Sources */,
 				A2DD8B1527ACF751003E6D81 /* TitleView.swift in Sources */,
+				A286EA6027BCF28100190253 /* PersonRankCell.swift in Sources */,
 				A244D5F0278EAA5C008D30A2 /* MemberView.swift in Sources */,
 				A22EA0FE277ACAB900D7DA92 /* RecordView.swift in Sources */,
 				913ABCDE27A785A200FFF75D /* CalorieStruct.swift in Sources */,
-				A22C048F27BC7B2F00A70FA8 /* PersonRankCell.swift in Sources */,
 				A2C1A3732772FD4C009CAE84 /* SceneDelegate.swift in Sources */,
 				A22EA10A277AE81400D7DA92 /* LoginViewController.swift in Sources */,
 				A22C048727BC7A2200A70FA8 /* MyRecord.swift in Sources */,
