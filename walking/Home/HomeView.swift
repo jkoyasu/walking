@@ -64,6 +64,11 @@ class HomeView: UIViewController {
     }
     
     @objc func handleRefresh(sender: UIRefreshControl) {
+        //reloadボタンを押すとトークンを故意に削除（デバッグ用）
+         
+//        ApplicationData.shared.makeError()
+//        ApplicationData.shared.httpErrorCode = 401
+//        ApplicationData.shared.idToken = ""
         // ここが引っ張られるたびに呼び出される
         self.loadHome()
         sender.endRefreshing()
@@ -84,7 +89,7 @@ class HomeView: UIViewController {
     
     //Home画面の表示を行うスクリプト
     func loadHome(){
-        
+        dateLabel.text = "更新中..."
         indicatorView.isHidden = false
         ApplicationData.shared.pushData(){
             ApplicationData.shared.reloadHomeData(){
@@ -92,16 +97,18 @@ class HomeView: UIViewController {
             }
         }
     }
-        
     
     //表記を行う
     func reloadStepLabel(){
-        
         if let error = ApplicationData.shared.errorCode {
             if ApplicationData.shared.httpErrorCode == 401{
                 ApplicationData.shared.httpErrorCode = nil
                 ApplicationData.shared.errorCode = nil
-                self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+               // self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+                ApplicationData.shared.currentViewController = self
+                ApplicationData.shared.acquireTokenSilently(ApplicationData.shared.currentAccount){ success in
+                    self.loadHome()
+                }
             }else{
                 print("RELOAD STEP LABEL WITH ERROR")
                 print(ApplicationData.shared.errorCode)
@@ -122,7 +129,7 @@ class HomeView: UIViewController {
             print("RELOAD STEP LABEL")
             let dateString = HomeView.formatter2.string(from: Date())
             dateLabel.text = dateString
-            //歩数データはカンマ区切りにする
+            //歩数データはカンマ区切りにするs
             let steps = ApplicationData.shared.homeRecord!.content.personalData.steps
             let stepString = String.localizedStringWithFormat("%d", steps)
             stepLabel.text = stepString
@@ -173,6 +180,7 @@ extension UILabel {
         
         self.attributedText = attributedString
     }
+    
 }
 
 //記録日時のフォーマッター
