@@ -234,17 +234,6 @@ extension ApplicationData{
                     completion(true)
                 }
             case .failure(let error):
-                if ApplicationData.shared.httpErrorCode == 401 {
-                    print("upsertSteps:サーバとの認証に失敗しました。")
-                    self!.errorCode = error
-                    completion(false)
-                    return
-                }
-                print("upsertSteps:サーバとの接続に失敗しました。")
-                print(error)
-                self!.errorCode = error
-                completion(false)
-                return
                 
                 if ApplicationData.shared.httpErrorCode == 401 {
                     print("upsertSteps:サーバとの認証に失敗しました。")
