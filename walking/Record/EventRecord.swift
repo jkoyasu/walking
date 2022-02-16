@@ -19,7 +19,7 @@ struct EventRecord:Codable{
 
 struct EventContent:Codable{
     let eventRanking:[EventRanking]
-
+    
     enum CodingKeys: String, CodingKey {
         case eventRanking = "event_ranking"
     }
@@ -32,7 +32,7 @@ struct EventRanking:Codable{
     let groupName:String?
     let avgSteps:Int
     let totalCount:Int
-
+    
     enum CodingKeys: String, CodingKey {
         case term
         case rank
