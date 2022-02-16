@@ -10,7 +10,21 @@ import UIKit
 import WebKit
 import MSAL
 
+enum UpsertError:Error{
+    case UpsertInvalidRequest
+    case UpsertUnauthorized
+    case UpsertNoBodyContent
+    //case invalidBodyContent(reason: String)
+}
+enum ReloadHomeError:Error{
+    case ReloadHomeInvalidRequest
+    case ReloadHomeUnauthorized
+    case ReloadHomeNoBodyContent
+    //case invalidBodyContent(reason: String)
+}
+    
 extension ApplicationData{
+    
     
     //iPhoneからAWSに歩数・距離データを送信する関数
     func pushData(closure: @escaping (Bool)->Void){
@@ -18,7 +32,6 @@ extension ApplicationData{
         //構造体の初期化
         self.stepStructs = []
         self.distanceStructs = []
-        
         //iPhoneから歩数情報を取得する
         let readDataTypes = Set(arrayLiteral: HKObjectType.quantityType(forIdentifier: .stepCount)!, HKObjectType.quantityType(forIdentifier: .distanceWalkingRunning)!)
         HKHealthStore().requestAuthorization(toShare: nil, read: readDataTypes) { success, _ in
@@ -27,23 +40,43 @@ extension ApplicationData{
                     self.getDistance(){result in
                         self.mergeData(){result in
                             self.upsertSteps(data:self.pushedData!){result in
-                                if result == true{
+                                switch result{
+                                case .success:
                                     closure(true)
-                                }else{
-                                    //認証に失敗した場合は、再認証を行う。
-                                    if ApplicationData.shared.httpErrorCode == 401{
+                                case .failure(let error):
+                                    switch error{
+                                    case .UpsertUnauthorized:
                                         print("認証に失敗しました")
                                         ApplicationData.shared.acquireTokenSilently(ApplicationData.shared.currentAccount){ success in
                                             self.pushData(){result in
                                                 closure(true)
                                             }
                                         }
-                                    //それ以外のエラーは、送信失敗を返す。
-                                    }else{
+                                    default:
                                         print("データ送信に失敗しました")
                                         closure(false)
                                     }
                                 }
+                                
+//                                if result == true{
+//                                    closure(true)
+//                                }else{
+//                                    print("データ送信に失敗しました")
+//                                    closure(false)
+////                                    //認証に失敗した場合は、再認証を行う。
+////                                    if ApplicationData.shared.httpErrorCode == 401{
+////                                        print("認証に失敗しました")
+////                                        ApplicationData.shared.acquireTokenSilently(ApplicationData.shared.currentAccount){ success in
+////                                            self.pushData(){result in
+////                                                closure(true)
+////                                            }
+////                                        }
+////                                    //それ以外のエラーは、送信失敗を返す。
+////                                    }else{
+////                                        print("データ送信に失敗しました")
+////                                        closure(false)
+////                                    }
+//                                }
                             }
                         }
                     }
@@ -214,10 +247,12 @@ extension ApplicationData{
         }
     }
     //歩数データをサーバに送信するサブプログラム
-    private func upsertSteps(data:Data,completion: @escaping (Bool)->Void){
+//    private func upsertSteps(data:Data,completion: @escaping (Bool)->Void){
+    private func upsertSteps(data:Data,completion: @escaping (Result<String, UpsertError>)->Void){
         print("upsertSteps")
-    AWSAPI.upload(message:data, url:"https://xoli50a9r4.execute-api.ap-northeast-1.amazonaws.com/prod/upsert_steps_api",token: ApplicationData.shared.idToken) { [weak self] result in
-        //ここであえてエラーを起こす
+    
+        AWSAPI.upload(message:data, url:"https://xoli50a9r4.execute-api.ap-northeast-1.amazonaws.com/prod/upsert_steps_api",token: ApplicationData.shared.idToken) { [weak self] result in
+        //Pushデータであえてエラーを起こす
 //        AWSAPI.upload(message:data, url:"https://error.xoli50a9r4.execute-api.ap-northeast-1.amazonaws.com/prod/upsert_steps_api",token: ApplicationData.shared.idToken) { [weak self] result in
             switch result{
             case .success(let result):
@@ -227,34 +262,36 @@ extension ApplicationData{
                     self!.walkingResult = try decoder.decode(WalkingResult.self, from: result)
                     print("upsertSteps:歩数データを送信しました。")
                     print(self!.walkingResult)
-                    completion(true)
+                    let string = "success"
+                    completion(.success(string))
                 }catch{
                     print("upsertSteps:歩数データの送信に失敗しました。")
-                    self!.errorCode = error
-                    completion(true)
+//                    self!.errorCode = error
+                    completion(.failure(.UpsertInvalidRequest))
                 }
             case .failure(let error):
-                
-                if ApplicationData.shared.httpErrorCode == 401 {
-                    print("upsertSteps:サーバとの認証に失敗しました。")
-                    self!.errorCode = error
-                    completion(false)
-                    return
+                switch error{
+                case .AWSUnauthorized:
+                        print("upsertSteps:サーバとの認証に失敗しました。")
+//                        self!.errorCode = error
+                        completion(.failure(.UpsertUnauthorized))
+                        return
+                default:
+                    print("upsertSteps:サーバとの接続に失敗しました。")
+                        print(error)
+//                        self!.errorCode = error
+                        completion(.failure(.UpsertInvalidRequest))
+                        return
                 }
-                print("upsertSteps:サーバとの接続に失敗しました。")
-                print(error)
-                self!.errorCode = error
-                completion(false)
-                return
             }
         }
     }
     
     //Home画面に配置するデータを取得
-    func reloadHomeData(completion: @escaping (Bool)-> Void){
-//    func reloadHomeData(completion: @escaping (Result<Success, Failure>)-> Void){
+//    func reloadHomeData(completion: @escaping (Bool)-> Void){
+    func reloadHomeData(completion: @escaping (Result<String, ReloadHomeError>)-> Void){
         print("reloadHomeData:開始します。")
-        self.errorCode = nil
+//        self.errorCode = nil
         //サーバに個人を特定するデータを送信する
         let homeData = HomeData(
             aadid: ApplicationData.shared.mailId,
@@ -267,9 +304,9 @@ extension ApplicationData{
         print(String(data: encodedData!, encoding: .utf8)!)
         //AWSAPIにてデータを送信し、結果をうけとる
         AWSAPI.upload(message: encodedData!, url:"https://xoli50a9r4.execute-api.ap-northeast-1.amazonaws.com/prod/select_home_data_api",token: ApplicationData.shared.idToken) { [weak self] result in
-        //故意にエラーを発生させるスクリプト
+        //reloadHomeDataで故意にエラーを発生させる（デバッグ用）
 //        AWSAPI.upload(message: encodedData!, url:"https://error.xoli50a9r4.execute-api.ap-northeast-1.amazonaws.com/prod/select_home_data_api",token: ApplicationData.shared.idToken) { [weak self] result in
-            let result = result
+//            let result = result
             switch result{
             case .success(let result):
                 do{
@@ -277,19 +314,20 @@ extension ApplicationData{
                     self?.homeRecord = try decoder.decode(HomeRecord.self, from: result)
                     print("ホーム画面データ")
                     print(self?.homeRecord!)
-                    completion(true)
+                    let success = "success!"
+                    completion(.success(success))
                 }catch{
                     print(error)
                     print("reloadHomeData:受信データを展開できませんでした")
-                    self!.errorCode = error
-                    completion(false)
+//                    self!.errorCode = error
+                    completion(.failure(.ReloadHomeInvalidRequest))
                 }
             case .failure(let error):
                 print("error:\(error)")
                 print("reloadHomeData:サーバとの通信に失敗しました。")
-                self!.errorCode = error
-                print(self!.errorCode)
-                completion(false)
+//                self!.errorCode = error
+//                print(self!.errorCode)
+                completion(.failure(.ReloadHomeInvalidRequest))
             }
         }
     }
@@ -435,6 +473,7 @@ extension ApplicationData{
             self.updateLogging(text: "Refreshed Id token is \(ApplicationData.shared.accessToken)")
             self.getmyInfo(){ result in
                 completion(true)
+//                completion(false)
                 return
             }
         }

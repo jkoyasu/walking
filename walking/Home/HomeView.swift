@@ -53,7 +53,7 @@ class HomeView: UIViewController {
     
     @IBAction func reloadButton(_ sender: Any) {
         //reloadボタンを押すとトークンを故意に削除（デバッグ用）
-        ApplicationData.shared.idToken = ""
+ //       ApplicationData.shared.idToken = ""
         self.loadHome()
     }
     
@@ -65,7 +65,7 @@ class HomeView: UIViewController {
     
     @objc func handleRefresh(sender: UIRefreshControl) {
         //reloadボタンを押すとトークンを故意に削除（デバッグ用）
-        ApplicationData.shared.idToken = ""
+//        ApplicationData.shared.idToken = ""
         // ここが引っ張られるたびに呼び出される
         self.loadHome()
         sender.endRefreshing()
@@ -92,22 +92,27 @@ class HomeView: UIViewController {
             switch result{
             case true:
                 self.dateLabel.text = "歩数データを送信しました"
-            default:
+            case false:
                 self.dateLabel.text = "歩数データ送信に失敗しました"
             }
             defer{
                 ApplicationData.shared.reloadHomeData(){ result in
-                    self.reloadStepLabel(result: result)
+                    switch result{
+                    case .success:
+                        self.reloadStepLabel(true)
+                    case .failure:
+                        self.reloadStepLabel(false)
+                    }
                 }
             }
         }
     }
     
     //表記を行う
-    func reloadStepLabel(result:Bool){
-//    func reloadStepLabel(){result in
+    func reloadStepLabel(_ result:Bool){
+//    func reloadStepLabel(){ result in
         switch result{
-            case true:
+              case true:
 //            case .success:
                 print("RELOAD STEP LABEL")
                 let dateString = HomeView.formatter2.string(from: Date())
@@ -143,13 +148,13 @@ class HomeView: UIViewController {
                 eventNameLabel.text = ""
                 eventTermLabel.text = ""
                 self.indicatorView.isHidden = true
-            default:
-//            case .failure
+//        default:
+            case false:
                 print("RELOAD STEP LABEL WITH ERROR")
                 print(ApplicationData.shared.errorCode)
                 let dateString = HomeView.formatter2.string(from: Date())
-                dateLabel.text = dateString + "の記録"
-                stepLabel.text = "データの取得に失敗しました"
+                dateLabel.text = dateString
+                stepLabel.text = "通信環境の良い場所で更新してください。"
                 stepLabel.font = UIFont.systemFont(ofSize: 18)
                 personalRankLabel.text = ""
                 distanceLabel.text = ""
