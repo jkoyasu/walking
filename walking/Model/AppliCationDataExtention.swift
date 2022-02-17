@@ -383,7 +383,9 @@ extension ApplicationData{
     func finishCallGraphAPI(result: Bool) {
         //tabのHomeViewにteamが必要ですから、ここに判断を追加
         if (result) {
-            currentViewController!.performSegue(withIdentifier: "toTab", sender: nil)
+            DispatchQueue.main.async {
+                self.currentViewController!.performSegue(withIdentifier: "toTab", sender: nil)
+            }
         }
     }
     

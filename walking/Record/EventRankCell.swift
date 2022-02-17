@@ -47,7 +47,7 @@ class EventRankCell: UITableViewCell {
         if sortedRecord.count >= index.row{
             self.rankLabel.text = String(sortedRecord[index.row].rank)
             
-            var firstWord = sortedRecord[index.row].groupName!
+            var firstWord = sortedRecord[index.row].groupName
 
             
             var attributedText = NSMutableAttributedString(string:firstWord, attributes: attrs1)
