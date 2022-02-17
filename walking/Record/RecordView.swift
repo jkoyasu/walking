@@ -17,6 +17,9 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     @IBOutlet weak var weekPullDownButton: UIButton!
     @IBOutlet weak var monthPullDownButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var eventTitleLabel: UILabel!
+    @IBOutlet weak var eventTermLabel: UILabel!
+    
     let selectedButtonsAttributes: [NSAttributedString.Key : Any] = [
         .foregroundColor : UIColor.black,
         .font : UIFont.systemFont(ofSize: 24.0),
@@ -260,14 +263,6 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     @IBOutlet weak var dataLabelStackHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var eventTitleStackHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var eventLabelStackHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var eventTitleLabel: UILabel!
-    @IBOutlet weak var eventTermLabel: UILabel!
-    @IBOutlet weak var reloadButton1: UIButton!
-    @IBOutlet weak var reloadButton2: UIButton!
-    
-    @IBAction func tappedReloadButton(_ sender: Any) {
-        self.loadRanking()
-    }
     
     @IBAction func tappedPersonalButton(_ sender: Any) {
         tabSelect = 1
@@ -323,8 +318,6 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
             dataButtonStackHeightConstraint.constant = 47.5
             eventTitleStackHeightConstraint.constant = 0
             eventLabelStackHeightConstraint.constant = 0
-            reloadButton1.isHidden = false
-            reloadButton2.isHidden = true
             dayButton.isHidden = false
             weekButton.isHidden = false
             monthButton.isHidden = false
@@ -338,8 +331,6 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
             dataButtonStackHeightConstraint.constant = 47.5
             eventTitleStackHeightConstraint.constant = 0
             eventLabelStackHeightConstraint.constant = 0
-            reloadButton1.isHidden = false
-            reloadButton2.isHidden = true
             dayButton.isHidden = false
             weekButton.isHidden = false
             monthButton.isHidden = false
@@ -359,8 +350,6 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
             dayButton.isHidden = true
             weekButton.isHidden = true
             monthButton.isHidden = true
-            reloadButton1.isHidden = true
-            reloadButton2.isHidden = false
             personalButton.setAttributedTitle(personalButtonText, for: .normal)
             teamButton.setAttributedTitle(teamButtonText, for: .normal)
             eventButton.setAttributedTitle(selectedEventButtonText, for: .normal)
@@ -480,11 +469,24 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
         self.indicatorView.isHidden = false
         ApplicationData.shared.loadPersonalRanking(){
             ApplicationData.shared.loadTeamRanking(){
-//                ApplicationData.shared.loadEventRanking(){
-                    self.tableView.reloadData()
-                    self.indicatorView.isHidden = true
-//                }
+                ApplicationData.shared.loadEvents(){
+                    ApplicationData.shared.loadEventRanking {
+                        self.tableView.reloadData()
+                        self.indicatorView.isHidden = true
+                        self.setEventLabel()
+                    }
+                }
             }
+        }
+    }
+    
+    func setEventLabel(){
+        if let content = ApplicationData.shared.events?.content{
+//            let fromdate = content.validPeriodFrom[content.validPeriodFrom.index(content.validPeriodFrom.startIndex, offsetBy: 6)..<content.validPeriodFrom.index(content.validPeriodFrom.startIndex, offsetBy: 7)] + "月" + content.validPeriodFrom[content.validPeriodFrom.index(content.validPeriodFrom.endIndex, offsetBy: 2)..<content.validPeriodFrom.index(content.validPeriodFrom.endIndex, offsetBy: 1)] + "日"
+//            let todate = content.validPeriodTo[content.validPeriodTo.index(content.validPeriodTo.startIndex, offsetBy: 6)..<content.validPeriodTo.index(content.validPeriodTo.startIndex, offsetBy: 7)] + "月" + content.validPeriodTo[content.validPeriodTo.index(content.validPeriodTo.endIndex, offsetBy: 2)..<content.validPeriodTo.index(content.validPeriodTo.endIndex, offsetBy: 1)] + "日"
+            
+            self.eventTitleLabel.text = content.eventName
+            self.eventTermLabel.text = content.validPeriodFrom[content.validPeriodFrom.index(content.validPeriodFrom.startIndex, offsetBy: 5)..<content.validPeriodFrom.index(content.validPeriodFrom.startIndex, offsetBy: 10)] + "〜" + content.validPeriodTo[content.validPeriodTo.index(content.validPeriodTo.startIndex, offsetBy: 5)..<content.validPeriodTo.index(content.validPeriodTo.startIndex, offsetBy: 10)]
         }
     }
 }

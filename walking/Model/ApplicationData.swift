@@ -48,6 +48,9 @@ class ApplicationData{
     var personRecord:PersonRecord?
     var teamRecord:TeamRecord?
     var eventRecord:EventRecord?
+    var events:Events?
+    var notifications:Notification?
+    var members:Member?
     
     //AADのToken
     var accessToken = String()
@@ -71,7 +74,6 @@ class ApplicationData{
                     let decoder = JSONDecoder()
                     let str = try JSONSerialization.jsonObject(with: result, options: JSONSerialization.ReadingOptions.allowFragments) as! [String : Any]
 //                    StartView.team = try decoder.decode(Team.self, from: result)
-                    print("myInfo",str)
                     completion(true)
                     return
                 }catch{
@@ -146,14 +148,14 @@ class ApplicationData{
         }
     }
     
-    func loadEventRanking(closure: @escaping ()->Void){
+    func loadEvents(closure: @escaping ()->Void){
         AWSAPI.download(url:"https://xoli50a9r4.execute-api.ap-northeast-1.amazonaws.com/prod/select_event_api",token: ApplicationData.shared.idToken) { [weak self] result in
             switch result {
             case .success(let result):
                 
                 do{
                     let decoder = JSONDecoder()
-                    self!.eventRecord = try decoder.decode(EventRecord.self, from: result)
+                    self!.events = try decoder.decode(Events.self, from: result)
                     closure()
                 }catch{
                     print(error)
@@ -164,4 +166,73 @@ class ApplicationData{
         }
     }
     
+    func loadEventRanking(closure: @escaping ()->Void){
+        if let id = self.events?.content?.id{
+            let data = ["eventid":self.events?.content?.id]
+            let encoder = JSONEncoder()
+            let encoded = try! encoder.encode(data)
+            
+            AWSAPI.upload(message: encoded, url: "https://xoli50a9r4.execute-api.ap-northeast-1.amazonaws.com/prod/select_event_ranking_api", token: ApplicationData.shared.idToken) { result in
+                switch result {
+                case .success(let result):
+                    
+                    do{
+                        let decoder = JSONDecoder()
+                        self.eventRecord = try decoder.decode(EventRecord.self, from: result)
+                        closure()
+                    }catch{
+                        print(error)
+                    }
+                case .failure(let error):
+                    print(error)
+                }
+                closure()
+                return
+            }
+        }
+    }
+    
+    func loadNotification(closure: @escaping ()->Void){
+        AWSAPI.download(url:"https://xoli50a9r4.execute-api.ap-northeast-1.amazonaws.com/prod/select_notification_api",token: ApplicationData.shared.idToken) { [weak self] result in
+            switch result {
+            case .success(let result):
+                
+                do{
+                    let decoder = JSONDecoder()
+                    self?.notifications = try decoder.decode(Notification.self, from: result)
+                    closure()
+                }catch{
+                    print(error)
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    func loadMember(closure: @escaping ()->Void){
+        if let id = self.team?.content.teamId{
+            let data = ["teamid":self.team?.content.teamId]
+            let encoder = JSONEncoder()
+            let encoded = try! encoder.encode(data)
+            
+            AWSAPI.upload(message: encoded, url: "https://xoli50a9r4.execute-api.ap-northeast-1.amazonaws.com/prod/select_team_member_api", token: ApplicationData.shared.idToken) { result in
+                switch result {
+                case .success(let result):
+                    
+                    do{
+                        let decoder = JSONDecoder()
+                        self.members = try decoder.decode(Member.self, from: result)
+                        closure()
+                    }catch{
+                        print(error)
+                    }
+                case .failure(let error):
+                    print(error)
+                }
+                closure()
+                return
+            }
+        }
+    }
 }

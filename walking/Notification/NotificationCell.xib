@@ -46,6 +46,10 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <color key="backgroundColor" systemColor="systemGray5Color"/>
+            <connections>
+                <outlet property="dateLabel" destination="kJh-4C-xEN" id="IUX-a3-ZjZ"/>
+                <outlet property="messageLabel" destination="DB9-Z4-nYV" id="LqW-Rj-45P"/>
+            </connections>
             <point key="canvasLocation" x="36.956521739130437" y="26.450892857142858"/>
         </tableViewCell>
     </objects>
