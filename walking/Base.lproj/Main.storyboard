@@ -1352,6 +1352,7 @@
                         <outlet property="indicatorView" destination="Sln-u7-qBk" id="Oir-0U-V0M"/>
                         <outlet property="infoButton" destination="fRz-hQ-oVw" id="yfW-Ft-fYS"/>
                         <outlet property="personalRankLabel" destination="GFu-Y3-bJv" id="BVx-M7-ztR"/>
+                        <outlet property="profileButton" destination="mlr-XC-qz3" id="Igh-Kz-yXj"/>
                         <outlet property="scrollView" destination="NvK-Hq-EIx" id="SuE-eT-mHX"/>
                         <outlet property="stepLabel" destination="i1j-Eh-kfW" id="3jG-DX-PBw"/>
                         <outlet property="teamNameLabel" destination="Pnq-yL-BZZ" id="bbP-jh-ebK"/>
@@ -1441,9 +1442,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="mBj-DB-Xcw"/>
-        <segue reference="dG7-Et-GN0"/>
-        <segue reference="6dd-VC-eXU"/>
+        <segue reference="6bh-T9-PGu"/>
+        <segue reference="LtM-VH-oFY"/>
+        <segue reference="xg9-WP-vFV"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Start" width="227" height="435.5"/>
