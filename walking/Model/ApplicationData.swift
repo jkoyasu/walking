@@ -57,7 +57,7 @@ class ApplicationData{
     var idToken = String()
     //AAD上のMailId、兼、AWS上のMailId
     var mailId = String()
-    
+    var displayName = String()
     //自分のチーム情報
     var team:Team?
     

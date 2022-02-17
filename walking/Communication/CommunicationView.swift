@@ -13,6 +13,8 @@ class CommunicationView: UIViewController, UITableViewDataSource, UITableViewDel
     @IBOutlet weak var indicatorView: UIView!
     @IBOutlet weak var allPostButton: UIButton!
     @IBOutlet weak var teamPostButton: UIButton!
+    @IBOutlet weak var profileButton: UIButton!
+    
     let selectedButtonsAttributes: [NSAttributedString.Key : Any] = [
         .foregroundColor : UIColor.black,
         .font : UIFont.systemFont(ofSize: 24.0),
@@ -54,6 +56,7 @@ class CommunicationView: UIViewController, UITableViewDataSource, UITableViewDel
     override func viewDidLoad() {
         super.viewDidLoad()
         indicatorView.isHidden = false
+        profileButton.setTitle(String(ApplicationData.shared.displayName.prefix(1)), for: .normal)
         self.loadMessage()
         TableView.dataSource = self
         TableView.delegate = self
