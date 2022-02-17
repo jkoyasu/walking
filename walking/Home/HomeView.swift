@@ -36,6 +36,7 @@ class HomeView: UIViewController {
     @IBOutlet weak var eventNameLabel: UILabel!
     @IBOutlet weak var eventTermLabel: UILabel!
     
+    @IBOutlet weak var profileButton: UIButton!
     @IBOutlet weak var infoButton: UIButton!
     
     
@@ -44,6 +45,8 @@ class HomeView: UIViewController {
     var calorieStructs: [CalorieStruct] = []
     //var homeData:HomeData!
     var startView = StartView()
+    
+
     
     
     override func viewDidLayoutSubviews() {
@@ -76,6 +79,7 @@ class HomeView: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+ //       profileButton.setTitle(String(ApplicationData.shared.displayName.prefix(1)), for: .normal)
         setup()
         indicatorView.isHidden = true
         self.loadHome()
@@ -95,20 +99,47 @@ class HomeView: UIViewController {
             case false:
                 self.dateLabel.text = "歩数データ送信に失敗しました"
             }
-            defer{
-                ApplicationData.shared.reloadHomeData(){ result in
-                    switch result{
-                    case .success:
+            ApplicationData.shared.reloadHomeData(){ result in
+                switch result{
+                case .success:
                         self.reloadStepLabel(true)
-                    case .failure:
+                case .failure:
                         self.reloadStepLabel(false)
-                    }
+                }
+                ApplicationData.shared.loadEvents(){
+                    self.reloadEventLabel(true)
                 }
             }
         }
     }
     
     //表記を行う
+    func reloadEventLabel(_ result:Bool){
+        switch result{
+            case true:
+                if let content = ApplicationData.shared.events?.content{
+                    eventNameLabel.text = ApplicationData.shared.events!.content?.eventName
+                    eventNameLabel.font = UIFont.boldSystemFont(ofSize: 32.0)
+                    let eventTermFrom = ApplicationData.shared.events!.content!.validPeriodFrom
+                    let eventTermTo = ApplicationData.shared.events!.content!.validPeriodTo
+                    eventTermLabel.text = "\(eventTermFrom)~\(eventTermTo)"
+                    eventTermLabel.font = UIFont.systemFont(ofSize: 18.0)
+                }else{
+                    eventNameLabel.text = "現在開催中のイベントはありません"
+                    eventNameLabel.font = UIFont.systemFont(ofSize: 18.0)
+                    eventTermLabel.text = ""
+                    eventTermLabel.font = UIFont.systemFont(ofSize: 18.0)
+                }
+        case false:
+            eventNameLabel.text = "イベント情報の取得に失敗しました。"
+            eventNameLabel.font = UIFont.systemFont(ofSize: 18.0)
+            eventTermLabel.text = ""
+            eventTermLabel.font = UIFont.systemFont(ofSize: 18.0)
+            
+        }
+    }
+    
+    
     func reloadStepLabel(_ result:Bool){
 //    func reloadStepLabel(){ result in
         switch result{
@@ -145,9 +176,14 @@ class HomeView: UIViewController {
                 teamStepLabel.text = teamStepString
                 teamStepLabel?.addUnit(unit: "歩", size: teamStepLabel.font.pointSize / 2)
                 //イベントは後日表記
-                eventNameLabel.text = ""
-                eventTermLabel.text = ""
+//                eventNameLabel.text = ApplicationData.shared.events!.content?.eventName
+//                eventNameLabel.font = UIFont.boldSystemFont(ofSize: 32.0)
+//                let eventTermFrom = ApplicationData.shared.events!.content!.validPeriodFrom
+//                let eventTermTo = ApplicationData.shared.events!.content!.validPeriodTo
+//                eventTermLabel.text = "\(eventTermFrom)~\(eventTermTo)"
+//                eventTermLabel.font = UIFont.systemFont(ofSize: 18.0)
                 self.indicatorView.isHidden = true
+
 //        default:
             case false:
                 print("RELOAD STEP LABEL WITH ERROR")
@@ -161,8 +197,8 @@ class HomeView: UIViewController {
                 teamNameLabel.text = ""
                 teamRankLabel.text = ""
                 teamStepLabel.text = ""
-                eventNameLabel.text = ""
-                eventTermLabel.text = ""
+//                eventNameLabel.text = ""
+//                eventTermLabel.text = ""
                 self.indicatorView.isHidden = true
         }
     }
