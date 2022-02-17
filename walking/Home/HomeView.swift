@@ -79,7 +79,7 @@ class HomeView: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
- //       profileButton.setTitle(String(ApplicationData.shared.displayName.prefix(1)), for: .normal)
+        profileButton.setTitle(String(ApplicationData.shared.displayName.prefix(1)), for: .normal)
         setup()
         indicatorView.isHidden = true
         self.loadHome()

@@ -351,6 +351,8 @@ extension ApplicationData{
             self.updateLogging(text: "Result from Graph: \(result))")
             let MailId = result["userPrincipalName"] as! String
             ApplicationData.shared.mailId = MailId
+            let DisplayName = result["displayName"] as! String
+            ApplicationData.shared.displayName = DisplayName.uppercased()
             ApplicationData.shared.authorizeAWS(id:ApplicationData.shared.mailId) { team in
                 ApplicationData.shared.loadMyRanking(id: ApplicationData.shared.mailId) { result in
                     completion(result)

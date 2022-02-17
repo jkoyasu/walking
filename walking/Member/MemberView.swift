@@ -10,11 +10,13 @@ import UIKit
 class MemberView: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var TableView: UITableView!
-
+    @IBOutlet weak var profileButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         TableView.dataSource = self
         TableView.delegate = self
+        profileButton.setTitle(String(ApplicationData.shared.displayName.prefix(1)), for: .normal)
         TableView.register(UINib(nibName: "MemberCell", bundle: nil), forCellReuseIdentifier: "MemberCell")
         TableView.register(UINib(nibName: "ErrorCell", bundle: nil), forCellReuseIdentifier: "ErrorCell")
         // Do any additional setup after loading the view.

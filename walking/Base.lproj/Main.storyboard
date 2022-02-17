@@ -259,29 +259,30 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ucy-ZR-ZkX">
                                 <rect key="frame" x="0.0" y="133" width="375" height="445"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <view key="tableFooterView" alpha="0.60000002384185791" contentMode="scaleToFill" id="6NC-U1-nXh">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="445"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="PJ3-Y0-tJA">
+                                            <rect key="frame" x="162.5" y="197.5" width="50" height="50"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="50" id="b4O-7F-HBo"/>
+                                                <constraint firstAttribute="width" constant="50" id="ueB-PE-LIc"/>
+                                            </constraints>
+                                        </activityIndicatorView>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.85098039219999999" green="0.85098039219999999" blue="0.85098039219999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstItem="PJ3-Y0-tJA" firstAttribute="centerX" secondItem="6NC-U1-nXh" secondAttribute="centerX" id="Pzf-9T-pvd"/>
+                                        <constraint firstItem="PJ3-Y0-tJA" firstAttribute="centerY" secondItem="6NC-U1-nXh" secondAttribute="centerY" id="vRN-Yd-y3w"/>
+                                    </constraints>
+                                </view>
                             </tableView>
-                            <view alpha="0.60000002384185791" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6NC-U1-nXh">
-                                <rect key="frame" x="0.0" y="133" width="375" height="445"/>
-                                <subviews>
-                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="PJ3-Y0-tJA">
-                                        <rect key="frame" x="162.5" y="197.5" width="50" height="50"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="b4O-7F-HBo"/>
-                                            <constraint firstAttribute="width" constant="50" id="ueB-PE-LIc"/>
-                                        </constraints>
-                                    </activityIndicatorView>
-                                </subviews>
-                                <color key="backgroundColor" red="0.85098039219999999" green="0.85098039219999999" blue="0.85098039219999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstItem="PJ3-Y0-tJA" firstAttribute="centerX" secondItem="6NC-U1-nXh" secondAttribute="centerX" id="Pzf-9T-pvd"/>
-                                    <constraint firstItem="PJ3-Y0-tJA" firstAttribute="centerY" secondItem="6NC-U1-nXh" secondAttribute="centerY" id="vRN-Yd-y3w"/>
-                                </constraints>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P3x-he-xsJ">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YZj-Ou-m5C">
-                                        <rect key="frame" x="10" y="15" width="60" height="60"/>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YZj-Ou-m5C">
+                                        <rect key="frame" x="10" y="13" width="60" height="60"/>
                                         <color key="backgroundColor" red="0.85098039219999999" green="0.85098039219999999" blue="0.85098039219999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="60" id="jil-Cu-n3N"/>
@@ -289,7 +290,7 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="37"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="TM">
+                                        <state key="normal">
                                             <color key="titleColor" systemColor="labelColor"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
@@ -338,20 +339,16 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="qTv-vS-cn4" firstAttribute="top" secondItem="P3x-he-xsJ" secondAttribute="bottom" id="1WM-Vi-Ywl"/>
-                            <constraint firstItem="6NC-U1-nXh" firstAttribute="top" secondItem="qTv-vS-cn4" secondAttribute="bottom" id="3AX-qV-erj"/>
                             <constraint firstItem="hrc-ud-JzN" firstAttribute="leading" secondItem="a19-HW-oqC" secondAttribute="leading" id="GO6-qZ-rLH"/>
                             <constraint firstItem="hrc-ud-JzN" firstAttribute="bottom" secondItem="MQg-EM-JMv" secondAttribute="bottom" id="OdT-U2-8VQ"/>
                             <constraint firstItem="ucy-ZR-ZkX" firstAttribute="leading" secondItem="MQg-EM-JMv" secondAttribute="leading" id="PPV-q1-ibm"/>
                             <constraint firstItem="ucy-ZR-ZkX" firstAttribute="top" secondItem="qTv-vS-cn4" secondAttribute="bottom" id="Vpn-6w-tAE"/>
-                            <constraint firstItem="6NC-U1-nXh" firstAttribute="leading" secondItem="MQg-EM-JMv" secondAttribute="leading" id="Zj1-7X-Kqm"/>
                             <constraint firstItem="P3x-he-xsJ" firstAttribute="top" secondItem="a19-HW-oqC" secondAttribute="top" id="aHA-1P-tBH"/>
                             <constraint firstItem="qTv-vS-cn4" firstAttribute="trailing" secondItem="a19-HW-oqC" secondAttribute="trailing" id="aWN-6w-Iui"/>
                             <constraint firstItem="MQg-EM-JMv" firstAttribute="trailing" secondItem="ucy-ZR-ZkX" secondAttribute="trailing" id="e2k-kH-rAp"/>
                             <constraint firstItem="P3x-he-xsJ" firstAttribute="leading" secondItem="MQg-EM-JMv" secondAttribute="leading" id="f4d-ch-SNb"/>
                             <constraint firstAttribute="trailing" secondItem="P3x-he-xsJ" secondAttribute="trailing" id="gUo-Mz-lpK"/>
                             <constraint firstItem="hrc-ud-JzN" firstAttribute="top" secondItem="ucy-ZR-ZkX" secondAttribute="bottom" id="i5h-Gs-Fam"/>
-                            <constraint firstAttribute="trailing" secondItem="6NC-U1-nXh" secondAttribute="trailing" id="knz-Yg-hNK"/>
-                            <constraint firstItem="hrc-ud-JzN" firstAttribute="top" secondItem="6NC-U1-nXh" secondAttribute="bottom" id="nZJ-KG-luk"/>
                             <constraint firstItem="qTv-vS-cn4" firstAttribute="leading" secondItem="a19-HW-oqC" secondAttribute="leading" id="uwU-qz-d2Z"/>
                             <constraint firstItem="hrc-ud-JzN" firstAttribute="trailing" secondItem="a19-HW-oqC" secondAttribute="trailing" id="yPX-bg-Oy5"/>
                         </constraints>
@@ -361,6 +358,7 @@
                         <outlet property="TableView" destination="ucy-ZR-ZkX" id="xJM-rK-TMz"/>
                         <outlet property="allPostButton" destination="31s-Mg-i02" id="ooD-8Z-Ull"/>
                         <outlet property="indicatorView" destination="6NC-U1-nXh" id="ODH-Hh-T7s"/>
+                        <outlet property="profileButton" destination="YZj-Ou-m5C" id="nqa-jx-PD6"/>
                         <outlet property="teamPostButton" destination="zRe-dN-sVC" id="ILV-hM-Yzz"/>
                         <segue destination="21K-LO-KSB" kind="presentation" identifier="toThread" modalPresentationStyle="fullScreen" id="xs3-4C-cHe"/>
                     </connections>
@@ -567,7 +565,7 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="37"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="TM">
+                                        <state key="normal">
                                             <color key="titleColor" systemColor="labelColor"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
@@ -679,6 +677,7 @@
                         <outlet property="monthButton" destination="f5B-c0-KoY" id="5n0-Q1-RC4"/>
                         <outlet property="monthPullDownButton" destination="tOx-D7-ieX" id="5Sx-O0-L1B"/>
                         <outlet property="personalButton" destination="9TP-B5-Wvv" id="xl0-jb-mpu"/>
+                        <outlet property="profileButton" destination="8IG-2L-HEp" id="6FZ-rK-hG9"/>
                         <outlet property="tableView" destination="8nN-wk-r5H" id="5zK-hl-aJJ"/>
                         <outlet property="teamButton" destination="RBh-ry-lOz" id="rAi-K3-neB"/>
                         <outlet property="weekButton" destination="rIA-x2-2Gj" id="1qU-PB-VKC"/>
@@ -856,7 +855,7 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="37"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="TM">
+                                        <state key="normal">
                                             <color key="titleColor" systemColor="labelColor"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
@@ -920,6 +919,7 @@
                     <navigationItem key="navigationItem" id="nWN-EJ-cV0"/>
                     <connections>
                         <outlet property="TableView" destination="YvF-p3-ANY" id="YYy-bP-xbN"/>
+                        <outlet property="profileButton" destination="qII-2p-zZg" id="vmz-F6-qKQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3f8-NF-cNq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -946,7 +946,7 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="37"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="TM">
+                                        <state key="normal">
                                             <color key="titleColor" systemColor="labelColor"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
@@ -1444,7 +1444,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="6bh-T9-PGu"/>
         <segue reference="LtM-VH-oFY"/>
-        <segue reference="xg9-WP-vFV"/>
+        <segue reference="lTd-Hi-K9Q"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Start" width="227" height="435.5"/>

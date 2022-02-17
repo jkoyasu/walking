@@ -13,6 +13,7 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     
     @IBOutlet weak var indicatorView: UIView!
     @IBOutlet weak var dayMenu: UIMenu!
+    @IBOutlet weak var profileButton: UIButton!
     @IBOutlet weak var dayPullDownButton: UIButton!
     @IBOutlet weak var weekPullDownButton: UIButton!
     @IBOutlet weak var monthPullDownButton: UIButton!
@@ -51,6 +52,7 @@ class RecordView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         indicatorView.isHidden = true
+        profileButton.setTitle(String(ApplicationData.shared.displayName.prefix(1)), for: .normal)
         setup()
         loadRanking()
         showTab(tabSelect)
