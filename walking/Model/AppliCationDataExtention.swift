@@ -331,7 +331,36 @@ extension ApplicationData{
             }
         }
     }
-    //以下ログイン処理部分
+    
+    //AAD上の自分の情報取得
+    func getmyInfo(completion:@escaping(Bool)->Void){
+        let url = URL(string: "https://graph.microsoft.com/v1.0/me/")
+        var request = URLRequest(url: url!)
+        // Set the Authorization header for the request. We use Bearer tokens, so we specify Bearer + the token we got from the result
+        print("----",ApplicationData.shared.accessToken)
+        request.setValue("Bearer \(ApplicationData.shared.accessToken)", forHTTPHeaderField: "Authorization")
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                self.updateLogging(text: "Couldn't get graph result: \(error)")
+                return
+            }
+            guard let result = try? JSONSerialization.jsonObject(with: data!, options: []) as! [String:Any] else {
+                self.updateLogging(text:"Couldn't deserialize result JSON")
+                return
+            }
+            self.updateLogging(text: "Result from Graph: \(result))")
+            let MailId = result["userPrincipalName"] as! String
+            ApplicationData.shared.mailId = MailId
+            ApplicationData.shared.authorizeAWS(id:ApplicationData.shared.mailId) { team in
+                ApplicationData.shared.loadMyRanking(id: ApplicationData.shared.mailId) { result in
+                    completion(result)
+                    return
+                }
+            }
+        }.resume()
+    }
+    
+    //以下msalログイン処理部分
     typealias AccountCompletion = (MSALAccount?) -> Void
     
     //APIを取得
@@ -477,34 +506,6 @@ extension ApplicationData{
                 return
             }
         }
-    }
-    
-    //AAD上の自分の情報取得
-    func getmyInfo(completion:@escaping(Bool)->Void){
-        let url = URL(string: "https://graph.microsoft.com/v1.0/me/")
-        var request = URLRequest(url: url!)
-        // Set the Authorization header for the request. We use Bearer tokens, so we specify Bearer + the token we got from the result
-        print("----",ApplicationData.shared.accessToken)
-        request.setValue("Bearer \(ApplicationData.shared.accessToken)", forHTTPHeaderField: "Authorization")
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            if let error = error {
-                self.updateLogging(text: "Couldn't get graph result: \(error)")
-                return
-            }
-            guard let result = try? JSONSerialization.jsonObject(with: data!, options: []) as! [String:Any] else {
-                self.updateLogging(text:"Couldn't deserialize result JSON")
-                return
-            }
-            self.updateLogging(text: "Result from Graph: \(result))")
-            let MailId = result["userPrincipalName"] as! String
-            ApplicationData.shared.mailId = MailId
-            ApplicationData.shared.authorizeAWS(id:ApplicationData.shared.mailId) { team in
-                ApplicationData.shared.loadMyRanking(id: ApplicationData.shared.mailId) { result in
-                    completion(result)
-                    return
-                }
-            }
-        }.resume()
     }
     
     func initMSAL() throws {

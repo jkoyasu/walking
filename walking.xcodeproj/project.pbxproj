@@ -46,8 +46,8 @@
 		A260877527AA4DF00040A227 /* ApplicationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A260877427AA4DEF0040A227 /* ApplicationData.swift */; };
 		A260877A27AA57660040A227 /* AppliCationDataExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = A260877927AA57650040A227 /* AppliCationDataExtention.swift */; };
 		A286EA6027BCF28100190253 /* PersonRankCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A286EA5F27BCF28000190253 /* PersonRankCell.swift */; };
-		A28BEBF027BC8B1A009B1276 /* EventRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28BEBEE27BC8B1A009B1276 /* EventRecord.swift */; };
-		A28BEBF127BC8B1A009B1276 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28BEBEF27BC8B1A009B1276 /* Events.swift */; };
+		A286EA6227BDDB7600190253 /* EventRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = A286EA6127BDDB7600190253 /* EventRecord.swift */; };
+		A286EA6427BDDB7D00190253 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = A286EA6327BDDB7D00190253 /* Events.swift */; };
 		A28BEBF327BCD6FD009B1276 /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28BEBF227BCD6FD009B1276 /* Member.swift */; };
 		A28BEBF527BCD71C009B1276 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28BEBF427BCD71C009B1276 /* Notification.swift */; };
 		A2BD72D2279EB0DD00C7F5DB /* SelectedPostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BD72D0279EB0DD00C7F5DB /* SelectedPostCell.swift */; };
@@ -104,8 +104,8 @@
 		A260877427AA4DEF0040A227 /* ApplicationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationData.swift; sourceTree = "<group>"; };
 		A260877927AA57650040A227 /* AppliCationDataExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppliCationDataExtention.swift; sourceTree = "<group>"; };
 		A286EA5F27BCF28000190253 /* PersonRankCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PersonRankCell.swift; path = work/Record/PersonRankCell.swift; sourceTree = SOURCE_ROOT; };
-		A28BEBEE27BC8B1A009B1276 /* EventRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventRecord.swift; path = work/Model/EventRecord.swift; sourceTree = SOURCE_ROOT; };
-		A28BEBEF27BC8B1A009B1276 /* Events.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Events.swift; path = work/Model/Events.swift; sourceTree = SOURCE_ROOT; };
+		A286EA6127BDDB7600190253 /* EventRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventRecord.swift; sourceTree = "<group>"; };
+		A286EA6327BDDB7D00190253 /* Events.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
 		A28BEBF227BCD6FD009B1276 /* Member.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
 		A28BEBF427BCD71C009B1276 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		A2BC7B8827964A0100035482 /* EventRankCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventRankCell.xib; sourceTree = "<group>"; };
@@ -221,8 +221,8 @@
 				A22C048627BC7A2200A70FA8 /* MyRecord.swift */,
 				A22C048427BC7A1600A70FA8 /* TeamRecord.swift */,
 				A22C048C27BC7ADC00A70FA8 /* PersonRecord.swift */,
-				A28BEBEE27BC8B1A009B1276 /* EventRecord.swift */,
-				A28BEBEF27BC8B1A009B1276 /* Events.swift */,
+				A286EA6127BDDB7600190253 /* EventRecord.swift */,
+				A286EA6327BDDB7D00190253 /* Events.swift */,
 				A260877427AA4DEF0040A227 /* ApplicationData.swift */,
 				A260877927AA57650040A227 /* AppliCationDataExtention.swift */,
 			);
@@ -406,16 +406,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A28BEBF127BC8B1A009B1276 /* Events.swift in Sources */,
 				A2C1A3752772FD4C009CAE84 /* TabBarController.swift in Sources */,
 				A22C048527BC7A1700A70FA8 /* TeamRecord.swift in Sources */,
 				A2C1A3712772FD4C009CAE84 /* AppDelegate.swift in Sources */,
 				913ABCDC27A785A200FFF75D /* StepStruct.swift in Sources */,
+				A286EA6227BDDB7600190253 /* EventRecord.swift in Sources */,
 				A22EA106277AD0FB00D7DA92 /* AWSAPI.swift in Sources */,
 				A260875827A3DADE0040A227 /* ErrorCell.swift in Sources */,
 				915A8BB42791770C00B1DECE /* EventRankCell.swift in Sources */,
 				A21905EE2786ACD700288B76 /* StartView.swift in Sources */,
-				A28BEBF027BC8B1A009B1276 /* EventRecord.swift in Sources */,
 				A21905F92786D0CC00288B76 /* CommunicationView.swift in Sources */,
 				913ABCDD27A785A200FFF75D /* HomeView.swift in Sources */,
 				A22C048D27BC7ADC00A70FA8 /* PersonRecord.swift in Sources */,
@@ -442,6 +441,7 @@
 				A2BD72D2279EB0DD00C7F5DB /* SelectedPostCell.swift in Sources */,
 				A21905FC2786D15500288B76 /* CommunicationCell.swift in Sources */,
 				915A8BB02791567500B1DECE /* TeamRankCell.swift in Sources */,
+				A286EA6427BDDB7D00190253 /* Events.swift in Sources */,
 				A260877327AA19480040A227 /* Team.swift in Sources */,
 				A22EA104277AD0E200D7DA92 /* YammerAPI.swift in Sources */,
 				A244D5FA278EB6D5008D30A2 /* NotificationCell.swift in Sources */,
