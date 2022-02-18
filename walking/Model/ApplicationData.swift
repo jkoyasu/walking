@@ -66,7 +66,7 @@ class ApplicationData{
         let encoder = JSONEncoder()
         let encoded = try! encoder.encode(data)
         
-        AWSAPI.upload(message: encoded, url: "https://xoli50a9r4.execute-api.ap-northeast-1.amazonaws.com/prod/select_personal_ranking_api", token: ApplicationData.shared.idToken) { [weak self] result in
+        AWSAPI.upload(message: encoded, url: "https://xoli50a9r4.execute-api.ap-northeast-1.amazonaws.com/prod/select_personal_ranking_api", token: ApplicationData.shared.idToken) { result in
             switch result {
             case .success(let result):
                 
@@ -80,7 +80,17 @@ class ApplicationData{
                     print("myInfo",error)
                 }
             case .failure(let error):
-                print(error)
+                switch error{
+                case .AWSUnauthorized:
+                    print("loadMyRanking:サーバとの認証に失敗しました。")
+                    self.acquireTokenSilently(self.currentAccount){_ in
+                        self.authorizeAWS(id: self.mailId){_ in
+                            print("reExecute authorizeAWS")
+                        }
+                    }
+                default:
+                    print("loadMyRanking:通信に失敗しました。")
+                }
             }
         }
     }
@@ -93,7 +103,6 @@ class ApplicationData{
         AWSAPI.upload(message: encoded, url: "https://xoli50a9r4.execute-api.ap-northeast-1.amazonaws.com/prod/select_team_api", token: ApplicationData.shared.idToken) { result in
             switch result {
             case .success(let result):
-                
                 do{
                     let decoder = JSONDecoder()
 //                    let str = try JSONSerialization.jsonObject(with: result, options: JSONSerialization.ReadingOptions.allowFragments) as! [String : Any]
@@ -105,7 +114,17 @@ class ApplicationData{
                     print("teamInfo",error)
                 }
             case .failure(let error):
-                print(error)
+                switch error{
+                case .AWSUnauthorized:
+                    print("authorizaAWS:サーバとの認証に失敗しました。")
+                    self.acquireTokenSilently(self.currentAccount){_ in
+                        self.authorizeAWS(id: self.mailId){_ in
+                            print("reExecute authorizeAWS")
+                        }
+                    }
+                default:
+                    print("authorizaAWS:通信に失敗しました。")
+                }
             }
             completion(false)
             return
@@ -113,55 +132,85 @@ class ApplicationData{
     }
     
     func loadPersonalRanking(closure: @escaping ()->Void){
-        AWSAPI.download(url:"https://xoli50a9r4.execute-api.ap-northeast-1.amazonaws.com/prod/select_personal_ranking_api",token: ApplicationData.shared.idToken) { [weak self] result in
+        AWSAPI.download(url:"https://xoli50a9r4.execute-api.ap-northeast-1.amazonaws.com/prod/select_personal_ranking_api",token: ApplicationData.shared.idToken) { result in
             switch result {
             case .success(let result):
                 
                 do{
                     let decoder = JSONDecoder()
-                    self?.personRecord = try decoder.decode(PersonRecord.self, from: result)
+                    self.personRecord = try decoder.decode(PersonRecord.self, from: result)
                     closure()
                 }catch{
                     print(error)
                 }
             case .failure(let error):
-                print(error)
+                switch error{
+                case .AWSUnauthorized:
+                    print("loadPersonalRanking:サーバとの認証に失敗しました。")
+                    self.acquireTokenSilently(self.currentAccount){_ in
+                        self.authorizeAWS(id: self.mailId){_ in
+                            print("reExecute authorizeAWS")
+                        }
+                    }
+                default:
+                    print("loadPersonalRanking:通信に失敗しました。")
+                }
             }
         }
     }
     
     func loadTeamRanking(closure: @escaping ()->Void){
-        AWSAPI.download(url:"https://xoli50a9r4.execute-api.ap-northeast-1.amazonaws.com/prod/select_team_ranking_api",token: ApplicationData.shared.idToken) { [weak self] result in
+        AWSAPI.download(url:"https://xoli50a9r4.execute-api.ap-northeast-1.amazonaws.com/prod/select_team_ranking_api",token: ApplicationData.shared.idToken) { result in
             switch result {
             case .success(let result):
                 
                 do{
                     let decoder = JSONDecoder()
-                    self!.teamRecord = try decoder.decode(TeamRecord.self, from: result)
+                    self.teamRecord = try decoder.decode(TeamRecord.self, from: result)
                     closure()
                 }catch{
                     print(error)
                 }
             case .failure(let error):
-                print(error)
+                switch error{
+                case .AWSUnauthorized:
+                    print("authorizaAWS:サーバとの認証に失敗しました。")
+                    self.acquireTokenSilently(self.currentAccount){_ in
+                        self.authorizeAWS(id: self.mailId){_ in
+                            print("reExecute authorizeAWS")
+                        }
+                    }
+                default:
+                    print("authorizaAWS:通信に失敗しました。")
+                }
             }
         }
     }
     
     func loadEvents(closure: @escaping ()->Void){
-        AWSAPI.download(url:"https://xoli50a9r4.execute-api.ap-northeast-1.amazonaws.com/prod/select_event_api",token: ApplicationData.shared.idToken) { [weak self] result in
+        AWSAPI.download(url:"https://xoli50a9r4.execute-api.ap-northeast-1.amazonaws.com/prod/select_event_api",token: ApplicationData.shared.idToken) { result in
             switch result {
             case .success(let result):
                 
                 do{
                     let decoder = JSONDecoder()
-                    self!.events = try decoder.decode(Events.self, from: result)
+                    self.events = try decoder.decode(Events.self, from: result)
                     closure()
                 }catch{
                     print(error)
                 }
             case .failure(let error):
-                print(error)
+                switch error{
+                case .AWSUnauthorized:
+                    print("authorizaAWS:サーバとの認証に失敗しました。")
+                    self.acquireTokenSilently(self.currentAccount){_ in
+                        self.authorizeAWS(id: self.mailId){_ in
+                            print("reExecute authorizeAWS")
+                        }
+                    }
+                default:
+                    print("authorizaAWS:通信に失敗しました。")
+                }
             }
         }
     }
@@ -184,7 +233,17 @@ class ApplicationData{
                         print(error)
                     }
                 case .failure(let error):
-                    print(error)
+                    switch error{
+                    case .AWSUnauthorized:
+                        print("authorizaAWS:サーバとの認証に失敗しました。")
+                        self.acquireTokenSilently(self.currentAccount){_ in
+                            self.authorizeAWS(id: self.mailId){_ in
+                                print("reExecute authorizeAWS")
+                            }
+                        }
+                    default:
+                        print("authorizaAWS:通信に失敗しました。")
+                    }
                 }
                 closure()
                 return
@@ -193,19 +252,29 @@ class ApplicationData{
     }
     
     func loadNotification(closure: @escaping ()->Void){
-        AWSAPI.download(url:"https://xoli50a9r4.execute-api.ap-northeast-1.amazonaws.com/prod/select_notification_api",token: ApplicationData.shared.idToken) { [weak self] result in
+        AWSAPI.download(url:"https://xoli50a9r4.execute-api.ap-northeast-1.amazonaws.com/prod/select_notification_api",token: ApplicationData.shared.idToken) { result in
             switch result {
             case .success(let result):
                 
                 do{
                     let decoder = JSONDecoder()
-                    self?.notifications = try decoder.decode(Notification.self, from: result)
+                    self.notifications = try decoder.decode(Notification.self, from: result)
                     closure()
                 }catch{
                     print(error)
                 }
             case .failure(let error):
-                print(error)
+                switch error{
+                case .AWSUnauthorized:
+                    print("authorizaAWS:サーバとの認証に失敗しました。")
+                    self.acquireTokenSilently(self.currentAccount){_ in
+                        self.authorizeAWS(id: self.mailId){_ in
+                            print("reExecute authorizeAWS")
+                        }
+                    }
+                default:
+                    print("authorizaAWS:通信に失敗しました。")
+                }
             }
         }
     }
@@ -228,7 +297,17 @@ class ApplicationData{
                         print(error)
                     }
                 case .failure(let error):
-                    print(error)
+                    switch error{
+                    case .AWSUnauthorized:
+                        print("authorizaAWS:サーバとの認証に失敗しました。")
+                        self.acquireTokenSilently(self.currentAccount){_ in
+                            self.authorizeAWS(id: self.mailId){_ in
+                                print("reExecute authorizeAWS")
+                            }
+                        }
+                    default:
+                        print("authorizaAWS:通信に失敗しました。")
+                    }
                 }
                 closure()
                 return
